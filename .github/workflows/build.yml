@@ -5,6 +5,10 @@ on:
     branches:
       - main  # Replace with your default branch name
 
+permissions:
+  id-token: write  # Required for GitHub Pages deployment
+  contents: read   # Required to read the repository contents
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
