@@ -41,7 +41,8 @@ title = "Recent talks and courses"
     title = '6-May-2025'
 
     [[entries.entries.entries]]
-    title = 'Slides (forthcoming)'
+    title = 'Slides'
+    url = "talks/2025-05-pos-efspi-ssl.html"
   
   [[entries.entries]]
   title = "(Aug 2024) Short course at Joint Statistical Meetings, Portland, OR"
