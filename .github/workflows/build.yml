@@ -8,7 +8,7 @@ on:
 permissions:
   id-token: write  # Required for GitHub Pages deployment
   contents: read   # Required to read the repository contents
-  pages: write    # Required to deploy to GitHub Pages
+  pages: write     # Required to deploy to GitHub Pages
 
 jobs:
   build-and-deploy:
@@ -25,10 +25,13 @@ jobs:
       - name: Build Hugo Site
         run: hugo --minify
 
+      - name: Debug Hugo Output
+        run: ls -la public  # Verify generated files in the output directory
+
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: public  # Hugo outputs the site to the "public" directory
+          path: public  # Ensure this matches the `publishDir` in your Hugo config
 
       - name: Deploy to GitHub Pages
         id: deployment
