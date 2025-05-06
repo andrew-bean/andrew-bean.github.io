@@ -16,6 +16,10 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          submodules: true  # Ensures submodules are fetched and initialized
+          fetch-depth: 0    # Fetch full history to support submodules
+
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
