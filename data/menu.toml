@@ -1,0 +1,58 @@
+[[entries]]
+title = "About me"
+
+  [[entries.entries]]
+  title = "CV"
+  url = "assets/bean_cv.pdf"
+
+  [[entries.entries]]
+  title = "LinkedIn"
+  url = "www.linkedin.com/in/bean-andrew-t"
+
+  [[entries.entries]]
+  title = "Github"
+  url = "https://github.com/andrew-bean"
+
+[[entries]]
+title = "Some things I work on"
+
+  [[entries.entries]]
+  title = "Online book: (Bayesian) Applied Modelling in Drug Development"
+  url = "https://opensource.nibr.com/bamdd/"
+
+  [[entries.entries]]
+  title = "OncoBayes2"
+  url = "https://cran.r-project.org/package=OncoBayes2"
+
+  [[entries.entries]]
+  title = "openstatsware"
+  url = "https://www.openstatsware.org/"
+
+[[entries]]
+title = "Recent talks and courses"
+
+  [[entries.entries]]
+  title = "(May 2025) Talk at EFSPI SSL Webinar"
+  
+    [[entries.entries.entries]]
+    title = 'Title: "Tale of two studies: quantitative enablement of smart risk-taking in clinical study design"'
+    
+    [[entries.entries.entries]]
+    title = '6-May-2025'
+
+    [[entries.entries.entries]]
+    title = 'Slides (forthcoming)'
+  
+  [[entries.entries]]
+  title = "(Aug 2024) Short course at Joint Statistical Meetings, Portland, OR"
+  
+    [[entries.entries.entries]]
+    title = 'Title: "Applied Modelling in Drug Development"'
+    
+    [[entries.entries.entries]]
+    title = '5-Aug-2024'
+
+    [[entries.entries.entries]]
+    title = 'Slides'
+    url = "https://opensource.nibr.com/bamdd/workshops/jsm2024/slides/bamdd_jsm2024.pdf"
+  
