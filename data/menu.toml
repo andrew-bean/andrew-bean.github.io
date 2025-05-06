@@ -3,11 +3,11 @@ title = "About me"
 
   [[entries.entries]]
   title = "CV"
-  url = "assets/bean_cv.pdf"
+  url = "static/bean_cv.pdf"
 
   [[entries.entries]]
   title = "LinkedIn"
-  url = "www.linkedin.com/in/bean-andrew-t"
+  url = "https://www.linkedin.com/in/bean-andrew-t"
 
   [[entries.entries]]
   title = "Github"
