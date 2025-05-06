@@ -3,7 +3,7 @@ title = "About me"
 
   [[entries.entries]]
   title = "CV"
-  url = "static/bean_cv.pdf"
+  url = "bean_cv.pdf"
 
   [[entries.entries]]
   title = "LinkedIn"
