@@ -1,0 +1,23 @@
+[
+  {
+    "objectID": "syllabus/syllabus.html",
+    "href": "syllabus/syllabus.html",
+    "title": "Syllabus",
+    "section": "",
+    "text": "This browser does not support PDFs. Please download the PDF to view it: &lt;a href=\"../syllabus/FA2025_DATA505_syllabus_Bean.pdf\"&gt;Download PDF&lt;/a&gt;."
+  },
+  {
+    "objectID": "schedule/schedule.html",
+    "href": "schedule/schedule.html",
+    "title": "Schedule",
+    "section": "",
+    "text": "Run the schedule.R script and display the schedule\nhere::i_am(\"schedule/schedule.qmd\")\nlibrary(here)\nlibrary(gt)\n\nsource(here(\"schedule/schedule.R\"))\n\ngt(schedule)\n\n\n\n\n\n\n\n\nDate\nContents\nNotes\n\n\n\n\nAug 26\nIntroduction & Getting started with R\n\n\n\nSep 2\nCh2: Univariate distribution\nNo class on Mon; Quiz 1 (Wed)\n\n\nSep 9\nCh3: Location, spread, and skewness\nQuiz 2 (Wed)\n\n\nSep 16\nCh4: Transformation\nQuiz 3 (Wed)\n\n\nSep 23\nCh4: Z-scores\nExam 1 (Mon)\n\n\nSep 30\nCh5: Bivariate relationships\nQuiz 4 (Wed)\n\n\nOct 7\nNO CLASS (Fall Break)\n\n\n\nOct 14\nCh5: Bivariate relationships (cont’d)\nQuiz 5 (Wed)\n\n\nOct 21\nCh6: Simple linear regression\nQuiz 6 (Wed)\n\n\nOct 28\nCh7: Basic probability; Ch8: Normal distr.\nExam 2 (Mon)\n\n\nNov 4\nCh9: Central Limit Theorem\nQuiz 7 (Wed)\n\n\nNov 11\nCh11: One sample inference\nQuiz 8 (Wed)\n\n\nNov 18\nCh11: Independent and paired samples\nQuiz 9 (Wed)\n\n\nNov 25\n\nExam 3 (Mon)\n\n\nDec 2\nCh13: ANOVA\nANOVA quiz (Wed)\n\n\nDec 9\nFinal Exam\n7:30 to 10:30 pm"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Data 505: R for Statistics",
+    "section": "",
+    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+  }
+]
