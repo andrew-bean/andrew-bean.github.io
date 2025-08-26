@@ -1,23 +1,149 @@
 [
   {
+    "objectID": "lectures/week_1/week_1.html#acquaintances",
+    "href": "lectures/week_1/week_1.html#acquaintances",
+    "title": "Week 1: Introduction",
+    "section": "Acquaintances",
+    "text": "Acquaintances\n\nAbout me\nAbout you\nAbout the course"
+  },
+  {
+    "objectID": "lectures/week_1/week_1.html#course-goals",
+    "href": "lectures/week_1/week_1.html#course-goals",
+    "title": "Week 1: Introduction",
+    "section": "Course goals",
+    "text": "Course goals\n\nAttain basic programming fluency in R\nUse R to:\n\nManipulate and summarize data\nApply statistical techniques to learn from data\n\nStrengthen your skills at:\n\nMaking data-based insights to real-world problems\nCommunicating findings clearly\nAssessing strength of statistical arguments"
+  },
+  {
+    "objectID": "lectures/week_1/week_1.html#about-r",
+    "href": "lectures/week_1/week_1.html#about-r",
+    "title": "Week 1: Introduction",
+    "section": "About R",
+    "text": "About R\n\nPrehistory: the S language\n\nS was developed by John M. Chambers at Bell labs in the 1980s\nFocus was on data analysis and graphics\nS version 3 was released alongside the influential book Statistical Models in S (1992) by Chambers and Trevor Hastie (a highly influential statistician in the area of statistical and machine learning)\nS was proprietary software distributed by Bell, later commercialized as S-PLUS\n\nDevelopment of R\n\nR is a free open-source implementation of S\nIt was written by Ross Ihaka and Robert Gentlemen at the University of Auckland"
+  },
+  {
+    "objectID": "lectures/week_1/week_1.html#languages-for-modern-data-science",
+    "href": "lectures/week_1/week_1.html#languages-for-modern-data-science",
+    "title": "Week 1: Introduction",
+    "section": "Languages for modern data science",
+    "text": "Languages for modern data science\nContemporary landscape\n\nHighly multi-lingual enviornment for practicing data scientists today: Python, R, Julia, etc.\nRelative strengths of R\n\nPopularity in the field of statistical reasearch (in some more applied sub-fields, like AI and Machine Learning, Python is ascendant)\nOpen-source extensions (“libraries”) include leading frameworks for data manipulation and visualization, and also for cutting edge new methodologies\n\nRelative weaknesses of R\n\nSpeed and performance\nWeak native object orientation"
+  },
+  {
+    "objectID": "lectures/week_1/week_1.html#example-r-package-download-counts",
+    "href": "lectures/week_1/week_1.html#example-r-package-download-counts",
+    "title": "Week 1: Introduction",
+    "section": "Example: R package download counts",
+    "text": "Example: R package download counts\nGetting the data from cranlogs\n\nWe will work with data from various sources this semester\nIn this example, I will look at data related to download counts for a few R packages from CRAN (the most popular repository for open-source extensions in R)\nI do not expect you to understand all this code\nGoal is just to highlight the efficiency with which R can handle data-analysis tasks\n\n\n\nGetting some data about package download counts\nlibrary(cranlogs)\n\n# list a few popular R packages\npackages &lt;- c(\"ggplot2\", \"dplyr\", \"cranlogs\", \"DT\", \"OncoBayes2\")\n\n# use the packageRank package function cranDownloads to \n# get some data about download counts in the past year\ndownload_counts &lt;- cranlogs::cran_downloads(\n  packages = packages,\n  from = \"2025-01-01\", to = \"2025-08-22\"\n)"
+  },
+  {
+    "objectID": "lectures/week_1/week_1.html#example-r-package-download-counts-1",
+    "href": "lectures/week_1/week_1.html#example-r-package-download-counts-1",
+    "title": "Week 1: Introduction",
+    "section": "Example: R package download counts",
+    "text": "Example: R package download counts\nExamine the data\n\n\n\nUse the DT interface to DataTables.js for a paginated printout of the raw data\nlibrary(DT)\nDT::datatable(download_counts, options = list(pageLength = 8))"
+  },
+  {
+    "objectID": "lectures/week_1/week_1.html#example-r-package-download-counts-2",
+    "href": "lectures/week_1/week_1.html#example-r-package-download-counts-2",
+    "title": "Week 1: Introduction",
+    "section": "Example: R package download counts",
+    "text": "Example: R package download counts\nVisualize the data\n\nR has extremely strong and user-friendly capabilities for graphics\nNumerous popular packages, such as ggplot2, extend R’s usefulness in this area even further\n\n\n\nUse ggplot2 to visualize the data on package-download counts\nlibrary(ggplot2)\n\nggplot(download_counts,\n       aes(x = date, y = count, group = package, color = package)) +\n  geom_path() +\n  labs(x = \"Date (2025)\",\n       y = \"Number of daily package downloads\")"
+  },
+  {
+    "objectID": "lectures/week_1/week_1.html#example-r-package-download-counts-3",
+    "href": "lectures/week_1/week_1.html#example-r-package-download-counts-3",
+    "title": "Week 1: Introduction",
+    "section": "Example: R package download counts",
+    "text": "Example: R package download counts\nManipulate and transform the data\n\nR likewise has excellent facilities for storing and manipulating tabular data\n\n\n\nUse dplyr to consolidate the daily counts into weekly counts\nlibrary(dplyr)\n\n# sum counts for each package across each week of 2025\nweekly_counts &lt;- download_counts |&gt;\n  mutate(week = floor(difftime(date, \"2024-12-31\", units = \"weeks\")) +\n            as.Date(\"2025-01-01\")) |&gt;\n  group_by(package, week) |&gt;\n  summarize(count = sum(count), .groups = \"drop\")\n\n\n\n\n\n\nPrint the first several rows of the original data\nknitr::kable(head(download_counts))\n\n\n\n\n\ndate\ncount\npackage\n\n\n\n\n2025-01-01\n11099\nDT\n\n\n2025-01-01\n45\nOncoBayes2\n\n\n2025-01-01\n34\ncranlogs\n\n\n2025-01-01\n27657\ndplyr\n\n\n2025-01-01\n25618\nggplot2\n\n\n2025-01-02\n13421\nDT\n\n\n\n\n\n\n\n\nPrint the first several rows of the transformed data\nknitr::kable(head(weekly_counts))\n\n\n\n\n\npackage\nweek\ncount\n\n\n\n\nDT\n2025-01-01\n81713\n\n\nOncoBayes2\n2025-01-01\n113\n\n\ncranlogs\n2025-01-01\n258\n\n\ndplyr\n2025-01-01\n270181\n\n\nggplot2\n2025-01-01\n256966\n\n\nDT\n2025-01-08\n78110"
+  },
+  {
+    "objectID": "lectures/week_1/week_1.html#example-r-package-download-counts-4",
+    "href": "lectures/week_1/week_1.html#example-r-package-download-counts-4",
+    "title": "Week 1: Introduction",
+    "section": "Example: R package download counts",
+    "text": "Example: R package download counts\nVisualize again with alternative time scales\n\n\nUse ggplot2 to plot the download frequencies on both timescales\nbind_rows(mutate(download_counts, time_unit = \"daily\", time = date),\n          mutate(weekly_counts, time_unit = \"weekly\", time = week)) |&gt;\n  ggplot(aes(x = time, y = count, group = package, color = package)) +\n  geom_path() +\n  labs(x = \"Date (2025)\",\n       y = \"Number of package downloads per unit time\") +\n  facet_wrap(~ time_unit, labeller = \"label_both\", scales = \"free\")"
+  },
+  {
+    "objectID": "lectures/week_1/week_1.html#example-r-package-download-counts-5",
+    "href": "lectures/week_1/week_1.html#example-r-package-download-counts-5",
+    "title": "Week 1: Introduction",
+    "section": "Example: R package download counts",
+    "text": "Example: R package download counts\nLeveraging more packages to simplify tasks\n\nSome extensions to R are highly specialized for specific purposes (e.g. data-analysis tasks, types of data, types of models, etc.)\nMany are community-supported, but some have more stable backing\nBase R evolves slowly, while its extensions grow and adapt quickly\nThe right tool can make an otherwise difficult task very easy\n\n\n\nUse specialized packages for time-indexed data, tsibble and lubridate, to manipulate ggplot2 download data over a longer timescale\nlibrary(tsibble)\nlibrary(lubridate)\n\nggplot_downloads &lt;- cranlogs::cran_downloads(\n  packages = \"ggplot2\",\n  from = \"2015-01-01\", to = \"2025-08-22\"\n) |&gt;\n  tsibble(index = \"date\") |&gt;\n  mutate(year = year(date),\n         month = factor(month(date, label = TRUE, abbr = TRUE),\n                        ordered = FALSE)) |&gt;\n  index_by(time = ~ yearmonth(.)) |&gt;\n  summarize(count = sum(count), month = first(month), year = first(year))"
+  },
+  {
+    "objectID": "lectures/week_1/week_1.html#example-r-package-download-counts-6",
+    "href": "lectures/week_1/week_1.html#example-r-package-download-counts-6",
+    "title": "Week 1: Introduction",
+    "section": "Example: R package download counts",
+    "text": "Example: R package download counts\nLeveraging more packages to simplify tasks\n\n\nCode for a basic plot is made extremely simple by using these specialist libraries\nggplot_plot &lt;- fabletools::autoplot(ggplot_downloads, .vars = count)\nggplot_plot"
+  },
+  {
+    "objectID": "lectures/week_1/week_1.html#example-r-package-download-counts-7",
+    "href": "lectures/week_1/week_1.html#example-r-package-download-counts-7",
+    "title": "Week 1: Introduction",
+    "section": "Example: R package download counts",
+    "text": "Example: R package download counts\nFitting a linear regression model\n\nR is designed for and heavily used by statisticians\nIt has strong native support for classical statistical techniques\n\n\n# Simple linear regression of monthly download count on time (in months)\nfit &lt;- lm(count ~ time, data = ggplot_downloads)\nsummary(fit)\n\n\nCall:\nlm(formula = count ~ time, data = ggplot_downloads)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-1510522  -302044   -73162   348538  1643740 \n\nCoefficients:\n              Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) -1.108e+07  7.803e+05  -14.20   &lt;2e-16 ***\ntime         6.738e+02  4.240e+01   15.89   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 539600 on 126 degrees of freedom\nMultiple R-squared:  0.6671,    Adjusted R-squared:  0.6645 \nF-statistic: 252.5 on 1 and 126 DF,  p-value: &lt; 2.2e-16"
+  },
+  {
+    "objectID": "lectures/week_1/week_1.html#summary",
+    "href": "lectures/week_1/week_1.html#summary",
+    "title": "Week 1: Introduction",
+    "section": "Summary",
+    "text": "Summary\n\nR is awesome for people who love data\nBase R was developed with statisticians in mind\nStatistics has evolved very rapidly as a field in recent decades as computational power has advanced\nOpen-source extensions to R (“packages”) can dramatically simplify data-analysis tasks"
+  },
+  {
+    "objectID": "lectures/week_1/week_1.html#example-r-package-download-counts-8",
+    "href": "lectures/week_1/week_1.html#example-r-package-download-counts-8",
+    "title": "Week 1: Introduction",
+    "section": "Example: R package download counts",
+    "text": "Example: R package download counts\nVisualizing the fit\n\n\nAdd the fitted line to the previous plot\n# Simple linear regression of monthly download count on time (in months)\nggplot_plot + \n  geom_path(data = mutate(ggplot_downloads, pred = predict(fit)),\n            aes(y = pred), color = \"red\")"
+  },
+  {
+    "objectID": "lectures/week_1/week_1.html#about-the-last-example",
+    "href": "lectures/week_1/week_1.html#about-the-last-example",
+    "title": "Week 1: Introduction",
+    "section": "About the last example",
+    "text": "About the last example\n\nAre you familiar with simple linear regression?\nWhat (if anything) concerns you about the use of this technique in the last example?"
+  },
+  {
+    "objectID": "lectures/week_1/week_1.html#some-more-questions-for-you",
+    "href": "lectures/week_1/week_1.html#some-more-questions-for-you",
+    "title": "Week 1: Introduction",
+    "section": "Some more questions for you",
+    "text": "Some more questions for you"
+  },
+  {
     "objectID": "syllabus/syllabus.html",
     "href": "syllabus/syllabus.html",
     "title": "Syllabus",
     "section": "",
-    "text": "This browser does not support PDFs. Please download the PDF to view it: &lt;a href=\"../syllabus/FA2025_DATA505_syllabus_Bean.pdf\"&gt;Download PDF&lt;/a&gt;."
+    "text": "This browser does not support PDFs. Please download the PDF to view it: &lt;a href=\"FA2025_DATA505_syllabus_Bean.pdf\"&gt;Download PDF&lt;/a&gt;."
   },
   {
     "objectID": "schedule/schedule.html",
     "href": "schedule/schedule.html",
     "title": "Schedule",
     "section": "",
-    "text": "Run the schedule.R script and display the schedule\nhere::i_am(\"schedule/schedule.qmd\")\nlibrary(here)\nlibrary(gt)\n\nsource(here(\"schedule/schedule.R\"))\n\ngt(schedule)\n\n\n\n\n\n\n\n\nDate\nContents\nNotes\n\n\n\n\nAug 26\nIntroduction & Getting started with R\n\n\n\nSep 2\nCh2: Univariate distribution\nNo class on Mon; Quiz 1 (Wed)\n\n\nSep 9\nCh3: Location, spread, and skewness\nQuiz 2 (Wed)\n\n\nSep 16\nCh4: Transformation\nQuiz 3 (Wed)\n\n\nSep 23\nCh4: Z-scores\nExam 1 (Mon)\n\n\nSep 30\nCh5: Bivariate relationships\nQuiz 4 (Wed)\n\n\nOct 7\nNO CLASS (Fall Break)\n\n\n\nOct 14\nCh5: Bivariate relationships (cont’d)\nQuiz 5 (Wed)\n\n\nOct 21\nCh6: Simple linear regression\nQuiz 6 (Wed)\n\n\nOct 28\nCh7: Basic probability; Ch8: Normal distr.\nExam 2 (Mon)\n\n\nNov 4\nCh9: Central Limit Theorem\nQuiz 7 (Wed)\n\n\nNov 11\nCh11: One sample inference\nQuiz 8 (Wed)\n\n\nNov 18\nCh11: Independent and paired samples\nQuiz 9 (Wed)\n\n\nNov 25\n\nExam 3 (Mon)\n\n\nDec 2\nCh13: ANOVA\nANOVA quiz (Wed)\n\n\nDec 9\nFinal Exam\n7:30 to 10:30 pm"
+    "text": "Run the schedule.R script and display the schedule\nhere::i_am(\"schedule/schedule.qmd\")\nlibrary(here)\nlibrary(gt)\n\nsource(here(\"schedule/schedule.R\"))\n\ngt(schedule)\n\n\n\n\n\n\n\n\nDate\nContents\nNotes\n\n\n\n\nAug 26\nIntroduction & Getting started\nLab 1\n\n\nSep 2\nR Basics (variables, types, functions)\nHW-Quiz 1 / Lab 2\n\n\nSep 9\nDescriptive statistics & Summarizing data\nHW-Quiz 2 / Lab 3\n\n\nSep 16\nBasic statistical inference\nHW-Quiz 3 / Lab 4\n\n\nSep 23\nData manipulation & visualization\nHW-Quiz 4 / Lab 5\n\n\nSep 30\nExam 1\n\n\n\nOct 7\nRegression & Case study 1\n\n\n\nOct 14\nNO CLASS (Fall Break)\n\n\n\nOct 21\nControl flow (if/for/while)\nHW-Quiz 5 / Lab 6\n\n\nOct 28\nWriting functions\nHW-Quiz 6 / Lab 7\n\n\nNov 4\nExam 2\n\n\n\nNov 11\nSampling distributions & CLT\nLab 8\n\n\nNov 18\nSimulation & Case study 2\nHW-Quiz 7\n\n\nNov 25\nBootstrap & Case study 2\nHW-Quiz 8\n\n\nDec 2\nShiny (UI-based apps)\nCase study 2 due / Lab 9\n\n\nDec 9\nFinal Exam\n7:30 to 10:30"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Data 505: R for Statistics",
+    "title": "Data 505: Statistics Using R",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+    "text": "here() starts at /Users/andrewbean/teach/drew_data505\nWelcome to the DATA 505 website for Fall 2025 at Drew University. The course is “Statistics Using R”."
+  },
+  {
+    "objectID": "index.html#course-description",
+    "href": "index.html#course-description",
+    "title": "Data 505: Statistics Using R",
+    "section": "Course description",
+    "text": "Course description\nCovers how to use real-world data and draw intelligent conclusions on it using univariate and bivariate descriptive statistics such as centrality, spread, and correlation. Students have the opportunity to learn how to use the R language in the R-studio environment to obtain representative samples from large datasets and use the information in such samples to draw inferences on the larger datasets they were taken from. Course topics include graphical and tabular presentation of data, descriptive summary statistics, manipulation of data, regression, probability distributions, t-tests, and one-way analysis of variance."
+  },
+  {
+    "objectID": "lectures/week_1/lectures_1.html",
+    "href": "lectures/week_1/lectures_1.html",
+    "title": "Week 1: Introduction and getting started with R",
+    "section": "",
+    "text": "Agenda\n\nWelcome and introductions\nAbout the course; about R\nInstalling R, RStudio, and Quarto\nLab 1 (complete and submit on Moodle by end of class)\n\n\n\nSlides\nLink to fullscreen\n\n\n\n\nAdditional resources\n\nVisual timeline of R:\n\nBrock, T., Gillespie, C., & Jumping Rivers Team. (2024). A timeline of R’s first 30 years. Jumping Rivers. Retrieved from https://www.jumpingrivers.com/misc/timeline/"
   }
 ]

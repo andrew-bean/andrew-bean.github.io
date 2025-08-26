@@ -93,7 +93,7 @@ We will get more practice with Quarto next week.
 - Edit the script to add yourself as author
 - Edit the code chunk below to print your name (use `print()`)
 - Render the script 
-- Submit your edited code AND the pdf output to Moodle: 
+- Submit your edited code AND the pdf output to Moodle: [Link](https://moodle.drew.edu/mod/assign/view.php?id=594553)
 
 ```{r}
 
