@@ -1,5 +1,89 @@
 [
   {
+    "objectID": "lectures/week_1/installing_software.html",
+    "href": "lectures/week_1/installing_software.html",
+    "title": "Data 505: R for Statistics",
+    "section": "",
+    "text": "R (free and open source)\nRStudio IDE (free commercial software)\nQuarto (free commercial software): “literate programming”"
+  },
+  {
+    "objectID": "lectures/week_1/installing_software.html#software-to-install",
+    "href": "lectures/week_1/installing_software.html#software-to-install",
+    "title": "Data 505: R for Statistics",
+    "section": "",
+    "text": "R (free and open source)\nRStudio IDE (free commercial software)\nQuarto (free commercial software): “literate programming”"
+  },
+  {
+    "objectID": "lectures/week_1/installing_software.html#step-by-step",
+    "href": "lectures/week_1/installing_software.html#step-by-step",
+    "title": "Data 505: R for Statistics",
+    "section": "Step-by-step",
+    "text": "Step-by-step\n\nGo to https://cran.rstudio.com and download the latest version of R\nGo to RStudio Desktop download page and download RStudio Desktop\nGo to Quarto Getting Started and download Quarto"
+  },
+  {
+    "objectID": "lectures/week_1/installing_software.html#one-more-thing",
+    "href": "lectures/week_1/installing_software.html#one-more-thing",
+    "title": "Data 505: R for Statistics",
+    "section": "One more thing",
+    "text": "One more thing\n\nFor labs, we will use Quarto to render code and outputs into pdf documents.\nThis has one more prerequisite\n\nIn RStudio, in the bottom-left pane, switch from the “Console” to the “Terminal” tab.\nType in and run this command: quarto install tinytex"
+  },
+  {
+    "objectID": "lectures/week_1/lectures_1.html",
+    "href": "lectures/week_1/lectures_1.html",
+    "title": "Week 1: Introduction and getting started with R",
+    "section": "",
+    "text": "Welcome and introductions\nAbout the course; about R\nInstalling R, RStudio, and Quarto\nLab 1 (complete and submit on Moodle by end of class)\n\nSubmission requires two minor edits to this script: lab_1_blank.qmd"
+  },
+  {
+    "objectID": "lectures/week_1/lectures_1.html#software-to-install",
+    "href": "lectures/week_1/lectures_1.html#software-to-install",
+    "title": "Week 1: Introduction and getting started with R",
+    "section": "Software to install",
+    "text": "Software to install\n\nR (free and open source)\nRStudio IDE (free commercial software)\nQuarto (free commercial software): “literate programming”"
+  },
+  {
+    "objectID": "lectures/week_1/lectures_1.html#step-by-step",
+    "href": "lectures/week_1/lectures_1.html#step-by-step",
+    "title": "Week 1: Introduction and getting started with R",
+    "section": "Step-by-step",
+    "text": "Step-by-step\n\nGo to https://cran.rstudio.com and download the latest version of R\nGo to RStudio Desktop download page and download RStudio Desktop\nGo to Quarto Getting Started and download Quarto"
+  },
+  {
+    "objectID": "lectures/week_1/lectures_1.html#one-more-thing",
+    "href": "lectures/week_1/lectures_1.html#one-more-thing",
+    "title": "Week 1: Introduction and getting started with R",
+    "section": "One more thing",
+    "text": "One more thing\n\nFor labs, we will use Quarto to render code and outputs into pdf documents.\nThis has one more prerequisite\n\nIn RStudio, in the bottom-left pane, switch from the “Console” to the “Terminal” tab.\nType in and run this command: quarto install tinytex"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Data 505: Statistics Using R",
+    "section": "",
+    "text": "here() starts at /Users/andrewbean/teach/drew_data505\nWelcome to the DATA 505 website for Fall 2025 at Drew University. The course is “Statistics Using R”."
+  },
+  {
+    "objectID": "index.html#course-description",
+    "href": "index.html#course-description",
+    "title": "Data 505: Statistics Using R",
+    "section": "Course description",
+    "text": "Course description\nCovers how to use real-world data and draw intelligent conclusions on it using univariate and bivariate descriptive statistics such as centrality, spread, and correlation. Students have the opportunity to learn how to use the R language in the R-studio environment to obtain representative samples from large datasets and use the information in such samples to draw inferences on the larger datasets they were taken from. Course topics include graphical and tabular presentation of data, descriptive summary statistics, manipulation of data, regression, probability distributions, t-tests, and one-way analysis of variance."
+  },
+  {
+    "objectID": "schedule/schedule.html",
+    "href": "schedule/schedule.html",
+    "title": "Schedule",
+    "section": "",
+    "text": "Run the schedule.R script and display the schedule\nhere::i_am(\"schedule/schedule.qmd\")\nlibrary(here)\nlibrary(gt)\n\nsource(here(\"schedule/schedule.R\"))\n\ngt(schedule)\n\n\n\n\n\n\n\n\nDate\nContents\nNotes\n\n\n\n\nAug 26\nIntroduction & Getting started\nLab 1\n\n\nSep 2\nR Basics (variables, types, functions)\nHW-Quiz 1 / Lab 2\n\n\nSep 9\nDescriptive statistics & Summarizing data\nHW-Quiz 2 / Lab 3\n\n\nSep 16\nBasic statistical inference\nHW-Quiz 3 / Lab 4\n\n\nSep 23\nData manipulation & visualization\nHW-Quiz 4 / Lab 5\n\n\nSep 30\nExam 1\n\n\n\nOct 7\nRegression & Case study 1\n\n\n\nOct 14\nNO CLASS (Fall Break)\n\n\n\nOct 21\nControl flow (if/for/while)\nHW-Quiz 5 / Lab 6\n\n\nOct 28\nWriting functions\nHW-Quiz 6 / Lab 7\n\n\nNov 4\nExam 2\n\n\n\nNov 11\nSampling distributions & CLT\nLab 8\n\n\nNov 18\nSimulation & Case study 2\nHW-Quiz 7\n\n\nNov 25\nBootstrap & Case study 2\nHW-Quiz 8\n\n\nDec 2\nShiny (UI-based apps)\nCase study 2 due / Lab 9\n\n\nDec 9\nFinal Exam\n7:30 to 10:30"
+  },
+  {
+    "objectID": "syllabus/syllabus.html",
+    "href": "syllabus/syllabus.html",
+    "title": "Syllabus",
+    "section": "",
+    "text": "This browser does not support PDFs. Please download the PDF to view it: &lt;a href=\"FA2025_DATA505_syllabus_Bean.pdf\"&gt;Download PDF&lt;/a&gt;."
+  },
+  {
     "objectID": "lectures/week_1/week_1.html#acquaintances",
     "href": "lectures/week_1/week_1.html#acquaintances",
     "title": "Week 1: Introduction",
@@ -112,38 +196,38 @@
     "text": "Some more questions for you"
   },
   {
-    "objectID": "syllabus/syllabus.html",
-    "href": "syllabus/syllabus.html",
-    "title": "Syllabus",
-    "section": "",
-    "text": "This browser does not support PDFs. Please download the PDF to view it: &lt;a href=\"FA2025_DATA505_syllabus_Bean.pdf\"&gt;Download PDF&lt;/a&gt;."
+    "objectID": "lectures/week_1/week_1.html#software-to-install",
+    "href": "lectures/week_1/week_1.html#software-to-install",
+    "title": "Week 1: Introduction",
+    "section": "Software to install",
+    "text": "Software to install\n\nR (free and open source)\nRStudio IDE (free commercial software)\nQuarto (free commercial software): “literate programming”"
   },
   {
-    "objectID": "schedule/schedule.html",
-    "href": "schedule/schedule.html",
-    "title": "Schedule",
-    "section": "",
-    "text": "Run the schedule.R script and display the schedule\nhere::i_am(\"schedule/schedule.qmd\")\nlibrary(here)\nlibrary(gt)\n\nsource(here(\"schedule/schedule.R\"))\n\ngt(schedule)\n\n\n\n\n\n\n\n\nDate\nContents\nNotes\n\n\n\n\nAug 26\nIntroduction & Getting started\nLab 1\n\n\nSep 2\nR Basics (variables, types, functions)\nHW-Quiz 1 / Lab 2\n\n\nSep 9\nDescriptive statistics & Summarizing data\nHW-Quiz 2 / Lab 3\n\n\nSep 16\nBasic statistical inference\nHW-Quiz 3 / Lab 4\n\n\nSep 23\nData manipulation & visualization\nHW-Quiz 4 / Lab 5\n\n\nSep 30\nExam 1\n\n\n\nOct 7\nRegression & Case study 1\n\n\n\nOct 14\nNO CLASS (Fall Break)\n\n\n\nOct 21\nControl flow (if/for/while)\nHW-Quiz 5 / Lab 6\n\n\nOct 28\nWriting functions\nHW-Quiz 6 / Lab 7\n\n\nNov 4\nExam 2\n\n\n\nNov 11\nSampling distributions & CLT\nLab 8\n\n\nNov 18\nSimulation & Case study 2\nHW-Quiz 7\n\n\nNov 25\nBootstrap & Case study 2\nHW-Quiz 8\n\n\nDec 2\nShiny (UI-based apps)\nCase study 2 due / Lab 9\n\n\nDec 9\nFinal Exam\n7:30 to 10:30"
+    "objectID": "lectures/week_1/week_1.html#step-by-step",
+    "href": "lectures/week_1/week_1.html#step-by-step",
+    "title": "Week 1: Introduction",
+    "section": "Step-by-step",
+    "text": "Step-by-step\n\nGo to https://cran.rstudio.com and download the latest version of R\nGo to RStudio Desktop download page and download RStudio Desktop\nGo to Quarto Getting Started and download Quarto"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Data 505: Statistics Using R",
-    "section": "",
-    "text": "here() starts at /Users/andrewbean/teach/drew_data505\nWelcome to the DATA 505 website for Fall 2025 at Drew University. The course is “Statistics Using R”."
+    "objectID": "lectures/week_1/week_1.html#one-more-thing",
+    "href": "lectures/week_1/week_1.html#one-more-thing",
+    "title": "Week 1: Introduction",
+    "section": "One more thing",
+    "text": "One more thing\n\nFor labs, we will use Quarto to render code and outputs into pdf documents.\nThis has one more prerequisite\n\nIn RStudio, in the bottom-left pane, switch from the “Console” to the “Terminal” tab.\nType in and run this command: quarto install tinytex"
   },
   {
-    "objectID": "index.html#course-description",
-    "href": "index.html#course-description",
-    "title": "Data 505: Statistics Using R",
-    "section": "Course description",
-    "text": "Course description\nCovers how to use real-world data and draw intelligent conclusions on it using univariate and bivariate descriptive statistics such as centrality, spread, and correlation. Students have the opportunity to learn how to use the R language in the R-studio environment to obtain representative samples from large datasets and use the information in such samples to draw inferences on the larger datasets they were taken from. Course topics include graphical and tabular presentation of data, descriptive summary statistics, manipulation of data, regression, probability distributions, t-tests, and one-way analysis of variance."
+    "objectID": "lectures/week_1/week_1.html#about-labs",
+    "href": "lectures/week_1/week_1.html#about-labs",
+    "title": "Week 1: Introduction",
+    "section": "About labs",
+    "text": "About labs\n\nLabs will be in-class hands-on coding and/or data-analysis exercises\nMost labs will entail editing and rendering a skeleton Quarto script I will provide to you\nInstructions for the lab will be included in the script for the week"
   },
   {
-    "objectID": "lectures/week_1/lectures_1.html",
-    "href": "lectures/week_1/lectures_1.html",
-    "title": "Week 1: Introduction and getting started with R",
-    "section": "",
-    "text": "Agenda\n\nWelcome and introductions\nAbout the course; about R\nInstalling R, RStudio, and Quarto\nLab 1 (complete and submit on Moodle by end of class)\n\n\n\nSlides\nLink to fullscreen\n\n\n\n\nAdditional resources\n\nVisual timeline of R:\n\nBrock, T., Gillespie, C., & Jumping Rivers Team. (2024). A timeline of R’s first 30 years. Jumping Rivers. Retrieved from https://www.jumpingrivers.com/misc/timeline/"
+    "objectID": "lectures/week_1/week_1.html#lab-1-1",
+    "href": "lectures/week_1/week_1.html#lab-1-1",
+    "title": "Week 1: Introduction",
+    "section": "Lab 1",
+    "text": "Lab 1\n\nFor Lab 1 you’ll start from this pdf: lab_1.pdf"
   }
 ]

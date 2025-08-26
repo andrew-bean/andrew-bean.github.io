@@ -22,6 +22,8 @@ Welcome to Lab 1! In this session you will:
 > **Reminder:** Today is about getting comfortable with the environment.  
 > Don’t worry if the code examples feel very simple.
 
+If you have not installed R, RStudio, and Quarto already, see the instructions here: [Installing required software](https://andrew-bean.github.io/data505/lectures/week_1/lectures_1.html#installing-required-software).
+
 ## Navigating RStudio
 
 When you open RStudio, you’ll see **four panes**. The official [Getting Started guide](https://docs.posit.co/ide/user/ide/get-started/#rstudio-panes) describes their purposes:
@@ -88,7 +90,7 @@ We will get more practice with Quarto next week.
 
 ### Exercise
 
-- Download the Quarto script for Lab 1 from here: [lab_1_blank.qmd](lab_1_blank.qmd)
+- Download the Quarto script for Lab 1 from here: [lab_1_blank.qmd](https://andrew-bean.github.io/data505/labs/week_1/lab_1.qmd)
 - Open it in RStudio
 - Edit the script to add yourself as author
 - Edit the code chunk below to print your name (use `print()`)
