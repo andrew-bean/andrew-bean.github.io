@@ -32,10 +32,10 @@ title = "Some things I work on"
 title = "Recent talks and courses"
 
   [[entries.entries]]
-  title = "I love R; in Fall 2025 I am teaching an evening course at Drew University \"Statistics Using R\""
+  title = "(Fall 2025) Statistics Using R course"
   
     [[entries.entries.entries]]
-    title = 'Statistics Using R'
+    title = 'I love R; this is an evening course I am teaching part-time at Drew University'
     
     [[entries.entries.entries]]
     title = '26-Aug-2025 to 12-Dec-2025'
