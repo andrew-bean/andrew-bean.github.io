@@ -32,6 +32,19 @@ title = "Some things I work on"
 title = "Recent talks and courses"
 
   [[entries.entries]]
+  title = "I love R; in Fall 2025 I am teaching an evening course at Drew University \"Statistics Using R\""
+  
+    [[entries.entries.entries]]
+    title = 'Statistics Using R'
+    
+    [[entries.entries.entries]]
+    title = '26-Aug-2025 to 12-Dec-2025'
+
+    [[entries.entries.entries]]
+    title = 'Webpage'
+    url = "static/data505/index.html"
+
+  [[entries.entries]]
   title = "(May 2025) Talk at EFSPI SSL Webinar"
   
     [[entries.entries.entries]]
