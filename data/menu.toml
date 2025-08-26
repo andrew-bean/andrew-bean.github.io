@@ -42,7 +42,7 @@ title = "Recent talks and courses"
 
     [[entries.entries.entries]]
     title = 'Webpage'
-    url = "static/data505/index.html"
+    url = "data505/index.html"
 
   [[entries.entries]]
   title = "(May 2025) Talk at EFSPI SSL Webinar"
