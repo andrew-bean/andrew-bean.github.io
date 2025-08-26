@@ -90,7 +90,7 @@ We will get more practice with Quarto next week.
 
 ### Exercise
 
-- Download the Quarto script for Lab 1 from here: [lab_1_blank.qmd](https://andrew-bean.github.io/data505/labs/week_1/lab_1.qmd)
+- Download the Quarto script for Lab 1 from here: [lab_1_blank.qmd](https://andrew-bean.github.io/data505/labs/week_1/lab_1_blank.qmd)
 - Open it in RStudio
 - Edit the script to add yourself as author
 - Edit the code chunk below to print your name (use `print()`)
