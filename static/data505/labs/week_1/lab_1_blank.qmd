@@ -36,7 +36,6 @@ When you open RStudio, you’ll see **four panes**. The official [Getting Starte
 
 4. The Output pane displays the plots, tables, or HTML outputs of executed code along with files saved to disk.
 
-![From [Getting Started guide](https://docs.posit.co/ide/user/ide/get-started/#rstudio-panes)](figures/rstudio_layout.jpeg)
 
 ### Exercise
 
