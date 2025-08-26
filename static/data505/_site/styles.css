@@ -1,0 +1,9 @@
+/* css styles */
+.small-dt-table .dataTables_wrapper,
+.small-dt-table .dataTables_length,
+.small-dt-table .dataTables_filter,
+.small-dt-table .dataTables_info,
+.small-dt-table .dataTables_paginate,
+.small-dt-table .paginate_button {
+  font-size: 0.8em !important;
+}

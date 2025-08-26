@@ -1,0 +1,100 @@
+---
+title: "DATA 505: Lab 1"
+subtitle: "Getting Started with R, RStudio and Quarto"
+date: "2025-08-26"
+author: "" # YOUR NAME HERE (in quotes at left)
+format: 
+  pdf:
+    toc: true
+    toc-depth: 1
+    number-sections: true
+    output-file: lab_1.pdf
+---
+
+## Setup & Goals
+
+Welcome to Lab 1! In this session you will:
+
+- Learn to navigate RStudio
+- Write, save, and run an R script
+- See how Quarto works (our tool for mixing text and code)
+
+> **Reminder:** Today is about getting comfortable with the environment.  
+> Don’t worry if the code examples feel very simple.
+
+## Navigating RStudio
+
+When you open RStudio, you’ll see **four panes**. The official [Getting Started guide](https://docs.posit.co/ide/user/ide/get-started/#rstudio-panes) describes their purposes:
+
+1. The Source pane is where you can edit and save R or Python scripts or author computational documents like Quarto and R Markdown.
+
+2. The Console pane is used to write short interactive R commands.
+
+3. The Environment pane displays temporary R objects as created during that R session.
+
+4. The Output pane displays the plots, tables, or HTML outputs of executed code along with files saved to disk.
+
+![From [Getting Started guide](https://docs.posit.co/ide/user/ide/get-started/#rstudio-panes)](figures/rstudio_layout.jpeg)
+
+### Exercise
+
+- Find the **Console** (bottom-left).  
+- Type:
+
+```r
+2 + 2
+```
+
+## Writing scripts and running code
+
+The Console is for quick experiments. For work you want to save and rerun, you should use a script.
+
+### Demo
+
+1. Create a new script:
+    - `File -> New File -> R Script`
+    - Using the editor window, type the code in @mean-numbers
+    - Save the file as `data505_lab1.R`
+    - You have created your first R source file!
+
+```{r}
+#| label: mean-numbers
+#| echo: true
+#| eval: false
+#| number-lines: true
+
+c(2, 4, 6, 8, 10)
+numbers <- 2 * (1:5)
+print(numbers)
+mean(numbers)
+sample_mean <- mean(numbers)
+```
+
+
+2. Now you will practice executing code in RStudio. A useful reference: ["Executing Code"](https://docs.posit.co/ide/user/ide/guide/code/execution.html) in the RStudio User Guide
+    - Run the first line of @mean-numbers. What happens in the console?
+    - Now run the next three lines one at a time. What variables are now present in the environment?
+    - Next restart your R session (`Session -> Restart R`, or one of [these keyboard shortcuts](https://docs.posit.co/ide/user/ide/reference/shortcuts.html#session)). What happened to the variables in the environment?
+    - Now practice running a selection of code (multiple selected lines). Select the lines and then do `Ctrl + Enter` / `Cmd + Enter` (or click "Run" from the toolbar).
+    - Finally, run the entire file using the "Source" button or `Ctrl + Shift + Enter`
+
+## Quarto demo
+
+We will be using Quarto for lab assignments and case studies. Quarto lets us mix text (like these instructions) with code and output within a single script (a `.qmd` file). 
+
+Code is written in **code chunks**, which are executed when the document is **rendered**. The result is a formatted document which includes the code, the output, along with all the surrounding text.
+
+We will get more practice with Quarto next week.
+
+### Exercise
+
+- Download the Quarto script for Lab 1 from here: [lab_1_blank.qmd](lab_1_blank.qmd)
+- Open it in RStudio
+- Edit the script to add yourself as author
+- Edit the code chunk below to print your name (use `print()`)
+- Render the script 
+- Submit your edited code AND the pdf output to Moodle: 
+
+```{r}
+
+```
