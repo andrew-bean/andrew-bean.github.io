@@ -2,7 +2,7 @@
 title: "DATA 505: Lab 2"
 subtitle: "Getting to know data frames"
 date: "2025-09-02"
-author: "" # YOUR NAME HERE (in quotes at left)
+author: "YOUR NAME HERE"
 format: 
   pdf:
     toc: true
@@ -14,19 +14,145 @@ format:
 
 ## Setup & Goals
 
-Just like in [Lab 1](../week_1/lab_1.pdf), you will edit a `.qmd` Quarto script, render the result to a PDF, and submit both on Moodle (if you do not succeed at rendering the PDF, still submit the `.qmd` script: you may still get full "satisfactory" credit if you have made a reasonable effort).
+Just like in [Lab 1](../week_1/lab_1.pdf), you will edit a `.qmd` Quarto script, render the result to a PDF, and submit both on Moodle (if you do not succeed at rendering the PDF, still submit the `.qmd` script: you may still get full "satisfactory" credit if you have made a reasonable effort). 
 
 Goals for Lab 2:
+- Gain more fluency with writing R code in the context of a Quarto script in RStudio
 - Learn to read data into R from a text (comma-separated values, `.csv`) file
 - Reinforce concepts from [this week's lecture](../lectures/week_2/week_2.html) about types ond classes of variables
 - Get some practice taking subsets of data frame objects
 
-To do this, we will use the same dataset as in [Section 7](https://r4ds.hadley.nz/data-import.html) of our primary textbook
+## The data file
 
-## Task 1: Reading data into R
+To do this, we will use the same dataset as in [Section 7](https://r4ds.hadley.nz/data-import.html) of our primary textbook
 
 - The following code will download the `students.csv` dataset to your current working directory. You should leave this code unmodified:
 ```{r}
+download.file("https://andrew-bean.github.io/data505/labs/week_2/students.csv", "students.csv")
+stopifnot(file.exists("students.csv"))
+```
+
+- I recommend running this code above first before writing any more code (with your cursor in the code chunk, from the "Run" menu, you can select "Run current chunk")
+
+## Reading data into R
+
+- Take a look at the file you have just downloaded. It should look like [this](https://r4ds.hadley.nz/data-import.html#reading-data-from-a-file).
+
+- The base R function for reading `.csv` files into data frames is `read.csv()`. An example usage would be
+```{r}
 #| eval: false
-download.file("https://andrew-bean.github.io/data505/labs/students.csv")
+
+# just an example: no need to edit
+my_data <- read.csv("my_file.csv")
+```
+
+- Try using `read.csv` to read the `students.csv` file and store the result in an object named `students`:
+```{r}
+## YOUR CODE HERE
+```
+
+- Write a line of code to determine the **class** of the resulting `students` object
+
+```{r}
+## YOUR CODE HERE
+```
+
+- Write another line of code to determine the **basic type** of the `students` object
+
+```{r}
+## YOUR CODE HERE
+```
+
+- Apply the `str()` function to the `students` object to learn more about its structure
+
+```{r}
+## YOUR CODE HERE
+```
+
+- Now use the `names()` function to get a list of the column names
+
+```{r}
+## YOUR CODE HERE
+```
+
+
+## Subsetting the data
+
+- Use `$` (as discussed [here in today's lecture](https://andrew-bean.github.io/data505/lectures/week_2/week_2.html#/data-frames-ii)) to select the `Age` column and store it as another object named `ages`
+
+```{r}
+## YOUR CODE HERE
+```
+
+- Now repeat using `[["{column name}"]]` syntax illustrated at the same link
+
+```{r}
+## YOUR CODE HERE
+```
+
+- Use the `length()` function to determine the length of the `ages` vector
+
+```{r}
+## YOUR CODE HERE
+```
+
+- Define another variable `age` which is consists only of the fist element of the `ages` vector. Recall we discussed vector subsetting [here in today's lecture](https://andrew-bean.github.io/data505/lectures/week_2/week_2.html#/subsetting).
+
+```{r}
+## YOUR CODE HERE
+```
+
+- Now something a bit more challenging. Use data frame subsetting, a [relational operator](https://andrew-bean.github.io/data505/lectures/week_2/week_2.html#/logicals) and vector subsetting together to do the following: return a vector containing the ages of all students on the "Lunch only" meal plan
+
+```{r}
+## YOUR CODE HERE
+```
+
+## Exploring column types and coercion
+
+- Write a line of code to determine the type of the `ages` vector you created earlier (the `Ages` column from the `students` data frame)
+
+```{r}
+## YOUR CODE HERE
+```
+
+- This variable ought to be numeric. Use [explicit coercion](https://andrew-bean.github.io/data505/lectures/week_2/week_2.html#/explicit-coercion) to convert it.
+
+```{r}
+## YOUR CODE HERE
+```
+
+- Modify the `students` dataset to ensure the `Ages` column is numeric
+
+```{r}
+## YOUR CODE HERE
+```
+
+- What is the type of the `mealPlan` column? Write a line of code to determine this.
+
+```{r}
+## YOUR CODE HERE
+```
+
+- Modify the `students` dataset to ensure the `mealPlan` column is a factor
+
+```{r}
+## YOUR CODE HERE
+```
+
+## Bonus
+
+What we have done here is some cumbersome "data cleaning". We read data in from a file, but `read.csv` did not recognize the intended types of the csv columns immediately. So we coerced some columns from characters to factors or numerics. 
+
+- Try following some of [Section 7.2.1](https://r4ds.hadley.nz/data-import.html#practical-advice) of the R for Data Science book to try to do this more concisely with the `read_csv()` function in the `readr` package.
+
+```{r}
+# install the readr package if needed
+if(!"readr" %in% installed.packages()){
+  install.packages("readr")
+}
+# load it
+library(readr)
+
+## YOUR CODE HERE
 ```
