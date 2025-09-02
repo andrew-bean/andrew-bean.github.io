@@ -60,7 +60,7 @@
     "href": "lectures/week_2/lectures_2.html",
     "title": "Week 2: Objects, Types, Classes, and Collections",
     "section": "",
-    "text": "Agenda\n\nIn-class Quiz on Homework 1 (5 minutes)\nLecture on basics of variables, objects, types, and classes, as well as collections of objects, like vectors, lists, and data frames. We will also meet some of our first functions along the way.\n\nToday I recommend downloading the following R script (which contains only the code chunks from the lecture) and following along in RStudio by running line-by-line: week_2.R\n\nHands-on Lab 2 will give you practice reading data into R from a text file to create a data.frame object, and then reinforce some of the concepts from today using the variables defined in this dataset.\n\n\n\nSupportive reading outside class\n(Optional but recommended) the best supporting textbook material for this week is section 2 of this book:\n\nGrolemund, G. (2014). Hands-On Programming with R. O’Reilly Media. Retrieved from https://rstudio-education.github.io/hopr/.\n\n\n\nSlides\nLink to fullscreen"
+    "text": "Agenda\n\nIn-class Quiz on Homework 1 (5 minutes)\nLecture on basics of variables, objects, types, and classes, as well as collections of objects, like vectors, lists, and data frames. We will also meet some of our first functions along the way.\n\nToday I recommend downloading the following R script (which contains only the code chunks from the lecture) and following along in RStudio by running line-by-line: week_2.R\n\nHands-on Lab 2 will give you practice reading data into R from a text file to create a data.frame object, and then reinforce some of the concepts from today using the variables defined in this dataset.\n\nlab_2_blank.qmd\nlab_2.pdf\n\n\n\n\nSupportive reading outside class\n(Optional but recommended) the best supporting textbook material for this week is section 2 of this book:\n\nGrolemund, G. (2014). Hands-On Programming with R. O’Reilly Media. Retrieved from https://rstudio-education.github.io/hopr/.\n\n\n\nSlides\nLink to fullscreen"
   },
   {
     "objectID": "index.html",
@@ -264,6 +264,13 @@
     "title": "Week 2: Objects, Types, Classes, and Collections",
     "section": "Missing values",
     "text": "Missing values\n\nIn R, missing data is represented by NA.\nNA can appear in any type of object: numeric, character, logical, etc.\n\nExample:\n\n\n\nscores &lt;- c(88, NA, 79, 85)\nnames &lt;- c(\"Alice\", NA, \"Bob\")\n\n\nYou can check for missing values with is.na():\n\n\nscores\n\n[1] 88 NA 79 85\n\nis.na(scores)   # TRUE for missing values\n\n[1] FALSE  TRUE FALSE FALSE\n\n\n\nBe aware: calculations with NA usually return NA unless you explicitly remove or handle (to be discussed next week)"
+  },
+  {
+    "objectID": "lectures/week_2/week_2.html#lab-2-1",
+    "href": "lectures/week_2/week_2.html#lab-2-1",
+    "title": "Week 2: Objects, Types, Classes, and Collections",
+    "section": "Lab 2",
+    "text": "Lab 2\nlab_2_blank.qmd lab_2.pdf"
   },
   {
     "objectID": "lectures/week_1/week_1.html#acquaintances",
