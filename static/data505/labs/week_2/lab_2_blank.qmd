@@ -1,0 +1,32 @@
+---
+title: "DATA 505: Lab 2"
+subtitle: "Getting to know data frames"
+date: "2025-09-02"
+author: "" # YOUR NAME HERE (in quotes at left)
+format: 
+  pdf:
+    toc: true
+    toc-depth: 1
+    number-sections: true
+    freeze: true
+    output-file: lab_2.pdf
+---
+
+## Setup & Goals
+
+Just like in [Lab 1](../week_1/lab_1.pdf), you will edit a `.qmd` Quarto script, render the result to a PDF, and submit both on Moodle (if you do not succeed at rendering the PDF, still submit the `.qmd` script: you may still get full "satisfactory" credit if you have made a reasonable effort).
+
+Goals for Lab 2:
+- Learn to read data into R from a text (comma-separated values, `.csv`) file
+- Reinforce concepts from [this week's lecture](../lectures/week_2/week_2.html) about types ond classes of variables
+- Get some practice taking subsets of data frame objects
+
+To do this, we will use the same dataset as in [Section 7](https://r4ds.hadley.nz/data-import.html) of our primary textbook
+
+## Task 1: Reading data into R
+
+- The following code will download the `students.csv` dataset to your current working directory. You should leave this code unmodified:
+```{r}
+#| eval: false
+download.file("https://andrew-bean.github.io/data505/labs/students.csv")
+```

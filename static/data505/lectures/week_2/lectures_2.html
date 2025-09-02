@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Schedule – Data 505: R for Statistics</title>
+<title>Week 2: Basics – Data 505: R for Statistics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,61 +20,26 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-c1fac2584b48ed01fb6e278e36375074.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-c1fac2584b48ed01fb6e278e36375074.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -104,7 +69,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -114,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Data 505: R for Statistics</span>
     </a>
   </div>
@@ -125,15 +90,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../syllabus/syllabus.html"> 
+    <a class="nav-link" href="../../syllabus/syllabus.html"> 
 <span class="menu-text">Syllabus</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../schedule/schedule.html" aria-current="page"> 
+    <a class="nav-link" href="../../schedule/schedule.html"> 
 <span class="menu-text">Schedule</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -142,11 +107,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-lectures">    
         <li>
-    <a class="dropdown-item" href="../lectures/week_1/lectures_1.html">
+    <a class="dropdown-item" href="../../lectures/week_1/lectures_1.html">
  <span class="dropdown-text">Week 1 (Aug 26)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../lectures/week_2/lectures_2.html">
+    <a class="dropdown-item" href="../../lectures/week_2/lectures_2.html">
  <span class="dropdown-text">Week 2 (Sep 2)</span></a>
   </li>  
     </ul>
@@ -157,11 +122,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-labs">    
         <li>
-    <a class="dropdown-item" href="../labs/week_1/lab_1.pdf">
+    <a class="dropdown-item" href="../../labs/week_1/lab_1.pdf">
  <span class="dropdown-text">Lab 1 (Week 1 / Aug 26)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../labs/week_2/lab_2.pdf">
+    <a class="dropdown-item" href="../../labs/week_2/lab_2.pdf">
  <span class="dropdown-text">Lab 2 (Week 2 / Sep 2)</span></a>
   </li>  
     </ul>
@@ -172,7 +137,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-homework">    
         <li>
-    <a class="dropdown-item" href="../homework/homework_1.pdf">
+    <a class="dropdown-item" href="../../homework/homework_1.pdf">
  <span class="dropdown-text">Homework 1 (Quiz on Sep 2)</span></a>
   </li>  
         <li class="dropdown-header">Homework 2 FORTHCOMING (Quiz on Sep 9)</li>
@@ -212,16 +177,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#agenda" id="toc-agenda" class="nav-link active" data-scroll-target="#agenda">Agenda</a></li>
+  <li><a href="#slides" id="toc-slides" class="nav-link" data-scroll-target="#slides">Slides</a></li>
+  <li><a href="#additional-resources" id="toc-additional-resources" class="nav-link" data-scroll-target="#additional-resources">Additional resources</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Schedule</h1>
-<p class="subtitle lead">Tentative, subject to revision</p>
+<h1 class="title">Week 2: Basics</h1>
 </div>
 
 
@@ -238,565 +210,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div class="cell">
-<details class="code-fold">
-<summary>Run the schedule.R script and display the schedule</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>here<span class="sc">::</span><span class="fu">i_am</span>(<span class="st">"schedule/schedule.qmd"</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"schedule/schedule.R"</span>))</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">gt</span>(schedule)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
-<div id="pgsfcyiflg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#pgsfcyiflg table {
-  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-#pgsfcyiflg thead, #pgsfcyiflg tbody, #pgsfcyiflg tfoot, #pgsfcyiflg tr, #pgsfcyiflg td, #pgsfcyiflg th {
-  border-style: none;
-}
-
-#pgsfcyiflg p {
-  margin: 0;
-  padding: 0;
-}
-
-#pgsfcyiflg .gt_table {
-  display: table;
-  border-collapse: collapse;
-  line-height: normal;
-  margin-left: auto;
-  margin-right: auto;
-  color: #333333;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: auto;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
-
-#pgsfcyiflg .gt_caption {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-#pgsfcyiflg .gt_title {
-  color: #333333;
-  font-size: 125%;
-  font-weight: initial;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-
-#pgsfcyiflg .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 3px;
-  padding-bottom: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-
-#pgsfcyiflg .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#pgsfcyiflg .gt_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#pgsfcyiflg .gt_col_headings {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#pgsfcyiflg .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-
-#pgsfcyiflg .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-#pgsfcyiflg .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-
-#pgsfcyiflg .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-
-#pgsfcyiflg .gt_column_spanner {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-
-#pgsfcyiflg .gt_spanner_row {
-  border-bottom-style: hidden;
-}
-
-#pgsfcyiflg .gt_group_heading {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  text-align: left;
-}
-
-#pgsfcyiflg .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-#pgsfcyiflg .gt_from_md > :first-child {
-  margin-top: 0;
-}
-
-#pgsfcyiflg .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-
-#pgsfcyiflg .gt_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-
-#pgsfcyiflg .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#pgsfcyiflg .gt_stub_row_group {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-  vertical-align: top;
-}
-
-#pgsfcyiflg .gt_row_group_first td {
-  border-top-width: 2px;
-}
-
-#pgsfcyiflg .gt_row_group_first th {
-  border-top-width: 2px;
-}
-
-#pgsfcyiflg .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#pgsfcyiflg .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-color: #D3D3D3;
-}
-
-#pgsfcyiflg .gt_first_summary_row.thick {
-  border-top-width: 2px;
-}
-
-#pgsfcyiflg .gt_last_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#pgsfcyiflg .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#pgsfcyiflg .gt_first_grand_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-
-#pgsfcyiflg .gt_last_grand_summary_row_top {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: double;
-  border-bottom-width: 6px;
-  border-bottom-color: #D3D3D3;
-}
-
-#pgsfcyiflg .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-#pgsfcyiflg .gt_table_body {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#pgsfcyiflg .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#pgsfcyiflg .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#pgsfcyiflg .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#pgsfcyiflg .gt_sourcenote {
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#pgsfcyiflg .gt_left {
-  text-align: left;
-}
-
-#pgsfcyiflg .gt_center {
-  text-align: center;
-}
-
-#pgsfcyiflg .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-#pgsfcyiflg .gt_font_normal {
-  font-weight: normal;
-}
-
-#pgsfcyiflg .gt_font_bold {
-  font-weight: bold;
-}
-
-#pgsfcyiflg .gt_font_italic {
-  font-style: italic;
-}
-
-#pgsfcyiflg .gt_super {
-  font-size: 65%;
-}
-
-#pgsfcyiflg .gt_footnote_marks {
-  font-size: 75%;
-  vertical-align: 0.4em;
-  position: initial;
-}
-
-#pgsfcyiflg .gt_asterisk {
-  font-size: 100%;
-  vertical-align: 0;
-}
-
-#pgsfcyiflg .gt_indent_1 {
-  text-indent: 5px;
-}
-
-#pgsfcyiflg .gt_indent_2 {
-  text-indent: 10px;
-}
-
-#pgsfcyiflg .gt_indent_3 {
-  text-indent: 15px;
-}
-
-#pgsfcyiflg .gt_indent_4 {
-  text-indent: 20px;
-}
-
-#pgsfcyiflg .gt_indent_5 {
-  text-indent: 25px;
-}
-
-#pgsfcyiflg .katex-display {
-  display: inline-flex !important;
-  margin-bottom: 0.75em !important;
-}
-
-#pgsfcyiflg div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
-  height: 0px !important;
-}
-</style>
-
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-<thead>
-<tr class="gt_col_headings header">
-<th id="Date" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Date</th>
-<th id="Contents" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Contents</th>
-<th id="Notes" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Notes</th>
-</tr>
-</thead>
-<tbody class="gt_table_body">
-<tr class="odd">
-<td class="gt_row gt_left" headers="Date">Aug 26</td>
-<td class="gt_row gt_left" headers="Contents">Introduction &amp; Getting started</td>
-<td class="gt_row gt_left" headers="Notes">Lab 1</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="Date">Sep 2</td>
-<td class="gt_row gt_left" headers="Contents">R Basics (variables, types, functions)</td>
-<td class="gt_row gt_left" headers="Notes">HW-Quiz 1 / Lab 2</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="Date">Sep 9</td>
-<td class="gt_row gt_left" headers="Contents">Descriptive statistics &amp; Summarizing data</td>
-<td class="gt_row gt_left" headers="Notes">HW-Quiz 2 / Lab 3</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="Date">Sep 16</td>
-<td class="gt_row gt_left" headers="Contents">Basic statistical inference</td>
-<td class="gt_row gt_left" headers="Notes">HW-Quiz 3 / Lab 4</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="Date">Sep 23</td>
-<td class="gt_row gt_left" headers="Contents">Data manipulation &amp; visualization</td>
-<td class="gt_row gt_left" headers="Notes">HW-Quiz 4 / Lab 5</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="Date">Sep 30</td>
-<td class="gt_row gt_left" headers="Contents">Exam 1</td>
-<td class="gt_row gt_left" headers="Notes"></td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="Date">Oct 7</td>
-<td class="gt_row gt_left" headers="Contents">Regression &amp; Case study 1</td>
-<td class="gt_row gt_left" headers="Notes"></td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="Date">Oct 14</td>
-<td class="gt_row gt_left" headers="Contents">NO CLASS (Fall Break)</td>
-<td class="gt_row gt_left" headers="Notes"></td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="Date">Oct 21</td>
-<td class="gt_row gt_left" headers="Contents">Control flow (if/for/while)</td>
-<td class="gt_row gt_left" headers="Notes">HW-Quiz 5 / Lab 6</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="Date">Oct 28</td>
-<td class="gt_row gt_left" headers="Contents">Writing functions</td>
-<td class="gt_row gt_left" headers="Notes">HW-Quiz 6 / Lab 7</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="Date">Nov 4</td>
-<td class="gt_row gt_left" headers="Contents">Exam 2</td>
-<td class="gt_row gt_left" headers="Notes"></td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="Date">Nov 11</td>
-<td class="gt_row gt_left" headers="Contents">Sampling distributions &amp; CLT</td>
-<td class="gt_row gt_left" headers="Notes">Lab 8</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="Date">Nov 18</td>
-<td class="gt_row gt_left" headers="Contents">Simulation &amp; Case study 2</td>
-<td class="gt_row gt_left" headers="Notes">HW-Quiz 7</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="Date">Nov 25</td>
-<td class="gt_row gt_left" headers="Contents">Bootstrap &amp; Case study 2</td>
-<td class="gt_row gt_left" headers="Notes">HW-Quiz 8</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="Date">Dec 2</td>
-<td class="gt_row gt_left" headers="Contents">Shiny (UI-based apps)</td>
-<td class="gt_row gt_left" headers="Notes">Case study 2 due / Lab 9</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="Date">Dec 9</td>
-<td class="gt_row gt_left" headers="Contents">Final Exam</td>
-<td class="gt_row gt_left" headers="Notes">7:30 to 10:30</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
+<section id="agenda" class="level1">
+<h1>Agenda</h1>
+</section>
+<section id="slides" class="level1">
+<h1>Slides</h1>
+<p><a href="week_2.html">Link to fullscreen</a></p>
+<iframe src="week_2.html" width="100%" height="600px" style="border:none;">
+</iframe>
+</section>
+<section id="additional-resources" class="level1">
+<h1>Additional resources</h1>
+<ul>
+<li>Visual timeline of R:
+<ul>
+<li>Brock, T., Gillespie, C., &amp; Jumping Rivers Team. (2024). A timeline of R’s first 30 years. Jumping Rivers. Retrieved from <a href="https://www.jumpingrivers.com/misc/timeline/">https://www.jumpingrivers.com/misc/timeline/</a></li>
+</ul></li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
