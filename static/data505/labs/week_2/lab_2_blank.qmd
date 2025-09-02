@@ -17,6 +17,7 @@ format:
 Just like in [Lab 1](../week_1/lab_1.pdf), you will edit a `.qmd` Quarto script, render the result to a PDF, and submit both on Moodle (if you do not succeed at rendering the PDF, still submit the `.qmd` script: you may still get full "satisfactory" credit if you have made a reasonable effort). 
 
 Goals for Lab 2:
+
 - Gain more fluency with writing R code in the context of a Quarto script in RStudio
 - Learn to read data into R from a text (comma-separated values, `.csv`) file
 - Reinforce concepts from [this week's lecture](../lectures/week_2/week_2.html) about types ond classes of variables
@@ -78,7 +79,7 @@ my_data <- read.csv("my_file.csv")
 
 ## Subsetting the data
 
-- Use `$` (as discussed [here in today's lecture](https://andrew-bean.github.io/data505/lectures/week_2/week_2.html#/data-frames-ii)) to select the `Age` column and store it as another object named `ages`
+- Use `$` (as discussed [here in today's lecture](https://andrew-bean.github.io/data505/lectures/week_2/week_2.html#/data-frames-ii)) to select the `AGE` column and store it as another object named `ages`
 
 ```{r}
 ## YOUR CODE HERE
@@ -110,7 +111,7 @@ my_data <- read.csv("my_file.csv")
 
 ## Exploring column types and coercion
 
-- Write a line of code to determine the type of the `ages` vector you created earlier (the `Ages` column from the `students` data frame)
+- Write a line of code to determine the type of the `ages` vector you created earlier (the `AGE` column from the `students` data frame)
 
 ```{r}
 ## YOUR CODE HERE
@@ -122,7 +123,7 @@ my_data <- read.csv("my_file.csv")
 ## YOUR CODE HERE
 ```
 
-- Modify the `students` dataset to ensure the `Ages` column is numeric
+- Modify the `students` dataset to ensure the `AGE` column is numeric
 
 ```{r}
 ## YOUR CODE HERE
