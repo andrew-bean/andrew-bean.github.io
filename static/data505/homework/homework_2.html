@@ -183,7 +183,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="../homework/homework_1.pdf">
  <span class="dropdown-text">Homework 1 (Quiz on Sep 2)</span></a>
   </li>  
-        <li class="dropdown-header">Homework 2 FORTHCOMING (Quiz on Sep 16)</li>
+        <li>
+    <a class="dropdown-item" href="../homework/homework_2.pdf">
+ <span class="dropdown-text">Homework 2 (Quiz on Sep 16)</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -229,11 +232,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   <li><a href="#coding-tasks" id="toc-coding-tasks" class="nav-link" data-scroll-target="#coding-tasks">Coding Tasks</a>
   <ul class="collapse">
-  <li><a href="#reading-and-inspecting-data" id="toc-reading-and-inspecting-data" class="nav-link" data-scroll-target="#reading-and-inspecting-data">1. Reading and Inspecting Data</a></li>
-  <li><a href="#subsetting-and-accessing-data" id="toc-subsetting-and-accessing-data" class="nav-link" data-scroll-target="#subsetting-and-accessing-data">2. Subsetting and Accessing Data</a></li>
-  <li><a href="#working-with-types-and-coercion" id="toc-working-with-types-and-coercion" class="nav-link" data-scroll-target="#working-with-types-and-coercion">3. Working with Types and Coercion</a></li>
-  <li><a href="#data-frame-operations" id="toc-data-frame-operations" class="nav-link" data-scroll-target="#data-frame-operations">4. Data Frame Operations</a></li>
-  <li><a href="#challenge-creating-a-categorical-variable" id="toc-challenge-creating-a-categorical-variable" class="nav-link" data-scroll-target="#challenge-creating-a-categorical-variable">5. Challenge: Creating a Categorical Variable</a></li>
+  <li><a href="#part-1-data-frames-types-classes-coercion" id="toc-part-1-data-frames-types-classes-coercion" class="nav-link" data-scroll-target="#part-1-data-frames-types-classes-coercion">Part 1: Data frames, types, classes, coercion</a></li>
+  <li><a href="#part-2-descriptive-statistics-and-summarizing-data" id="toc-part-2-descriptive-statistics-and-summarizing-data" class="nav-link" data-scroll-target="#part-2-descriptive-statistics-and-summarizing-data">Part 2: Descriptive statistics and summarizing data</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -244,7 +244,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<p>title: “DATA 505: Homework 2” subtitle: “Objects, Types, Classes, and Data Frames” date: “Complete by 2025-09-16” author: “” # YOUR NAME HERE (in quotes at left) format: pdf: toc: false</p>
+<p>title: “DATA 505: Homework 2” subtitle: “Weeks 2 and 3 (classes and types; data frames; descriptive statistics and summarizing data)” date: “Complete by 2025-09-16” author: “” # YOUR NAME HERE (in quotes at left) format: pdf: toc: false</p>
 <section id="context" class="level2">
 <h2 class="anchored" data-anchor-id="context">Context</h2>
 <p>In this homework, you will reinforce concepts from weeks 2 and 3. Using what you learned in week 2, you will practice inspecting, subsetting, and cleaning data, as well as understanding how R handles different types of data. Then, using what you learned in week 3, you will practice producing descriptive summaries of the variables in a dataset.</p>
@@ -254,29 +254,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><a href="../lectures/week_2/week_2.html">Lecture 2</a></li>
 <li><a href="../lectures/week_3/week_3.html">Lecture 3</a></li>
-<li>Grolemund, G. (2014). Hands-On Programming with R. O’Reilly Media. <a href="https://rstudio-education.github.io/hopr/">https://rstudio-education.github.io/hopr/</a></li>
-<li>Wickham, H. &amp; Grolemund, G. (2023). R for Data Science (2e). <a href="https://r4ds.hadley.nz/data-import.html">https://r4ds.hadley.nz/data-import.html</a></li>
+<li>Chapter 5 of: Grolemund, G. (2014). Hands-On Programming with R. O’Reilly Media. <a href="https://rstudio-education.github.io/hopr/">https://rstudio-education.github.io/hopr/</a></li>
+<li>Chapter 5 of: Navarro, D. J. (2019). Learning statistics with R: A tutorial for psychology students and other beginners (Version 0.6.1). University of Adelaide. Retrieved from <a href="https://learningstatisticswithr.com">https://learningstatisticswithr.com</a>. <a href="https://learningstatisticswithr.com/lsr-0.6.pdf">Link to pdf</a></li>
 </ul>
 </section>
 <section id="coding-tasks" class="level2">
 <h2 class="anchored" data-anchor-id="coding-tasks">Coding Tasks</h2>
 <p>Create an R script and use it to answer the following questions.</p>
-<section id="reading-and-inspecting-data" class="level3">
-<h3 class="anchored" data-anchor-id="reading-and-inspecting-data">1. Reading and Inspecting Data</h3>
+<section id="part-1-data-frames-types-classes-coercion" class="level3">
+<h3 class="anchored" data-anchor-id="part-1-data-frames-types-classes-coercion">Part 1: Data frames, types, classes, coercion</h3>
+<section id="reading-and-inspecting-data" class="level4">
+<h4 class="anchored" data-anchor-id="reading-and-inspecting-data">1. Reading and Inspecting Data</h4>
 <p>In this lab we will explore a dataset containing size measurements for 3 species of penguins from the Palmer Archipelago in Antarctica.</p>
+<ol type="a">
+<li>Use the command like below to read the penguins data into R as a data frame called <code>penguins</code> (see the link above).</li>
+</ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://raw.githubusercontent.com/allisonhorst/palmerpenguins/refs/heads/main/inst/extdata/penguins.csv"</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<ol type="a">
-<li><p>Read the penguins data into R as a data frame called <code>penguins</code> (see the link above).</p></li>
+<ol start="2" type="a">
 <li><p>Use <code>class()</code>, <code>typeof()</code>, and <code>str()</code> to inspect the <code>penguins</code> object. What do you notice about the types and classes of the columns?</p></li>
 <li><p>Use <code>names()</code> to list all column names in the data frame.</p></li>
 </ol>
 </section>
-<section id="subsetting-and-accessing-data" class="level3">
-<h3 class="anchored" data-anchor-id="subsetting-and-accessing-data">2. Subsetting and Accessing Data</h3>
+<section id="subsetting-and-accessing-data" class="level4">
+<h4 class="anchored" data-anchor-id="subsetting-and-accessing-data">2. Subsetting and Accessing Data</h4>
 <ol type="a">
 <li><p>Use the <code>$</code> operator to extract the <code>body_mass_g</code> column and store it as a new object called <code>body_mass</code>. What is the type of this object?</p></li>
 <li><p>Use the <code>[["body_mass_g"]]</code> syntax to extract the same column. Is the result the same as above?</p></li>
@@ -285,8 +289,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Use logical subsetting to extract the body mass values for all penguins on the <code>"Dream"</code> island.</p></li>
 </ol>
 </section>
-<section id="working-with-types-and-coercion" class="level3">
-<h3 class="anchored" data-anchor-id="working-with-types-and-coercion">3. Working with Types and Coercion</h3>
+<section id="working-with-types-and-coercion" class="level4">
+<h4 class="anchored" data-anchor-id="working-with-types-and-coercion">3. Working with Types and Coercion</h4>
 <ol type="a">
 <li><p>Use <code>typeof()</code> to check the type of the <code>body_mass</code> vector. If it is not numeric, use <code>as.numeric()</code> to coerce it and assign the result back to <code>body_mass</code>.</p></li>
 <li><p>Update the <code>penguins</code> data frame so that the <code>body_mass_g</code> column is numeric (if it is not already).</p></li>
@@ -294,16 +298,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Use <code>levels()</code> to list the possible values of <code>species</code>.</p></li>
 </ol>
 </section>
-<section id="data-frame-operations" class="level3">
-<h3 class="anchored" data-anchor-id="data-frame-operations">4. Data Frame Operations</h3>
+<section id="data-frame-operations" class="level4">
+<h4 class="anchored" data-anchor-id="data-frame-operations">4. Data Frame Operations</h4>
 <ol type="a">
 <li><p>Create a new data frame containing only penguins with a body mass of at least 4000 grams.</p></li>
 <li><p>Create a new data frame containing only the <code>species</code> and <code>island</code> columns for penguins with a non-missing body mass.</p></li>
 <li><p>How many penguins have missing (<code>NA</code>) values for body mass? Use <code>is.na()</code> and <code>sum()</code>.</p></li>
 </ol>
 </section>
-<section id="challenge-creating-a-categorical-variable" class="level3">
-<h3 class="anchored" data-anchor-id="challenge-creating-a-categorical-variable">5. Challenge: Creating a Categorical Variable</h3>
+<section id="challenge-creating-a-categorical-variable" class="level4">
+<h4 class="anchored" data-anchor-id="challenge-creating-a-categorical-variable">5. Challenge: Creating a Categorical Variable</h4>
 <ol type="a">
 <li>Create a new factor column in the <code>penguins</code> data frame called <code>mass_group</code> with three levels:
 <ul>
@@ -313,8 +317,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li>Display the <code>species</code>, <code>body_mass_g</code>, and <code>mass_group</code> columns for all penguins.</li>
 </ol>
+</section>
+</section>
+<section id="part-2-descriptive-statistics-and-summarizing-data" class="level3">
+<h3 class="anchored" data-anchor-id="part-2-descriptive-statistics-and-summarizing-data">Part 2: Descriptive statistics and summarizing data</h3>
+<section id="exploring-distributions" class="level4">
+<h4 class="anchored" data-anchor-id="exploring-distributions">1. Exploring distributions</h4>
+<ol type="a">
+<li>For the <code>body_mass_g</code> variable:</li>
+</ol>
+<ul>
+<li>Calculate the mean, median, and standard deviation.</li>
+<li>What are the minimum and maximum values?</li>
+<li>What are the 25th and 75th percentiles (first and third quartiles)? What is the interquartile range (IQR)?</li>
+<li>Create a histogram of <code>body_mass_g</code>.</li>
+<li>Write a brief description of the distribution: Is it symmetric, skewed, or does it have outliers?</li>
+</ul>
+</section>
+<section id="summarizing-categorical-variables" class="level4">
+<h4 class="anchored" data-anchor-id="summarizing-categorical-variables">2. Summarizing categorical variables</h4>
+<ol type="a">
+<li><p>Use <code>table()</code> to create a frequency table for the <code>species</code> variable.</p></li>
+<li><p>Use <code>prop.table()</code> to calculate the proportion of each species.</p></li>
+<li><p>Describe the distribution of species in the dataset.</p></li>
+</ol>
+</section>
+<section id="challenge-comparing-groups" class="level4">
+<h4 class="anchored" data-anchor-id="challenge-comparing-groups">3. Challenge: Comparing groups</h4>
+<ol type="a">
+<li><p>Calculate the mean and median <code>body_mass_g</code> for each species (hint: use <code>tapply()</code> or <code>aggregate()</code>).</p></li>
+<li><p>Create side-by-side boxplots of <code>body_mass_g</code> by species.</p></li>
+<li><p>Write a short interpretation: Which species tends to be heavier? Are there differences in spread or outliers?</p></li>
+</ol>
 
 
+</section>
 </section>
 </section>
 
