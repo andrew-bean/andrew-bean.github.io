@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Andrew Bean">
-<meta name="dcterms.date" content="2025-09-09">
 
-<title>Data 505: Statistics Using R – Data 505: R for Statistics</title>
+<title>homework_2 – Data 505: R for Statistics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,26 +20,61 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c1fac2584b48ed01fb6e278e36375074.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-c1fac2584b48ed01fb6e278e36375074.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -71,7 +104,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -81,7 +114,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Data 505: R for Statistics</span>
     </a>
   </div>
@@ -92,15 +125,15 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./syllabus/syllabus.html"> 
+    <a class="nav-link" href="../syllabus/syllabus.html"> 
 <span class="menu-text">Syllabus</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./schedule/schedule.html"> 
+    <a class="nav-link" href="../schedule/schedule.html"> 
 <span class="menu-text">Schedule</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -109,15 +142,15 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-lectures">    
         <li>
-    <a class="dropdown-item" href="./lectures/week_1/lectures_1.html">
+    <a class="dropdown-item" href="../lectures/week_1/lectures_1.html">
  <span class="dropdown-text">Week 1 (Aug 26)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./lectures/week_2/lectures_2.html">
+    <a class="dropdown-item" href="../lectures/week_2/lectures_2.html">
  <span class="dropdown-text">Week 2 (Sep 2)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./lectures/week_3/lectures_3.html">
+    <a class="dropdown-item" href="../lectures/week_3/lectures_3.html">
  <span class="dropdown-text">Week 3 (Sep 9)</span></a>
   </li>  
     </ul>
@@ -128,15 +161,15 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-labs">    
         <li>
-    <a class="dropdown-item" href="./labs/week_1/lab_1.pdf">
+    <a class="dropdown-item" href="../labs/week_1/lab_1.pdf">
  <span class="dropdown-text">Lab 1 (Week 1 / Aug 26)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./labs/week_2/lab_2.pdf">
+    <a class="dropdown-item" href="../labs/week_2/lab_2.pdf">
  <span class="dropdown-text">Lab 2 (Week 2 / Sep 2)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./labs/week_3/lab_3.pdf">
+    <a class="dropdown-item" href="../labs/week_3/lab_3.pdf">
  <span class="dropdown-text">Lab 3 (Week 3 / Sep 3)</span></a>
   </li>  
     </ul>
@@ -147,7 +180,7 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-homework">    
         <li>
-    <a class="dropdown-item" href="./homework/homework_1.pdf">
+    <a class="dropdown-item" href="../homework/homework_1.pdf">
  <span class="dropdown-text">Homework 1 (Quiz on Sep 2)</span></a>
   </li>  
         <li class="dropdown-header">Homework 2 FORTHCOMING (Quiz on Sep 16)</li>
@@ -192,50 +225,97 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#course-description" id="toc-course-description" class="nav-link active" data-scroll-target="#course-description">Course description</a></li>
+  <li><a href="#context" id="toc-context" class="nav-link active" data-scroll-target="#context">Context</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  <li><a href="#coding-tasks" id="toc-coding-tasks" class="nav-link" data-scroll-target="#coding-tasks">Coding Tasks</a>
+  <ul class="collapse">
+  <li><a href="#reading-and-inspecting-data" id="toc-reading-and-inspecting-data" class="nav-link" data-scroll-target="#reading-and-inspecting-data">1. Reading and Inspecting Data</a></li>
+  <li><a href="#subsetting-and-accessing-data" id="toc-subsetting-and-accessing-data" class="nav-link" data-scroll-target="#subsetting-and-accessing-data">2. Subsetting and Accessing Data</a></li>
+  <li><a href="#working-with-types-and-coercion" id="toc-working-with-types-and-coercion" class="nav-link" data-scroll-target="#working-with-types-and-coercion">3. Working with Types and Coercion</a></li>
+  <li><a href="#data-frame-operations" id="toc-data-frame-operations" class="nav-link" data-scroll-target="#data-frame-operations">4. Data Frame Operations</a></li>
+  <li><a href="#challenge-creating-a-categorical-variable" id="toc-challenge-creating-a-categorical-variable" class="nav-link" data-scroll-target="#challenge-creating-a-categorical-variable">5. Challenge: Creating a Categorical Variable</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Data 505: Statistics Using R</h1>
+
+
+
+<p>title: “DATA 505: Homework 2” subtitle: “Objects, Types, Classes, and Data Frames” date: “Complete by 2025-09-16” author: “” # YOUR NAME HERE (in quotes at left) format: pdf: toc: false</p>
+<section id="context" class="level2">
+<h2 class="anchored" data-anchor-id="context">Context</h2>
+<p>In this homework, you will reinforce concepts from weeks 2 and 3. Using what you learned in week 2, you will practice inspecting, subsetting, and cleaning data, as well as understanding how R handles different types of data. Then, using what you learned in week 3, you will practice producing descriptive summaries of the variables in a dataset.</p>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<ul>
+<li><a href="../lectures/week_2/week_2.html">Lecture 2</a></li>
+<li><a href="../lectures/week_3/week_3.html">Lecture 3</a></li>
+<li>Grolemund, G. (2014). Hands-On Programming with R. O’Reilly Media. <a href="https://rstudio-education.github.io/hopr/">https://rstudio-education.github.io/hopr/</a></li>
+<li>Wickham, H. &amp; Grolemund, G. (2023). R for Data Science (2e). <a href="https://r4ds.hadley.nz/data-import.html">https://r4ds.hadley.nz/data-import.html</a></li>
+</ul>
+</section>
+<section id="coding-tasks" class="level2">
+<h2 class="anchored" data-anchor-id="coding-tasks">Coding Tasks</h2>
+<p>Create an R script and use it to answer the following questions.</p>
+<section id="reading-and-inspecting-data" class="level3">
+<h3 class="anchored" data-anchor-id="reading-and-inspecting-data">1. Reading and Inspecting Data</h3>
+<p>In this lab we will explore a dataset containing size measurements for 3 species of penguins from the Palmer Archipelago in Antarctica.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://raw.githubusercontent.com/allisonhorst/palmerpenguins/refs/heads/main/inst/extdata/penguins.csv"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<ol type="a">
+<li><p>Read the penguins data into R as a data frame called <code>penguins</code> (see the link above).</p></li>
+<li><p>Use <code>class()</code>, <code>typeof()</code>, and <code>str()</code> to inspect the <code>penguins</code> object. What do you notice about the types and classes of the columns?</p></li>
+<li><p>Use <code>names()</code> to list all column names in the data frame.</p></li>
+</ol>
+</section>
+<section id="subsetting-and-accessing-data" class="level3">
+<h3 class="anchored" data-anchor-id="subsetting-and-accessing-data">2. Subsetting and Accessing Data</h3>
+<ol type="a">
+<li><p>Use the <code>$</code> operator to extract the <code>body_mass_g</code> column and store it as a new object called <code>body_mass</code>. What is the type of this object?</p></li>
+<li><p>Use the <code>[["body_mass_g"]]</code> syntax to extract the same column. Is the result the same as above?</p></li>
+<li><p>Use <code>length()</code> to determine how many body mass values are in the data set.</p></li>
+<li><p>Extract the body mass of the first penguin using vector subsetting.</p></li>
+<li><p>Use logical subsetting to extract the body mass values for all penguins on the <code>"Dream"</code> island.</p></li>
+</ol>
+</section>
+<section id="working-with-types-and-coercion" class="level3">
+<h3 class="anchored" data-anchor-id="working-with-types-and-coercion">3. Working with Types and Coercion</h3>
+<ol type="a">
+<li><p>Use <code>typeof()</code> to check the type of the <code>body_mass</code> vector. If it is not numeric, use <code>as.numeric()</code> to coerce it and assign the result back to <code>body_mass</code>.</p></li>
+<li><p>Update the <code>penguins</code> data frame so that the <code>body_mass_g</code> column is numeric (if it is not already).</p></li>
+<li><p>Use <code>typeof()</code> and <code>class()</code> to check the type and class of the <code>species</code> column. If it is not a factor, convert it using <code>as.factor()</code>.</p></li>
+<li><p>Use <code>levels()</code> to list the possible values of <code>species</code>.</p></li>
+</ol>
+</section>
+<section id="data-frame-operations" class="level3">
+<h3 class="anchored" data-anchor-id="data-frame-operations">4. Data Frame Operations</h3>
+<ol type="a">
+<li><p>Create a new data frame containing only penguins with a body mass of at least 4000 grams.</p></li>
+<li><p>Create a new data frame containing only the <code>species</code> and <code>island</code> columns for penguins with a non-missing body mass.</p></li>
+<li><p>How many penguins have missing (<code>NA</code>) values for body mass? Use <code>is.na()</code> and <code>sum()</code>.</p></li>
+</ol>
+</section>
+<section id="challenge-creating-a-categorical-variable" class="level3">
+<h3 class="anchored" data-anchor-id="challenge-creating-a-categorical-variable">5. Challenge: Creating a Categorical Variable</h3>
+<ol type="a">
+<li>Create a new factor column in the <code>penguins</code> data frame called <code>mass_group</code> with three levels:
+<ul>
+<li>“light” for body mass less than 3500 grams</li>
+<li>“medium” for body mass between 3500 and 4500 grams (inclusive)</li>
+<li>“heavy” for body mass greater than 4500 grams</li>
+</ul></li>
+<li>Display the <code>species</code>, <code>body_mass_g</code>, and <code>mass_group</code> columns for all penguins.</li>
+</ol>
 
 
-
-<div class="quarto-title-meta">
-
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Andrew Bean </p>
-          </div>
-  </div>
-    
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">September 9, 2025</p>
-    </div>
-  </div>
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<p>Welcome to the DATA 505 website for Fall 2025 at Drew University. The course is “Statistics Using R”.</p>
-<section id="course-description" class="level2">
-<h2 class="anchored" data-anchor-id="course-description">Course description</h2>
-<p>Covers how to use real-world data and draw intelligent conclusions on it using univariate and bivariate descriptive statistics such as centrality, spread, and correlation. Students have the opportunity to learn how to use the R language in the R-studio environment to obtain representative samples from large datasets and use the information in such samples to draw inferences on the larger datasets they were taken from. Course topics include graphical and tabular presentation of data, descriptive summary statistics, manipulation of data, regression, probability distributions, t-tests, and one-way analysis of variance.</p>
-
-
+</section>
 </section>
 
 </main> <!-- /main -->

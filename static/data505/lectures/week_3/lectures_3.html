@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Andrew Bean">
-<meta name="dcterms.date" content="2025-09-09">
 
-<title>Data 505: Statistics Using R – Data 505: R for Statistics</title>
+<title>Week 3: Descriptive Statistics and Summarizing Data – Data 505: R for Statistics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -25,23 +23,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c1fac2584b48ed01fb6e278e36375074.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-c1fac2584b48ed01fb6e278e36375074.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -71,7 +69,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -81,7 +79,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Data 505: R for Statistics</span>
     </a>
   </div>
@@ -92,15 +90,15 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./syllabus/syllabus.html"> 
+    <a class="nav-link" href="../../syllabus/syllabus.html"> 
 <span class="menu-text">Syllabus</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./schedule/schedule.html"> 
+    <a class="nav-link" href="../../schedule/schedule.html"> 
 <span class="menu-text">Schedule</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -109,15 +107,15 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-lectures">    
         <li>
-    <a class="dropdown-item" href="./lectures/week_1/lectures_1.html">
+    <a class="dropdown-item" href="../../lectures/week_1/lectures_1.html">
  <span class="dropdown-text">Week 1 (Aug 26)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./lectures/week_2/lectures_2.html">
+    <a class="dropdown-item" href="../../lectures/week_2/lectures_2.html">
  <span class="dropdown-text">Week 2 (Sep 2)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./lectures/week_3/lectures_3.html">
+    <a class="dropdown-item" href="../../lectures/week_3/lectures_3.html">
  <span class="dropdown-text">Week 3 (Sep 9)</span></a>
   </li>  
     </ul>
@@ -128,15 +126,15 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-labs">    
         <li>
-    <a class="dropdown-item" href="./labs/week_1/lab_1.pdf">
+    <a class="dropdown-item" href="../../labs/week_1/lab_1.pdf">
  <span class="dropdown-text">Lab 1 (Week 1 / Aug 26)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./labs/week_2/lab_2.pdf">
+    <a class="dropdown-item" href="../../labs/week_2/lab_2.pdf">
  <span class="dropdown-text">Lab 2 (Week 2 / Sep 2)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./labs/week_3/lab_3.pdf">
+    <a class="dropdown-item" href="../../labs/week_3/lab_3.pdf">
  <span class="dropdown-text">Lab 3 (Week 3 / Sep 3)</span></a>
   </li>  
     </ul>
@@ -147,7 +145,7 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-homework">    
         <li>
-    <a class="dropdown-item" href="./homework/homework_1.pdf">
+    <a class="dropdown-item" href="../../homework/homework_1.pdf">
  <span class="dropdown-text">Homework 1 (Quiz on Sep 2)</span></a>
   </li>  
         <li class="dropdown-header">Homework 2 FORTHCOMING (Quiz on Sep 16)</li>
@@ -192,7 +190,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#course-description" id="toc-course-description" class="nav-link active" data-scroll-target="#course-description">Course description</a></li>
+  <li><a href="#agenda" id="toc-agenda" class="nav-link active" data-scroll-target="#agenda">Agenda</a></li>
+  <li><a href="#supportive-reading-outside-class" id="toc-supportive-reading-outside-class" class="nav-link" data-scroll-target="#supportive-reading-outside-class">Supportive reading outside class</a></li>
+  <li><a href="#slides" id="toc-slides" class="nav-link" data-scroll-target="#slides">Slides</a></li>
   </ul>
 </nav>
     </div>
@@ -201,26 +201,14 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Data 505: Statistics Using R</h1>
+<h1 class="title">Week 3: Descriptive Statistics and Summarizing Data</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Andrew Bean </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">September 9, 2025</p>
-    </div>
-  </div>
   
     
   </div>
@@ -230,10 +218,33 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Welcome to the DATA 505 website for Fall 2025 at Drew University. The course is “Statistics Using R”.</p>
-<section id="course-description" class="level2">
-<h2 class="anchored" data-anchor-id="course-description">Course description</h2>
-<p>Covers how to use real-world data and draw intelligent conclusions on it using univariate and bivariate descriptive statistics such as centrality, spread, and correlation. Students have the opportunity to learn how to use the R language in the R-studio environment to obtain representative samples from large datasets and use the information in such samples to draw inferences on the larger datasets they were taken from. Course topics include graphical and tabular presentation of data, descriptive summary statistics, manipulation of data, regression, probability distributions, t-tests, and one-way analysis of variance.</p>
+<section id="agenda" class="level1">
+<h1>Agenda</h1>
+<ul>
+<li>No homework / no quiz today. Next quiz will take place next Tuesday.</li>
+<li>Lecture on basics of variables, objects, types, and classes, as well as collections of objects, like vectors, lists, and data frames. We will also meet some of our first functions along the way.
+<ul>
+<li>Like last week, you may download an R script (which contains only the code chunks from the lecture) and follow along in RStudio by running line-by-line: <a href="week_3.R">week_3.R</a></li>
+</ul></li>
+<li>Hands-on lab to explore a dataset concerning housing-related data for Boston census tracts. You will use descriptive statistics and simple visual displays to summarize the distributions of several variables across the census tracts.
+<ul>
+<li><a href="https://andrew-bean.github.io/data505/labs/week_3/lab_3_blank.qmd">lab_3_blank.qmd</a></li>
+<li><a href="../../labs/week_3/lab_3.pdf">lab_3.pdf</a></li>
+</ul></li>
+</ul>
+</section>
+<section id="supportive-reading-outside-class" class="level1">
+<h1>Supportive reading outside class</h1>
+<p>(Optional but recommended) the best supporting textbook material for this week is Chapter 5 of this book:</p>
+<ul>
+<li>Navarro, D. J. (2019). Learning statistics with R: A tutorial for psychology students and other beginners (Version 0.6.1). University of Adelaide. Retrieved from https://learningstatisticswithr.com. <a href="https://learningstatisticswithr.com/lsr-0.6.pdf">Link to pdf</a></li>
+</ul>
+</section>
+<section id="slides" class="level1">
+<h1>Slides</h1>
+<p><a href="week_3.html">Link to fullscreen</a></p>
+<iframe src="week_3.html" width="100%" height="600px" style="border:none;">
+</iframe>
 
 
 </section>

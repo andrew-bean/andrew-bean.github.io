@@ -56,11 +56,277 @@
     "text": "One more thing\n\nFor labs, we will use Quarto to render code and outputs into pdf documents.\nThis has one more prerequisite\n\nIn RStudio, in the bottom-left pane, switch from the “Console” to the “Terminal” tab.\nType in and run this command: quarto install tinytex"
   },
   {
+    "objectID": "lectures/week_3/week_3.html#refresher-i",
+    "href": "lectures/week_3/week_3.html#refresher-i",
+    "title": "Week 3: Descriptive Statistics and Summarizing Data",
+    "section": "Refresher I",
+    "text": "Refresher I\nClass and type\n\nWe can use class() and typeof(), respectively, to determine the class and basic type of an object\n\n\ndata(diamonds, package = \"ggplot2\") # load an example dataset\nclass(diamonds) # inherits from data.frame, among other classes\n\n[1] \"tbl_df\"     \"tbl\"        \"data.frame\"\n\ntypeof(diamonds) # basic type is a list\n\n[1] \"list\""
+  },
+  {
+    "objectID": "lectures/week_3/week_3.html#refresher-ii",
+    "href": "lectures/week_3/week_3.html#refresher-ii",
+    "title": "Week 3: Descriptive Statistics and Summarizing Data",
+    "section": "Refresher II",
+    "text": "Refresher II\nBasic structure\n\nThe str() function produces a concise summary of the structure of the object\n\n\nstr(diamonds)\n\nClasses 'tbl_df', 'tbl' and 'data.frame':   53940 obs. of  10 variables:\n $ carat  : num  0.23 0.21 0.23 0.29 0.31 0.24 0.24 0.26 0.22 0.23 ...\n $ cut    : Ord.factor w/ 5 levels \"Fair\"&lt;\"Good\"&lt;..: 5 4 2 4 2 3 3 3 1 3 ...\n $ color  : Ord.factor w/ 7 levels \"D\"&lt;\"E\"&lt;\"F\"&lt;\"G\"&lt;..: 2 2 2 6 7 7 6 5 2 5 ...\n $ clarity: Ord.factor w/ 8 levels \"I1\"&lt;\"SI2\"&lt;\"SI1\"&lt;..: 2 3 5 4 2 6 7 3 4 5 ...\n $ depth  : num  61.5 59.8 56.9 62.4 63.3 62.8 62.3 61.9 65.1 59.4 ...\n $ table  : num  55 61 65 58 58 57 57 55 61 61 ...\n $ price  : int  326 326 327 334 335 336 336 337 337 338 ...\n $ x      : num  3.95 3.89 4.05 4.2 4.34 3.94 3.95 4.07 3.87 4 ...\n $ y      : num  3.98 3.84 4.07 4.23 4.35 3.96 3.98 4.11 3.78 4.05 ...\n $ z      : num  2.43 2.31 2.31 2.63 2.75 2.48 2.47 2.53 2.49 2.39 ..."
+  },
+  {
+    "objectID": "lectures/week_3/week_3.html#refresher-iii",
+    "href": "lectures/week_3/week_3.html#refresher-iii",
+    "title": "Week 3: Descriptive Statistics and Summarizing Data",
+    "section": "Refresher III",
+    "text": "Refresher III\nSubsetting a column from a data frame\n\nWe can use $ or [[ to subset columns from a data frame\n\n\nstr(diamonds$price) # structure of the \"price\" variable\n\n int [1:53940] 326 326 327 334 335 336 336 337 337 338 ...\n\nidentical(diamonds$price, diamonds[[\"price\"]])\n\n[1] TRUE\n\n\n\nWe could define a new variable to take the value of the column\n\n\nprice &lt;- diamonds$price\nidentical(price, diamonds$price)\n\n[1] TRUE"
+  },
+  {
+    "objectID": "lectures/week_3/week_3.html#refresher-iv",
+    "href": "lectures/week_3/week_3.html#refresher-iv",
+    "title": "Week 3: Descriptive Statistics and Summarizing Data",
+    "section": "Refresher IV",
+    "text": "Refresher IV\nType coercion\n\nIf we wanted, we could coerce this integer object to a different type\n\n\nprice_num &lt;- as.numeric(price)\nstr(price_num)\n\n num [1:53940] 326 326 327 334 335 336 336 337 337 338 ...\n\nprice_chr &lt;- as.character(price)\nstr(price_chr)\n\n chr [1:53940] \"326\" \"326\" \"327\" \"334\" \"335\" \"336\" \"336\" \"337\" \"337\" \"338\" ..."
+  },
+  {
+    "objectID": "lectures/week_3/week_3.html#refresher-v",
+    "href": "lectures/week_3/week_3.html#refresher-v",
+    "title": "Week 3: Descriptive Statistics and Summarizing Data",
+    "section": "Refresher V",
+    "text": "Refresher V\nAside about memory efficiency\n\nCoercion to numeric or character would not be very advantageous in this case, and would come with a downside: the integer version takes up far less memory\n\n\nobject.size(price)\n\n215808 bytes\n\nobject.size(price_num)\n\n431568 bytes\n\nobject.size(price_chr)\n\n1081280 bytes"
+  },
+  {
+    "objectID": "lectures/week_3/week_3.html#what-does-the-dataset-look-like",
+    "href": "lectures/week_3/week_3.html#what-does-the-dataset-look-like",
+    "title": "Week 3: Descriptive Statistics and Summarizing Data",
+    "section": "What does the dataset look like?",
+    "text": "What does the dataset look like?\n\n\nPrintout of the diamonds data\nlibrary(DT) # for the tabular display\nDT::datatable(diamonds, options = list(pageLength = 5))"
+  },
+  {
+    "objectID": "lectures/week_3/week_3.html#what-are-some-questions-we-might-pose-about-these-data",
+    "href": "lectures/week_3/week_3.html#what-are-some-questions-we-might-pose-about-these-data",
+    "title": "Week 3: Descriptive Statistics and Summarizing Data",
+    "section": "What are some questions we might pose about these data?",
+    "text": "What are some questions we might pose about these data?"
+  },
+  {
+    "objectID": "lectures/week_3/week_3.html#what-is-a-population",
+    "href": "lectures/week_3/week_3.html#what-is-a-population",
+    "title": "Week 3: Descriptive Statistics and Summarizing Data",
+    "section": "What is a population?",
+    "text": "What is a population?\n\nA large group of individuals or units{.incremental}\n\nMay be difficult to measure everyone{.incremental}\nStill would like to draw conclusions about the large group, perhaps based on partial data{.incremental}"
+  },
+  {
+    "objectID": "lectures/week_3/week_3.html#what-is-a-distribution",
+    "href": "lectures/week_3/week_3.html#what-is-a-distribution",
+    "title": "Week 3: Descriptive Statistics and Summarizing Data",
+    "section": "What is a distribution?",
+    "text": "What is a distribution?\n\nThe distribution of a measurement refers to the relative frequencies or *prevalence of different possible values across individuals in the population{.incremental}"
+  },
+  {
+    "objectID": "lectures/week_3/week_3.html#what-is-a-sample",
+    "href": "lectures/week_3/week_3.html#what-is-a-sample",
+    "title": "Week 3: Descriptive Statistics and Summarizing Data",
+    "section": "What is a sample?",
+    "text": "What is a sample?\n\nA set of measured individuals or units{.incremental}\n“Sample” may also refer to the measurements themselves{.incremental}"
+  },
+  {
+    "objectID": "lectures/week_3/week_3.html#what-is-a-statistic",
+    "href": "lectures/week_3/week_3.html#what-is-a-statistic",
+    "title": "Week 3: Descriptive Statistics and Summarizing Data",
+    "section": "What is a statistic?",
+    "text": "What is a statistic?\n\nAny function of the sample{.incremental}\nFor example, a numerical summary of the sample{.incremental}"
+  },
+  {
+    "objectID": "lectures/week_3/week_3.html#what-are-descriptive-statistics",
+    "href": "lectures/week_3/week_3.html#what-are-descriptive-statistics",
+    "title": "Week 3: Descriptive Statistics and Summarizing Data",
+    "section": "What are Descriptive Statistics?",
+    "text": "What are Descriptive Statistics?\n\nStatistics1 describing the main features of a dataset\nHelp us understand the distribution, center, and spread of data.\n\nNumerical summary"
+  },
+  {
+    "objectID": "lectures/week_3/week_3.html#types-of-descriptive-statistics",
+    "href": "lectures/week_3/week_3.html#types-of-descriptive-statistics",
+    "title": "Week 3: Descriptive Statistics and Summarizing Data",
+    "section": "Types of Descriptive Statistics",
+    "text": "Types of Descriptive Statistics\n\nMeasures of Center: Mean, Median, Mode\nMeasures of Spread: Range, Variance, Standard Deviation, IQR\nShape: Skewness, Kurtosis\nFrequency Tables: Counts and proportions for categorical variables"
+  },
+  {
+    "objectID": "lectures/week_3/week_3.html#measures-of-center",
+    "href": "lectures/week_3/week_3.html#measures-of-center",
+    "title": "Week 3: Descriptive Statistics and Summarizing Data",
+    "section": "Measures of Center",
+    "text": "Measures of Center\n\nMean: Arithmetic average\nMedian: Middle value\nMode: Most frequent value\n\n\nx &lt;- c(1, 2, 2, 3, 4)\nmean(x)\n\n[1] 2.4\n\nmedian(x)\n\n[1] 2\n\n# Mode is not built-in; use table(x)"
+  },
+  {
+    "objectID": "lectures/week_3/week_3.html#measures-of-spread",
+    "href": "lectures/week_3/week_3.html#measures-of-spread",
+    "title": "Week 3: Descriptive Statistics and Summarizing Data",
+    "section": "Measures of Spread",
+    "text": "Measures of Spread\n\nRange: Difference between max and min\nVariance: Average squared deviation from mean\nStandard Deviation: Square root of variance\nIQR: Interquartile range (Q3 - Q1)\n\n\nrange(x)\n\n[1] 1 4\n\nvar(x)\n\n[1] 1.3\n\nsd(x)\n\n[1] 1.140175\n\nIQR(x)\n\n[1] 1"
+  },
+  {
+    "objectID": "lectures/week_3/week_3.html#frequency-tables",
+    "href": "lectures/week_3/week_3.html#frequency-tables",
+    "title": "Week 3: Descriptive Statistics and Summarizing Data",
+    "section": "Frequency Tables",
+    "text": "Frequency Tables\n\nUse table() to count occurrences\nUse prop.table() for proportions\n\n\nspecies &lt;- c(\"Adelie\", \"Chinstrap\", \"Adelie\", \"Gentoo\")\ntable(species)\n\nspecies\n   Adelie Chinstrap    Gentoo \n        2         1         1 \n\nprop.table(table(species))\n\nspecies\n   Adelie Chinstrap    Gentoo \n     0.50      0.25      0.25"
+  },
+  {
+    "objectID": "lectures/week_3/week_3.html#recalling-the-structure",
+    "href": "lectures/week_3/week_3.html#recalling-the-structure",
+    "title": "Week 3: Descriptive Statistics and Summarizing Data",
+    "section": "Recalling the structure",
+    "text": "Recalling the structure\n\nstr(diamonds)\n\nClasses 'tbl_df', 'tbl' and 'data.frame':   53940 obs. of  10 variables:\n $ carat  : num  0.23 0.21 0.23 0.29 0.31 0.24 0.24 0.26 0.22 0.23 ...\n $ cut    : Ord.factor w/ 5 levels \"Fair\"&lt;\"Good\"&lt;..: 5 4 2 4 2 3 3 3 1 3 ...\n $ color  : Ord.factor w/ 7 levels \"D\"&lt;\"E\"&lt;\"F\"&lt;\"G\"&lt;..: 2 2 2 6 7 7 6 5 2 5 ...\n $ clarity: Ord.factor w/ 8 levels \"I1\"&lt;\"SI2\"&lt;\"SI1\"&lt;..: 2 3 5 4 2 6 7 3 4 5 ...\n $ depth  : num  61.5 59.8 56.9 62.4 63.3 62.8 62.3 61.9 65.1 59.4 ...\n $ table  : num  55 61 65 58 58 57 57 55 61 61 ...\n $ price  : int  326 326 327 334 335 336 336 337 337 338 ...\n $ x      : num  3.95 3.89 4.05 4.2 4.34 3.94 3.95 4.07 3.87 4 ...\n $ y      : num  3.98 3.84 4.07 4.23 4.35 3.96 3.98 4.11 3.78 4.05 ...\n $ z      : num  2.43 2.31 2.31 2.63 2.75 2.48 2.47 2.53 2.49 2.39 ..."
+  },
+  {
+    "objectID": "lectures/week_3/week_3.html#diamond-price",
+    "href": "lectures/week_3/week_3.html#diamond-price",
+    "title": "Week 3: Descriptive Statistics and Summarizing Data",
+    "section": "Diamond price",
+    "text": "Diamond price\nMeasures of center\n\nWhat is the average price (sample mean price)?\n\n\nmean(diamonds$price)\n\n[1] 3932.8\n\n\n\nWhat is a representative price? (Median)\n\n\nmedian(diamonds$price)\n\n[1] 2401"
+  },
+  {
+    "objectID": "lectures/week_3/week_3.html#diamond-price-1",
+    "href": "lectures/week_3/week_3.html#diamond-price-1",
+    "title": "Week 3: Descriptive Statistics and Summarizing Data",
+    "section": "Diamond price",
+    "text": "Diamond price\nMeasures of spread\n\nRange of values\n\n\nrange(diamonds$price)\n\n[1]   326 18823\n\n\n\nStandard deviation and variance\n\n\nsd(diamonds$price)\n\n[1] 3989.44\n\nvar(diamonds$price)\n\n[1] 15915629\n\nsd(diamonds$price) == sqrt(var(diamonds$price))\n\n[1] TRUE"
+  },
+  {
+    "objectID": "lectures/week_3/week_3.html#diamond-price-2",
+    "href": "lectures/week_3/week_3.html#diamond-price-2",
+    "title": "Week 3: Descriptive Statistics and Summarizing Data",
+    "section": "Diamond price",
+    "text": "Diamond price\nMeasures of spread\n\nQuartiles: the summary() function returns the quartiles, among other information\n\n\nsummary(diamonds$price)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n    326     950    2401    3933    5324   18823 \n\n\n\nInterquartile range\n\n\nIQR(diamonds$price)\n\n[1] 4374.25"
+  },
+  {
+    "objectID": "lectures/week_3/week_3.html#diamond-price-3",
+    "href": "lectures/week_3/week_3.html#diamond-price-3",
+    "title": "Week 3: Descriptive Statistics and Summarizing Data",
+    "section": "Diamond price",
+    "text": "Diamond price\nShape\n\nA histogram is a visual display of the distribution of a scale variable\n\n\nhist(diamonds$price)"
+  },
+  {
+    "objectID": "lectures/week_3/week_3.html#diamond-price-4",
+    "href": "lectures/week_3/week_3.html#diamond-price-4",
+    "title": "Week 3: Descriptive Statistics and Summarizing Data",
+    "section": "Diamond price",
+    "text": "Diamond price\nShape\n\nBased on the histogram and the earlier descriptive statistics, describe the shape of the distribution of diamond prices\n\nUnimodal\nRight skewed\nMean price is 3932.8 USD\nStandard deviation is 3989.44 USD\nMiddle 50% of diamonds range in price from 950 USD to 5324 USD (see summary(diamonds$price))"
+  },
+  {
+    "objectID": "lectures/week_3/week_3.html#diamond-cut-quality",
+    "href": "lectures/week_3/week_3.html#diamond-cut-quality",
+    "title": "Week 3: Descriptive Statistics and Summarizing Data",
+    "section": "Diamond cut quality",
+    "text": "Diamond cut quality\nThe cut variable\n\nThis is an example of a categorical variable\n\n\nstr(diamonds$cut) # its class in R is a factor\n\n Ord.factor w/ 5 levels \"Fair\"&lt;\"Good\"&lt;..: 5 4 2 4 2 3 3 3 1 3 ...\n\n\n\nThe possible levels of the cut variable are:\n\n\nlevels(diamonds$cut)\n\n[1] \"Fair\"      \"Good\"      \"Very Good\" \"Premium\"   \"Ideal\""
+  },
+  {
+    "objectID": "lectures/week_3/week_3.html#diamond-cut-quality-1",
+    "href": "lectures/week_3/week_3.html#diamond-cut-quality-1",
+    "title": "Week 3: Descriptive Statistics and Summarizing Data",
+    "section": "Diamond cut quality",
+    "text": "Diamond cut quality\nFrequency table\n\nThe frequency table below tells us how common each cut quality is within the sample\n\n\ntable(diamonds$cut)\n\n\n     Fair      Good Very Good   Premium     Ideal \n     1610      4906     12082     13791     21551 \n\n\n\nQ: What is the most common cut (the mode)? Which cut appears least often in the dataset?"
+  },
+  {
+    "objectID": "lectures/week_3/week_3.html#diamond-cut-quality-2",
+    "href": "lectures/week_3/week_3.html#diamond-cut-quality-2",
+    "title": "Week 3: Descriptive Statistics and Summarizing Data",
+    "section": "Diamond cut quality",
+    "text": "Diamond cut quality\nProportion table (relative frequency)\n\nRather than the total counts per category, we may be interested in the proportion of diamonds in each category\nFor such a relative frequency table, we can do:\n\n\nprop.table(table(diamonds$cut))\n\n\n      Fair       Good  Very Good    Premium      Ideal \n0.02984798 0.09095291 0.22398962 0.25567297 0.39953652"
+  },
+  {
+    "objectID": "lectures/week_3/week_3.html#boston-housing-data",
+    "href": "lectures/week_3/week_3.html#boston-housing-data",
+    "title": "Week 3: Descriptive Statistics and Summarizing Data",
+    "section": "Boston housing data",
+    "text": "Boston housing data\n\n\nPrintout of the Boston housing data\ndata(\"Boston\", package = \"MASS\")\nDT::datatable(Boston, options = list(pageLength = 5))"
+  },
+  {
+    "objectID": "lectures/week_3/week_3.html#section",
+    "href": "lectures/week_3/week_3.html#section",
+    "title": "Week 3: Descriptive Statistics and Summarizing Data",
+    "section": "",
+    "text": "variable\ndescription\n\n\n\n\ncrim\nper capita crime rate by town\n\n\nzn\nproportion of residential land zoned for lots over 25,000 sq.ft.\n\n\nindus\nproportion of non-retail business acres per town\n\n\nchas\nCharles River dummy variable (= 1 if tract bounds river; 0 otherwise)\n\n\nnox\nnitric oxides concentration (parts per 10 million)\n\n\nrm\naverage number of rooms per dwelling\n\n\nage\nproportion of owner-occupied units built prior to 1940\n\n\ndis\nweighted distances to five Boston employment centres\n\n\nrad\nindex of accessibility to radial highways\n\n\ntax\nfull-value property-tax rate per $10,000\n\n\nptratio\npupil-teacher ratio by town\n\n\nlstat\n% lower status of the population\n\n\nmedv\nMedian value of owner-occupied homes in $1000’s"
+  },
+  {
+    "objectID": "lectures/week_3/week_3.html#per-capita-crime-rate-by-town",
+    "href": "lectures/week_3/week_3.html#per-capita-crime-rate-by-town",
+    "title": "Week 3: Descriptive Statistics and Summarizing Data",
+    "section": "Per capita crime rate by town",
+    "text": "Per capita crime rate by town\nHistogram\n\nhist(Boston$crim, xlab = vardesc[1])"
+  },
+  {
+    "objectID": "lectures/week_3/week_3.html#per-capita-crime-rate-by-town-1",
+    "href": "lectures/week_3/week_3.html#per-capita-crime-rate-by-town-1",
+    "title": "Week 3: Descriptive Statistics and Summarizing Data",
+    "section": "Per capita crime rate by town",
+    "text": "Per capita crime rate by town\nBoxplot\n\nboxplot(Boston$crim, ylab = vardesc[1])"
+  },
+  {
+    "objectID": "lectures/week_3/week_3.html#per-capita-crime-rate-by-town-2",
+    "href": "lectures/week_3/week_3.html#per-capita-crime-rate-by-town-2",
+    "title": "Week 3: Descriptive Statistics and Summarizing Data",
+    "section": "Per capita crime rate by town",
+    "text": "Per capita crime rate by town\n\nThis variable has a strongly right skewed distribution\nMean and median will have very different interpretations in this situation\n\n\nmean(Boston$crim)\n\n[1] 3.613524\n\n\n\nmedian(Boston$crim)\n\n[1] 0.25651"
+  },
+  {
+    "objectID": "lectures/week_3/week_3.html#robust-or-outlier-resistant-statistics",
+    "href": "lectures/week_3/week_3.html#robust-or-outlier-resistant-statistics",
+    "title": "Week 3: Descriptive Statistics and Summarizing Data",
+    "section": "Robust or outlier-resistant statistics",
+    "text": "Robust or outlier-resistant statistics\n\n\n\n\n\n\n\n\n\nMeasure\nType\nSensitive to Outliers?\nNotes\n\n\n\n\nMean\nCenter\nYes\nStrongly affected by extreme values\n\n\nMedian\nCenter\nNo\nRobust; not affected by outliers\n\n\nMode\nCenter\nNo\nNot affected by outliers\n\n\nRange\nSpread\nYes\nDetermined by min and max values\n\n\nVariance\nSpread\nYes\nSquared deviations amplify outliers\n\n\nStandard Deviation\nSpread\nYes\nDerived from variance; sensitive\n\n\nInterquartile Range\nSpread\nNo\nOnly uses middle 50% of data"
+  },
+  {
+    "objectID": "lectures/week_3/week_3.html#describing-distributions",
+    "href": "lectures/week_3/week_3.html#describing-distributions",
+    "title": "Week 3: Descriptive Statistics and Summarizing Data",
+    "section": "Describing distributions",
+    "text": "Describing distributions\n\nDescriptive statistics help us understand the center, spread, and shape of data\nUse mean, median, and mode for measures of center; range, standard deviation, and IQR for spread\nFrequency and proportion tables summarize categorical variables\nVisualizations (histograms, boxplots, barplots) reveal distribution and outliers\nAlways consider the impact of outliers and choose robust statistics when appropriate"
+  },
+  {
     "objectID": "lectures/week_2/lectures_2.html",
     "href": "lectures/week_2/lectures_2.html",
     "title": "Week 2: Objects, Types, Classes, and Collections",
     "section": "",
     "text": "Agenda\n\nIn-class Quiz on Homework 1 (5 minutes)\nLecture on basics of variables, objects, types, and classes, as well as collections of objects, like vectors, lists, and data frames. We will also meet some of our first functions along the way.\n\nToday I recommend downloading the following R script (which contains only the code chunks from the lecture) and following along in RStudio by running line-by-line: week_2.R\n\nHands-on Lab 2 will give you practice reading data into R from a text file to create a data.frame object, and then reinforce some of the concepts from today using the variables defined in this dataset.\n\nlab_2_blank.qmd\nlab_2.pdf\n\n\n\n\nSupportive reading outside class\n(Optional but recommended) the best supporting textbook material for this week is section 2 of this book:\n\nGrolemund, G. (2014). Hands-On Programming with R. O’Reilly Media. Retrieved from https://rstudio-education.github.io/hopr/.\n\n\n\nSlides\nLink to fullscreen"
+  },
+  {
+    "objectID": "homework/homework_2.html",
+    "href": "homework/homework_2.html",
+    "title": "Data 505: R for Statistics",
+    "section": "",
+    "text": "title: “DATA 505: Homework 2” subtitle: “Objects, Types, Classes, and Data Frames” date: “Complete by 2025-09-16” author: “” # YOUR NAME HERE (in quotes at left) format: pdf: toc: false"
+  },
+  {
+    "objectID": "homework/homework_2.html#context",
+    "href": "homework/homework_2.html#context",
+    "title": "Data 505: R for Statistics",
+    "section": "Context",
+    "text": "Context\nIn this homework, you will reinforce concepts from weeks 2 and 3. Using what you learned in week 2, you will practice inspecting, subsetting, and cleaning data, as well as understanding how R handles different types of data. Then, using what you learned in week 3, you will practice producing descriptive summaries of the variables in a dataset."
+  },
+  {
+    "objectID": "homework/homework_2.html#references",
+    "href": "homework/homework_2.html#references",
+    "title": "Data 505: R for Statistics",
+    "section": "References",
+    "text": "References\n\nLecture 2\nLecture 3\nGrolemund, G. (2014). Hands-On Programming with R. O’Reilly Media. https://rstudio-education.github.io/hopr/\nWickham, H. & Grolemund, G. (2023). R for Data Science (2e). https://r4ds.hadley.nz/data-import.html"
+  },
+  {
+    "objectID": "homework/homework_2.html#coding-tasks",
+    "href": "homework/homework_2.html#coding-tasks",
+    "title": "Data 505: R for Statistics",
+    "section": "Coding Tasks",
+    "text": "Coding Tasks\nCreate an R script and use it to answer the following questions.\n\n1. Reading and Inspecting Data\nIn this lab we will explore a dataset containing size measurements for 3 species of penguins from the Palmer Archipelago in Antarctica.\n\npenguins &lt;- read.csv(\n  \"https://raw.githubusercontent.com/allisonhorst/palmerpenguins/refs/heads/main/inst/extdata/penguins.csv\"\n)\n\n\nRead the penguins data into R as a data frame called penguins (see the link above).\nUse class(), typeof(), and str() to inspect the penguins object. What do you notice about the types and classes of the columns?\nUse names() to list all column names in the data frame.\n\n\n\n2. Subsetting and Accessing Data\n\nUse the $ operator to extract the body_mass_g column and store it as a new object called body_mass. What is the type of this object?\nUse the [[\"body_mass_g\"]] syntax to extract the same column. Is the result the same as above?\nUse length() to determine how many body mass values are in the data set.\nExtract the body mass of the first penguin using vector subsetting.\nUse logical subsetting to extract the body mass values for all penguins on the \"Dream\" island.\n\n\n\n3. Working with Types and Coercion\n\nUse typeof() to check the type of the body_mass vector. If it is not numeric, use as.numeric() to coerce it and assign the result back to body_mass.\nUpdate the penguins data frame so that the body_mass_g column is numeric (if it is not already).\nUse typeof() and class() to check the type and class of the species column. If it is not a factor, convert it using as.factor().\nUse levels() to list the possible values of species.\n\n\n\n4. Data Frame Operations\n\nCreate a new data frame containing only penguins with a body mass of at least 4000 grams.\nCreate a new data frame containing only the species and island columns for penguins with a non-missing body mass.\nHow many penguins have missing (NA) values for body mass? Use is.na() and sum().\n\n\n\n5. Challenge: Creating a Categorical Variable\n\nCreate a new factor column in the penguins data frame called mass_group with three levels:\n\n“light” for body mass less than 3500 grams\n“medium” for body mass between 3500 and 4500 grams (inclusive)\n“heavy” for body mass greater than 4500 grams\n\nDisplay the species, body_mass_g, and mass_group columns for all penguins."
+  },
+  {
+    "objectID": "syllabus/syllabus.html",
+    "href": "syllabus/syllabus.html",
+    "title": "Syllabus",
+    "section": "",
+    "text": "The syllabus is available on Moodle: Link."
+  },
+  {
+    "objectID": "schedule/schedule.html",
+    "href": "schedule/schedule.html",
+    "title": "Schedule",
+    "section": "",
+    "text": "Run the schedule.R script and display the most current plan for the schedule\nhere::i_am(\"schedule/schedule.qmd\")\nlibrary(here)\nlibrary(gt)\n\nsource(here(\"schedule/schedule.R\"))\n\ngt(schedule)\n\n\n\n\n\n\n\n\nDate\nContents\nNotes\n\n\n\n\nAug 26\nIntroduction & Getting started\nLab 1\n\n\nSep 2\nR Basics (objects, types, classes, and collections)\nHW-Quiz 1 / Lab 2\n\n\nSep 9\nDescriptive statistics & Summarizing data\nHW-Quiz 2 / Lab 3\n\n\nSep 16\nBasic statistical inference\nHW-Quiz 3 / Lab 4\n\n\nSep 23\nData manipulation & visualization\nHW-Quiz 4 / Lab 5\n\n\nSep 30\nExam 1\n\n\n\nOct 7\nRegression & Case study 1\n\n\n\nOct 14\nNO CLASS (Fall Break)\n\n\n\nOct 21\nControl flow (if/for/while)\nHW-Quiz 5 / Lab 6\n\n\nOct 28\nWriting functions\nHW-Quiz 6 / Lab 7\n\n\nNov 4\nExam 2\n\n\n\nNov 11\nSampling distributions & CLT\nLab 8\n\n\nNov 18\nSimulation & Case study 2\nHW-Quiz 7\n\n\nNov 25\nBootstrap & Case study 2\nHW-Quiz 8\n\n\nDec 2\nShiny (UI-based apps)\nCase study 2 due / Lab 9\n\n\nDec 9\nFinal Exam\n7:30 to 10:30"
   },
   {
     "objectID": "index.html",
@@ -75,20 +341,6 @@
     "title": "Data 505: Statistics Using R",
     "section": "Course description",
     "text": "Course description\nCovers how to use real-world data and draw intelligent conclusions on it using univariate and bivariate descriptive statistics such as centrality, spread, and correlation. Students have the opportunity to learn how to use the R language in the R-studio environment to obtain representative samples from large datasets and use the information in such samples to draw inferences on the larger datasets they were taken from. Course topics include graphical and tabular presentation of data, descriptive summary statistics, manipulation of data, regression, probability distributions, t-tests, and one-way analysis of variance."
-  },
-  {
-    "objectID": "schedule/schedule.html",
-    "href": "schedule/schedule.html",
-    "title": "Schedule",
-    "section": "",
-    "text": "Run the schedule.R script and display the most current plan for the schedule\nhere::i_am(\"schedule/schedule.qmd\")\nlibrary(here)\nlibrary(gt)\n\nsource(here(\"schedule/schedule.R\"))\n\ngt(schedule)\n\n\n\n\n\n\n\n\nDate\nContents\nNotes\n\n\n\n\nAug 26\nIntroduction & Getting started\nLab 1\n\n\nSep 2\nR Basics (objects, types, classes, and collections)\nHW-Quiz 1 / Lab 2\n\n\nSep 9\nDescriptive statistics & Summarizing data\nHW-Quiz 2 / Lab 3\n\n\nSep 16\nBasic statistical inference\nHW-Quiz 3 / Lab 4\n\n\nSep 23\nData manipulation & visualization\nHW-Quiz 4 / Lab 5\n\n\nSep 30\nExam 1\n\n\n\nOct 7\nRegression & Case study 1\n\n\n\nOct 14\nNO CLASS (Fall Break)\n\n\n\nOct 21\nControl flow (if/for/while)\nHW-Quiz 5 / Lab 6\n\n\nOct 28\nWriting functions\nHW-Quiz 6 / Lab 7\n\n\nNov 4\nExam 2\n\n\n\nNov 11\nSampling distributions & CLT\nLab 8\n\n\nNov 18\nSimulation & Case study 2\nHW-Quiz 7\n\n\nNov 25\nBootstrap & Case study 2\nHW-Quiz 8\n\n\nDec 2\nShiny (UI-based apps)\nCase study 2 due / Lab 9\n\n\nDec 9\nFinal Exam\n7:30 to 10:30"
-  },
-  {
-    "objectID": "syllabus/syllabus.html",
-    "href": "syllabus/syllabus.html",
-    "title": "Syllabus",
-    "section": "",
-    "text": "The syllabus is available on Moodle: Link."
   },
   {
     "objectID": "lectures/week_2/week_2.html#what-is-a-variable",
@@ -271,6 +523,13 @@
     "title": "Week 2: Objects, Types, Classes, and Collections",
     "section": "Lab 2",
     "text": "Lab 2\nlab_2_blank.qmd lab_2.pdf"
+  },
+  {
+    "objectID": "lectures/week_3/lectures_3.html",
+    "href": "lectures/week_3/lectures_3.html",
+    "title": "Week 3: Descriptive Statistics and Summarizing Data",
+    "section": "",
+    "text": "Agenda\n\nNo homework / no quiz today. Next quiz will take place next Tuesday.\nLecture on basics of variables, objects, types, and classes, as well as collections of objects, like vectors, lists, and data frames. We will also meet some of our first functions along the way.\n\nLike last week, you may download an R script (which contains only the code chunks from the lecture) and follow along in RStudio by running line-by-line: week_3.R\n\nHands-on lab to explore a dataset concerning housing-related data for Boston census tracts. You will use descriptive statistics and simple visual displays to summarize the distributions of several variables across the census tracts.\n\nlab_3_blank.qmd\nlab_3.pdf\n\n\n\n\nSupportive reading outside class\n(Optional but recommended) the best supporting textbook material for this week is Chapter 5 of this book:\n\nNavarro, D. J. (2019). Learning statistics with R: A tutorial for psychology students and other beginners (Version 0.6.1). University of Adelaide. Retrieved from https://learningstatisticswithr.com. Link to pdf\n\n\n\nSlides\nLink to fullscreen"
   },
   {
     "objectID": "lectures/week_1/week_1.html#acquaintances",
