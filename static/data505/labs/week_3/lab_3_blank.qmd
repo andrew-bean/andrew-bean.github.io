@@ -1,6 +1,6 @@
 ---
 title: "DATA 505: Lab 3"
-subtitle: "Getting to know data frames"
+subtitle: "Descriptive Statistics and Summarizing Data"
 date: "2025-09-09"
 author: "YOUR NAME HERE"
 format: 
