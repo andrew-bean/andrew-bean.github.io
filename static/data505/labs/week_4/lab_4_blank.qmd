@@ -8,7 +8,7 @@ format:
     toc: true
     toc-depth: 1
     number-sections: true
-    output-file: lab_3.pdf
+    output-file: lab_4.pdf
 ---
 
 ## Setup & Goals
