@@ -18,6 +18,7 @@ Just like in Labs 1 and 2, you will edit a `.qmd` Quarto script, render the resu
 Goals for Lab 4:
 
 - Use the `t.test()` function to carry out hypothesis tests and to produce confidence intervals for unknown population means.
+- Use the `prop.test()` function to do hypothesis tests for unknown population proportions.
 
 ## The data
 

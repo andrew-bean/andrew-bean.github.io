@@ -284,7 +284,14 @@
     "href": "lectures/week_4/lectures_4.html",
     "title": "Week 4: Basic Statistical Inference",
     "section": "",
-    "text": "Agenda\n\nHomework quiz (5 mins) on Homework 2.\nLecture on basic statistical inference in R, including hypothesis tests and confidence intervals for one or two means or proportions, and chi-square tests for independence in two-way tables.\n\nLike last week, you may download an R script (which contains only the code chunks from the lecture) and follow along in RStudio by running line-by-line: week_4.R\n\nHands-on lab to explore a dataset concerning housing-related data for Boston census tracts. You will use descriptive statistics and simple visual displays to summarize the distributions of several variables across the census tracts.\n\nlab_4_blank.qmd\nlab_4.pdf\n\n\n\n\nSupportive reading outside class\n(Optional but recommended) the best supporting textbook material for this week is Chapters 10 and 11 of this book:\n\nNavarro, D. J. (2019). Learning statistics with R: A tutorial for psychology students and other beginners (Version 0.6.1). University of Adelaide. Retrieved from https://learningstatisticswithr.com. Link to pdf\n\n\n\nSlides\nLink to fullscreen"
+    "text": "Homework quiz (5 mins) on Homework 2.\nLecture on basic statistical inference in R, including hypothesis tests and confidence intervals for one or two means or proportions, and chi-square tests for independence in two-way tables.\n\nLike last week, you may download an R script (which contains only the code chunks from the lecture) and follow along in RStudio by running line-by-line: week_4.R\n\nHands-on lab to explore a dataset concerning housing-related data for Boston census tracts. You will use descriptive statistics and simple visual displays to summarize the distributions of several variables across the census tracts.\n\nlab_4_blank.qmd\nlab_4.pdf"
+  },
+  {
+    "objectID": "lectures/week_4/lectures_4.html#for-visual-learners",
+    "href": "lectures/week_4/lectures_4.html#for-visual-learners",
+    "title": "Week 4: Basic Statistical Inference",
+    "section": "For visual learners",
+    "text": "For visual learners\nAnother great resource is https://seeing-theory.brown.edu/, which has interactive visuals to explain the concepts behind statistical inference (among other statistical topics)."
   },
   {
     "objectID": "lectures/week_2/lectures_2.html",
