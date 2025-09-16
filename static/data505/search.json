@@ -317,9 +317,9 @@
   {
     "objectID": "labs/week_4/week_4_lab.html",
     "href": "labs/week_4/week_4_lab.html",
-    "title": "Lab 3: Descriptive Statistics and Summarizing Data",
+    "title": "Lab 4: Basic Statistical Inference",
     "section": "",
-    "text": "Hands-on lab to explore a dataset concerning housing-related data for Boston census tracts. You will use descriptive statistics and simple visual displays to summarize the distributions of several variables across the census tracts.\n\nlab_3_blank.qmd\nlab_3.pdf\nlab_3_solution.pdf"
+    "text": "lab_4_blank.qmd\nlab_4.pdf"
   },
   {
     "objectID": "labs/week_3/week_3_lab.html",
