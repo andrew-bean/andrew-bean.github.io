@@ -718,7 +718,7 @@
     "href": "lectures/week_4/week_4.html#test-result",
     "title": "Week 4: Basic Statistical Inference",
     "section": "Test result",
-    "text": "Test result\n\nprop.test(x = 1132, n = 2516)\n\n\n    1-sample proportions test with continuity correction\n\ndata:  1132 out of 2516, null probability 0.5\nX-squared = 25.04, df = 1, p-value = 5.615e-07\nalternative hypothesis: true p is not equal to 0.5\n95 percent confidence interval:\n 0.4303749 0.4696204\nsample estimates:\n        p \n0.4499205 \n\n\n\nThe p-value is extremely small (less than \\(\\alpha = 0.05\\))\nThere is convincing evidence that less than 50% of likely voters favor Kamala Harris"
+    "text": "Test result\n\nprop.test(x = 1132, n = 2516, alternative = \"less\", p = 0.5)\n\n\n    1-sample proportions test with continuity correction\n\ndata:  1132 out of 2516, null probability 0.5\nX-squared = 25.04, df = 1, p-value = 2.807e-07\nalternative hypothesis: true p is less than 0.5\n95 percent confidence interval:\n 0.0000000 0.4664785\nsample estimates:\n        p \n0.4499205 \n\n\n\nThe p-value is extremely small (less than \\(\\alpha = 0.05\\))\nThere is convincing evidence that less than 50% of likely voters favor Kamala Harris"
   },
   {
     "objectID": "lectures/week_4/week_4.html#arthritis-trial-example",

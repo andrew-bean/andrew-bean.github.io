@@ -866,16 +866,16 @@ attr(,"conf.level")
 <section id="test-result" class="slide level2">
 <h2>Test result</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a><span class="fu">prop.test</span>(<span class="at">x =</span> <span class="dv">1132</span>, <span class="at">n =</span> <span class="dv">2516</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a><span class="fu">prop.test</span>(<span class="at">x =</span> <span class="dv">1132</span>, <span class="at">n =</span> <span class="dv">2516</span>, <span class="at">alternative =</span> <span class="st">"less"</span>, <span class="at">p =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     1-sample proportions test with continuity correction
 
 data:  1132 out of 2516, null probability 0.5
-X-squared = 25.04, df = 1, p-value = 5.615e-07
-alternative hypothesis: true p is not equal to 0.5
+X-squared = 25.04, df = 1, p-value = 2.807e-07
+alternative hypothesis: true p is less than 0.5
 95 percent confidence interval:
- 0.4303749 0.4696204
+ 0.0000000 0.4664785
 sample estimates:
         p 
 0.4499205 </code></pre>
