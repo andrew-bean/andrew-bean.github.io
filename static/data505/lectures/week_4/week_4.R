@@ -168,7 +168,7 @@ counts <- with(
         dnn = list("treatment", "marked_improvement"))
 )
 counts
-prop.table(counts, margin = 1)
+prop.table(counts, margin = "treatment")
 class(counts)
 
 

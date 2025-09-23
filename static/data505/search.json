@@ -294,6 +294,223 @@
     "text": "For visual learners\nAnother great resource is https://seeing-theory.brown.edu/, which has interactive visuals to explain the concepts behind statistical inference (among other statistical topics)."
   },
   {
+    "objectID": "lectures/week_5/week_5.html#prep-work",
+    "href": "lectures/week_5/week_5.html#prep-work",
+    "title": "DATA 505: Statistics Using R",
+    "section": "Prep work",
+    "text": "Prep work\nThe following packages are required for today’s lecture. Please install first if needed.\n\nlibrary(tidyverse) # for data manipulation, ggplots is part of this\nlibrary(maps)\nlibrary(plotly) # for interactive plots\n\nTo start, we’ll use a very simple dataset in Base R.\n\n?USArrests\nstr(USArrests)"
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#section",
+    "href": "lectures/week_5/week_5.html#section",
+    "title": "DATA 505: Statistics Using R",
+    "section": "",
+    "text": "Create a separate variable for state names; create a categorical (ordinal) variable based on Urban Population. More on this syntax later.\n\nUSArrests &lt;- USArrests |&gt; \n  mutate(State = row.names(USArrests)) |&gt;\n  mutate(UrbanPop_tile = ntile(UrbanPop, 3)) |&gt;\n  mutate(UrbanPop_Cat = factor(UrbanPop_tile, \n                               levels=c(1,2,3),\n                               labels=c('Low',\"Medium\",\"High\"),\n                               ordered=T))"
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#histogram",
+    "href": "lectures/week_5/week_5.html#histogram",
+    "title": "DATA 505: Statistics Using R",
+    "section": "Histogram",
+    "text": "Histogram\n\n\n\nHistogram is a uni-variate graph. To describe a distribution, keep in mind properties of location, spread, and shape.\nVisualization elements can be modified by adding arguments within the function\n\n\n\nhist(USArrests$Murder,\n      nclass=30,\n     main='Murder rate per 100000',\n    col='pink', \n     ylab=NA, \n     yaxt='n',\n    xlab=NA)"
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#boxplot",
+    "href": "lectures/week_5/week_5.html#boxplot",
+    "title": "DATA 505: Statistics Using R",
+    "section": "Boxplot",
+    "text": "Boxplot\n\nBoxplot is based on the 5-number summary: min, Q1, Q2 (median), Q3, max\n\n\nboxplot(USArrests$Murder)"
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#stem-and-leaf-plot",
+    "href": "lectures/week_5/week_5.html#stem-and-leaf-plot",
+    "title": "DATA 505: Statistics Using R",
+    "section": "Stem and leaf plot",
+    "text": "Stem and leaf plot\n\n\n\nDifferent software often produce stem-and-leaf plots that look differently\nIn R, can change scale and width arguments\nOnly sometimes useful\n\n\n\nstem(USArrests$Murder)\n\n\n  The decimal point is at the |\n\n   0 | 8\n   2 | 11226672348\n   4 | 0349379\n   6 | 003682349\n   8 | 158007\n  10 | 04134\n  12 | 127022\n  14 | 444\n  16 | 14"
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#side-by-side-boxplots",
+    "href": "lectures/week_5/week_5.html#side-by-side-boxplots",
+    "title": "DATA 505: Statistics Using R",
+    "section": "Side-by-side boxplots",
+    "text": "Side-by-side boxplots\n\nboxplot(USArrests$Assault ~ USArrests$UrbanPop_Cat,\n        col='pink',\n        border='darkblue',\n        pch=16,\n        xlab='Urban population',\n        ylab='Assault rate')"
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#scatterplot",
+    "href": "lectures/week_5/week_5.html#scatterplot",
+    "title": "DATA 505: Statistics Using R",
+    "section": "Scatterplot",
+    "text": "Scatterplot\n\nScatterplots are bi-variate; useful to detect relationship between two numeric (scale) variables\n\n\nplot(USArrests$UrbanPop,USArrests$Assault)"
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#example-1",
+    "href": "lectures/week_5/week_5.html#example-1",
+    "title": "DATA 505: Statistics Using R",
+    "section": "Example 1",
+    "text": "Example 1\n\nggplot2 is an alternative, more unified framework (Grammar of Graphics) for creating plots and graphics in R\n\n\nggplot(data=USArrests,\n       mapping=aes(x=UrbanPop,y=Assault)) + \n  geom_point()"
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#example-2",
+    "href": "lectures/week_5/week_5.html#example-2",
+    "title": "DATA 505: Statistics Using R",
+    "section": "Example 2",
+    "text": "Example 2\n\nggplot(data=USArrests,\n       mapping=aes(x=UrbanPop_Cat,y = Assault, fill=UrbanPop_Cat)) + \n  geom_boxplot()"
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#basic-ingredients-of-a-ggplot",
+    "href": "lectures/week_5/week_5.html#basic-ingredients-of-a-ggplot",
+    "title": "DATA 505: Statistics Using R",
+    "section": "Basic ingredients of a ggplot",
+    "text": "Basic ingredients of a ggplot\n\nData\n\nData frame containing all the raw observations\n\nAesthetic mapping\n\nAn aesthetic is a visual property of the plot, such as x-axis, y-axis, color, fill, size, etc.\nUse aes to specify which variable is mapped to which aesthetic\nExample: height -&gt; x-axis; weight -&gt; y-axis; gender -&gt; fill; name -&gt; text\n\nGeoms\n\nWhat types of layers should be added to the plots"
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#example-1-explained",
+    "href": "lectures/week_5/week_5.html#example-1-explained",
+    "title": "DATA 505: Statistics Using R",
+    "section": "Example 1 explained",
+    "text": "Example 1 explained\n\n\n\nUrbanPop maps to the x-axis\nAssault maps to the y-axis\ngeom_point draws scatterplot-type points for each observation\n\n\n\nggplot(data=USArrests,\n       mapping=aes(x=UrbanPop,y=Assault)) + \n  geom_point()"
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#example-2-explained",
+    "href": "lectures/week_5/week_5.html#example-2-explained",
+    "title": "DATA 505: Statistics Using R",
+    "section": "Example 2 explained",
+    "text": "Example 2 explained\n\n\n\nUrbanPop_Cat maps to the x-axis AND fill (this kind of redundant mapping should be avoided!)\nAssault maps to the y-axis\ngeom_boxplot draws boxplots\nTry: change geom_boxplot to geom_violin\n\n\n\nggplot(data=USArrests,\n       mapping=aes(\n        x=UrbanPop_Cat,\n        y = Assault,\n        fill=UrbanPop_Cat\n       )) + \n  geom_boxplot()"
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#geom_histogram",
+    "href": "lectures/week_5/week_5.html#geom_histogram",
+    "title": "DATA 505: Statistics Using R",
+    "section": "geom_histogram",
+    "text": "geom_histogram\n\nRecall: histogram is univariate; y-axis is always frequency, so we don’t need a y=_ mapping\n\n\nggplot(data = USArrests,  aes(x = Murder)) + \n  geom_histogram()"
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#section-1",
+    "href": "lectures/week_5/week_5.html#section-1",
+    "title": "DATA 505: Statistics Using R",
+    "section": "",
+    "text": "Can add arguments in geoms \n\n\nggplot(data = USArrests,  aes(x = Murder)) + \n  geom_histogram(binwidth=5,\n                 fill=\"orange\",\n                 color=\"blue\")\n\n\nNote the differences in the syntax convention:\n\nbase R col vs ggplot fill\nbase R border vs ggplot color\nesp. “color” (ggplot) vs “col” (base R)"
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#section-2",
+    "href": "lectures/week_5/week_5.html#section-2",
+    "title": "DATA 505: Statistics Using R",
+    "section": "",
+    "text": "Add another dimension (i.e., map another variable to another aesthetic)\n\n\nggplot(data = USArrests, aes(x = Murder, fill=UrbanPop_Cat)) + \n  geom_histogram(binwidth=5, color=\"blue\")"
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#geom_bar",
+    "href": "lectures/week_5/week_5.html#geom_bar",
+    "title": "DATA 505: Statistics Using R",
+    "section": "geom_bar",
+    "text": "geom_bar\n\nThe bar graph shows that each category has roughly the same number of states, as expected.\n\n\nggplot(data=USArrests, \n       mapping=aes(x=UrbanPop_Cat)) +\n  geom_bar()"
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#geom_text",
+    "href": "lectures/week_5/week_5.html#geom_text",
+    "title": "DATA 505: Statistics Using R",
+    "section": "geom_text",
+    "text": "geom_text\n\nggplot(data=USArrests,\n       aes(x=Murder,y=Assault,label=State)) + \n  geom_text()\n\n\n\nTry: change geom_text to geom_label\nTry: add geom_point"
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#customize-ggplot-with",
+    "href": "lectures/week_5/week_5.html#customize-ggplot-with",
+    "title": "DATA 505: Statistics Using R",
+    "section": "Customize ggplot with +",
+    "text": "Customize ggplot with +\nggplot offers a very convenient syntax (+) to add elements and layers\n\nggplot(data=USArrests, \n       mapping=aes(x=UrbanPop_Cat)) +\n  geom_bar() + \n  theme_bw() +\n  ggtitle('Bar graph') +\n  labs(x='Urban population percentage')"
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#example-change-gradient-color",
+    "href": "lectures/week_5/week_5.html#example-change-gradient-color",
+    "title": "DATA 505: Statistics Using R",
+    "section": "Example: change gradient color",
+    "text": "Example: change gradient color\n\nggplot(data=USArrests,\n       aes(x=Murder,y=Assault,color=UrbanPop)) + \n  geom_point()+\n  theme_bw() +\n  ggtitle('Violent Crime Rates') +\n  labs(x='Murder',y=\"Assault\",color='Urban Pop Percentage') +\n  scale_color_gradient(low=\"lightgreen\",high=\"black\")"
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#example-change-categorical-color",
+    "href": "lectures/week_5/week_5.html#example-change-categorical-color",
+    "title": "DATA 505: Statistics Using R",
+    "section": "Example: change categorical color",
+    "text": "Example: change categorical color\n\nggplot(data=USArrests, \n       aes(x=Murder,fill=UrbanPop_Cat)) +\n  geom_histogram() +\n  scale_fill_manual(values=c(\"Low\"='green',\"Medium\"='purple', \"High\"=\"darkgrey\")) +\n  theme_minimal()"
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#theres-more",
+    "href": "lectures/week_5/week_5.html#theres-more",
+    "title": "DATA 505: Statistics Using R",
+    "section": "There’s more!",
+    "text": "There’s more!\n\nThere are many other geoms and customization available!\nEach geom has its own set of aesthetics to which variables can be mapped.\nBring up the help page to check what aesthetics are needed.\nMany references can be found online - they all share the same, unified structure that you can now understand."
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#the-pipe-operator",
+    "href": "lectures/week_5/week_5.html#the-pipe-operator",
+    "title": "DATA 505: Statistics Using R",
+    "section": "The Pipe operator",
+    "text": "The Pipe operator\n\ntidyverse packages: https://www.tidyverse.org/packages/\nPowerful and popular for working with complicated dataset, typically formatted into a tidy format\nImportantly, the pipe operator offers a new way of calling a function\nThese three lines of code are equivalent\n\n\nsummary(USArrests) \nUSArrests |&gt; summary # magrittr / dplyr pipe\nUSArrests |&gt; summary # base R pipe (R &gt;= 4.0)\n\n\nFunctions in tidyverse are typically used with the pipe operator, but this is not required. For instance, these code are equivalent\n\n\nUSArrests |&gt; filter(UrbanPop &gt; 80) |&gt; select(Murder, UrbanPop) \nselect(filter(USArrests,UrbanPop &gt; 80), Murder, UrbanPop)"
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#useful-tidyverse-functions",
+    "href": "lectures/week_5/week_5.html#useful-tidyverse-functions",
+    "title": "DATA 505: Statistics Using R",
+    "section": "Useful tidyverse functions",
+    "text": "Useful tidyverse functions\n\n# filter: subset data according to some condition\nUSArrests |&gt; \n  filter(UrbanPop_Cat=='High', Murder &gt; 10)\n\n# slice: subset specific rows\n# select: subset specific columns\nUSArrests |&gt; \n  slice(1:5) |&gt;\n  select(Murder,Assault)\n\n# arrange: sort by a variable\nUSArrests |&gt; \n  arrange(desc(Murder)) |&gt;\n  slice(1:5)\n\n# summarise: calculate summary statistics\nUSArrests |&gt; \n  summarise(mean(Murder),median(Murder),count=length(Murder))\n\n\n# mutate: create new variables\nUSArrests |&gt; \n  mutate(Violent = Murder + Assault + Rape) |&gt;\n  arrange(desc(Violent)) |&gt;\n  select(Violent)\n\n# group_by: look at subset groups of data\nUSArrests |&gt; \n  group_by(UrbanPop_Cat) |&gt;\n  summarise(mean(Murder), median(Murder))"
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#integration-with-ggplot",
+    "href": "lectures/week_5/week_5.html#integration-with-ggplot",
+    "title": "DATA 505: Statistics Using R",
+    "section": "Integration with ggplot",
+    "text": "Integration with ggplot\n\nThe pipe operator works very well with ggplot syntax\n\n\nUSArrests |&gt; \n  mutate(Urban = ifelse(UrbanPop &gt; 80, \"Yes\", \"No\")) |&gt;\n  ggplot(aes(x=Murder, y=Assault, color=Urban)) +\n  geom_point() +\n  theme_bw()"
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#map",
+    "href": "lectures/week_5/week_5.html#map",
+    "title": "DATA 505: Statistics Using R",
+    "section": "Map",
+    "text": "Map\n\nThere are a few different maps included in the maps package\n\n\n# see ?map_data\nmymap &lt;- map_data(map=\"state\")\n\n\nWhat exactly is mymap? Try some basic visualizations…\n\n\nplot(mymap$long,mymap$lat)\n\nggplot(data=mymap,aes(x=long,y=lat,group=group)) +\n  geom_polygon() +\n  coord_fixed(1.4) +\n  theme_void()"
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#section-3",
+    "href": "lectures/week_5/week_5.html#section-3",
+    "title": "DATA 505: Statistics Using R",
+    "section": "",
+    "text": "plot(mymap$long,mymap$lat)"
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#section-4",
+    "href": "lectures/week_5/week_5.html#section-4",
+    "title": "DATA 505: Statistics Using R",
+    "section": "",
+    "text": "ggplot(data=mymap,aes(x=long,y=lat,group=group)) +\n  geom_polygon() +\n  coord_fixed(1.4) +\n  theme_void()"
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#combine-data",
+    "href": "lectures/week_5/week_5.html#combine-data",
+    "title": "DATA 505: Statistics Using R",
+    "section": "Combine data",
+    "text": "Combine data\n\nWe want to combine the following dataset\nThe “State” column in USArrests should match the “region” column in mymap; the state names should have consistent spelling and capitalization\n\n\nUSArrests |&gt; slice_head(n=3)\n\n        Murder Assault UrbanPop Rape   State UrbanPop_tile UrbanPop_Cat\nAlabama   13.2     236       58 21.2 Alabama             1          Low\nAlaska    10.0     263       48 44.5  Alaska             1          Low\nArizona    8.1     294       80 31.0 Arizona             3         High\n\nmymap |&gt; slice_head(n=3)\n\n       long      lat group order  region subregion\n1 -87.46201 30.38968     1     1 alabama      &lt;NA&gt;\n2 -87.48493 30.37249     1     2 alabama      &lt;NA&gt;\n3 -87.52503 30.37249     1     3 alabama      &lt;NA&gt;"
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#section-5",
+    "href": "lectures/week_5/week_5.html#section-5",
+    "title": "DATA 505: Statistics Using R",
+    "section": "",
+    "text": "# convert county name to lower case\nUSArrests$State=tolower(USArrests$State)\n\n# combine data with left_join\nmymap_comb = left_join(mymap, USArrests, \n                     by=c('region'='State'))\n\nmymap_comb |&gt; slice_head(n=3)\n\n       long      lat group order  region subregion Murder Assault UrbanPop Rape\n1 -87.46201 30.38968     1     1 alabama      &lt;NA&gt;   13.2     236       58 21.2\n2 -87.48493 30.37249     1     2 alabama      &lt;NA&gt;   13.2     236       58 21.2\n3 -87.52503 30.37249     1     3 alabama      &lt;NA&gt;   13.2     236       58 21.2\n  UrbanPop_tile UrbanPop_Cat\n1             1          Low\n2             1          Low\n3             1          Low"
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#visualization",
+    "href": "lectures/week_5/week_5.html#visualization",
+    "title": "DATA 505: Statistics Using R",
+    "section": "Visualization!",
+    "text": "Visualization!\n\nmymap_comb |&gt;\n  ggplot(aes(x=long,y=lat,group=group,\n             fill=Murder)) +\n  geom_polygon(color='darkblue') +\n  coord_fixed(1.4) +\n  theme_void() +\n  labs(fill='Murder rate') +\n  scale_fill_gradient(low=\"green\", high=\"red\")"
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#different-ways-to-join-data",
+    "href": "lectures/week_5/week_5.html#different-ways-to-join-data",
+    "title": "DATA 505: Statistics Using R",
+    "section": "Different ways to join data",
+    "text": "Different ways to join data\n\nRun ?left_join() to understand different ways to join data.\n\nDiscussion: what will the following code return? You can run the code to find out.\n\n\ndf.student\n\n  name exam project\n1    A   80       1\n2    B   91       2\n3    C   85       1\n4    D   78      NA\n\ndf.project\n\n  projectID    description\n1         1  visualization\n2         2 classification\n3         3    text mining\n\n\n\ninner_join(df.student, df.project, by=c('project' = 'projectID'))\nleft_join(df.student, df.project, by=c('project' = 'projectID'))\nleft_join(df.project, df.student, by=c('projectID' = 'project'))\nright_join(df.student, df.project, by=c('project' = 'projectID'))\nfull_join(df.student, df.project, by=c('project' = 'projectID'))"
+  },
+  {
     "objectID": "lectures/week_2/lectures_2.html",
     "href": "lectures/week_2/lectures_2.html",
     "title": "Week 2: Objects, Types, Classes, and Collections",
@@ -523,6 +740,13 @@
     "title": "Week 2: Objects, Types, Classes, and Collections",
     "section": "Lab 2",
     "text": "Lab 2\nlab_2_blank.qmd lab_2.pdf"
+  },
+  {
+    "objectID": "lectures/week_5/lectures_5.html",
+    "href": "lectures/week_5/lectures_5.html",
+    "title": "Week 4: Basic Statistical Inference",
+    "section": "",
+    "text": "Agenda\n\nNo homework / no quiz today. Next Tuesday you will have your first exam.\nLecture on data manipulation with tidyverse functions, and data visualization (mostly using base R and ggplot)\nWe will not cover interactive plots. Ways to create interactive plots are very flexible and there is no unified approach. For examples, see:\n\nhttp://www.htmlwidgets.org/showcase_leaflet.html\nhttps://plot.ly/r/\n\nHands-on lab explore a dataset based on a large scale survey project, called The Changing Childhood Project, conducted by unicef. You will create visualizations that will be printed and posted on the wall next to my office.\n\n\n\nSupportive reading outside class\n(Optional but recommended):\n\nH. Wickham (2014): Tidy Data Link\n\nHadley Wickham is the author of ggplot and tidyverse. He is currently the chief scientist at Posit.\n\n\nSlides\nLink to fullscreen"
   },
   {
     "objectID": "lectures/week_4/week_4.html#what-is-inference-about",
