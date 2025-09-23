@@ -8,7 +8,6 @@ format:
     toc: true
     toc-depth: 1
     number-sections: true
-    freeze: true
     output-file: lab_2.pdf
 ---
 

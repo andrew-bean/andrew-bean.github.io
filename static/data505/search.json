@@ -744,7 +744,7 @@
   {
     "objectID": "lectures/week_5/lectures_5.html",
     "href": "lectures/week_5/lectures_5.html",
-    "title": "Week 4: Basic Statistical Inference",
+    "title": "Week 5: Data manipulation & visualization",
     "section": "",
     "text": "Agenda\n\nNo homework / no quiz today. Next Tuesday you will have your first exam.\nLecture on data manipulation with tidyverse functions, and data visualization (mostly using base R and ggplot)\nWe will not cover interactive plots. Ways to create interactive plots are very flexible and there is no unified approach. For examples, see:\n\nhttp://www.htmlwidgets.org/showcase_leaflet.html\nhttps://plot.ly/r/\n\nHands-on lab explore a dataset based on a large scale survey project, called The Changing Childhood Project, conducted by unicef. You will create visualizations that will be printed and posted on the wall next to my office.\n\n\n\nSupportive reading outside class\n(Optional but recommended):\n\nH. Wickham (2014): Tidy Data Link\n\nHadley Wickham is the author of ggplot and tidyverse. He is currently the chief scientist at Posit.\n\n\nSlides\nLink to fullscreen"
   },
