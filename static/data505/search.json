@@ -567,41 +567,6 @@
     "text": "As described in the syllabus, the exam will have two parts: the first being pen-and-paper, and the second being open-computer.\n\nPart 1:\n\nClosed computer and closed notes\nHandwritten answers\n\nPart 2:\n\nOpen computer. Any online resource that is “not alive” may be used (i.e. you may freely use online resources, but you may not communicate with any other person).\nElectronic submission on Moodle: you will fill in a Quarto script with R code and written answers\n\n\nOnce you turn in Part 1, you may open your computer and download the blank Quarto script for Part 2. You may not return to Part 1 after turning it in and beginning the open-computer portion."
   },
   {
-    "objectID": "exams/exam_1.html#r-programming-fundamentals",
-    "href": "exams/exam_1.html#r-programming-fundamentals",
-    "title": "Exam 1 (Sep 30): review and practice materials",
-    "section": "R Programming Fundamentals",
-    "text": "R Programming Fundamentals\n\nVariable assignment and basic operations\nData types and classes (typeof(), class(), str())\nType coercion (implicit and explicit)\nVectors: creation, subsetting, and operations\nData frames: structure, column extraction, subsetting\nFactors for categorical data\nMissing values (NA)"
-  },
-  {
-    "objectID": "exams/exam_1.html#descriptive-statistics",
-    "href": "exams/exam_1.html#descriptive-statistics",
-    "title": "Exam 1 (Sep 30): review and practice materials",
-    "section": "Descriptive Statistics",
-    "text": "Descriptive Statistics\n\nMeasures of center: mean, median\nMeasures of spread: standard deviation, variance, IQR, range\nOutlier-resistant vs. outlier-sensitive statistics\nFrequency tables and proportions for categorical data\nData visualization: histograms, boxplots"
-  },
-  {
-    "objectID": "exams/exam_1.html#statistical-inference-concepts",
-    "href": "exams/exam_1.html#statistical-inference-concepts",
-    "title": "Exam 1 (Sep 30): review and practice materials",
-    "section": "Statistical Inference Concepts",
-    "text": "Statistical Inference Concepts\n\nPopulations, samples, parameters, and statistics\nHypothesis testing framework\nP-values and their interpretation\nConfidence intervals and their interpretation\nStatistical significance (α = 0.05)"
-  },
-  {
-    "objectID": "exams/exam_1.html#hypothesis-tests-and-confidence-intervals-in-r",
-    "href": "exams/exam_1.html#hypothesis-tests-and-confidence-intervals-in-r",
-    "title": "Exam 1 (Sep 30): review and practice materials",
-    "section": "Hypothesis Tests and Confidence Intervals in R",
-    "text": "Hypothesis Tests and Confidence Intervals in R\n\nOne-sample t-test for means: t.test(x, mu = .)\nTwo-sample t-test for comparing means: t.test(y ~ group)\nOne-sample proportion test: prop.test(x, n, p = .)\nTwo-sample proportion test: prop.test()\nChi-squared test of independence: chisq.test()\nConstructing and interpreting confidence intervals"
-  },
-  {
-    "objectID": "exams/exam_1.html#data-visualization",
-    "href": "exams/exam_1.html#data-visualization",
-    "title": "Exam 1 (Sep 30): review and practice materials",
-    "section": "Data Visualization",
-    "text": "Data Visualization\n\nCreating plots with ggplot2: ggplot(), aes(), geom_histogram(), etc.\nBasic plot customization (titles, axis labels)"
-  },
-  {
     "objectID": "exams/exam_1.html#part-1",
     "href": "exams/exam_1.html#part-1",
     "title": "Exam 1 (Sep 30): review and practice materials",
