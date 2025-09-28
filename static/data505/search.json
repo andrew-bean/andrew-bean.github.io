@@ -518,6 +518,48 @@
     "text": "Agenda\n\nIn-class Quiz on Homework 1 (5 minutes)\nLecture on basics of variables, objects, types, and classes, as well as collections of objects, like vectors, lists, and data frames. We will also meet some of our first functions along the way.\n\nToday I recommend downloading the following R script (which contains only the code chunks from the lecture) and following along in RStudio by running line-by-line: week_2.R\n\nHands-on Lab 2 will give you practice reading data into R from a text file to create a data.frame object, and then reinforce some of the concepts from today using the variables defined in this dataset.\n\nlab_2_blank.qmd\nlab_2.pdf\n\n\n\n\nSupportive reading outside class\n(Optional but recommended) the best supporting textbook material for this week is section 2 of this book:\n\nGrolemund, G. (2014). Hands-On Programming with R. O’Reilly Media. Retrieved from https://rstudio-education.github.io/hopr/.\n\n\n\nSlides\nLink to fullscreen"
   },
   {
+    "objectID": "syllabus/syllabus.html",
+    "href": "syllabus/syllabus.html",
+    "title": "Syllabus",
+    "section": "",
+    "text": "The syllabus is available on Moodle: Link."
+  },
+  {
+    "objectID": "schedule/schedule.html",
+    "href": "schedule/schedule.html",
+    "title": "Schedule",
+    "section": "",
+    "text": "Run the schedule.R script and display the most current plan for the schedule\nhere::i_am(\"schedule/schedule.qmd\")\nlibrary(here)\nlibrary(gt)\n\nsource(here(\"schedule/schedule.R\"))\n\ngt(schedule)\n\n\n\n\n\n\n\n\nDate\nContents\nNotes\n\n\n\n\nAug 26\nIntroduction & Getting started\nLab 1\n\n\nSep 2\nR Basics (objects, types, classes, and collections)\nHW-Quiz 1 / Lab 2\n\n\nSep 9\nDescriptive statistics & Summarizing data\nLab 3\n\n\nSep 16\nBasic statistical inference\nHW-Quiz 2 / Lab 4\n\n\nSep 23\nData manipulation & visualization\nHW-Quiz 3 / Lab 5\n\n\nSep 30\nExam 1\n\n\n\nOct 7\nRegression & Case study 1\n\n\n\nOct 14\nNO CLASS (Fall Break)\n\n\n\nOct 21\nControl flow (if/for/while)\nHW-Quiz 4 / Lab 6\n\n\nOct 28\nWriting functions\nHW-Quiz 5 / Lab 7\n\n\nNov 4\nExam 2\n\n\n\nNov 11\nSampling distributions & CLT\nLab 8\n\n\nNov 18\nSimulation & Case study 2\nHW-Quiz 6\n\n\nNov 25\nBootstrap & Case study 2\nHW-Quiz 7\n\n\nDec 2\nShiny (UI-based apps)\nCase study 2 due / Lab 9\n\n\nDec 9\nFinal Exam\n7:30 to 10:30"
+  },
+  {
+    "objectID": "labs/week_3/week_3_lab.html",
+    "href": "labs/week_3/week_3_lab.html",
+    "title": "Lab 3: Descriptive Statistics and Summarizing Data",
+    "section": "",
+    "text": "Hands-on lab to explore a dataset concerning housing-related data for Boston census tracts. You will use descriptive statistics and simple visual displays to summarize the distributions of several variables across the census tracts.\n\nlab_3_blank.qmd\nlab_3.pdf\nlab_3_solution.pdf"
+  },
+  {
+    "objectID": "labs/week_4/week_4_lab.html",
+    "href": "labs/week_4/week_4_lab.html",
+    "title": "Lab 4: Basic Statistical Inference",
+    "section": "",
+    "text": "lab_4_blank.qmd\nlab_4.pdf"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Data 505: Statistics Using R",
+    "section": "",
+    "text": "Welcome to the DATA 505 website for Fall 2025 at Drew University. The course is “Statistics Using R”."
+  },
+  {
+    "objectID": "index.html#course-description",
+    "href": "index.html#course-description",
+    "title": "Data 505: Statistics Using R",
+    "section": "Course description",
+    "text": "Course description\nCovers how to use real-world data and draw intelligent conclusions on it using univariate and bivariate descriptive statistics such as centrality, spread, and correlation. Students have the opportunity to learn how to use the R language in the R-studio environment to obtain representative samples from large datasets and use the information in such samples to draw inferences on the larger datasets they were taken from. Course topics include graphical and tabular presentation of data, descriptive summary statistics, manipulation of data, regression, probability distributions, t-tests, and one-way analysis of variance."
+  },
+  {
     "objectID": "exams/exam_1.html",
     "href": "exams/exam_1.html",
     "title": "Exam 1 (Sep 30): review and practice materials",
@@ -564,7 +606,7 @@
     "href": "exams/exam_1.html#part-1",
     "title": "Exam 1 (Sep 30): review and practice materials",
     "section": "Part 1",
-    "text": "Part 1\nFor Part 1 (on paper, closed computer), I have created a practice exam to give you a sense of the format and topics: part_1_practice.qmd."
+    "text": "Part 1\nFor Part 1 (on paper, closed computer), I have created a practice exam to give you a sense of the format and topics: part_1_practice.pdf.\nThe solution is here: part_1_practice_solution.pdf."
   },
   {
     "objectID": "exams/exam_1.html#part-2",
@@ -572,48 +614,6 @@
     "title": "Exam 1 (Sep 30): review and practice materials",
     "section": "Part 2",
     "text": "Part 2\nFor Part 2, the format will be very similar to the in-class Labs. Given the open format of this part of the exam, I will not provide a separate practice exam for Part 2.\nYou will be given a Quarto script which you can download, and which you will edit to fill in blank code chunks and free-text responses (again, just like the lab).\nThe questions will involve exploration of a single real dataset. Coding tasks and questions about this dataset will be drawn from the list of topics above.\nI suggest reviewing or even re-doing the labs as a way of practicing for Part 2."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Data 505: Statistics Using R",
-    "section": "",
-    "text": "Welcome to the DATA 505 website for Fall 2025 at Drew University. The course is “Statistics Using R”."
-  },
-  {
-    "objectID": "index.html#course-description",
-    "href": "index.html#course-description",
-    "title": "Data 505: Statistics Using R",
-    "section": "Course description",
-    "text": "Course description\nCovers how to use real-world data and draw intelligent conclusions on it using univariate and bivariate descriptive statistics such as centrality, spread, and correlation. Students have the opportunity to learn how to use the R language in the R-studio environment to obtain representative samples from large datasets and use the information in such samples to draw inferences on the larger datasets they were taken from. Course topics include graphical and tabular presentation of data, descriptive summary statistics, manipulation of data, regression, probability distributions, t-tests, and one-way analysis of variance."
-  },
-  {
-    "objectID": "labs/week_4/week_4_lab.html",
-    "href": "labs/week_4/week_4_lab.html",
-    "title": "Lab 4: Basic Statistical Inference",
-    "section": "",
-    "text": "lab_4_blank.qmd\nlab_4.pdf"
-  },
-  {
-    "objectID": "labs/week_3/week_3_lab.html",
-    "href": "labs/week_3/week_3_lab.html",
-    "title": "Lab 3: Descriptive Statistics and Summarizing Data",
-    "section": "",
-    "text": "Hands-on lab to explore a dataset concerning housing-related data for Boston census tracts. You will use descriptive statistics and simple visual displays to summarize the distributions of several variables across the census tracts.\n\nlab_3_blank.qmd\nlab_3.pdf\nlab_3_solution.pdf"
-  },
-  {
-    "objectID": "schedule/schedule.html",
-    "href": "schedule/schedule.html",
-    "title": "Schedule",
-    "section": "",
-    "text": "Run the schedule.R script and display the most current plan for the schedule\nhere::i_am(\"schedule/schedule.qmd\")\nlibrary(here)\nlibrary(gt)\n\nsource(here(\"schedule/schedule.R\"))\n\ngt(schedule)\n\n\n\n\n\n\n\n\nDate\nContents\nNotes\n\n\n\n\nAug 26\nIntroduction & Getting started\nLab 1\n\n\nSep 2\nR Basics (objects, types, classes, and collections)\nHW-Quiz 1 / Lab 2\n\n\nSep 9\nDescriptive statistics & Summarizing data\nLab 3\n\n\nSep 16\nBasic statistical inference\nHW-Quiz 2 / Lab 4\n\n\nSep 23\nData manipulation & visualization\nHW-Quiz 3 / Lab 5\n\n\nSep 30\nExam 1\n\n\n\nOct 7\nRegression & Case study 1\n\n\n\nOct 14\nNO CLASS (Fall Break)\n\n\n\nOct 21\nControl flow (if/for/while)\nHW-Quiz 4 / Lab 6\n\n\nOct 28\nWriting functions\nHW-Quiz 5 / Lab 7\n\n\nNov 4\nExam 2\n\n\n\nNov 11\nSampling distributions & CLT\nLab 8\n\n\nNov 18\nSimulation & Case study 2\nHW-Quiz 6\n\n\nNov 25\nBootstrap & Case study 2\nHW-Quiz 7\n\n\nDec 2\nShiny (UI-based apps)\nCase study 2 due / Lab 9\n\n\nDec 9\nFinal Exam\n7:30 to 10:30"
-  },
-  {
-    "objectID": "syllabus/syllabus.html",
-    "href": "syllabus/syllabus.html",
-    "title": "Syllabus",
-    "section": "",
-    "text": "The syllabus is available on Moodle: Link."
   },
   {
     "objectID": "lectures/week_2/week_2.html#what-is-a-variable",
