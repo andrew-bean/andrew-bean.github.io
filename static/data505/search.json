@@ -1,59 +1,213 @@
 [
   {
-    "objectID": "lectures/week_1/installing_software.html",
-    "href": "lectures/week_1/installing_software.html",
-    "title": "Data 505: R for Statistics",
+    "objectID": "case_studies/tmdb/tmdb.html",
+    "href": "case_studies/tmdb/tmdb.html",
+    "title": "Case study 1",
     "section": "",
-    "text": "R (free and open source)\nRStudio IDE (free commercial software)\nQuarto (free commercial software): “literate programming”"
+    "text": "This case study will involve hands-on analysis of some real (messy) data. The project will be broken into three parts which will be graded separately. Altogether we will spend two weeks working on this: two class periods (at least partial), and one homework assignment in between.\nYou should work in pairs on this project. Please find a partner. Let me know if you need help being matched up.\nThere will be four parts:\n\n(10 points - completed in class Tue Oct 14) “Data wrangling”: getting the data from a web-based source and preparing it for analysis.\n(20 points - in class Tue Oct 14, due by Tue Oct 21 if not completed in class) Inference: applied examples and simulation-based understanding of confidence intervals and hypothesis tests\n(20 points - outside class for homework, due by Tue Oct 21) Open-ended data insights: visualization and descriptive summaries\n(20 points - in class Tue Oct 21) Prediction challenge: using linear regression models to predict an outcome as accurately as possible based on covariates.\n\nFor each part, you will make an incremental submission. Each piece will be graded separately, with a solution provided for Part 1 after submission that you can use for subsequent parts. The total of your score will be your grade for the project.\nPlease let me know if there are questions about this format."
   },
   {
-    "objectID": "lectures/week_1/installing_software.html#software-to-install",
-    "href": "lectures/week_1/installing_software.html#software-to-install",
-    "title": "Data 505: R for Statistics",
+    "objectID": "case_studies/tmdb/tmdb.html#about-the-assignment",
+    "href": "case_studies/tmdb/tmdb.html#about-the-assignment",
+    "title": "Case study 1",
     "section": "",
-    "text": "R (free and open source)\nRStudio IDE (free commercial software)\nQuarto (free commercial software): “literate programming”"
+    "text": "This case study will involve hands-on analysis of some real (messy) data. The project will be broken into three parts which will be graded separately. Altogether we will spend two weeks working on this: two class periods (at least partial), and one homework assignment in between.\nYou should work in pairs on this project. Please find a partner. Let me know if you need help being matched up.\nThere will be four parts:\n\n(10 points - completed in class Tue Oct 14) “Data wrangling”: getting the data from a web-based source and preparing it for analysis.\n(20 points - in class Tue Oct 14, due by Tue Oct 21 if not completed in class) Inference: applied examples and simulation-based understanding of confidence intervals and hypothesis tests\n(20 points - outside class for homework, due by Tue Oct 21) Open-ended data insights: visualization and descriptive summaries\n(20 points - in class Tue Oct 21) Prediction challenge: using linear regression models to predict an outcome as accurately as possible based on covariates.\n\nFor each part, you will make an incremental submission. Each piece will be graded separately, with a solution provided for Part 1 after submission that you can use for subsequent parts. The total of your score will be your grade for the project.\nPlease let me know if there are questions about this format."
   },
   {
-    "objectID": "lectures/week_1/installing_software.html#step-by-step",
-    "href": "lectures/week_1/installing_software.html#step-by-step",
-    "title": "Data 505: R for Statistics",
-    "section": "Step-by-step",
-    "text": "Step-by-step\n\nGo to https://cran.rstudio.com and download the latest version of R\nGo to RStudio Desktop download page and download RStudio Desktop\nGo to Quarto Getting Started and download Quarto"
+    "objectID": "case_studies/tmdb/tmdb.html#background-and-objectives",
+    "href": "case_studies/tmdb/tmdb.html#background-and-objectives",
+    "title": "Case study 1",
+    "section": "Background and objectives",
+    "text": "Background and objectives\nThe Movie Database (TMDB) API provides detailed, community-maintained metadata about films, including titles, release info, countries, genres, runtimes, cast/crew, user ratings, and revenue/budget when available. In this case study, you will use R to programmatically fetch and assemble a working movie dataset, experiencing what modern data acquisition and analysis feels like outside of a textbook: large web-baesd data sources, missing values, inconsistent fields, and rich, high-dimensional features.\nOur applied goals are: - Obtain, clean, and prepare the data into a tidy, analysis-ready table. - Run inferential analyses (confidence intervals and hypothesis tests) on random subsamples to answer practical questions. For example: What percent of films have you seen? What is average revenue? What is average user score? Does the average score differ between the US and Canada? How stable are these estimates across subsamples? - Gain a better understanding of confidence intervals and hypothesis tests through repeated sampling - Realistic and open-ended exploratory data analysis: provide clear interpretable insights based on data about distributions and relationships between variables - Build and evaluate predictive models for box office revenue. We will run this as a friendly prediction challenge: train on a provided training set, submit predictions for a hidden test set of films, and we will score submissions by predictive accuracy.\nWhy this is exciting: movies are a familiar domain, the data are messy in authentic ways, and the task spans the full lifecycle—from API calls and wrangling to inference and prediction. You will practice reproducible workflows, critical thinking about uncertainty and bias, and model selection under real constraints, all while competing to build the most accurate revenue forecaster."
   },
   {
-    "objectID": "lectures/week_1/installing_software.html#one-more-thing",
-    "href": "lectures/week_1/installing_software.html#one-more-thing",
-    "title": "Data 505: R for Statistics",
-    "section": "One more thing",
-    "text": "One more thing\n\nFor labs, we will use Quarto to render code and outputs into pdf documents.\nThis has one more prerequisite\n\nIn RStudio, in the bottom-left pane, switch from the “Console” to the “Terminal” tab.\nType in and run this command: quarto install tinytex"
+    "objectID": "case_studies/tmdb/tmdb.html#part-1-data-wrangling-14-oct",
+    "href": "case_studies/tmdb/tmdb.html#part-1-data-wrangling-14-oct",
+    "title": "Case study 1",
+    "section": "Part 1: Data wrangling (14-Oct)",
+    "text": "Part 1: Data wrangling (14-Oct)\nThis part should be completed in class on Tuesday October 14.\n\nGetting access to the API\nAn API (Application Programming Interface) is a web service that lets users (given a credential) make requests for data, which are in turn fulfilled by a web server. You send an HTTP request to a URL (an endpoint) with parameters and credentials, and you get back a structured response (usually JSON) that you can parse using your programming language of choice (R for us).\n\nCreate an account at TMDB. There is no cost of any kind.\nRegister for an API key. Take a look at the Getting Started page for the API. There is a link there to make the request from the settings page. You will need to agree to the terms of use: for example, analyses of the data from this service cannot be disseminated without attribution, and raw data cannot be disseminated at all.\nTest out the API. You could test the “Movie details” endpoint from its reference page here: https://developer.themoviedb.org/reference/movie-details.\n\nTry entering 17473 for the movie_id field, then click “Try it!” on the right side.\nYou should see a response containing structured data about a classic film. What is the name of the film? When was it released? What is its average user rating?\n\n\nLet me know if you have any issues at this step with accessing the API.\n\n\nProject template\nThis was one example of an API query for one film. It returned some data, but as you can see from the reference page, there is far more data available on each movie. Next we will see how to use R to programmatically query the API to collect data on many films.\nI will provide a fair bit of starter code to you for this:\n\nDownload: tmdb_project_v1.zip\nUnzip to a convenient location on your computer\nNavigate to the folder and open tmdb.Rproj to open the project in RStudio\n\n\n\nYour tasks\nFollow the directions in 01_data.R. You have several coding tasks to complete there for Part 1 of the case study.\n\n\nSubmission\nSubmit your completed script 01_data.R on Moodle."
   },
   {
-    "objectID": "lectures/week_1/lectures_1.html",
-    "href": "lectures/week_1/lectures_1.html",
-    "title": "Week 1: Introduction and getting started with R",
-    "section": "",
-    "text": "Welcome and introductions\nAbout the course; about R\nInstalling R, RStudio, and Quarto\nLab 1 (complete and submit on Moodle by end of class)\n\nSubmission requires two minor edits to this script: lab_1_blank.qmd"
+    "objectID": "case_studies/tmdb/tmdb.html#part-2-inference-in-class-14-oct-turn-in-by-21-oct-if-not-completed-in-class",
+    "href": "case_studies/tmdb/tmdb.html#part-2-inference-in-class-14-oct-turn-in-by-21-oct-if-not-completed-in-class",
+    "title": "Case study 1",
+    "section": "Part 2: Inference (In class: 14-Oct, turn in by 21-Oct if not completed in class)",
+    "text": "Part 2: Inference (In class: 14-Oct, turn in by 21-Oct if not completed in class)\nThis part should be started in class on Tuesday October 14 and completed by Tuesday October 21 if not finished in class.\n\nObjectives\nIn this part, you will:\n\nTake random samples from the cleaned movie dataset\nCalculate point estimates and confidence intervals for population parameters\nExplore what proportion of movies in the database you have personally seen\nInvestigate the stability of estimates across different random samples\nGain intuition about confidence intervals through repeated sampling simulations\n\n\n\nLoading the data\nYour script should begin by loading the cleaned dataset you created in Part 1 (data/movies_clean.rds). If you did not complete Part 1, a solution will be provided that you can use to generate this file.\n\n\nTasks\nFollow the directions in 02_inference.R within the project template you downloaded for Part 1. For Part 2, the tasks will include:\n\nRandom sampling: Take a random sample of 100 movies from the cleaned dataset (without replacement)\nPersonal movie experience:\n\nReview your random sample of 100 movies\nCount how many you have personally seen\nCalculate a 95% confidence interval for the proportion of all TMDB movies you have seen\nShare your point estimate and confidence bounds with the class for discussion\n\nRevenue confidence interval:\n\nBased on your random sample of 100 movies, calculate a 95% confidence interval for the mean revenue across all films in TMDB\nShare your point estimate and confidence bounds with the class for discussion\n\nRepeated sampling simulation:\n\nWrite a function to randomly sample movies of a specified size\nWrite a function to calculate the sample mean and 95% confidence interval for revenue from a given sample\nUse a for loop to repeat the sampling and inference process 100 times\nCalculate the actual mean revenue in the full dataset\nDetermine what proportion of your 100 confidence intervals contain the true mean\nCreate a visualization showing all 100 confidence intervals, with color-coding to indicate which contain the true mean (black) and which do not (red)\n\n\n\n\nKey concepts\nThis exercise will help you understand:\n\nSampling variability: How estimates change from sample to sample\nConfidence interval interpretation: What it means for a confidence interval to have 95% coverage\nThe meaning of confidence level: In the long run, approximately 95% of 95% confidence intervals should contain the true parameter\n\n\n\nSubmission\nSubmit your completed script 02_inference.R on Moodle under Case Study 1 Box Office Analysis (Part 2)."
   },
   {
-    "objectID": "lectures/week_1/lectures_1.html#software-to-install",
-    "href": "lectures/week_1/lectures_1.html#software-to-install",
-    "title": "Week 1: Introduction and getting started with R",
+    "objectID": "case_studies/tmdb/tmdb.html#part-3-visualization-and-descriptive-insights-homework-14-oct-to-21-oct",
+    "href": "case_studies/tmdb/tmdb.html#part-3-visualization-and-descriptive-insights-homework-14-oct-to-21-oct",
+    "title": "Case study 1",
+    "section": "Part 3: Visualization and Descriptive Insights (Homework: 14-Oct to 21-Oct)",
+    "text": "Part 3: Visualization and Descriptive Insights (Homework: 14-Oct to 21-Oct)\nThis part is assigned as homework, due by Tuesday October 21.\n\nYour task\nAct as a data analyst providing insights about what film characteristics are associated with box-office revenue. Complete your analysis in the Quarto document 03_visualization.qmd and render it to PDF (approximately 3-5 pages).\nYour report must include:\n\nRevenue distribution: Histogram and descriptive statistics (mean, median, quantiles, etc.)\nFive additional visualizations: Showing relationships between revenue and other variables (e.g., genre, budget, runtime, ratings, release year, production country, cast/director popularity)\n\n\n\nRequirements\n\nAudience: studio executives familiar with basic statistics but not data scientists\nClear, well-labeled visualizations with written interpretation\nSet echo: false in YAML so code doesn’t appear in the PDF\n\n\n\nSubmission\nSubmit both the .qmd source file and the .pdf output on Moodle under Case Study 1 Box Office Analysis (Part 3)."
+  },
+  {
+    "objectID": "case_studies/tmdb/tmdb.html#part-4-regression-and-prediction-challenge-in-class-21-oct",
+    "href": "case_studies/tmdb/tmdb.html#part-4-regression-and-prediction-challenge-in-class-21-oct",
+    "title": "Case study 1",
+    "section": "Part 4: Regression and prediction challenge (In class: 21-Oct)",
+    "text": "Part 4: Regression and prediction challenge (In class: 21-Oct)\n\nRevenue vs. user ratings\nRevenue by production country\nRevenue vs. cast/director popularity\n\n\nRequirements\n\nYour audience consists of studio executives who understand basic statistics but are not data scientists\nVisualizations should be clear, well-labeled, and interpretable\nEach visualization should be accompanied by written interpretation\nUse R code chunks within the Quarto document to generate all plots and summaries\nSet echo: false in the YAML header so code does not appear in the final PDF\n\n\n\nSubmission\nRender your Quarto document to PDF and submit both the .qmd source file and the .pdf output on Moodle under Case Study 1 Box Office Analysis (Part 3)."
+  },
+  {
+    "objectID": "case_studies/tmdb/tmdb.html#part-4-regression-and-prediction-challenge-in-class-21-oct-1",
+    "href": "case_studies/tmdb/tmdb.html#part-4-regression-and-prediction-challenge-in-class-21-oct-1",
+    "title": "Case study 1",
+    "section": "Part 4: Regression and prediction challenge (In class: 21-Oct)",
+    "text": "Part 4: Regression and prediction challenge (In class: 21-Oct)"
+  },
+  {
+    "objectID": "lectures/week_1/week_1.html#acquaintances",
+    "href": "lectures/week_1/week_1.html#acquaintances",
+    "title": "Week 1: Introduction",
+    "section": "Acquaintances",
+    "text": "Acquaintances\n\nAbout me\nAbout you\nAbout the course"
+  },
+  {
+    "objectID": "lectures/week_1/week_1.html#course-goals",
+    "href": "lectures/week_1/week_1.html#course-goals",
+    "title": "Week 1: Introduction",
+    "section": "Course goals",
+    "text": "Course goals\n\nAttain basic programming fluency in R\nUse R to:\n\nManipulate and summarize data\nApply statistical techniques to learn from data\n\nStrengthen your skills at:\n\nMaking data-based insights to real-world problems\nCommunicating findings clearly\nAssessing strength of statistical arguments"
+  },
+  {
+    "objectID": "lectures/week_1/week_1.html#about-r",
+    "href": "lectures/week_1/week_1.html#about-r",
+    "title": "Week 1: Introduction",
+    "section": "About R",
+    "text": "About R\n\nPrehistory: the S language\n\nS was developed by John M. Chambers at Bell labs in the 1980s\nFocus was on data analysis and graphics\nS version 3 was released alongside the influential book Statistical Models in S (1992) by Chambers and Trevor Hastie (a highly influential statistician in the area of statistical and machine learning)\nS was proprietary software distributed by Bell, later commercialized as S-PLUS\n\nDevelopment of R\n\nR is a free open-source implementation of S\nIt was written by Ross Ihaka and Robert Gentlemen at the University of Auckland"
+  },
+  {
+    "objectID": "lectures/week_1/week_1.html#languages-for-modern-data-science",
+    "href": "lectures/week_1/week_1.html#languages-for-modern-data-science",
+    "title": "Week 1: Introduction",
+    "section": "Languages for modern data science",
+    "text": "Languages for modern data science\nContemporary landscape\n\nHighly multi-lingual enviornment for practicing data scientists today: Python, R, Julia, etc.\nRelative strengths of R\n\nPopularity in the field of statistical reasearch (in some more applied sub-fields, like AI and Machine Learning, Python is ascendant)\nOpen-source extensions (“libraries”) include leading frameworks for data manipulation and visualization, and also for cutting edge new methodologies\n\nRelative weaknesses of R\n\nSpeed and performance\nWeak native object orientation"
+  },
+  {
+    "objectID": "lectures/week_1/week_1.html#example-r-package-download-counts",
+    "href": "lectures/week_1/week_1.html#example-r-package-download-counts",
+    "title": "Week 1: Introduction",
+    "section": "Example: R package download counts",
+    "text": "Example: R package download counts\nGetting the data from cranlogs\n\nWe will work with data from various sources this semester\nIn this example, I will look at data related to download counts for a few R packages from CRAN (the most popular repository for open-source extensions in R)\nI do not expect you to understand all this code\nGoal is just to highlight the efficiency with which R can handle data-analysis tasks\n\n\n\nGetting some data about package download counts\nlibrary(cranlogs)\n\n# list a few popular R packages\npackages &lt;- c(\"ggplot2\", \"dplyr\", \"cranlogs\", \"DT\", \"OncoBayes2\")\n\n# use the packageRank package function cranDownloads to \n# get some data about download counts in the past year\ndownload_counts &lt;- cranlogs::cran_downloads(\n  packages = packages,\n  from = \"2025-01-01\", to = \"2025-08-22\"\n)"
+  },
+  {
+    "objectID": "lectures/week_1/week_1.html#example-r-package-download-counts-1",
+    "href": "lectures/week_1/week_1.html#example-r-package-download-counts-1",
+    "title": "Week 1: Introduction",
+    "section": "Example: R package download counts",
+    "text": "Example: R package download counts\nExamine the data\n\n\n\nUse the DT interface to DataTables.js for a paginated printout of the raw data\nlibrary(DT)\nDT::datatable(download_counts, options = list(pageLength = 8))"
+  },
+  {
+    "objectID": "lectures/week_1/week_1.html#example-r-package-download-counts-2",
+    "href": "lectures/week_1/week_1.html#example-r-package-download-counts-2",
+    "title": "Week 1: Introduction",
+    "section": "Example: R package download counts",
+    "text": "Example: R package download counts\nVisualize the data\n\nR has extremely strong and user-friendly capabilities for graphics\nNumerous popular packages, such as ggplot2, extend R’s usefulness in this area even further\n\n\n\nUse ggplot2 to visualize the data on package-download counts\nlibrary(ggplot2)\n\nggplot(download_counts,\n       aes(x = date, y = count, group = package, color = package)) +\n  geom_path() +\n  labs(x = \"Date (2025)\",\n       y = \"Number of daily package downloads\")"
+  },
+  {
+    "objectID": "lectures/week_1/week_1.html#example-r-package-download-counts-3",
+    "href": "lectures/week_1/week_1.html#example-r-package-download-counts-3",
+    "title": "Week 1: Introduction",
+    "section": "Example: R package download counts",
+    "text": "Example: R package download counts\nManipulate and transform the data\n\nR likewise has excellent facilities for storing and manipulating tabular data\n\n\n\nUse dplyr to consolidate the daily counts into weekly counts\nlibrary(dplyr)\n\n# sum counts for each package across each week of 2025\nweekly_counts &lt;- download_counts |&gt;\n  mutate(week = floor(difftime(date, \"2024-12-31\", units = \"weeks\")) +\n            as.Date(\"2025-01-01\")) |&gt;\n  group_by(package, week) |&gt;\n  summarize(count = sum(count), .groups = \"drop\")\n\n\n\n\n\n\nPrint the first several rows of the original data\nknitr::kable(head(download_counts))\n\n\n\n\n\ndate\ncount\npackage\n\n\n\n\n2025-01-01\n11099\nDT\n\n\n2025-01-01\n45\nOncoBayes2\n\n\n2025-01-01\n34\ncranlogs\n\n\n2025-01-01\n27657\ndplyr\n\n\n2025-01-01\n25618\nggplot2\n\n\n2025-01-02\n13421\nDT\n\n\n\n\n\n\n\n\nPrint the first several rows of the transformed data\nknitr::kable(head(weekly_counts))\n\n\n\n\n\npackage\nweek\ncount\n\n\n\n\nDT\n2025-01-01\n81713\n\n\nOncoBayes2\n2025-01-01\n113\n\n\ncranlogs\n2025-01-01\n258\n\n\ndplyr\n2025-01-01\n270181\n\n\nggplot2\n2025-01-01\n256966\n\n\nDT\n2025-01-08\n78110"
+  },
+  {
+    "objectID": "lectures/week_1/week_1.html#example-r-package-download-counts-4",
+    "href": "lectures/week_1/week_1.html#example-r-package-download-counts-4",
+    "title": "Week 1: Introduction",
+    "section": "Example: R package download counts",
+    "text": "Example: R package download counts\nVisualize again with alternative time scales\n\n\nUse ggplot2 to plot the download frequencies on both timescales\nbind_rows(mutate(download_counts, time_unit = \"daily\", time = date),\n          mutate(weekly_counts, time_unit = \"weekly\", time = week)) |&gt;\n  ggplot(aes(x = time, y = count, group = package, color = package)) +\n  geom_path() +\n  labs(x = \"Date (2025)\",\n       y = \"Number of package downloads per unit time\") +\n  facet_wrap(~ time_unit, labeller = \"label_both\", scales = \"free\")"
+  },
+  {
+    "objectID": "lectures/week_1/week_1.html#example-r-package-download-counts-5",
+    "href": "lectures/week_1/week_1.html#example-r-package-download-counts-5",
+    "title": "Week 1: Introduction",
+    "section": "Example: R package download counts",
+    "text": "Example: R package download counts\nLeveraging more packages to simplify tasks\n\nSome extensions to R are highly specialized for specific purposes (e.g. data-analysis tasks, types of data, types of models, etc.)\nMany are community-supported, but some have more stable backing\nBase R evolves slowly, while its extensions grow and adapt quickly\nThe right tool can make an otherwise difficult task very easy\n\n\n\nUse specialized packages for time-indexed data, tsibble and lubridate, to manipulate ggplot2 download data over a longer timescale\nlibrary(tsibble)\nlibrary(lubridate)\n\nggplot_downloads &lt;- cranlogs::cran_downloads(\n  packages = \"ggplot2\",\n  from = \"2015-01-01\", to = \"2025-08-22\"\n) |&gt;\n  tsibble(index = \"date\") |&gt;\n  mutate(year = year(date),\n         month = factor(month(date, label = TRUE, abbr = TRUE),\n                        ordered = FALSE)) |&gt;\n  index_by(time = ~ yearmonth(.)) |&gt;\n  summarize(count = sum(count), month = first(month), year = first(year))"
+  },
+  {
+    "objectID": "lectures/week_1/week_1.html#example-r-package-download-counts-6",
+    "href": "lectures/week_1/week_1.html#example-r-package-download-counts-6",
+    "title": "Week 1: Introduction",
+    "section": "Example: R package download counts",
+    "text": "Example: R package download counts\nLeveraging more packages to simplify tasks\n\n\nCode for a basic plot is made extremely simple by using these specialist libraries\nggplot_plot &lt;- fabletools::autoplot(ggplot_downloads, .vars = count)\nggplot_plot"
+  },
+  {
+    "objectID": "lectures/week_1/week_1.html#example-r-package-download-counts-7",
+    "href": "lectures/week_1/week_1.html#example-r-package-download-counts-7",
+    "title": "Week 1: Introduction",
+    "section": "Example: R package download counts",
+    "text": "Example: R package download counts\nFitting a linear regression model\n\nR is designed for and heavily used by statisticians\nIt has strong native support for classical statistical techniques\n\n\n# Simple linear regression of monthly download count on time (in months)\nfit &lt;- lm(count ~ time, data = ggplot_downloads)\nsummary(fit)\n\n\nCall:\nlm(formula = count ~ time, data = ggplot_downloads)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-1510522  -302044   -73162   348538  1643740 \n\nCoefficients:\n              Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) -1.108e+07  7.803e+05  -14.20   &lt;2e-16 ***\ntime         6.738e+02  4.240e+01   15.89   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 539600 on 126 degrees of freedom\nMultiple R-squared:  0.6671,    Adjusted R-squared:  0.6645 \nF-statistic: 252.5 on 1 and 126 DF,  p-value: &lt; 2.2e-16"
+  },
+  {
+    "objectID": "lectures/week_1/week_1.html#summary",
+    "href": "lectures/week_1/week_1.html#summary",
+    "title": "Week 1: Introduction",
+    "section": "Summary",
+    "text": "Summary\n\nR is awesome for people who love data\nBase R was developed with statisticians in mind\nStatistics has evolved very rapidly as a field in recent decades as computational power has advanced\nOpen-source extensions to R (“packages”) can dramatically simplify data-analysis tasks"
+  },
+  {
+    "objectID": "lectures/week_1/week_1.html#example-r-package-download-counts-8",
+    "href": "lectures/week_1/week_1.html#example-r-package-download-counts-8",
+    "title": "Week 1: Introduction",
+    "section": "Example: R package download counts",
+    "text": "Example: R package download counts\nVisualizing the fit\n\n\nAdd the fitted line to the previous plot\n# Simple linear regression of monthly download count on time (in months)\nggplot_plot + \n  geom_path(data = mutate(ggplot_downloads, pred = predict(fit)),\n            aes(y = pred), color = \"red\")"
+  },
+  {
+    "objectID": "lectures/week_1/week_1.html#about-the-last-example",
+    "href": "lectures/week_1/week_1.html#about-the-last-example",
+    "title": "Week 1: Introduction",
+    "section": "About the last example",
+    "text": "About the last example\n\nAre you familiar with simple linear regression?\nWhat (if anything) concerns you about the use of this technique in the last example?"
+  },
+  {
+    "objectID": "lectures/week_1/week_1.html#some-more-questions-for-you",
+    "href": "lectures/week_1/week_1.html#some-more-questions-for-you",
+    "title": "Week 1: Introduction",
+    "section": "Some more questions for you",
+    "text": "Some more questions for you"
+  },
+  {
+    "objectID": "lectures/week_1/week_1.html#software-to-install",
+    "href": "lectures/week_1/week_1.html#software-to-install",
+    "title": "Week 1: Introduction",
     "section": "Software to install",
     "text": "Software to install\n\nR (free and open source)\nRStudio IDE (free commercial software)\nQuarto (free commercial software): “literate programming”"
   },
   {
-    "objectID": "lectures/week_1/lectures_1.html#step-by-step",
-    "href": "lectures/week_1/lectures_1.html#step-by-step",
-    "title": "Week 1: Introduction and getting started with R",
+    "objectID": "lectures/week_1/week_1.html#step-by-step",
+    "href": "lectures/week_1/week_1.html#step-by-step",
+    "title": "Week 1: Introduction",
     "section": "Step-by-step",
     "text": "Step-by-step\n\nGo to https://cran.rstudio.com and download the latest version of R\nGo to RStudio Desktop download page and download RStudio Desktop\nGo to Quarto Getting Started and download Quarto"
   },
   {
-    "objectID": "lectures/week_1/lectures_1.html#one-more-thing",
-    "href": "lectures/week_1/lectures_1.html#one-more-thing",
-    "title": "Week 1: Introduction and getting started with R",
+    "objectID": "lectures/week_1/week_1.html#one-more-thing",
+    "href": "lectures/week_1/week_1.html#one-more-thing",
+    "title": "Week 1: Introduction",
     "section": "One more thing",
     "text": "One more thing\n\nFor labs, we will use Quarto to render code and outputs into pdf documents.\nThis has one more prerequisite\n\nIn RStudio, in the bottom-left pane, switch from the “Console” to the “Terminal” tab.\nType in and run this command: quarto install tinytex"
+  },
+  {
+    "objectID": "lectures/week_1/week_1.html#about-labs",
+    "href": "lectures/week_1/week_1.html#about-labs",
+    "title": "Week 1: Introduction",
+    "section": "About labs",
+    "text": "About labs\n\nLabs will be in-class hands-on coding and/or data-analysis exercises\nMost labs will entail editing and rendering a skeleton Quarto script I will provide to you\nInstructions for the lab will be included in the script for the week"
+  },
+  {
+    "objectID": "lectures/week_1/week_1.html#lab-1-1",
+    "href": "lectures/week_1/week_1.html#lab-1-1",
+    "title": "Week 1: Introduction",
+    "section": "Lab 1",
+    "text": "Lab 1\n\nFor Lab 1 you’ll start from this pdf: lab_1.pdf"
+  },
+  {
+    "objectID": "lectures/week_6/lectures_6.html",
+    "href": "lectures/week_6/lectures_6.html",
+    "title": "Week 6: Case study 1",
+    "section": "",
+    "text": "Agenda\n\nNo lecture today\nInstead we will use the full class to dive in to Case Study 1\nExams will be returned next week (sorry for delay)"
   },
   {
     "objectID": "lectures/week_3/week_3.html#refresher-i",
@@ -529,7 +683,7 @@
     "href": "schedule/schedule.html",
     "title": "Schedule",
     "section": "",
-    "text": "Run the schedule.R script and display the most current plan for the schedule\nhere::i_am(\"schedule/schedule.qmd\")\nlibrary(here)\nlibrary(gt)\n\nsource(here(\"schedule/schedule.R\"))\n\ngt(schedule)\n\n\n\n\n\n\n\n\nDate\nContents\nNotes\n\n\n\n\nAug 26\nIntroduction & Getting started\nLab 1\n\n\nSep 2\nR Basics (objects, types, classes, and collections)\nHW-Quiz 1 / Lab 2\n\n\nSep 9\nDescriptive statistics & Summarizing data\nLab 3\n\n\nSep 16\nBasic statistical inference\nHW-Quiz 2 / Lab 4\n\n\nSep 23\nData manipulation & visualization\nHW-Quiz 3 / Lab 5\n\n\nSep 30\nExam 1\n\n\n\nOct 7\nNO CLASS (Fall Break)\n\n\n\nOct 14\nRegression & Case study 1\n\n\n\nOct 21\nControl flow (if/for/while)\nHW-Quiz 4 / Lab 6\n\n\nOct 28\nWriting functions\nHW-Quiz 5 / Lab 7\n\n\nNov 4\nExam 2\n\n\n\nNov 11\nSampling distributions & CLT\nLab 8\n\n\nNov 18\nSimulation & Case study 2\nHW-Quiz 6\n\n\nNov 25\nBootstrap & Case study 2\nHW-Quiz 7\n\n\nDec 2\nShiny (UI-based apps)\nCase study 2 due / Lab 9\n\n\nDec 9\nFinal Exam\n7:30 to 10:30"
+    "text": "Run the schedule.R script and display the most current plan for the schedule\nhere::i_am(\"schedule/schedule.qmd\")\nlibrary(here)\nlibrary(gt)\n\nsource(here(\"schedule/schedule.R\"))\n\ngt(schedule)\n\n\n\n\n\n\n\n\nDate\nContents\nNotes\n\n\n\n\nAug 26\nIntroduction & Getting started\nLab 1\n\n\nSep 2\nR Basics (objects, types, classes, and collections)\nHW-Quiz 1 / Lab 2\n\n\nSep 9\nDescriptive statistics & Summarizing data\nLab 3\n\n\nSep 16\nBasic statistical inference\nHW-Quiz 2 / Lab 4\n\n\nSep 23\nData manipulation & visualization\nHW-Quiz 3 / Lab 5\n\n\nSep 30\nExam 1\n\n\n\nOct 7\nNO CLASS (Fall Break)\n\n\n\nOct 14\nCase study 1\n\n\n\nOct 21\nRegression\nContinue case study 1\n\n\nOct 28\nWriting functions\nHW-Quiz 4 / Lab 6\n\n\nNov 4\nExam 2\n\n\n\nNov 11\nSampling distributions & CLT\nLab 7\n\n\nNov 18\nSimulation & Case study 2\nHW-Quiz 5\n\n\nNov 25\nBootstrap & Case study 2\nHW-Quiz 6\n\n\nDec 2\nShiny (UI-based apps)\nCase study 2 due / Lab 8\n\n\nDec 9\nFinal Exam\n7:30 to 10:30"
   },
   {
     "objectID": "labs/week_3/week_3_lab.html",
@@ -1064,150 +1218,59 @@
     "text": "Agenda\n\nNo homework / no quiz today. Next quiz will take place next Tuesday.\nLecture on descriptive statistics and summarizing data. We will refresh our memory about measures of center, spread, and describing both continuous (scale) and categorical (nominal/ordinal) distributions.\n\nLike last week, you may download an R script (which contains only the code chunks from the lecture) and follow along in RStudio by running line-by-line: week_3.R\n\nHands-on lab to explore a dataset concerning housing-related data for Boston census tracts. You will use descriptive statistics and simple visual displays to summarize the distributions of several variables across the census tracts.\n\nlab_3_blank.qmd\nlab_3.pdf\n\n\n\n\nSupportive reading outside class\n(Optional but recommended) the best supporting textbook material for this week is Chapter 5 of this book:\n\nNavarro, D. J. (2019). Learning statistics with R: A tutorial for psychology students and other beginners (Version 0.6.1). University of Adelaide. Retrieved from https://learningstatisticswithr.com. Link to pdf\n\n\n\nSlides\nLink to fullscreen"
   },
   {
-    "objectID": "lectures/week_1/week_1.html#acquaintances",
-    "href": "lectures/week_1/week_1.html#acquaintances",
-    "title": "Week 1: Introduction",
-    "section": "Acquaintances",
-    "text": "Acquaintances\n\nAbout me\nAbout you\nAbout the course"
+    "objectID": "lectures/week_1/lectures_1.html",
+    "href": "lectures/week_1/lectures_1.html",
+    "title": "Week 1: Introduction and getting started with R",
+    "section": "",
+    "text": "Welcome and introductions\nAbout the course; about R\nInstalling R, RStudio, and Quarto\nLab 1 (complete and submit on Moodle by end of class)\n\nSubmission requires two minor edits to this script: lab_1_blank.qmd"
   },
   {
-    "objectID": "lectures/week_1/week_1.html#course-goals",
-    "href": "lectures/week_1/week_1.html#course-goals",
-    "title": "Week 1: Introduction",
-    "section": "Course goals",
-    "text": "Course goals\n\nAttain basic programming fluency in R\nUse R to:\n\nManipulate and summarize data\nApply statistical techniques to learn from data\n\nStrengthen your skills at:\n\nMaking data-based insights to real-world problems\nCommunicating findings clearly\nAssessing strength of statistical arguments"
-  },
-  {
-    "objectID": "lectures/week_1/week_1.html#about-r",
-    "href": "lectures/week_1/week_1.html#about-r",
-    "title": "Week 1: Introduction",
-    "section": "About R",
-    "text": "About R\n\nPrehistory: the S language\n\nS was developed by John M. Chambers at Bell labs in the 1980s\nFocus was on data analysis and graphics\nS version 3 was released alongside the influential book Statistical Models in S (1992) by Chambers and Trevor Hastie (a highly influential statistician in the area of statistical and machine learning)\nS was proprietary software distributed by Bell, later commercialized as S-PLUS\n\nDevelopment of R\n\nR is a free open-source implementation of S\nIt was written by Ross Ihaka and Robert Gentlemen at the University of Auckland"
-  },
-  {
-    "objectID": "lectures/week_1/week_1.html#languages-for-modern-data-science",
-    "href": "lectures/week_1/week_1.html#languages-for-modern-data-science",
-    "title": "Week 1: Introduction",
-    "section": "Languages for modern data science",
-    "text": "Languages for modern data science\nContemporary landscape\n\nHighly multi-lingual enviornment for practicing data scientists today: Python, R, Julia, etc.\nRelative strengths of R\n\nPopularity in the field of statistical reasearch (in some more applied sub-fields, like AI and Machine Learning, Python is ascendant)\nOpen-source extensions (“libraries”) include leading frameworks for data manipulation and visualization, and also for cutting edge new methodologies\n\nRelative weaknesses of R\n\nSpeed and performance\nWeak native object orientation"
-  },
-  {
-    "objectID": "lectures/week_1/week_1.html#example-r-package-download-counts",
-    "href": "lectures/week_1/week_1.html#example-r-package-download-counts",
-    "title": "Week 1: Introduction",
-    "section": "Example: R package download counts",
-    "text": "Example: R package download counts\nGetting the data from cranlogs\n\nWe will work with data from various sources this semester\nIn this example, I will look at data related to download counts for a few R packages from CRAN (the most popular repository for open-source extensions in R)\nI do not expect you to understand all this code\nGoal is just to highlight the efficiency with which R can handle data-analysis tasks\n\n\n\nGetting some data about package download counts\nlibrary(cranlogs)\n\n# list a few popular R packages\npackages &lt;- c(\"ggplot2\", \"dplyr\", \"cranlogs\", \"DT\", \"OncoBayes2\")\n\n# use the packageRank package function cranDownloads to \n# get some data about download counts in the past year\ndownload_counts &lt;- cranlogs::cran_downloads(\n  packages = packages,\n  from = \"2025-01-01\", to = \"2025-08-22\"\n)"
-  },
-  {
-    "objectID": "lectures/week_1/week_1.html#example-r-package-download-counts-1",
-    "href": "lectures/week_1/week_1.html#example-r-package-download-counts-1",
-    "title": "Week 1: Introduction",
-    "section": "Example: R package download counts",
-    "text": "Example: R package download counts\nExamine the data\n\n\n\nUse the DT interface to DataTables.js for a paginated printout of the raw data\nlibrary(DT)\nDT::datatable(download_counts, options = list(pageLength = 8))"
-  },
-  {
-    "objectID": "lectures/week_1/week_1.html#example-r-package-download-counts-2",
-    "href": "lectures/week_1/week_1.html#example-r-package-download-counts-2",
-    "title": "Week 1: Introduction",
-    "section": "Example: R package download counts",
-    "text": "Example: R package download counts\nVisualize the data\n\nR has extremely strong and user-friendly capabilities for graphics\nNumerous popular packages, such as ggplot2, extend R’s usefulness in this area even further\n\n\n\nUse ggplot2 to visualize the data on package-download counts\nlibrary(ggplot2)\n\nggplot(download_counts,\n       aes(x = date, y = count, group = package, color = package)) +\n  geom_path() +\n  labs(x = \"Date (2025)\",\n       y = \"Number of daily package downloads\")"
-  },
-  {
-    "objectID": "lectures/week_1/week_1.html#example-r-package-download-counts-3",
-    "href": "lectures/week_1/week_1.html#example-r-package-download-counts-3",
-    "title": "Week 1: Introduction",
-    "section": "Example: R package download counts",
-    "text": "Example: R package download counts\nManipulate and transform the data\n\nR likewise has excellent facilities for storing and manipulating tabular data\n\n\n\nUse dplyr to consolidate the daily counts into weekly counts\nlibrary(dplyr)\n\n# sum counts for each package across each week of 2025\nweekly_counts &lt;- download_counts |&gt;\n  mutate(week = floor(difftime(date, \"2024-12-31\", units = \"weeks\")) +\n            as.Date(\"2025-01-01\")) |&gt;\n  group_by(package, week) |&gt;\n  summarize(count = sum(count), .groups = \"drop\")\n\n\n\n\n\n\nPrint the first several rows of the original data\nknitr::kable(head(download_counts))\n\n\n\n\n\ndate\ncount\npackage\n\n\n\n\n2025-01-01\n11099\nDT\n\n\n2025-01-01\n45\nOncoBayes2\n\n\n2025-01-01\n34\ncranlogs\n\n\n2025-01-01\n27657\ndplyr\n\n\n2025-01-01\n25618\nggplot2\n\n\n2025-01-02\n13421\nDT\n\n\n\n\n\n\n\n\nPrint the first several rows of the transformed data\nknitr::kable(head(weekly_counts))\n\n\n\n\n\npackage\nweek\ncount\n\n\n\n\nDT\n2025-01-01\n81713\n\n\nOncoBayes2\n2025-01-01\n113\n\n\ncranlogs\n2025-01-01\n258\n\n\ndplyr\n2025-01-01\n270181\n\n\nggplot2\n2025-01-01\n256966\n\n\nDT\n2025-01-08\n78110"
-  },
-  {
-    "objectID": "lectures/week_1/week_1.html#example-r-package-download-counts-4",
-    "href": "lectures/week_1/week_1.html#example-r-package-download-counts-4",
-    "title": "Week 1: Introduction",
-    "section": "Example: R package download counts",
-    "text": "Example: R package download counts\nVisualize again with alternative time scales\n\n\nUse ggplot2 to plot the download frequencies on both timescales\nbind_rows(mutate(download_counts, time_unit = \"daily\", time = date),\n          mutate(weekly_counts, time_unit = \"weekly\", time = week)) |&gt;\n  ggplot(aes(x = time, y = count, group = package, color = package)) +\n  geom_path() +\n  labs(x = \"Date (2025)\",\n       y = \"Number of package downloads per unit time\") +\n  facet_wrap(~ time_unit, labeller = \"label_both\", scales = \"free\")"
-  },
-  {
-    "objectID": "lectures/week_1/week_1.html#example-r-package-download-counts-5",
-    "href": "lectures/week_1/week_1.html#example-r-package-download-counts-5",
-    "title": "Week 1: Introduction",
-    "section": "Example: R package download counts",
-    "text": "Example: R package download counts\nLeveraging more packages to simplify tasks\n\nSome extensions to R are highly specialized for specific purposes (e.g. data-analysis tasks, types of data, types of models, etc.)\nMany are community-supported, but some have more stable backing\nBase R evolves slowly, while its extensions grow and adapt quickly\nThe right tool can make an otherwise difficult task very easy\n\n\n\nUse specialized packages for time-indexed data, tsibble and lubridate, to manipulate ggplot2 download data over a longer timescale\nlibrary(tsibble)\nlibrary(lubridate)\n\nggplot_downloads &lt;- cranlogs::cran_downloads(\n  packages = \"ggplot2\",\n  from = \"2015-01-01\", to = \"2025-08-22\"\n) |&gt;\n  tsibble(index = \"date\") |&gt;\n  mutate(year = year(date),\n         month = factor(month(date, label = TRUE, abbr = TRUE),\n                        ordered = FALSE)) |&gt;\n  index_by(time = ~ yearmonth(.)) |&gt;\n  summarize(count = sum(count), month = first(month), year = first(year))"
-  },
-  {
-    "objectID": "lectures/week_1/week_1.html#example-r-package-download-counts-6",
-    "href": "lectures/week_1/week_1.html#example-r-package-download-counts-6",
-    "title": "Week 1: Introduction",
-    "section": "Example: R package download counts",
-    "text": "Example: R package download counts\nLeveraging more packages to simplify tasks\n\n\nCode for a basic plot is made extremely simple by using these specialist libraries\nggplot_plot &lt;- fabletools::autoplot(ggplot_downloads, .vars = count)\nggplot_plot"
-  },
-  {
-    "objectID": "lectures/week_1/week_1.html#example-r-package-download-counts-7",
-    "href": "lectures/week_1/week_1.html#example-r-package-download-counts-7",
-    "title": "Week 1: Introduction",
-    "section": "Example: R package download counts",
-    "text": "Example: R package download counts\nFitting a linear regression model\n\nR is designed for and heavily used by statisticians\nIt has strong native support for classical statistical techniques\n\n\n# Simple linear regression of monthly download count on time (in months)\nfit &lt;- lm(count ~ time, data = ggplot_downloads)\nsummary(fit)\n\n\nCall:\nlm(formula = count ~ time, data = ggplot_downloads)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-1510522  -302044   -73162   348538  1643740 \n\nCoefficients:\n              Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) -1.108e+07  7.803e+05  -14.20   &lt;2e-16 ***\ntime         6.738e+02  4.240e+01   15.89   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 539600 on 126 degrees of freedom\nMultiple R-squared:  0.6671,    Adjusted R-squared:  0.6645 \nF-statistic: 252.5 on 1 and 126 DF,  p-value: &lt; 2.2e-16"
-  },
-  {
-    "objectID": "lectures/week_1/week_1.html#summary",
-    "href": "lectures/week_1/week_1.html#summary",
-    "title": "Week 1: Introduction",
-    "section": "Summary",
-    "text": "Summary\n\nR is awesome for people who love data\nBase R was developed with statisticians in mind\nStatistics has evolved very rapidly as a field in recent decades as computational power has advanced\nOpen-source extensions to R (“packages”) can dramatically simplify data-analysis tasks"
-  },
-  {
-    "objectID": "lectures/week_1/week_1.html#example-r-package-download-counts-8",
-    "href": "lectures/week_1/week_1.html#example-r-package-download-counts-8",
-    "title": "Week 1: Introduction",
-    "section": "Example: R package download counts",
-    "text": "Example: R package download counts\nVisualizing the fit\n\n\nAdd the fitted line to the previous plot\n# Simple linear regression of monthly download count on time (in months)\nggplot_plot + \n  geom_path(data = mutate(ggplot_downloads, pred = predict(fit)),\n            aes(y = pred), color = \"red\")"
-  },
-  {
-    "objectID": "lectures/week_1/week_1.html#about-the-last-example",
-    "href": "lectures/week_1/week_1.html#about-the-last-example",
-    "title": "Week 1: Introduction",
-    "section": "About the last example",
-    "text": "About the last example\n\nAre you familiar with simple linear regression?\nWhat (if anything) concerns you about the use of this technique in the last example?"
-  },
-  {
-    "objectID": "lectures/week_1/week_1.html#some-more-questions-for-you",
-    "href": "lectures/week_1/week_1.html#some-more-questions-for-you",
-    "title": "Week 1: Introduction",
-    "section": "Some more questions for you",
-    "text": "Some more questions for you"
-  },
-  {
-    "objectID": "lectures/week_1/week_1.html#software-to-install",
-    "href": "lectures/week_1/week_1.html#software-to-install",
-    "title": "Week 1: Introduction",
+    "objectID": "lectures/week_1/lectures_1.html#software-to-install",
+    "href": "lectures/week_1/lectures_1.html#software-to-install",
+    "title": "Week 1: Introduction and getting started with R",
     "section": "Software to install",
     "text": "Software to install\n\nR (free and open source)\nRStudio IDE (free commercial software)\nQuarto (free commercial software): “literate programming”"
   },
   {
-    "objectID": "lectures/week_1/week_1.html#step-by-step",
-    "href": "lectures/week_1/week_1.html#step-by-step",
-    "title": "Week 1: Introduction",
+    "objectID": "lectures/week_1/lectures_1.html#step-by-step",
+    "href": "lectures/week_1/lectures_1.html#step-by-step",
+    "title": "Week 1: Introduction and getting started with R",
     "section": "Step-by-step",
     "text": "Step-by-step\n\nGo to https://cran.rstudio.com and download the latest version of R\nGo to RStudio Desktop download page and download RStudio Desktop\nGo to Quarto Getting Started and download Quarto"
   },
   {
-    "objectID": "lectures/week_1/week_1.html#one-more-thing",
-    "href": "lectures/week_1/week_1.html#one-more-thing",
-    "title": "Week 1: Introduction",
+    "objectID": "lectures/week_1/lectures_1.html#one-more-thing",
+    "href": "lectures/week_1/lectures_1.html#one-more-thing",
+    "title": "Week 1: Introduction and getting started with R",
     "section": "One more thing",
     "text": "One more thing\n\nFor labs, we will use Quarto to render code and outputs into pdf documents.\nThis has one more prerequisite\n\nIn RStudio, in the bottom-left pane, switch from the “Console” to the “Terminal” tab.\nType in and run this command: quarto install tinytex"
   },
   {
-    "objectID": "lectures/week_1/week_1.html#about-labs",
-    "href": "lectures/week_1/week_1.html#about-labs",
-    "title": "Week 1: Introduction",
-    "section": "About labs",
-    "text": "About labs\n\nLabs will be in-class hands-on coding and/or data-analysis exercises\nMost labs will entail editing and rendering a skeleton Quarto script I will provide to you\nInstructions for the lab will be included in the script for the week"
+    "objectID": "lectures/week_1/installing_software.html",
+    "href": "lectures/week_1/installing_software.html",
+    "title": "Data 505: R for Statistics",
+    "section": "",
+    "text": "R (free and open source)\nRStudio IDE (free commercial software)\nQuarto (free commercial software): “literate programming”"
   },
   {
-    "objectID": "lectures/week_1/week_1.html#lab-1-1",
-    "href": "lectures/week_1/week_1.html#lab-1-1",
-    "title": "Week 1: Introduction",
-    "section": "Lab 1",
-    "text": "Lab 1\n\nFor Lab 1 you’ll start from this pdf: lab_1.pdf"
+    "objectID": "lectures/week_1/installing_software.html#software-to-install",
+    "href": "lectures/week_1/installing_software.html#software-to-install",
+    "title": "Data 505: R for Statistics",
+    "section": "",
+    "text": "R (free and open source)\nRStudio IDE (free commercial software)\nQuarto (free commercial software): “literate programming”"
+  },
+  {
+    "objectID": "lectures/week_1/installing_software.html#step-by-step",
+    "href": "lectures/week_1/installing_software.html#step-by-step",
+    "title": "Data 505: R for Statistics",
+    "section": "Step-by-step",
+    "text": "Step-by-step\n\nGo to https://cran.rstudio.com and download the latest version of R\nGo to RStudio Desktop download page and download RStudio Desktop\nGo to Quarto Getting Started and download Quarto"
+  },
+  {
+    "objectID": "lectures/week_1/installing_software.html#one-more-thing",
+    "href": "lectures/week_1/installing_software.html#one-more-thing",
+    "title": "Data 505: R for Statistics",
+    "section": "One more thing",
+    "text": "One more thing\n\nFor labs, we will use Quarto to render code and outputs into pdf documents.\nThis has one more prerequisite\n\nIn RStudio, in the bottom-left pane, switch from the “Console” to the “Terminal” tab.\nType in and run this command: quarto install tinytex"
   }
 ]

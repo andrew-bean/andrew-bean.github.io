@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Week 2: Objects, Types, Classes, and Collections – Data 505: R for Statistics</title>
+<title>Case study 1 – Data 505: R for Statistics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -236,9 +236,35 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#agenda" id="toc-agenda" class="nav-link active" data-scroll-target="#agenda">Agenda</a></li>
-  <li><a href="#supportive-reading-outside-class" id="toc-supportive-reading-outside-class" class="nav-link" data-scroll-target="#supportive-reading-outside-class">Supportive reading outside class</a></li>
-  <li><a href="#slides" id="toc-slides" class="nav-link" data-scroll-target="#slides">Slides</a></li>
+  <li><a href="#about-the-assignment" id="toc-about-the-assignment" class="nav-link active" data-scroll-target="#about-the-assignment">About the assignment</a></li>
+  <li><a href="#background-and-objectives" id="toc-background-and-objectives" class="nav-link" data-scroll-target="#background-and-objectives">Background and objectives</a></li>
+  <li><a href="#part-1-data-wrangling-14-oct" id="toc-part-1-data-wrangling-14-oct" class="nav-link" data-scroll-target="#part-1-data-wrangling-14-oct">Part 1: Data wrangling (14-Oct)</a>
+  <ul class="collapse">
+  <li><a href="#getting-access-to-the-api" id="toc-getting-access-to-the-api" class="nav-link" data-scroll-target="#getting-access-to-the-api">Getting access to the API</a></li>
+  <li><a href="#project-template" id="toc-project-template" class="nav-link" data-scroll-target="#project-template">Project template</a></li>
+  <li><a href="#your-tasks" id="toc-your-tasks" class="nav-link" data-scroll-target="#your-tasks">Your tasks</a></li>
+  <li><a href="#submission" id="toc-submission" class="nav-link" data-scroll-target="#submission">Submission</a></li>
+  </ul></li>
+  <li><a href="#part-2-inference-in-class-14-oct-turn-in-by-21-oct-if-not-completed-in-class" id="toc-part-2-inference-in-class-14-oct-turn-in-by-21-oct-if-not-completed-in-class" class="nav-link" data-scroll-target="#part-2-inference-in-class-14-oct-turn-in-by-21-oct-if-not-completed-in-class">Part 2: Inference (In class: 14-Oct, turn in by 21-Oct if not completed in class)</a>
+  <ul class="collapse">
+  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#loading-the-data" id="toc-loading-the-data" class="nav-link" data-scroll-target="#loading-the-data">Loading the data</a></li>
+  <li><a href="#tasks" id="toc-tasks" class="nav-link" data-scroll-target="#tasks">Tasks</a></li>
+  <li><a href="#key-concepts" id="toc-key-concepts" class="nav-link" data-scroll-target="#key-concepts">Key concepts</a></li>
+  <li><a href="#submission-1" id="toc-submission-1" class="nav-link" data-scroll-target="#submission-1">Submission</a></li>
+  </ul></li>
+  <li><a href="#part-3-visualization-and-descriptive-insights-homework-14-oct-to-21-oct" id="toc-part-3-visualization-and-descriptive-insights-homework-14-oct-to-21-oct" class="nav-link" data-scroll-target="#part-3-visualization-and-descriptive-insights-homework-14-oct-to-21-oct">Part 3: Visualization and Descriptive Insights (Homework: 14-Oct to 21-Oct)</a>
+  <ul class="collapse">
+  <li><a href="#your-task" id="toc-your-task" class="nav-link" data-scroll-target="#your-task">Your task</a></li>
+  <li><a href="#requirements" id="toc-requirements" class="nav-link" data-scroll-target="#requirements">Requirements</a></li>
+  <li><a href="#submission-2" id="toc-submission-2" class="nav-link" data-scroll-target="#submission-2">Submission</a></li>
+  </ul></li>
+  <li><a href="#part-4-regression-and-prediction-challenge-in-class-21-oct" id="toc-part-4-regression-and-prediction-challenge-in-class-21-oct" class="nav-link" data-scroll-target="#part-4-regression-and-prediction-challenge-in-class-21-oct">Part 4: Regression and prediction challenge (In class: 21-Oct)</a>
+  <ul class="collapse">
+  <li><a href="#requirements-1" id="toc-requirements-1" class="nav-link" data-scroll-target="#requirements-1">Requirements</a></li>
+  <li><a href="#submission-3" id="toc-submission-3" class="nav-link" data-scroll-target="#submission-3">Submission</a></li>
+  </ul></li>
+  <li><a href="#part-4-regression-and-prediction-challenge-in-class-21-oct-1" id="toc-part-4-regression-and-prediction-challenge-in-class-21-oct-1" class="nav-link" data-scroll-target="#part-4-regression-and-prediction-challenge-in-class-21-oct-1">Part 4: Regression and prediction challenge (In class: 21-Oct)</a></li>
   </ul>
 </nav>
     </div>
@@ -247,7 +273,8 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Week 2: Objects, Types, Classes, and Collections</h1>
+<h1 class="title">Case study 1</h1>
+<p class="subtitle lead">Inference and predictions using movie box office data</p>
 </div>
 
 
@@ -264,33 +291,171 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="agenda" class="level1">
-<h1>Agenda</h1>
+<section id="about-the-assignment" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="about-the-assignment">About the assignment</h2>
+<p>This case study will involve hands-on analysis of some real (messy) data. The project will be broken into three parts which will be graded separately. Altogether we will spend two weeks working on this: two class periods (at least partial), and one homework assignment in between.</p>
+<p>You should work in pairs on this project. Please find a partner. Let me know if you need help being matched up.</p>
+<p>There will be four parts:</p>
+<ol type="1">
+<li>(10 points - completed in class Tue Oct 14) “Data wrangling”: getting the data from a web-based source and preparing it for analysis.</li>
+<li>(20 points - in class Tue Oct 14, due by Tue Oct 21 if not completed in class) Inference: applied examples and simulation-based understanding of confidence intervals and hypothesis tests</li>
+<li>(20 points - outside class for homework, due by Tue Oct 21) Open-ended data insights: visualization and descriptive summaries</li>
+<li>(20 points - in class Tue Oct 21) Prediction challenge: using linear regression models to predict an outcome as accurately as possible based on covariates.</li>
+</ol>
+<p>For each part, you will make an incremental submission. Each piece will be graded separately, with a solution provided for Part 1 after submission that you can use for subsequent parts. The total of your score will be your grade for the project.</p>
+<p>Please let me know if there are questions about this format.</p>
+</section>
+<section id="background-and-objectives" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="background-and-objectives">Background and objectives</h2>
+<p><a href="https://www.themoviedb.org/">The Movie Database (TMDB)</a> API provides detailed, community-maintained metadata about films, including titles, release info, countries, genres, runtimes, cast/crew, user ratings, and revenue/budget when available. In this case study, you will use R to programmatically fetch and assemble a working movie dataset, experiencing what modern data acquisition and analysis feels like outside of a textbook: large web-baesd data sources, missing values, inconsistent fields, and rich, high-dimensional features.</p>
+<p>Our applied goals are: - Obtain, clean, and prepare the data into a tidy, analysis-ready table. - Run inferential analyses (confidence intervals and hypothesis tests) on random subsamples to answer practical questions. For example: What percent of films have you seen? What is average revenue? What is average user score? Does the average score differ between the US and Canada? How stable are these estimates across subsamples? - Gain a better understanding of confidence intervals and hypothesis tests through repeated sampling - Realistic and open-ended exploratory data analysis: provide clear interpretable insights based on data about distributions and relationships between variables - Build and evaluate predictive models for box office revenue. We will run this as a friendly prediction challenge: train on a provided training set, submit predictions for a hidden test set of films, and we will score submissions by predictive accuracy.</p>
+<p>Why this is exciting: movies are a familiar domain, the data are messy in authentic ways, and the task spans the full lifecycle—from API calls and wrangling to inference and prediction. You will practice reproducible workflows, critical thinking about uncertainty and bias, and model selection under real constraints, all while competing to build the most accurate revenue forecaster.</p>
+</section>
+<section id="part-1-data-wrangling-14-oct" class="level2">
+<h2 class="anchored" data-anchor-id="part-1-data-wrangling-14-oct">Part 1: Data wrangling (14-Oct)</h2>
+<p>This part should be completed in class on Tuesday October 14.</p>
+<section id="getting-access-to-the-api" class="level3">
+<h3 class="anchored" data-anchor-id="getting-access-to-the-api">Getting access to the API</h3>
+<p>An API (Application Programming Interface) is a web service that lets users (given a credential) make requests for data, which are in turn fulfilled by a web server. You send an HTTP request to a URL (an endpoint) with parameters and credentials, and you get back a structured response (usually JSON) that you can parse using your programming language of choice (R for us).</p>
+<ol type="1">
+<li>Create an account at <a href="https://www.themoviedb.org/">TMDB</a>. There is no cost of any kind.</li>
+<li>Register for an API key. Take a look at the <a href="https://developer.themoviedb.org/docs/getting-started">Getting Started page for the API</a>. There is a link there to make the request from the settings page. You will need to agree to the terms of use: for example, analyses of the data from this service cannot be disseminated without attribution, and raw data cannot be disseminated at all.</li>
+<li>Test out the API. You could test the “Movie details” endpoint from its reference page here: <a href="https://developer.themoviedb.org/reference/movie-details">https://developer.themoviedb.org/reference/movie-details</a>.
 <ul>
-<li>In-class Quiz on <a href="../../homework/homework_1.pdf">Homework 1</a> (5 minutes)</li>
-<li>Lecture on basics of variables, objects, types, and classes, as well as collections of objects, like vectors, lists, and data frames. We will also meet some of our first functions along the way.
-<ul>
-<li>Today I recommend downloading the following R script (which contains only the code chunks from the lecture) and following along in RStudio by running line-by-line: <a href="week_2.R">week_2.R</a></li>
+<li>Try entering 17473 for the <code>movie_id</code> field, then click “Try it!” on the right side.</li>
+<li>You should see a response containing structured data about a classic film. What is the name of the film? When was it released? What is its average user rating?</li>
 </ul></li>
-<li>Hands-on <a href="../../labs/week_2/lab_2.pdf">Lab 2</a> will give you practice reading data into R from a text file to create a <code>data.frame</code> object, and then reinforce some of the concepts from today using the variables defined in this dataset.
+</ol>
+<p>Let me know if you have any issues at this step with accessing the API.</p>
+</section>
+<section id="project-template" class="level3">
+<h3 class="anchored" data-anchor-id="project-template">Project template</h3>
+<p>This was one example of an API query for one film. It returned some data, but as you can see from the reference page, there is far more data available on each movie. Next we will see how to use R to programmatically query the API to collect data on many films.</p>
+<p>I will provide a fair bit of starter code to you for this:</p>
+<ol type="1">
+<li>Download: <a href="tmdb_project_v1.zip">tmdb_project_v1.zip</a></li>
+<li>Unzip to a convenient location on your computer</li>
+<li>Navigate to the folder and open <code>tmdb.Rproj</code> to open the project in RStudio</li>
+</ol>
+</section>
+<section id="your-tasks" class="level3">
+<h3 class="anchored" data-anchor-id="your-tasks">Your tasks</h3>
+<p>Follow the directions in <code>01_data.R</code>. You have several coding tasks to complete there for Part 1 of the case study.</p>
+</section>
+<section id="submission" class="level3">
+<h3 class="anchored" data-anchor-id="submission">Submission</h3>
+<p>Submit your completed script <code>01_data.R</code> on Moodle.</p>
+</section>
+</section>
+<section id="part-2-inference-in-class-14-oct-turn-in-by-21-oct-if-not-completed-in-class" class="level2">
+<h2 class="anchored" data-anchor-id="part-2-inference-in-class-14-oct-turn-in-by-21-oct-if-not-completed-in-class">Part 2: Inference (In class: 14-Oct, turn in by 21-Oct if not completed in class)</h2>
+<p>This part should be started in class on Tuesday October 14 and completed by Tuesday October 21 if not finished in class.</p>
+<section id="objectives" class="level3">
+<h3 class="anchored" data-anchor-id="objectives">Objectives</h3>
+<p>In this part, you will:</p>
 <ul>
-<li><a href="https://andrew-bean.github.io/data505/labs/week_2/lab_2_blank.qmd">lab_2_blank.qmd</a></li>
-<li><a href="https://andrew-bean.github.io/data505/labs/week_2/lab_2.pdf">lab_2.pdf</a></li>
-</ul></li>
+<li>Take random samples from the cleaned movie dataset</li>
+<li>Calculate point estimates and confidence intervals for population parameters</li>
+<li>Explore what proportion of movies in the database you have personally seen</li>
+<li>Investigate the stability of estimates across different random samples</li>
+<li>Gain intuition about confidence intervals through repeated sampling simulations</li>
 </ul>
 </section>
-<section id="supportive-reading-outside-class" class="level1">
-<h1>Supportive reading outside class</h1>
-<p>(Optional but recommended) the best supporting textbook material for this week is section 2 of this book:</p>
+<section id="loading-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="loading-the-data">Loading the data</h3>
+<p>Your script should begin by loading the cleaned dataset you created in Part 1 (<code>data/movies_clean.rds</code>). If you did not complete Part 1, a solution will be provided that you can use to generate this file.</p>
+</section>
+<section id="tasks" class="level3">
+<h3 class="anchored" data-anchor-id="tasks">Tasks</h3>
+<p>Follow the directions in <code>02_inference.R</code> within the project template you downloaded for Part 1. For Part 2, the tasks will include:</p>
+<ol type="1">
+<li><p><strong>Random sampling</strong>: Take a random sample of 100 movies from the cleaned dataset (without replacement)</p></li>
+<li><p><strong>Personal movie experience</strong>:</p>
 <ul>
-<li>Grolemund, G. (2014). Hands-On Programming with R. O’Reilly Media. Retrieved from <a href="https://rstudio-education.github.io/hopr/">https://rstudio-education.github.io/hopr/</a>.</li>
+<li>Review your random sample of 100 movies</li>
+<li>Count how many you have personally seen</li>
+<li>Calculate a 95% confidence interval for the proportion of all TMDB movies you have seen</li>
+<li>Share your point estimate and confidence bounds with the class for discussion</li>
+</ul></li>
+<li><p><strong>Revenue confidence interval</strong>:</p>
+<ul>
+<li>Based on your random sample of 100 movies, calculate a 95% confidence interval for the mean revenue across all films in TMDB</li>
+<li>Share your point estimate and confidence bounds with the class for discussion</li>
+</ul></li>
+<li><p><strong>Repeated sampling simulation</strong>:</p>
+<ul>
+<li>Write a function to randomly sample movies of a specified size</li>
+<li>Write a function to calculate the sample mean and 95% confidence interval for revenue from a given sample</li>
+<li>Use a for loop to repeat the sampling and inference process 100 times</li>
+<li>Calculate the actual mean revenue in the full dataset</li>
+<li>Determine what proportion of your 100 confidence intervals contain the true mean</li>
+<li>Create a visualization showing all 100 confidence intervals, with color-coding to indicate which contain the true mean (black) and which do not (red)</li>
+</ul></li>
+</ol>
+</section>
+<section id="key-concepts" class="level3">
+<h3 class="anchored" data-anchor-id="key-concepts">Key concepts</h3>
+<p>This exercise will help you understand:</p>
+<ul>
+<li><strong>Sampling variability</strong>: How estimates change from sample to sample</li>
+<li><strong>Confidence interval interpretation</strong>: What it means for a confidence interval to have 95% coverage</li>
+<li><strong>The meaning of confidence level</strong>: In the long run, approximately 95% of 95% confidence intervals should contain the true parameter</li>
 </ul>
 </section>
-<section id="slides" class="level1">
-<h1>Slides</h1>
-<p><a href="week_2.html">Link to fullscreen</a></p>
-<iframe src="week_2.html" width="100%" height="600px" style="border:none;">
-</iframe>
+<section id="submission-1" class="level3">
+<h3 class="anchored" data-anchor-id="submission-1">Submission</h3>
+<p>Submit your completed script <code>02_inference.R</code> on Moodle under Case Study 1 Box Office Analysis (Part 2).</p>
+</section>
+</section>
+<section id="part-3-visualization-and-descriptive-insights-homework-14-oct-to-21-oct" class="level2">
+<h2 class="anchored" data-anchor-id="part-3-visualization-and-descriptive-insights-homework-14-oct-to-21-oct">Part 3: Visualization and Descriptive Insights (Homework: 14-Oct to 21-Oct)</h2>
+<p>This part is assigned as homework, due by Tuesday October 21.</p>
+<section id="your-task" class="level3">
+<h3 class="anchored" data-anchor-id="your-task">Your task</h3>
+<p>Act as a data analyst providing insights about <strong>what film characteristics are associated with box-office revenue</strong>. Complete your analysis in the Quarto document <code>03_visualization.qmd</code> and render it to PDF (approximately 3-5 pages).</p>
+<p>Your report must include:</p>
+<ol type="1">
+<li><strong>Revenue distribution</strong>: Histogram and descriptive statistics (mean, median, quantiles, etc.)</li>
+<li><strong>Five additional visualizations</strong>: Showing relationships between revenue and other variables (e.g., genre, budget, runtime, ratings, release year, production country, cast/director popularity)</li>
+</ol>
+</section>
+<section id="requirements" class="level3">
+<h3 class="anchored" data-anchor-id="requirements">Requirements</h3>
+<ul>
+<li>Audience: studio executives familiar with basic statistics but not data scientists</li>
+<li>Clear, well-labeled visualizations with written interpretation</li>
+<li>Set <code>echo: false</code> in YAML so code doesn’t appear in the PDF</li>
+</ul>
+</section>
+<section id="submission-2" class="level3">
+<h3 class="anchored" data-anchor-id="submission-2">Submission</h3>
+<p>Submit both the <code>.qmd</code> source file and the <code>.pdf</code> output on Moodle under Case Study 1 Box Office Analysis (Part 3).</p>
+</section>
+</section>
+<section id="part-4-regression-and-prediction-challenge-in-class-21-oct" class="level2">
+<h2 class="anchored" data-anchor-id="part-4-regression-and-prediction-challenge-in-class-21-oct">Part 4: Regression and prediction challenge (In class: 21-Oct)</h2>
+<ul>
+<li>Revenue vs.&nbsp;user ratings</li>
+<li>Revenue by production country</li>
+<li>Revenue vs.&nbsp;cast/director popularity</li>
+</ul>
+<section id="requirements-1" class="level3">
+<h3 class="anchored" data-anchor-id="requirements-1">Requirements</h3>
+<ul>
+<li>Your audience consists of studio executives who understand basic statistics but are not data scientists</li>
+<li>Visualizations should be clear, well-labeled, and interpretable</li>
+<li>Each visualization should be accompanied by written interpretation</li>
+<li>Use R code chunks within the Quarto document to generate all plots and summaries</li>
+<li>Set <code>echo: false</code> in the YAML header so code does not appear in the final PDF</li>
+</ul>
+</section>
+<section id="submission-3" class="level3">
+<h3 class="anchored" data-anchor-id="submission-3">Submission</h3>
+<p>Render your Quarto document to PDF and submit both the <code>.qmd</code> source file and the <code>.pdf</code> output on Moodle under Case Study 1 Box Office Analysis (Part 3).</p>
+</section>
+</section>
+<section id="part-4-regression-and-prediction-challenge-in-class-21-oct-1" class="level2">
+<h2 class="anchored" data-anchor-id="part-4-regression-and-prediction-challenge-in-class-21-oct-1">Part 4: Regression and prediction challenge (In class: 21-Oct)</h2>
 
 
 </section>
