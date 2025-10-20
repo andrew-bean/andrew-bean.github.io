@@ -296,12 +296,11 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#objectives-1" id="toc-objectives-1" class="nav-link" data-scroll-target="#objectives-1">Objectives</a></li>
   <li><a href="#the-challenge" id="toc-the-challenge" class="nav-link" data-scroll-target="#the-challenge">The Challenge</a></li>
-  <li><a href="#what-youll-receive" id="toc-what-youll-receive" class="nav-link" data-scroll-target="#what-youll-receive">What you’ll receive</a></li>
+  <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started">Getting started</a></li>
   <li><a href="#evaluation" id="toc-evaluation" class="nav-link" data-scroll-target="#evaluation">Evaluation</a></li>
   <li><a href="#submission-requirements" id="toc-submission-requirements" class="nav-link" data-scroll-target="#submission-requirements">Submission requirements</a></li>
   <li><a href="#grading-20-points-total" id="toc-grading-20-points-total" class="nav-link" data-scroll-target="#grading-20-points-total">Grading (20 points total)</a></li>
   <li><a href="#tips-for-success" id="toc-tips-for-success" class="nav-link" data-scroll-target="#tips-for-success">Tips for success</a></li>
-  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -495,17 +494,14 @@ window.Quarto = {
 <li><strong>Climb the leaderboard</strong>: You may submit multiple times to improve your score</li>
 </ol>
 </section>
-<section id="what-youll-receive" class="level3">
-<h3 class="anchored" data-anchor-id="what-youll-receive">What you’ll receive</h3>
-<ul>
-<li>Training data: The cleaned dataset from Part 1 (<code>movies_clean.rds</code>)</li>
-<li>Test data: A similar dataset with the same predictors, but:
-<ul>
-<li>Different movies than the training set</li>
-<li>No <code>log_revenue</code>, <code>revenue</code>, <code>title</code>, or <code>overview</code> columns (to prevent looking up actual values)</li>
-<li>You must predict <code>log_revenue</code> for these movies</li>
-</ul></li>
-</ul>
+<section id="getting-started" class="level3">
+<h3 class="anchored" data-anchor-id="getting-started">Getting started</h3>
+<ol type="1">
+<li>Download: <a href="tmdb_project_v2.zip">tmdb_project_v2.zip</a></li>
+<li>Unzip to a convenient location on your computer</li>
+<li>Navigate to the folder and open <code>tmdb.Rproj</code> to open the project in RStudio</li>
+</ol>
+<p>Once you have the project open, you will work with the script <code>04_prediction.R</code>, which includes: - Starter code for loading data and building baseline models - Helper functions for calculating predictive accuracy using RMSE (defined below) - Examples of feature engineering - Instructions for creating the submission file - Tips for improving model performance</p>
 </section>
 <section id="evaluation" class="level3">
 <h3 class="anchored" data-anchor-id="evaluation">Evaluation</h3>
@@ -516,7 +512,7 @@ window.Quarto = {
 </section>
 <section id="submission-requirements" class="level3">
 <h3 class="anchored" data-anchor-id="submission-requirements">Submission requirements</h3>
-<p><strong>During class:</strong> - Submit predictions as a CSV file with two columns: <code>id</code> and <code>predicted_log_revenue</code> - Name your file: <code>predictions_LASTNAME1_LASTNAME2.csv</code> - You may submit multiple times to improve your score - Results will be posted to a class leaderboard</p>
+<p><strong>During class:</strong> - Submit predictions as a CSV file with two columns: <code>id</code> and <code>predicted_log_revenue</code> - Name your file: <code>predictions_TEAMNAME_i.csv</code> (with “TEAMNAME” being replaced by your team name, and <code>i</code> indexing your team’s multiple submissions) - You may submit multiple times (increasing the index <code>i</code> each time) to improve your score - Results will be posted to a class leaderboard</p>
 <p><strong>At end of class:</strong> - Submit your final R script (<code>04_prediction.R</code>) on Moodle under Case Study 1 Box Office Analysis (Part 4)</p>
 </section>
 <section id="grading-20-points-total" class="level3">
@@ -541,15 +537,6 @@ window.Quarto = {
 <li><strong>Iterate quickly</strong>: Don’t spend too long perfecting one model - try multiple approaches</li>
 <li><strong>Have fun!</strong> This is a friendly competition to reinforce regression concepts</li>
 </ul>
-</section>
-<section id="resources" class="level3">
-<h3 class="anchored" data-anchor-id="resources">Resources</h3>
-<ol type="1">
-<li>Download: <a href="tmdb_project_v2.zip">tmdb_project_v2.zip</a></li>
-<li>Unzip to a convenient location on your computer</li>
-<li>Navigate to the folder and open <code>tmdb.Rproj</code> to open the project in RStudio</li>
-</ol>
-<p>Once you have the project open, you will work with the script <code>04_prediction.R</code>, which includes: - Starter code for loading data and building baseline models - Helper functions for calculating RMSE - Examples of feature engineering - Instructions for creating the submission file - Tips for improving model performance</p>
 <p>Good luck! 🎬📊🏆</p>
 
 
