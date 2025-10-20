@@ -1,5 +1,509 @@
 [
   {
+    "objectID": "syllabus/syllabus.html",
+    "href": "syllabus/syllabus.html",
+    "title": "Syllabus",
+    "section": "",
+    "text": "The syllabus is available on Moodle: Link."
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#what-is-regression-about",
+    "href": "lectures/week_9/week_9.html#what-is-regression-about",
+    "title": "Week 9: Regression",
+    "section": "What is regression about?",
+    "text": "What is regression about?\n\nModeling the relationship between variables\nResponse variable (dependent variable, outcome): what we want to predict or explain\nPredictor variable(s) (independent variable(s), explanatory variable(s)): what we use to predict or explain\nPotential goals:\n\nPrediction: estimate the response for new observations\nInference: understand whether and how predictors affect the response"
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#simple-linear-regression",
+    "href": "lectures/week_9/week_9.html#simple-linear-regression",
+    "title": "Week 9: Regression",
+    "section": "Simple linear regression",
+    "text": "Simple linear regression\n\nModels the relationship between:\n\nOne numeric response variable (\\(Y\\))\nOne numeric predictor variable (\\(X\\))\n\nThe model equation: \\[Y = \\beta_0 + \\beta_1 X + \\varepsilon \\]"
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#components-of-the-model",
+    "href": "lectures/week_9/week_9.html#components-of-the-model",
+    "title": "Week 9: Regression",
+    "section": "Components of the model",
+    "text": "Components of the model\n\n\n\nSymbol\nName\nDescription\n\n\n\n\n\\(Y\\)\nResponse\nThe variable we want to predict\n\n\n\\(X\\)\nPredictor\nThe variable we use to predict\n\n\n\\(\\beta_0\\)\nIntercept\nExpected value of \\(Y\\) when \\(X = 0\\)\n\n\n\\(\\beta_1\\)\nSlope\nChange in \\(Y\\) for one-unit increase in \\(X\\)\n\n\n\\(\\varepsilon\\)\nError term\nRandom variation not explained by \\(X\\)"
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#interpreting-the-slope",
+    "href": "lectures/week_9/week_9.html#interpreting-the-slope",
+    "title": "Week 9: Regression",
+    "section": "Interpreting the slope",
+    "text": "Interpreting the slope\n\n\\(\\beta_1\\) represents the rate of change\nFor every one-unit increase in \\(X\\), we expect \\(Y\\) to change by \\(\\beta_1\\) units\nExamples:\n\nIf \\(X\\) = years of education and \\(Y\\) = salary, then \\(\\beta_1\\) = expected change in salary per additional year of education\nIf \\(X\\) = temperature and \\(Y\\) = ice cream sales, then \\(\\beta_1\\) = expected change in sales per degree increase"
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#the-least-squares-principle",
+    "href": "lectures/week_9/week_9.html#the-least-squares-principle",
+    "title": "Week 9: Regression",
+    "section": "The least squares principle",
+    "text": "The least squares principle\n\nWe don’t know the true values of \\(\\beta_0\\) and \\(\\beta_1\\)\nWe estimate them from data using least squares:\n\nChoose \\(\\hat{\\beta}_0\\) and \\(\\hat{\\beta}_1\\) to minimize the sum of squared residuals\nResidual = observed value - predicted value = \\(y_i - (\\hat{\\beta}_0 + \\hat{\\beta}_1 x_i)\\)\n\nThe fitted (predicted) values: \\(\\hat{y}_i = \\hat{\\beta}_0 + \\hat{\\beta}_1 x_i\\)"
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#visual-representation",
+    "href": "lectures/week_9/week_9.html#visual-representation",
+    "title": "Week 9: Regression",
+    "section": "Visual representation",
+    "text": "Visual representation\n\n\nIllustrating the regression line and residuals\nset.seed(42)\nx &lt;- rnorm(20, mean = 10, sd = 2)\ny &lt;- 2 + 1.5 * x + rnorm(20, mean = 0, sd = 2)\ndf &lt;- data.frame(x = x, y = y)\nfit &lt;- lm(y ~ x, data = df)\n\nggplot(df, aes(x = x, y = y)) +\n  geom_point(size = 3, color = \"steelblue\") +\n  geom_smooth(method = \"lm\", se = FALSE, color = \"red\", linewidth = 1) +\n  geom_segment(aes(xend = x, yend = fitted(fit)), \n               linetype = \"dashed\", alpha = 0.5) +\n  labs(title = \"Linear regression: fitted line and residuals\",\n       x = \"Predictor (X)\", y = \"Response (Y)\") +\n  theme_minimal()"
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#the-lm-function",
+    "href": "lectures/week_9/week_9.html#the-lm-function",
+    "title": "Week 9: Regression",
+    "section": "The lm() function",
+    "text": "The lm() function\n\nlm stands for “linear model”\nBasic syntax:\n\n\nmodel &lt;- lm(response ~ predictor, data = dataset)\n\n\nFormula notation: response ~ predictor\n\n~ means “is modeled as a function of”\nLeft side: response variable\nRight side: predictor variable(s)"
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#example-cars-dataset",
+    "href": "lectures/week_9/week_9.html#example-cars-dataset",
+    "title": "Week 9: Regression",
+    "section": "Example: Cars dataset",
+    "text": "Example: Cars dataset\n\nBuilt-in dataset on cars from the 1920s\nVariables:\n\nspeed: speed of car (mph)\ndist: stopping distance (ft)\n\n\n\n\nView the cars dataset\ndata(cars)\nhead(cars)\n\n\n  speed dist\n1     4    2\n2     4   10\n3     7    4\n4     7   22\n5     8   16\n6     9   10\n\n\nView the cars dataset\nstr(cars)\n\n\n'data.frame':   50 obs. of  2 variables:\n $ speed: num  4 4 7 7 8 9 10 10 10 11 ...\n $ dist : num  2 10 4 22 16 10 18 26 34 17 ..."
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#visualizing-the-relationship",
+    "href": "lectures/week_9/week_9.html#visualizing-the-relationship",
+    "title": "Week 9: Regression",
+    "section": "Visualizing the relationship",
+    "text": "Visualizing the relationship\n\n\nScatterplot of speed vs. stopping distance\nggplot(cars, aes(x = speed, y = dist)) +\n  geom_point(size = 3, color = \"steelblue\") +\n  labs(title = \"Car speed vs. stopping distance\",\n       x = \"Speed (mph)\", y = \"Stopping distance (ft)\") +\n  theme_minimal()"
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#research-question",
+    "href": "lectures/week_9/week_9.html#research-question",
+    "title": "Week 9: Regression",
+    "section": "Research question",
+    "text": "Research question\n\nHow does stopping distance depend on speed?\nWe will model stopping distance as a function of speed: \\[\\text{dist} = \\beta_0 + \\beta_1 \\times \\text{speed} + \\epsilon\\]"
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#fitting-the-model",
+    "href": "lectures/week_9/week_9.html#fitting-the-model",
+    "title": "Week 9: Regression",
+    "section": "Fitting the model",
+    "text": "Fitting the model\n\ncars_model &lt;- lm(dist ~ speed, data = cars)\nsummary(cars_model)\n\n\nCall:\nlm(formula = dist ~ speed, data = cars)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-29.069  -9.525  -2.272   9.215  43.201 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) -17.5791     6.7584  -2.601   0.0123 *  \nspeed         3.9324     0.4155   9.464 1.49e-12 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 15.38 on 48 degrees of freedom\nMultiple R-squared:  0.6511,    Adjusted R-squared:  0.6438 \nF-statistic: 89.57 on 1 and 48 DF,  p-value: 1.49e-12"
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#breaking-down-the-output",
+    "href": "lectures/week_9/week_9.html#breaking-down-the-output",
+    "title": "Week 9: Regression",
+    "section": "Breaking down the output",
+    "text": "Breaking down the output\n\n\n\nsummary(cars_model)\n\n\nCall:\nlm(formula = dist ~ speed, data = cars)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-29.069  -9.525  -2.272   9.215  43.201 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) -17.5791     6.7584  -2.601   0.0123 *  \nspeed         3.9324     0.4155   9.464 1.49e-12 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 15.38 on 48 degrees of freedom\nMultiple R-squared:  0.6511,    Adjusted R-squared:  0.6438 \nF-statistic: 89.57 on 1 and 48 DF,  p-value: 1.49e-12\n\n\n\nKey components:\n\nCoefficients table: estimates of \\(\\beta_0\\) and \\(\\beta_1\\), with standard errors, t-statistics, and p-values\nResidual standard error: estimate of \\(\\sigma\\) (standard deviation of errors)\nR-squared: proportion of variance explained by the model (0 to 1)\nF-statistic: overall test of whether the model is useful"
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#interpreting-the-coefficients",
+    "href": "lectures/week_9/week_9.html#interpreting-the-coefficients",
+    "title": "Week 9: Regression",
+    "section": "Interpreting the coefficients",
+    "text": "Interpreting the coefficients\n\ncoef(cars_model)\n\n(Intercept)       speed \n -17.579095    3.932409 \n\n\n\nIntercept (\\(\\hat{\\beta}_0 = -17.58\\)): estimated stopping distance when speed = 0 mph\n\nMay not be meaningful if predictor values near 0 are not observed\n\nSlope (\\(\\hat{\\beta}_1 = 3.93\\)): for each 1 mph increase in speed, stopping distance increases by about 3.93 feet on average"
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#hypothesis-test-for-the-slope",
+    "href": "lectures/week_9/week_9.html#hypothesis-test-for-the-slope",
+    "title": "Week 9: Regression",
+    "section": "Hypothesis test for the slope",
+    "text": "Hypothesis test for the slope\n\nTesting whether there is a linear relationship:\n\n\\(H_0: \\beta_1 = 0\\) (mean of stopping distance does not depend on speed)\n\\(H_A: \\beta_1 \\neq 0\\) (mean of stopping distance does depend on speed)\n\n\n\nsummary(cars_model)$coefficients\n\n              Estimate Std. Error   t value     Pr(&gt;|t|)\n(Intercept) -17.579095  6.7584402 -2.601058 1.231882e-02\nspeed         3.932409  0.4155128  9.463990 1.489836e-12\n\n\n\nThe p-value for speed is very small (&lt; 0.001)\nWe reject \\(H_0\\): strong evidence of a linear relationship"
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#confidence-intervals-for-coefficients",
+    "href": "lectures/week_9/week_9.html#confidence-intervals-for-coefficients",
+    "title": "Week 9: Regression",
+    "section": "Confidence intervals for coefficients",
+    "text": "Confidence intervals for coefficients\n\nconfint(cars_model, level = 0.95)\n\n                 2.5 %    97.5 %\n(Intercept) -31.167850 -3.990340\nspeed         3.096964  4.767853\n\n\n\nWe are 95% confident that the true slope is between 3.1 and 4.77\nFor each 1 mph increase in speed, the stopping distance increases by approximately 3.1 to 4.77 feet"
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#adding-the-regression-line-to-the-plot",
+    "href": "lectures/week_9/week_9.html#adding-the-regression-line-to-the-plot",
+    "title": "Week 9: Regression",
+    "section": "Adding the regression line to the plot",
+    "text": "Adding the regression line to the plot\n\n\nScatterplot with fitted regression line\nggplot(cars, aes(x = speed, y = dist)) +\n  geom_point(size = 3, color = \"steelblue\") +\n  geom_smooth(method = \"lm\", se = TRUE, color = \"red\") +\n  labs(title = \"Car speed vs. stopping distance\",\n       subtitle = \"With fitted regression line and 95% confidence band\",\n       x = \"Speed (mph)\", y = \"Stopping distance (ft)\") +\n  theme_minimal()"
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#making-predictions",
+    "href": "lectures/week_9/week_9.html#making-predictions",
+    "title": "Week 9: Regression",
+    "section": "Making predictions",
+    "text": "Making predictions\n\nOnce we have a fitted model, we can predict the response for new predictor values\n\n\n# Predict stopping distance for a car going 22 mph\nnew_data &lt;- data.frame(speed = 22)\npredict(cars_model, newdata = new_data)\n\n      1 \n68.9339 \n\n\n\nExpected stopping distance for a car traveling at 22 mph is about 68.9 feet"
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#confidence-interval-for-the-mean-response",
+    "href": "lectures/week_9/week_9.html#confidence-interval-for-the-mean-response",
+    "title": "Week 9: Regression",
+    "section": "Confidence interval for the mean response",
+    "text": "Confidence interval for the mean response\n\n# Get prediction with confidence interval\npredict(cars_model, newdata = new_data, interval = \"confidence\")\n\n      fit     lwr      upr\n1 68.9339 61.8963 75.97149\n\n\n\nThis is a confidence interval for the mean response at speed = 22 mph\nWe are 95% confident that the average stopping distance for cars at 22 mph is between 61.9 and 76 feet"
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#prediction-intervals-for-a-new-observation",
+    "href": "lectures/week_9/week_9.html#prediction-intervals-for-a-new-observation",
+    "title": "Week 9: Regression",
+    "section": "Prediction intervals for a new observation",
+    "text": "Prediction intervals for a new observation\n\n# Get prediction interval for individual observation\npredict(cars_model, newdata = new_data, interval = \"prediction\")\n\n      fit      lwr      upr\n1 68.9339 37.22044 100.6474\n\n\n\nThis is a prediction interval for a single new observation\nWe are 95% confident that a single car traveling at 22 mph will have a stopping distance between 37.2 and 100.6 feet\nPrediction intervals are wider than confidence intervals. How much wider?"
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#checking-model-assumptions",
+    "href": "lectures/week_9/week_9.html#checking-model-assumptions",
+    "title": "Week 9: Regression",
+    "section": "Checking model assumptions",
+    "text": "Checking model assumptions\nLinear regression assumes:\n\nLinearity: relationship between \\(X\\) and \\(Y\\) is linear\nIndependence: observations are independent\nNormality: residuals are normally distributed\nEqual variance (homoscedasticity): variance of residuals is constant across predictor values\n\nWe can check these using diagnostic plots"
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#residual-plots",
+    "href": "lectures/week_9/week_9.html#residual-plots",
+    "title": "Week 9: Regression",
+    "section": "Residual plots",
+    "text": "Residual plots\n\n\nStandard diagnostic plots for regression\npar(mfrow = c(2, 2))\nplot(cars_model)"
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#interpreting-diagnostic-plots",
+    "href": "lectures/week_9/week_9.html#interpreting-diagnostic-plots",
+    "title": "Week 9: Regression",
+    "section": "Interpreting diagnostic plots",
+    "text": "Interpreting diagnostic plots\n\nResiduals vs Fitted:\n\nCheck for linearity and equal variance\nShould see random scatter around horizontal line at 0\n\nNormal Q-Q:\n\nCheck normality of residuals\nPoints should fall close to diagonal line\n\nScale-Location:\n\nCheck equal variance assumption\nShould see horizontal line with random scatter\n\nResiduals vs Leverage:\n\nIdentify influential observations\nPoints far from the pack may have undue influence"
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#impact-of-violated-assumptions",
+    "href": "lectures/week_9/week_9.html#impact-of-violated-assumptions",
+    "title": "Week 9: Regression",
+    "section": "Impact of violated assumptions",
+    "text": "Impact of violated assumptions\nWhen assumptions are violated, several problems can occur:\n\nBiased coefficient estimates (wrong slope/intercept)\nInvalid inference (p-values and confidence intervals are wrong)\nPoor predictions (unreliable forecasts)\nInefficient estimates (larger standard errors than necessary)\n\nLet’s see examples of each violation…"
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#violation-1-non-linearity",
+    "href": "lectures/week_9/week_9.html#violation-1-non-linearity",
+    "title": "Week 9: Regression",
+    "section": "Violation 1: Non-linearity 👻",
+    "text": "Violation 1: Non-linearity 👻\n\n\n\n\nSimulate non-linear association\nset.seed(123)\nx &lt;- seq(-10, 10, length.out = 50)\ny &lt;- 2 + 0.1 * x^2 + rnorm(50, sd = 3)\ndf_nonlinear &lt;- data.frame(x, y)\n\nggplot(df_nonlinear, aes(x, y)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = FALSE, \n              color = \"red\") +\n  labs(title = \"Linear fit to curved data\",\n       subtitle = \"Red line misses the pattern\") +\n  theme_minimal()\n\n\n\n\n\n\n\n\n\n\nConsequences:\n\nLinear model fails to capture the true relationship\nSystematic bias in predictions\nResiduals show clear pattern\n\nSolutions:\n\nDepending on the type of non-linearity, some steps that may help:\n\nTransform variables (log, square root)\nAdd polynomial terms (x + I(x^2))\nUse non-linear models"
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#non-linearity-diagnostic-plot",
+    "href": "lectures/week_9/week_9.html#non-linearity-diagnostic-plot",
+    "title": "Week 9: Regression",
+    "section": "Non-linearity: Diagnostic plot 🎃",
+    "text": "Non-linearity: Diagnostic plot 🎃\n\nmodel_nonlinear &lt;- lm(y ~ x, data = df_nonlinear)\npar(mfrow = c(1, 2))\nplot(model_nonlinear, which = 1)  # Residuals vs. Fitted\nplot(model_nonlinear, which = 2)  # Q-Q plot\n\n\nNotice the curved pattern in residuals vs. fitted - this indicates non-linearity!"
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#violation-2-non-constant-variance-heteroskedasticity",
+    "href": "lectures/week_9/week_9.html#violation-2-non-constant-variance-heteroskedasticity",
+    "title": "Week 9: Regression",
+    "section": "Violation 2: Non-constant variance (heteroskedasticity) 🕷️",
+    "text": "Violation 2: Non-constant variance (heteroskedasticity) 🕷️\n\n\n\n\nSimulate non-constant variance\nset.seed(456)\nx &lt;- runif(100, 0, 10)\ny &lt;- 2 + 3 * x + rnorm(100, sd = x)  # SD increases with x\ndf_hetero &lt;- data.frame(x, y)\n\nggplot(df_hetero, aes(x, y)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = TRUE, \n              color = \"red\") +\n  labs(title = \"Heteroskedasticity\",\n       subtitle = \"Variance increases with x\") +\n  theme_minimal()\n\n\n\n\n\n\n\n\n\n\nConsequences:\n\nCoefficient estimates are still unbiased\nStandard errors are wrong\nConfidence intervals and p-values are unreliable\nSome predictions more uncertain than others\n\nSolutions:\n\nWeighted least squares\nTransform response variable\nUse robust standard errors"
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#heteroscedasticity-diagnostic-plot",
+    "href": "lectures/week_9/week_9.html#heteroscedasticity-diagnostic-plot",
+    "title": "Week 9: Regression",
+    "section": "Heteroscedasticity: Diagnostic plot 🕸️",
+    "text": "Heteroscedasticity: Diagnostic plot 🕸️\n\nmodel_hetero &lt;- lm(y ~ x, data = df_hetero)\npar(mfrow = c(1, 2))\nplot(model_hetero, which = 1)  # Residuals vs. Fitted\nplot(model_hetero, which = 3)  # Scale-Location\n\n\nThe “fan shape” in the residual plot reveals non-constant variance."
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#violation-3-non-normal-residuals",
+    "href": "lectures/week_9/week_9.html#violation-3-non-normal-residuals",
+    "title": "Week 9: Regression",
+    "section": "Violation 3: Non-normal residuals 🧟",
+    "text": "Violation 3: Non-normal residuals 🧟\n\n\n\n\nSimulate non-normal errors\nset.seed(789)\nx &lt;- runif(100, 0, 10)\n# Add some extreme outliers\ny &lt;- 2 + 3 * x + c(rt(95, df = 2) * 2, \n                    rnorm(5, mean = 20, sd = 1))\ndf_nonnormal &lt;- data.frame(x, y)\n\nggplot(df_nonnormal, aes(x, y)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = TRUE, \n              color = \"red\") +\n  labs(title = \"Heavy-tailed residuals\",\n       subtitle = \"With outliers\") +\n  theme_minimal()\n\n\n\n\n\n\n\n\n\n\nConsequences:\n\nCoefficients still unbiased (least-squares principal still applies and does not require normality)\n(Unless the sample size is very large) Hypothesis tests and confidence intervals may lose validity (CIs too narrow or too wide, HTs not maintaining specified significance level)\n\nSolutions:\n\nTransform response variable (e.g. Box-Cox transformations)\nInterpret confidence intervals / hypothesis tests with skepticism"
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#non-normality-diagnostic-plot",
+    "href": "lectures/week_9/week_9.html#non-normality-diagnostic-plot",
+    "title": "Week 9: Regression",
+    "section": "Non-normality: Diagnostic plot 💀",
+    "text": "Non-normality: Diagnostic plot 💀\n\nmodel_nonnormal &lt;- lm(y ~ x, data = df_nonnormal)\npar(mfrow = c(1, 2))\nplot(model_nonnormal, which = 2)  # Q-Q plot\nplot(model_nonnormal, which = 5)  # Residuals vs Leverage\n\n\nDepartures from the diagonal line in Q-Q plot indicate non-normality. Point 99 is influential!"
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#violation-4-non-independence",
+    "href": "lectures/week_9/week_9.html#violation-4-non-independence",
+    "title": "Week 9: Regression",
+    "section": "Violation 4: Non-independence 🦇",
+    "text": "Violation 4: Non-independence 🦇\n\n\n\n\nSimulate correlated errors\nset.seed(101)\nn &lt;- 100\nx &lt;- 1:n\nerrors &lt;- arima.sim(n = n, \n                    list(ar = 0.7), sd = 2)\ny &lt;- 2 + 0.5 * x + errors\ndf_autocor &lt;- data.frame(x, y)\n\nggplot(df_autocor, aes(x, y)) +\n  geom_point() +\n  geom_line(alpha = 0.3) +\n  geom_smooth(method = \"lm\", se = TRUE, \n              color = \"red\") +\n  labs(title = \"Autocorrelated errors\",\n       subtitle = \"Time series data\") +\n  theme_minimal()\n\n\n\n\n\n\n\n\n\n\nConsequences:\n\nCommon in time series or clustered data\nStandard errors are severely underestimated\nP-values too small (false positives)\nConfidence intervals too narrow\n\nSolutions:\n\nTime series models (model the correlation in the error terms)"
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#key-takeaway",
+    "href": "lectures/week_9/week_9.html#key-takeaway",
+    "title": "Week 9: Regression",
+    "section": "Key takeaway",
+    "text": "Key takeaway\n\nAlways check diagnostic plots before interpreting results\nViolated assumptions don’t always invalidate the analysis:\n\nSome violations are worse than others\nLarge samples can mitigate some problems\nTransformations can often help\n\nWhen in doubt:\n\nUse robust methods\nReport diagnostics\nBe transparent about limitations\n\nNo model is perfect - focus on whether violations are severe enough to affect your conclusions"
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#extending-to-multiple-predictors",
+    "href": "lectures/week_9/week_9.html#extending-to-multiple-predictors",
+    "title": "Week 9: Regression",
+    "section": "Extending to multiple predictors",
+    "text": "Extending to multiple predictors\n\nMultiple regression includes more than one predictor \\[Y = \\beta_0 + \\beta_1 X_1 + \\beta_2 X_2 + \\cdots + \\beta_p X_p + \\epsilon\\]\nEach coefficient \\(\\beta_j\\) represents the effect of \\(X_j\\) on \\(Y\\), holding other predictors constant\nR syntax:\n\n\nmodel &lt;- lm(response ~ predictor1 + predictor2 + predictor3,\n            data = dataset)"
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#example-mtcars-dataset",
+    "href": "lectures/week_9/week_9.html#example-mtcars-dataset",
+    "title": "Week 9: Regression",
+    "section": "Example: mtcars dataset",
+    "text": "Example: mtcars dataset\n\n\nView the mtcars dataset\ndata(mtcars)\nhead(mtcars)\n\n\n                   mpg cyl disp  hp drat    wt  qsec vs am gear carb\nMazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4\nMazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4\nDatsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1\nHornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1\nHornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2\nValiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1\n\n\n\nmpg: miles per gallon\nwt: weight (1000 lbs)\nhp: horsepower\ncyl: number of cylinders"
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#research-question-1",
+    "href": "lectures/week_9/week_9.html#research-question-1",
+    "title": "Week 9: Regression",
+    "section": "Research question",
+    "text": "Research question\n\nHow do weight and horsepower jointly affect fuel efficiency (mpg)? \\[\\text{mpg} = \\beta_0 + \\beta_1 \\times \\text{wt} + \\beta_2 \\times \\text{hp} + \\epsilon\\]"
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#fitting-the-multiple-regression-model",
+    "href": "lectures/week_9/week_9.html#fitting-the-multiple-regression-model",
+    "title": "Week 9: Regression",
+    "section": "Fitting the multiple regression model",
+    "text": "Fitting the multiple regression model\n\nmtcars_model &lt;- lm(mpg ~ wt + hp, data = mtcars)\nsummary(mtcars_model)\n\n\nCall:\nlm(formula = mpg ~ wt + hp, data = mtcars)\n\nResiduals:\n   Min     1Q Median     3Q    Max \n-3.941 -1.600 -0.182  1.050  5.854 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 37.22727    1.59879  23.285  &lt; 2e-16 ***\nwt          -3.87783    0.63273  -6.129 1.12e-06 ***\nhp          -0.03177    0.00903  -3.519  0.00145 ** \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 2.593 on 29 degrees of freedom\nMultiple R-squared:  0.8268,    Adjusted R-squared:  0.8148 \nF-statistic: 69.21 on 2 and 29 DF,  p-value: 9.109e-12"
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#interpreting-multiple-regression-coefficients",
+    "href": "lectures/week_9/week_9.html#interpreting-multiple-regression-coefficients",
+    "title": "Week 9: Regression",
+    "section": "Interpreting multiple regression coefficients",
+    "text": "Interpreting multiple regression coefficients\n\ncoef(mtcars_model)\n\n(Intercept)          wt          hp \n37.22727012 -3.87783074 -0.03177295 \n\n\n\nIntercept (\\(\\hat{\\beta}_0 = 37.23\\)): expected mpg when weight and horsepower are both 0 (not meaningful)\nwt (\\(\\hat{\\beta}_1 = -3.88\\)): for each 1000 lb increase in weight, mpg decreases by about 3.88, holding horsepower constant\nhp (\\(\\hat{\\beta}_2 = -0.03\\)): for each 1 hp increase, mpg decreases by about 0.03, holding weight constant"
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#comparing-models",
+    "href": "lectures/week_9/week_9.html#comparing-models",
+    "title": "Week 9: Regression",
+    "section": "Comparing models",
+    "text": "Comparing models\n\nWe can compare models with different numbers of predictors\n\n\n# Simple model: mpg vs weight only\nmodel1 &lt;- lm(mpg ~ wt, data = mtcars)\n\n# Multiple model: mpg vs weight and horsepower\nmodel2 &lt;- lm(mpg ~ wt + hp, data = mtcars)\n\n# Compare R-squared\nsummary(model1)$r.squared\n\n[1] 0.7528328\n\nsummary(model2)$r.squared\n\n[1] 0.8267855\n\n\n\nModel 2 explains more variance (higher R-squared)"
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#anova-for-model-comparison",
+    "href": "lectures/week_9/week_9.html#anova-for-model-comparison",
+    "title": "Week 9: Regression",
+    "section": "ANOVA for model comparison",
+    "text": "ANOVA for model comparison\n\nanova(model1, model2)\n\nAnalysis of Variance Table\n\nModel 1: mpg ~ wt\nModel 2: mpg ~ wt + hp\n  Res.Df    RSS Df Sum of Sq      F   Pr(&gt;F)   \n1     30 278.32                                \n2     29 195.05  1    83.274 12.381 0.001451 **\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\n\nThe ANOVA F-test compares the two models\nSmall p-value indicates that adding hp significantly improves the model\nThe more complex model (model2) is preferred"
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#including-categorical-variables",
+    "href": "lectures/week_9/week_9.html#including-categorical-variables",
+    "title": "Week 9: Regression",
+    "section": "Including categorical variables",
+    "text": "Including categorical variables\n\nCategorical predictors are automatically converted to dummy variables\nExample: modeling mpg as a function of number of cylinders\n\ncyl can be 4, 6, or 8\n\n\n\nmtcars$cyl &lt;- factor(mtcars$cyl)\ncyl_model &lt;- lm(mpg ~ cyl, data = mtcars)\nsummary(cyl_model)\n\n\nCall:\nlm(formula = mpg ~ cyl, data = mtcars)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-5.2636 -1.8357  0.0286  1.3893  7.2364 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)  26.6636     0.9718  27.437  &lt; 2e-16 ***\ncyl6         -6.9208     1.5583  -4.441 0.000119 ***\ncyl8        -11.5636     1.2986  -8.905 8.57e-10 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 3.223 on 29 degrees of freedom\nMultiple R-squared:  0.7325,    Adjusted R-squared:  0.714 \nF-statistic:  39.7 on 2 and 29 DF,  p-value: 4.979e-09"
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#interpreting-categorical-coefficients",
+    "href": "lectures/week_9/week_9.html#interpreting-categorical-coefficients",
+    "title": "Week 9: Regression",
+    "section": "Interpreting categorical coefficients",
+    "text": "Interpreting categorical coefficients\n\ncoef(cyl_model)\n\n(Intercept)        cyl6        cyl8 \n  26.663636   -6.920779  -11.563636 \n\n\n\nR creates dummy variables with the first level as the reference category\n\nHere, 4 cylinders is the reference\n\nIntercept (\\(\\hat{\\beta}_0 = 26.66\\)): mean mpg for 4-cylinder cars\ncyl6 (\\(\\hat{\\beta}_1 = -6.92\\)): 6-cylinder cars have about 6.92 lower mpg than 4-cylinder cars, on average\ncyl8 (\\(\\hat{\\beta}_2 = -11.56\\)): 8-cylinder cars have about 11.56 lower mpg than 4-cylinder cars, on average"
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#visualizing-categorical-regression",
+    "href": "lectures/week_9/week_9.html#visualizing-categorical-regression",
+    "title": "Week 9: Regression",
+    "section": "Visualizing categorical regression",
+    "text": "Visualizing categorical regression\n\n\nBoxplot with group means\nggplot(mtcars, aes(x = cyl, y = mpg, fill = cyl)) +\n  geom_boxplot(alpha = 0.5) +\n  stat_summary(fun = mean, geom = \"point\", shape = 18, size = 4, color = \"red\") +\n  labs(title = \"MPG by number of cylinders\",\n       subtitle = \"Red diamonds show group means (regression estimates)\",\n       x = \"Number of cylinders\", y = \"Miles per gallon\") +\n  theme_minimal() +\n  theme(legend.position = \"none\")"
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#summary-table",
+    "href": "lectures/week_9/week_9.html#summary-table",
+    "title": "Week 9: Regression",
+    "section": "Summary table",
+    "text": "Summary table\n\n\n\nFunction\nPurpose\nExample\n\n\n\n\nlm()\nFit linear model\nlm(y ~ x, data = df)\n\n\nsummary()\nModel summary statistics\nsummary(model)\n\n\ncoef()\nExtract coefficients\ncoef(model)\n\n\nconfint()\nConfidence intervals\nconfint(model)\n\n\npredict()\nMake predictions\npredict(model, newdata)\n\n\nplot()\nDiagnostic plots\nplot(model)\n\n\nanova()\nCompare models\nanova(model1, model2)"
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#formula-syntax-in-r",
+    "href": "lectures/week_9/week_9.html#formula-syntax-in-r",
+    "title": "Week 9: Regression",
+    "section": "Formula syntax in R",
+    "text": "Formula syntax in R\n\n\n\nFormula\nMeaning\n\n\n\n\ny ~ x\nSimple regression: y on x\n\n\ny ~ x1 + x2\nMultiple regression: y on x1 and x2\n\n\ny ~ x1 + x2 + x1:x2\nInclude interaction between x1 and x2\n\n\ny ~ x1 * x2\nEquivalent to y ~ x1 + x2 + x1:x2\n\n\ny ~ .\nUse all other variables as predictors\n\n\ny ~ x - 1\nRegression without intercept"
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#correlation-vs.-causation",
+    "href": "lectures/week_9/week_9.html#correlation-vs.-causation",
+    "title": "Week 9: Regression",
+    "section": "Correlation vs. causation",
+    "text": "Correlation vs. causation\n\nRegression reveals associations, not necessarily causation\nJust because \\(X\\) predicts \\(Y\\) doesn’t mean \\(X\\) causes \\(Y\\)\nPossible explanations for correlation:\n\n\\(X\\) causes \\(Y\\)\n\\(Y\\) causes \\(X\\)\nA third variable causes both \\(X\\) and \\(Y\\) (confounding)\nThe association is due to chance\n\nRandomized experiments (like the clinical trials in Week 4) provide stronger evidence for causation"
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#extrapolation",
+    "href": "lectures/week_9/week_9.html#extrapolation",
+    "title": "Week 9: Regression",
+    "section": "Extrapolation",
+    "text": "Extrapolation\n\nExtrapolation: making predictions outside the range of observed data\nThe linear relationship may not hold beyond the observed range\nExample: predicting stopping distance for a car going 100 mph using our cars model\n\nThe data only include speeds from 4 to 25 mph\nExtrapolating to 100 mph is risky"
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#limitations-of-r-squared",
+    "href": "lectures/week_9/week_9.html#limitations-of-r-squared",
+    "title": "Week 9: Regression",
+    "section": "Limitations of R-squared",
+    "text": "Limitations of R-squared\n\nR-squared measures the proportion of variance explained\nHigher R-squared doesn’t always mean a better model:\n\nAdding more predictors always increases R-squared\nA model with lower R-squared might generalize better\nR-squared doesn’t tell us if the model assumptions are met\n\nUse adjusted R-squared when comparing models with different numbers of predictors\n\nPenalizes for adding unnecessary predictors"
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#palmer-penguins-dataset",
+    "href": "lectures/week_9/week_9.html#palmer-penguins-dataset",
+    "title": "Week 9: Regression",
+    "section": "Palmer Penguins dataset",
+    "text": "Palmer Penguins dataset\n\n\nLoad and display the penguins dataset\nif(!require(palmerpenguins)) install.packages(\"palmerpenguins\")\nlibrary(palmerpenguins)\ndata(penguins)\nstr(penguins)\n\n\ntibble [344 × 8] (S3: tbl_df/tbl/data.frame)\n $ species          : Factor w/ 3 levels \"Adelie\",\"Chinstrap\",..: 1 1 1 1 1 1 1 1 1 1 ...\n $ island           : Factor w/ 3 levels \"Biscoe\",\"Dream\",..: 3 3 3 3 3 3 3 3 3 3 ...\n $ bill_length_mm   : num [1:344] 39.1 39.5 40.3 NA 36.7 39.3 38.9 39.2 34.1 42 ...\n $ bill_depth_mm    : num [1:344] 18.7 17.4 18 NA 19.3 20.6 17.8 19.6 18.1 20.2 ...\n $ flipper_length_mm: int [1:344] 181 186 195 NA 193 190 181 195 193 190 ...\n $ body_mass_g      : int [1:344] 3750 3800 3250 NA 3450 3650 3625 4675 3475 4250 ...\n $ sex              : Factor w/ 2 levels \"female\",\"male\": 2 1 1 NA 1 2 1 2 NA NA ...\n $ year             : int [1:344] 2007 2007 2007 2007 2007 2007 2007 2007 2007 2007 ..."
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#research-question-2",
+    "href": "lectures/week_9/week_9.html#research-question-2",
+    "title": "Week 9: Regression",
+    "section": "Research question",
+    "text": "Research question\n\nHow does body mass depend on flipper length and species?\nLet’s build a multiple regression model"
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#exploratory-visualization",
+    "href": "lectures/week_9/week_9.html#exploratory-visualization",
+    "title": "Week 9: Regression",
+    "section": "Exploratory visualization",
+    "text": "Exploratory visualization\n\n\nScatterplot colored by species\nggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +\n  geom_point(size = 2, alpha = 0.6) +\n#   geom_smooth(method = \"lm\", se = FALSE) +\n  labs(title = \"Body mass vs. flipper length by species\",\n       x = \"Flipper length (mm)\", y = \"Body mass (g)\") +\n  theme_minimal()"
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#fitting-the-model-1",
+    "href": "lectures/week_9/week_9.html#fitting-the-model-1",
+    "title": "Week 9: Regression",
+    "section": "Fitting the model",
+    "text": "Fitting the model\n\n# Remove missing values\npenguins_clean &lt;- na.omit(penguins[, c(\"body_mass_g\", \"flipper_length_mm\", \"species\")])\n\n# Fit model\npenguin_model &lt;- lm(body_mass_g ~ flipper_length_mm + species, data = penguins_clean)\nsummary(penguin_model)\n\n\nCall:\nlm(formula = body_mass_g ~ flipper_length_mm + species, data = penguins_clean)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-927.70 -254.82  -23.92  241.16 1191.68 \n\nCoefficients:\n                   Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)       -4031.477    584.151  -6.901 2.55e-11 ***\nflipper_length_mm    40.705      3.071  13.255  &lt; 2e-16 ***\nspeciesChinstrap   -206.510     57.731  -3.577 0.000398 ***\nspeciesGentoo       266.810     95.264   2.801 0.005392 ** \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 375.5 on 338 degrees of freedom\nMultiple R-squared:  0.7826,    Adjusted R-squared:  0.7807 \nF-statistic: 405.7 on 3 and 338 DF,  p-value: &lt; 2.2e-16"
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#interpreting-the-results",
+    "href": "lectures/week_9/week_9.html#interpreting-the-results",
+    "title": "Week 9: Regression",
+    "section": "Interpreting the results",
+    "text": "Interpreting the results\n\ncoef(penguin_model)\n\n      (Intercept) flipper_length_mm  speciesChinstrap     speciesGentoo \n       -4031.4769           40.7054         -206.5101          266.8096 \n\n\n\nIntercept: Expected body mass for Adelie penguin with 0 mm flipper length (not meaningful)\nflipper_length_mm: For each 1 mm increase in flipper length, body mass increases by about 40.7 g, holding species constant\nspeciesChinstrap: Chinstrap penguins are about 206.5 g lighter than Adelie, holding flipper length constant\nspeciesGentoo: Gentoo penguins are about 266.8 g heavier than Adelie, holding flipper length constant"
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#model-diagnostics-1",
+    "href": "lectures/week_9/week_9.html#model-diagnostics-1",
+    "title": "Week 9: Regression",
+    "section": "Model diagnostics",
+    "text": "Model diagnostics\n\n\nDiagnostic plots\npar(mfrow = c(2, 2))\nplot(penguin_model)"
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#making-predictions-1",
+    "href": "lectures/week_9/week_9.html#making-predictions-1",
+    "title": "Week 9: Regression",
+    "section": "Making predictions",
+    "text": "Making predictions\n\n# Predict body mass for a Gentoo penguin with 210 mm flippers\nnew_penguin &lt;- data.frame(\n  flipper_length_mm = 210,\n  species = \"Gentoo\"\n)\n\npredict(penguin_model, newdata = new_penguin, interval = \"prediction\")\n\n       fit     lwr      upr\n1 4783.467 4040.52 5526.413\n\n\n\nWe predict a Gentoo penguin with 210 mm flippers will have a body mass around 4783 g\nThe 95% prediction interval is (4041, 5526) g"
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#two-approaches-to-statistical-modeling",
+    "href": "lectures/week_9/week_9.html#two-approaches-to-statistical-modeling",
+    "title": "Week 9: Regression",
+    "section": "Two approaches to statistical modeling",
+    "text": "Two approaches to statistical modeling\nLeo Breiman (2001) identified two cultures in statistical modeling:\n\n\nCulture 1: Data Modeling\n\nFocus on inference\nAssume a stochastic model (e.g., linear regression)\nEstimate parameters and test hypotheses\nInterpretability is key\nAssumptions matter greatly\nThis lecture has focused here\n\n\nCulture 2: Algorithmic Modeling\n\nFocus on prediction\nTreat the data mechanism as unknown\nPrioritize predictive accuracy\n“Black box” models acceptable\nLess concern about distributional assumptions\nThe box-office prediction case study has some of this flavor"
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#implications-for-your-work",
+    "href": "lectures/week_9/week_9.html#implications-for-your-work",
+    "title": "Week 9: Regression",
+    "section": "Implications for your work",
+    "text": "Implications for your work\n\nIn prediction tasks:\n\nDiagnostic plots are less critical if the model predicts well on new data\nLarge sample sizes can overcome some assumption violations\nCross-validation and test set performance matter more than p-values\nThe “true” model may be unknowable and that’s okay\n\nIn inference tasks (like much of today):\n\nUnderstanding relationships is the goal\nAssumptions must be checked carefully\nCoefficient interpretation requires proper model specification\nCausal claims require even stronger assumptions"
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#key-takeaways",
+    "href": "lectures/week_9/week_9.html#key-takeaways",
+    "title": "Week 9: Regression",
+    "section": "Key takeaways",
+    "text": "Key takeaways\n\nRegression models relationships between variables\nSimple linear regression: one predictor, estimates slope and intercept\nMultiple regression: multiple predictors, each coefficient represents effect holding others constant\nR function: lm(response ~ predictors, data = dataset)\nUse summary(), coef(), confint(), and predict() to interpret results\nCheck model assumptions using diagnostic plots\nCategorical predictors are handled automatically via dummy variables\nRemember: correlation ≠ causation"
+  },
+  {
+    "objectID": "lectures/week_9/week_9.html#next-steps",
+    "href": "lectures/week_9/week_9.html#next-steps",
+    "title": "Week 9: Regression",
+    "section": "Next steps",
+    "text": "Next steps\n\nContinue with Case Study 1\nPractice fitting and interpreting regression models\nThink about:\n\nWhat makes a good predictor?\nHow do we choose which variables to include?\nWhat should we do if assumptions are violated?"
+  },
+  {
+    "objectID": "lectures/week_8/lectures_8.html",
+    "href": "lectures/week_8/lectures_8.html",
+    "title": "Week 8: Case study 1",
+    "section": "",
+    "text": "Agenda\n\nNo lecture today\nInstead we will use the full class to dive in to Case Study 1\nExams will be returned next week (sorry for delay)"
+  },
+  {
+    "objectID": "lectures/week_5/lectures_5.html",
+    "href": "lectures/week_5/lectures_5.html",
+    "title": "Week 5: Data manipulation & visualization",
+    "section": "",
+    "text": "Agenda\n\nNo homework / no quiz today. Next Tuesday you will have your first exam.\nLecture on data manipulation with tidyverse functions, and data visualization (mostly using base R and ggplot)\nWe will not cover interactive plots. Ways to create interactive plots are very flexible and there is no unified approach. For examples, see:\n\nhttp://www.htmlwidgets.org/showcase_leaflet.html\nhttps://plot.ly/r/\n\nHands-on lab explore a dataset based on a large scale survey project, called The Changing Childhood Project, conducted by unicef. You will create visualizations that will be printed and posted on the wall next to my office.\n\n\n\nSupportive reading outside class\n(Optional but recommended):\n\nH. Wickham (2014): Tidy Data Link\n\nHadley Wickham is the author of ggplot and tidyverse. He is currently the chief scientist at Posit.\n\n\nSlides\nLink to fullscreen"
+  },
+  {
+    "objectID": "lectures/week_4/lectures_4.html",
+    "href": "lectures/week_4/lectures_4.html",
+    "title": "Week 4: Basic Statistical Inference",
+    "section": "",
+    "text": "Homework quiz (5 mins) on Homework 2.\nLecture on basic statistical inference in R, including hypothesis tests and confidence intervals for one or two means or proportions, and chi-square tests for independence in two-way tables.\n\nLike last week, you may download an R script (which contains only the code chunks from the lecture) and follow along in RStudio by running line-by-line: week_4.R\n\nHands-on lab to explore a dataset concerning housing-related data for Boston census tracts. You will use descriptive statistics and simple visual displays to summarize the distributions of several variables across the census tracts.\n\nlab_4_blank.qmd\nlab_4.pdf"
+  },
+  {
+    "objectID": "lectures/week_4/lectures_4.html#for-visual-learners",
+    "href": "lectures/week_4/lectures_4.html#for-visual-learners",
+    "title": "Week 4: Basic Statistical Inference",
+    "section": "For visual learners",
+    "text": "For visual learners\nAnother great resource is https://seeing-theory.brown.edu/, which has interactive visuals to explain the concepts behind statistical inference (among other statistical topics)."
+  },
+  {
+    "objectID": "lectures/week_3/lectures_3.html",
+    "href": "lectures/week_3/lectures_3.html",
+    "title": "Week 3: Descriptive Statistics and Summarizing Data",
+    "section": "",
+    "text": "Agenda\n\nNo homework / no quiz today. Next quiz will take place next Tuesday.\nLecture on descriptive statistics and summarizing data. We will refresh our memory about measures of center, spread, and describing both continuous (scale) and categorical (nominal/ordinal) distributions.\n\nLike last week, you may download an R script (which contains only the code chunks from the lecture) and follow along in RStudio by running line-by-line: week_3.R\n\nHands-on lab to explore a dataset concerning housing-related data for Boston census tracts. You will use descriptive statistics and simple visual displays to summarize the distributions of several variables across the census tracts.\n\nlab_3_blank.qmd\nlab_3.pdf\n\n\n\n\nSupportive reading outside class\n(Optional but recommended) the best supporting textbook material for this week is Chapter 5 of this book:\n\nNavarro, D. J. (2019). Learning statistics with R: A tutorial for psychology students and other beginners (Version 0.6.1). University of Adelaide. Retrieved from https://learningstatisticswithr.com. Link to pdf\n\n\n\nSlides\nLink to fullscreen"
+  },
+  {
+    "objectID": "lectures/week_2/lectures_2.html",
+    "href": "lectures/week_2/lectures_2.html",
+    "title": "Week 2: Objects, Types, Classes, and Collections",
+    "section": "",
+    "text": "Agenda\n\nIn-class Quiz on Homework 1 (5 minutes)\nLecture on basics of variables, objects, types, and classes, as well as collections of objects, like vectors, lists, and data frames. We will also meet some of our first functions along the way.\n\nToday I recommend downloading the following R script (which contains only the code chunks from the lecture) and following along in RStudio by running line-by-line: week_2.R\n\nHands-on Lab 2 will give you practice reading data into R from a text file to create a data.frame object, and then reinforce some of the concepts from today using the variables defined in this dataset.\n\nlab_2_blank.qmd\nlab_2.pdf\n\n\n\n\nSupportive reading outside class\n(Optional but recommended) the best supporting textbook material for this week is section 2 of this book:\n\nGrolemund, G. (2014). Hands-On Programming with R. O’Reilly Media. Retrieved from https://rstudio-education.github.io/hopr/.\n\n\n\nSlides\nLink to fullscreen"
+  },
+  {
+    "objectID": "lectures/week_1/lectures_1.html",
+    "href": "lectures/week_1/lectures_1.html",
+    "title": "Week 1: Introduction and getting started with R",
+    "section": "",
+    "text": "Welcome and introductions\nAbout the course; about R\nInstalling R, RStudio, and Quarto\nLab 1 (complete and submit on Moodle by end of class)\n\nSubmission requires two minor edits to this script: lab_1_blank.qmd"
+  },
+  {
+    "objectID": "lectures/week_1/lectures_1.html#software-to-install",
+    "href": "lectures/week_1/lectures_1.html#software-to-install",
+    "title": "Week 1: Introduction and getting started with R",
+    "section": "Software to install",
+    "text": "Software to install\n\nR (free and open source)\nRStudio IDE (free commercial software)\nQuarto (free commercial software): “literate programming”"
+  },
+  {
+    "objectID": "lectures/week_1/lectures_1.html#step-by-step",
+    "href": "lectures/week_1/lectures_1.html#step-by-step",
+    "title": "Week 1: Introduction and getting started with R",
+    "section": "Step-by-step",
+    "text": "Step-by-step\n\nGo to https://cran.rstudio.com and download the latest version of R\nGo to RStudio Desktop download page and download RStudio Desktop\nGo to Quarto Getting Started and download Quarto"
+  },
+  {
+    "objectID": "lectures/week_1/lectures_1.html#one-more-thing",
+    "href": "lectures/week_1/lectures_1.html#one-more-thing",
+    "title": "Week 1: Introduction and getting started with R",
+    "section": "One more thing",
+    "text": "One more thing\n\nFor labs, we will use Quarto to render code and outputs into pdf documents.\nThis has one more prerequisite\n\nIn RStudio, in the bottom-left pane, switch from the “Console” to the “Terminal” tab.\nType in and run this command: quarto install tinytex"
+  },
+  {
+    "objectID": "labs/week_4/week_4_lab.html",
+    "href": "labs/week_4/week_4_lab.html",
+    "title": "Lab 4: Basic Statistical Inference",
+    "section": "",
+    "text": "lab_4_blank.qmd\nlab_4.pdf"
+  },
+  {
+    "objectID": "labs/week_3/week_3_lab.html",
+    "href": "labs/week_3/week_3_lab.html",
+    "title": "Lab 3: Descriptive Statistics and Summarizing Data",
+    "section": "",
+    "text": "Hands-on lab to explore a dataset concerning housing-related data for Boston census tracts. You will use descriptive statistics and simple visual displays to summarize the distributions of several variables across the census tracts.\n\nlab_3_blank.qmd\nlab_3.pdf\nlab_3_solution.pdf"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Data 505: Statistics Using R",
+    "section": "",
+    "text": "Welcome to the DATA 505 website for Fall 2025 at Drew University. The course is “Statistics Using R”."
+  },
+  {
+    "objectID": "index.html#course-description",
+    "href": "index.html#course-description",
+    "title": "Data 505: Statistics Using R",
+    "section": "Course description",
+    "text": "Course description\nCovers how to use real-world data and draw intelligent conclusions on it using univariate and bivariate descriptive statistics such as centrality, spread, and correlation. Students have the opportunity to learn how to use the R language in the R-studio environment to obtain representative samples from large datasets and use the information in such samples to draw inferences on the larger datasets they were taken from. Course topics include graphical and tabular presentation of data, descriptive summary statistics, manipulation of data, regression, probability distributions, t-tests, and one-way analysis of variance."
+  },
+  {
     "objectID": "case_studies/tmdb/tmdb.html",
     "href": "case_studies/tmdb/tmdb.html",
     "title": "Case study 1",
@@ -46,14 +550,56 @@
     "href": "case_studies/tmdb/tmdb.html#part-4-regression-and-prediction-challenge-in-class-21-oct",
     "title": "Case study 1",
     "section": "Part 4: Regression and prediction challenge (In class: 21-Oct)",
-    "text": "Part 4: Regression and prediction challenge (In class: 21-Oct)\n\nRevenue vs. user ratings\nRevenue by production country\nRevenue vs. cast/director popularity\n\n\nRequirements\n\nYour audience consists of studio executives who understand basic statistics but are not data scientists\nVisualizations should be clear, well-labeled, and interpretable\nEach visualization should be accompanied by written interpretation\nUse R code chunks within the Quarto document to generate all plots and summaries\nSet echo: false in the YAML header so code does not appear in the final PDF\n\n\n\nSubmission\nRender your Quarto document to PDF and submit both the .qmd source file and the .pdf output on Moodle under Case Study 1 Box Office Analysis (Part 3)."
+    "text": "Part 4: Regression and prediction challenge (In class: 21-Oct)\nThis part will be completed in class on Tuesday October 21.\n\nObjectives\nIn this final part, you will:\n\nBuild multiple linear regression models to predict log_revenue\nExperiment with different predictor variables and model specifications\nSubmit predictions for a held-out test set\nCompete with your classmates to achieve the lowest prediction error (RMSE)\n\n\n\nThe Challenge\nYou will work in pairs to:\n\nExplore the training data: Understand relationships between predictors and revenue\nBuild regression models: Start with simple models and iterate to improve performance\nEvaluate your models: Calculate training RMSE to gauge performance\nMake predictions: Apply your best model to a held-out test set\nSubmit for scoring: Submit predictions in CSV format for evaluation\nClimb the leaderboard: You may submit multiple times to improve your score\n\n\n\nWhat you’ll receive\n\nTraining data: The cleaned dataset from Part 1 (movies_clean.rds)\nTest data: A similar dataset with the same predictors, but:\n\nDifferent movies than the training set\nNo log_revenue, revenue, title, or overview columns (to prevent looking up actual values)\nYou must predict log_revenue for these movies\n\n\n\n\nEvaluation\nYour predictions will be scored using RMSE (Root Mean Squared Error):\n\\[\\text{RMSE} = \\sqrt{\\frac{1}{n}\\sum_{i=1}^{n}(y_i - \\hat{y}_i)^2}\\]\nwhere \\(y_i\\) is the actual log revenue and \\(\\hat{y}_i\\) is your predicted log revenue.\nLower RMSE is better!\n\n\nSubmission requirements\nDuring class: - Submit predictions as a CSV file with two columns: id and predicted_log_revenue - Name your file: predictions_LASTNAME1_LASTNAME2.csv - You may submit multiple times to improve your score - Results will be posted to a class leaderboard\nAt end of class: - Submit your final R script (04_prediction.R) on Moodle under Case Study 1 Box Office Analysis (Part 4)\n\n\nGrading (20 points total)\n\nCompleteness of code (20 points): Did you build models and generate predictions?\nPrediction accuracy (up to 5 bonus points): Bonus points for top 3 pairs:\n\n1st place: 5 bonus points\n2nd place: 3 bonus points\n\n3rd place: 1 bonus point\n\n\n\n\nTips for success\n\nStart simple: Begin with basic models using a few predictors\nFeature engineering: Try creating new variables (e.g., release_year, interaction terms, transformations)\nBalance complexity: More complex models may overfit and perform worse on test data\nIterate quickly: Don’t spend too long perfecting one model - try multiple approaches\nHave fun! This is a friendly competition to reinforce regression concepts\n\n\n\nResources\n\nDownload: tmdb_project_v2.zip\nUnzip to a convenient location on your computer\nNavigate to the folder and open tmdb.Rproj to open the project in RStudio\n\nOnce you have the project open, you will work with the script 04_prediction.R, which includes: - Starter code for loading data and building baseline models - Helper functions for calculating RMSE - Examples of feature engineering - Instructions for creating the submission file - Tips for improving model performance\nGood luck! 🎬📊🏆"
   },
   {
-    "objectID": "case_studies/tmdb/tmdb.html#part-4-regression-and-prediction-challenge-in-class-21-oct-1",
-    "href": "case_studies/tmdb/tmdb.html#part-4-regression-and-prediction-challenge-in-class-21-oct-1",
-    "title": "Case study 1",
-    "section": "Part 4: Regression and prediction challenge (In class: 21-Oct)",
-    "text": "Part 4: Regression and prediction challenge (In class: 21-Oct)"
+    "objectID": "exams/exam_1.html",
+    "href": "exams/exam_1.html",
+    "title": "Exam 1 (Sep 30): review and practice materials",
+    "section": "",
+    "text": "As described in the syllabus, the exam will have two parts: the first being pen-and-paper, and the second being open-computer.\n\nPart 1:\n\nClosed computer and closed notes\nHandwritten answers\n\nPart 2:\n\nOpen computer. Any online resource that is “not alive” may be used (i.e. you may freely use online resources, but you may not communicate with any other person).\nElectronic submission on Moodle: you will fill in a Quarto script with R code and written answers\n\n\nOnce you turn in Part 1, you may open your computer and download the blank Quarto script for Part 2. You may not return to Part 1 after turning it in and beginning the open-computer portion."
+  },
+  {
+    "objectID": "exams/exam_1.html#part-1",
+    "href": "exams/exam_1.html#part-1",
+    "title": "Exam 1 (Sep 30): review and practice materials",
+    "section": "Part 1",
+    "text": "Part 1\nFor Part 1 (on paper, closed computer), I have created a practice exam to give you a sense of the format and topics: part_1_practice.pdf.\nThe solution is here: part_1_practice_solution.pdf."
+  },
+  {
+    "objectID": "exams/exam_1.html#part-2",
+    "href": "exams/exam_1.html#part-2",
+    "title": "Exam 1 (Sep 30): review and practice materials",
+    "section": "Part 2",
+    "text": "Part 2\nFor Part 2, the format will be very similar to the in-class Labs. Given the open format of this part of the exam, I will not provide a separate practice exam for Part 2.\nYou will be given a Quarto script which you can download, and which you will edit to fill in blank code chunks and free-text responses (again, just like the lab).\nThe questions will involve exploration of a single real dataset. Coding tasks and questions about this dataset will be drawn from the list of topics above.\nI suggest reviewing or even re-doing the labs as a way of practicing for Part 2."
+  },
+  {
+    "objectID": "lectures/week_1/installing_software.html",
+    "href": "lectures/week_1/installing_software.html",
+    "title": "Data 505: R for Statistics",
+    "section": "",
+    "text": "R (free and open source)\nRStudio IDE (free commercial software)\nQuarto (free commercial software): “literate programming”"
+  },
+  {
+    "objectID": "lectures/week_1/installing_software.html#software-to-install",
+    "href": "lectures/week_1/installing_software.html#software-to-install",
+    "title": "Data 505: R for Statistics",
+    "section": "",
+    "text": "R (free and open source)\nRStudio IDE (free commercial software)\nQuarto (free commercial software): “literate programming”"
+  },
+  {
+    "objectID": "lectures/week_1/installing_software.html#step-by-step",
+    "href": "lectures/week_1/installing_software.html#step-by-step",
+    "title": "Data 505: R for Statistics",
+    "section": "Step-by-step",
+    "text": "Step-by-step\n\nGo to https://cran.rstudio.com and download the latest version of R\nGo to RStudio Desktop download page and download RStudio Desktop\nGo to Quarto Getting Started and download Quarto"
+  },
+  {
+    "objectID": "lectures/week_1/installing_software.html#one-more-thing",
+    "href": "lectures/week_1/installing_software.html#one-more-thing",
+    "title": "Data 505: R for Statistics",
+    "section": "One more thing",
+    "text": "One more thing\n\nFor labs, we will use Quarto to render code and outputs into pdf documents.\nThis has one more prerequisite\n\nIn RStudio, in the bottom-left pane, switch from the “Console” to the “Terminal” tab.\nType in and run this command: quarto install tinytex"
   },
   {
     "objectID": "lectures/week_1/week_1.html#acquaintances",
@@ -203,11 +749,186 @@
     "text": "Lab 1\n\nFor Lab 1 you’ll start from this pdf: lab_1.pdf"
   },
   {
-    "objectID": "lectures/week_6/lectures_6.html",
-    "href": "lectures/week_6/lectures_6.html",
-    "title": "Week 6: Case study 1",
-    "section": "",
-    "text": "Agenda\n\nNo lecture today\nInstead we will use the full class to dive in to Case Study 1\nExams will be returned next week (sorry for delay)"
+    "objectID": "lectures/week_2/week_2.html#what-is-a-variable",
+    "href": "lectures/week_2/week_2.html#what-is-a-variable",
+    "title": "Week 2: Objects, Types, Classes, and Collections",
+    "section": "What is a variable?",
+    "text": "What is a variable?\n\nA variable is a named object that stores a value or other data in memory\n\n\nx &lt;- 4 \nname &lt;- \"Andrew\"\n\n\nThe code above shows two examples of assigning a value to a variable (4 to x, and \"Andrew\" to name)\nHaving made such an assignment, we have created an object which is stored in memory in the R session"
+  },
+  {
+    "objectID": "lectures/week_2/week_2.html#operations",
+    "href": "lectures/week_2/week_2.html#operations",
+    "title": "Week 2: Objects, Types, Classes, and Collections",
+    "section": "Operations",
+    "text": "Operations\n\nOnce an object has been defined in this way, it may be used, modified, or operated on in downstream parts of your script\n\n\nx ^ 2 \n\n[1] 16\n\ntoupper(name)\n\n[1] \"ANDREW\""
+  },
+  {
+    "objectID": "lectures/week_2/week_2.html#types-and-classes-1",
+    "href": "lectures/week_2/week_2.html#types-and-classes-1",
+    "title": "Week 2: Objects, Types, Classes, and Collections",
+    "section": "Types and Classes",
+    "text": "Types and Classes\n\n\n“Basic” or “Atomic” types include\n\ndouble (aka numeric; e.g., 3.14)\ninteger (e.g., 2L)\ncharacter (e.g., \"hello\")\nlogical (e.g., TRUE, FALSE)\n\nAnother special type\n\nlist (collection of objects allowing mixed types)\n\n\nKey classes\n\nfactor (categorical data, built on integer)\ndata.frame (tabular data, list of columns)\nmatrix (2D array, single type)\narray (generalization of matrix to more dimensions)\nMany many others: additional classes can be defined by packages\n\n\nDifference:\n\nBasic types are the fundamental building blocks for data storage in R.\nClasses (e.g. S3) add structure and behavior to objects, enabling custom methods and more complex data structures."
+  },
+  {
+    "objectID": "lectures/week_2/week_2.html#numerics-and-integers",
+    "href": "lectures/week_2/week_2.html#numerics-and-integers",
+    "title": "Week 2: Objects, Types, Classes, and Collections",
+    "section": "Numerics and integers",
+    "text": "Numerics and integers\n\nNumeric objects are stored as real numbers (mathematical sense) or floating point numbers (in computer memory)\n\nExample: x &lt;- 3.14\nQuestion: having assigned x this value, what does typeof(x) return? (this function tells us the basic type of an object)\n\nInteger objects are whole numbers\n\nExample: y &lt;- 5L (L suffix makes it an integer)\nQuestion: what is typeof(y)?"
+  },
+  {
+    "objectID": "lectures/week_2/week_2.html#arithmetic-operations",
+    "href": "lectures/week_2/week_2.html#arithmetic-operations",
+    "title": "Week 2: Objects, Types, Classes, and Collections",
+    "section": "Arithmetic operations",
+    "text": "Arithmetic operations\n\nArithmetic operations work on both types:\n\n\na &lt;- 7\nb &lt;- 2L\na + b\n\n[1] 9\n\na / b\n\n[1] 3.5\n\na * b\n\n[1] 14\n\na ^ b\n\n[1] 49"
+  },
+  {
+    "objectID": "lectures/week_2/week_2.html#characters",
+    "href": "lectures/week_2/week_2.html#characters",
+    "title": "Week 2: Objects, Types, Classes, and Collections",
+    "section": "Characters",
+    "text": "Characters\n\nCharacter objects store text (strings).\n\nExample: name &lt;- \"Alice\"\n\nYou can combine strings with paste() or paste0():\n\n\nfirst &lt;- \"Data\"\nsecond &lt;- \"Science\"\npaste(first, second)   # \"Data Science\"\n\n[1] \"Data Science\"\n\n\n\nFunctions like nchar() (number of characters), toupper() (uppercase), and tolower() (lowercase) operate on character objects"
+  },
+  {
+    "objectID": "lectures/week_2/week_2.html#logicals",
+    "href": "lectures/week_2/week_2.html#logicals",
+    "title": "Week 2: Objects, Types, Classes, and Collections",
+    "section": "Logicals",
+    "text": "Logicals\n\nLogical objects represent TRUE or FALSE values.\n\nExample: flag &lt;- TRUE\n\nRelational operators like below return logical objects\n\n\nx &lt;- 5\nx &gt; 3      # TRUE\n\n[1] TRUE\n\nx == 5     # TRUE\n\n[1] TRUE\n\nx != 2     # TRUE\n\n[1] TRUE"
+  },
+  {
+    "objectID": "lectures/week_2/week_2.html#factors",
+    "href": "lectures/week_2/week_2.html#factors",
+    "title": "Week 2: Objects, Types, Classes, and Collections",
+    "section": "Factors",
+    "text": "Factors\n\nFactors are used for categorical data (groups/levels).\n\nExample:\nQuestion: what is class(species)?\nQuestion: what is typeof(species)? (And why?)\n\nFactors have levels (the possible values which the variable can take)\n\n\nlevels(species)   \n\n[1] \"Cat\"    \"Dog\"    \"Rabbit\"\n\n\n\nUseful for statistical analysis of categorical data (nominal or ordinal variables)"
+  },
+  {
+    "objectID": "lectures/week_2/week_2.html#vectors",
+    "href": "lectures/week_2/week_2.html#vectors",
+    "title": "Week 2: Objects, Types, Classes, and Collections",
+    "section": "Vectors",
+    "text": "Vectors\n\nA vector is the most basic data structure in R: a sequence of elements of the same type.\n\nExample: scores &lt;- c(88, 92, 79, 85)\nAll elements must be of the same atomic type (numeric, character, logical, etc.), though R will try type coercion first\n\nYou can create vectors with c(), seq(), or rep()\n\n\nletters_vec &lt;- c(\"A\", \"B\", \"C\")\nseq_vec &lt;- seq(1, 5)\n\n\nVectors support element-wise operations:\n\n\nscores + 5   # adds 5 to each score\n\n[1] 93 97 84 90"
+  },
+  {
+    "objectID": "lectures/week_2/week_2.html#matrices-i",
+    "href": "lectures/week_2/week_2.html#matrices-i",
+    "title": "Week 2: Objects, Types, Classes, and Collections",
+    "section": "Matrices I",
+    "text": "Matrices I\n\nA matrix is a two-dimensional array of elements of the same basic type.\n\nExample:\n\n\n\nmat &lt;- matrix(1:6, nrow = 2, ncol = 3)\nmat\n\n     [,1] [,2] [,3]\n[1,]    1    3    5\n[2,]    2    4    6"
+  },
+  {
+    "objectID": "lectures/week_2/week_2.html#matrices-ii",
+    "href": "lectures/week_2/week_2.html#matrices-ii",
+    "title": "Week 2: Objects, Types, Classes, and Collections",
+    "section": "Matrices II",
+    "text": "Matrices II\n\nAccess elements by row and column:\n\n\nmat[1, 2]   # element in row 1, column 2\n\n[1] 3\n\n\n\nUseful for mathematical and statistical computations."
+  },
+  {
+    "objectID": "lectures/week_2/week_2.html#arrays",
+    "href": "lectures/week_2/week_2.html#arrays",
+    "title": "Week 2: Objects, Types, Classes, and Collections",
+    "section": "Arrays",
+    "text": "Arrays\n\nAn array generalizes matrices to more than two dimensions.\n\nExample: arr &lt;- array(1:8, dim = c(2, 2, 2))\nAll elements must be of the same atomic type.\n\nArrays are useful for representing multi-dimensional data (e.g., images, time series)."
+  },
+  {
+    "objectID": "lectures/week_2/week_2.html#lists-i",
+    "href": "lectures/week_2/week_2.html#lists-i",
+    "title": "Week 2: Objects, Types, Classes, and Collections",
+    "section": "Lists I",
+    "text": "Lists I\n\nA list is a collection of objects that can be of different types and structures.\n\nExample:\n\n\n\nmy_list &lt;- list(student = \"Alice\", age = 30, scores = c(88, 92, 79))\nmy_list\n\n$student\n[1] \"Alice\"\n\n$age\n[1] 30\n\n$scores\n[1] 88 92 79"
+  },
+  {
+    "objectID": "lectures/week_2/week_2.html#lists-ii",
+    "href": "lectures/week_2/week_2.html#lists-ii",
+    "title": "Week 2: Objects, Types, Classes, and Collections",
+    "section": "Lists II",
+    "text": "Lists II\n\nLists can contain vectors, matrices, other lists, or any R object.\nAccess elements by name or position:\n\n\nmy_list$name\n\nNULL\n\nmy_list[[2]]\n\n[1] 30\n\nmy_list[[\"scores\"]]\n\n[1] 88 92 79"
+  },
+  {
+    "objectID": "lectures/week_2/week_2.html#data-frames-i",
+    "href": "lectures/week_2/week_2.html#data-frames-i",
+    "title": "Week 2: Objects, Types, Classes, and Collections",
+    "section": "Data frames I",
+    "text": "Data frames I\n\nA data frame is a table where each column is a vector (often of different types).\n\nColumns can be numeric, character, logical, or factor.\nExample:\n\n\n\ndf &lt;- data.frame(\n  name = c(\"Alice\", \"Bob\"),\n  age = c(30, 25),\n  likes_ice_cream = c(TRUE, FALSE)\n)\ndf\n\n   name age likes_ice_cream\n1 Alice  30            TRUE\n2   Bob  25           FALSE"
+  },
+  {
+    "objectID": "lectures/week_2/week_2.html#data-frames-ii",
+    "href": "lectures/week_2/week_2.html#data-frames-ii",
+    "title": "Week 2: Objects, Types, Classes, and Collections",
+    "section": "Data frames II",
+    "text": "Data frames II\n\nData frames are the primary structure for storing and analyzing tabular data in R.\nA data frame is a list in disguise (additional constraint that length of each list element must match: rectangluar data)\n\nQuestion what do class(df) and typeof(df) return for df as defined on the last slide?\n\nAccess to columns of data frames follows the same syntax as access to elements of lists:\n\n\ndf$name\n\n[1] \"Alice\" \"Bob\"  \n\ndf[[\"age\"]]\n\n[1] 30 25"
+  },
+  {
+    "objectID": "lectures/week_2/week_2.html#typeof-for-basic-type",
+    "href": "lectures/week_2/week_2.html#typeof-for-basic-type",
+    "title": "Week 2: Objects, Types, Classes, and Collections",
+    "section": "typeof() for basic type",
+    "text": "typeof() for basic type\n\nThe typeof() function tells you how R stores an object internally.\n\nExample:\n\n\n\nx &lt;- 3.14\ntypeof(x)   # \"double\"\n\n[1] \"double\"\n\nspecies &lt;- factor(c(\"Dog\", \"Cat\"))\ntypeof(species)   # \"integer\"\n\n[1] \"integer\"\n\n\n\nUseful for understanding the underlying representation of your data."
+  },
+  {
+    "objectID": "lectures/week_2/week_2.html#class-for-higher-level-class",
+    "href": "lectures/week_2/week_2.html#class-for-higher-level-class",
+    "title": "Week 2: Objects, Types, Classes, and Collections",
+    "section": "class() for higher level class",
+    "text": "class() for higher level class\n\nThe class() function tells you the object’s class, which determines how R treats it in generic functions.\n\nExample:\n\n\n\nx &lt;- 3.14\nclass(x)   # \"numeric\"\n\n[1] \"numeric\"\n\nspecies &lt;- factor(c(\"Dog\", \"Cat\"))\nclass(species)   # \"factor\"\n\n[1] \"factor\"\n\ndf &lt;- data.frame(name = c(\"Alice\", \"Bob\"))\nclass(df)   # \"data.frame\"\n\n[1] \"data.frame\"\n\ntypeof(df)   # \"list\"\n\n[1] \"list\"\n\n\n\nMany objects have both a basic type and a class attribute."
+  },
+  {
+    "objectID": "lectures/week_2/week_2.html#str-to-inspect-objects",
+    "href": "lectures/week_2/week_2.html#str-to-inspect-objects",
+    "title": "Week 2: Objects, Types, Classes, and Collections",
+    "section": "str() to inspect objects",
+    "text": "str() to inspect objects\n\nThe str() function gives a compact summary of an object’s structure.\n\nExample:\n\n\n\nstr(df)\n\n'data.frame':   2 obs. of  1 variable:\n $ name: chr  \"Alice\" \"Bob\"\n\nstr(species)\n\n Factor w/ 2 levels \"Cat\",\"Dog\": 2 1\n\nstr(x)\n\n num 3.14\n\n\n\nShows type, class, length, and a preview of the contents.\nVery useful for quickly understanding unfamiliar objects."
+  },
+  {
+    "objectID": "lectures/week_2/week_2.html#implicit-coercion",
+    "href": "lectures/week_2/week_2.html#implicit-coercion",
+    "title": "Week 2: Objects, Types, Classes, and Collections",
+    "section": "Implicit coercion",
+    "text": "Implicit coercion\n\nR will automatically convert (coerce) types in certain situations, especially when combining different types in a vector.\n\nExample:\n\n\n\nc(1, \"a\", TRUE)   # All elements become character: \"1\" \"a\" \"TRUE\"\n\n[1] \"1\"    \"a\"    \"TRUE\"\n\nc(TRUE, 2)        # All elements become numeric: 1 2\n\n[1] 1 2\n\n\n\nThe rule: R chooses the “least restrictive” type that can represent all elements (character &gt; numeric &gt; logical).\nBe aware: implicit coercion can lead to unexpected results if you mix types!"
+  },
+  {
+    "objectID": "lectures/week_2/week_2.html#explicit-coercion",
+    "href": "lectures/week_2/week_2.html#explicit-coercion",
+    "title": "Week 2: Objects, Types, Classes, and Collections",
+    "section": "Explicit coercion",
+    "text": "Explicit coercion\n\nYou can manually convert (coerce) an object to another type using functions like:\n\nas.numeric()\nas.character()\nas.logical()\nas.factor()\n\nExample:\n\n\nx &lt;- \"123\"\nas.numeric(x)   # 123\n\n[1] 123\n\ny &lt;- c(\"TRUE\", \"FALSE\", \"TRUE\")\nas.logical(y)   # TRUE FALSE TRUE\n\n[1]  TRUE FALSE  TRUE\n\n\n\nIf coercion fails, R will return NA and may give a warning"
+  },
+  {
+    "objectID": "lectures/week_2/week_2.html#creating-vectors",
+    "href": "lectures/week_2/week_2.html#creating-vectors",
+    "title": "Week 2: Objects, Types, Classes, and Collections",
+    "section": "Creating vectors",
+    "text": "Creating vectors\n\nUse c() to combine values into a vector:\n\n\nnums &lt;- c(1, 2, 3, 4)\nchars &lt;- c(\"A\", \"B\", \"C\")\n\n\nUse seq() to generate sequences:\n\n\nseq(1, 10, by = 2)   # 1 3 5 7 9\n\n[1] 1 3 5 7 9\n\n\n\nUse rep() to repeat values:\n\n\nrep(5, times = 3)    # 5 5 5\n\n[1] 5 5 5"
+  },
+  {
+    "objectID": "lectures/week_2/week_2.html#subsetting",
+    "href": "lectures/week_2/week_2.html#subsetting",
+    "title": "Week 2: Objects, Types, Classes, and Collections",
+    "section": "Subsetting",
+    "text": "Subsetting\n\nAccess elements of a vector by position (indexing starts at 1):\n\n\nnums &lt;- c(10, 20, 30, 40)\nnums[2]      # 20\n\n[1] 20\n\nnums[1:3]    # 10 20 30\n\n[1] 10 20 30\n\n\n\nUse logical vectors for subsetting:\n\n\nnums[nums &gt; 15]   # 20 30 40\n\n[1] 20 30 40\n\n\n\nNegative indices remove elements:\n\n\nnums[-1]   # 20 30 40\n\n[1] 20 30 40"
+  },
+  {
+    "objectID": "lectures/week_2/week_2.html#vectorized-operations",
+    "href": "lectures/week_2/week_2.html#vectorized-operations",
+    "title": "Week 2: Objects, Types, Classes, and Collections",
+    "section": "Vectorized operations",
+    "text": "Vectorized operations\n\nMost operations in R are vectorized: they apply to each element automatically.\n\n\nx &lt;- c(1, 2, 3)\ny &lt;- c(10, 20, 30)\nx + y      # 11 22 33\n\n[1] 11 22 33\n\nx * 2      # 2 4 6\n\n[1] 2 4 6\n\n\n\nFunctions also operate element-wise:\n\n\nsqrt(x)    # 1 1.414214 1.732051\n\n[1] 1.000000 1.414214 1.732051"
+  },
+  {
+    "objectID": "lectures/week_2/week_2.html#missing-values-1",
+    "href": "lectures/week_2/week_2.html#missing-values-1",
+    "title": "Week 2: Objects, Types, Classes, and Collections",
+    "section": "Missing values",
+    "text": "Missing values\n\nIn R, missing data is represented by NA.\nNA can appear in any type of object: numeric, character, logical, etc.\n\nExample:\n\n\n\nscores &lt;- c(88, NA, 79, 85)\nnames &lt;- c(\"Alice\", NA, \"Bob\")\n\n\nYou can check for missing values with is.na():\n\n\nscores\n\n[1] 88 NA 79 85\n\nis.na(scores)   # TRUE for missing values\n\n[1] FALSE  TRUE FALSE FALSE\n\n\n\nBe aware: calculations with NA usually return NA unless you explicitly remove or handle (to be discussed next week)"
+  },
+  {
+    "objectID": "lectures/week_2/week_2.html#lab-2-1",
+    "href": "lectures/week_2/week_2.html#lab-2-1",
+    "title": "Week 2: Objects, Types, Classes, and Collections",
+    "section": "Lab 2",
+    "text": "Lab 2\nlab_2_blank.qmd lab_2.pdf"
   },
   {
     "objectID": "lectures/week_3/week_3.html#refresher-i",
@@ -432,496 +1153,6 @@
     "title": "Week 3: Descriptive Statistics and Summarizing Data",
     "section": "Describing distributions",
     "text": "Describing distributions\n\nDescriptive statistics help us understand the center, spread, and shape of data\nUse mean, median, and mode for measures of center; range, standard deviation, and IQR for spread\nFrequency and proportion tables summarize categorical variables\nVisualizations (histograms, boxplots, barplots) reveal distribution and outliers\nAlways consider the impact of outliers and choose robust statistics when appropriate"
-  },
-  {
-    "objectID": "lectures/week_4/lectures_4.html",
-    "href": "lectures/week_4/lectures_4.html",
-    "title": "Week 4: Basic Statistical Inference",
-    "section": "",
-    "text": "Homework quiz (5 mins) on Homework 2.\nLecture on basic statistical inference in R, including hypothesis tests and confidence intervals for one or two means or proportions, and chi-square tests for independence in two-way tables.\n\nLike last week, you may download an R script (which contains only the code chunks from the lecture) and follow along in RStudio by running line-by-line: week_4.R\n\nHands-on lab to explore a dataset concerning housing-related data for Boston census tracts. You will use descriptive statistics and simple visual displays to summarize the distributions of several variables across the census tracts.\n\nlab_4_blank.qmd\nlab_4.pdf"
-  },
-  {
-    "objectID": "lectures/week_4/lectures_4.html#for-visual-learners",
-    "href": "lectures/week_4/lectures_4.html#for-visual-learners",
-    "title": "Week 4: Basic Statistical Inference",
-    "section": "For visual learners",
-    "text": "For visual learners\nAnother great resource is https://seeing-theory.brown.edu/, which has interactive visuals to explain the concepts behind statistical inference (among other statistical topics)."
-  },
-  {
-    "objectID": "lectures/week_5/week_5.html#prep-work",
-    "href": "lectures/week_5/week_5.html#prep-work",
-    "title": "DATA 505: Statistics Using R",
-    "section": "Prep work",
-    "text": "Prep work\nThe following packages are required for today’s lecture. Please install first if needed.\n\nlibrary(tidyverse) # for data manipulation, ggplots is part of this\nlibrary(maps)\nlibrary(plotly) # for interactive plots\n\nTo start, we’ll use a very simple dataset in Base R.\n\n?USArrests\nstr(USArrests)"
-  },
-  {
-    "objectID": "lectures/week_5/week_5.html#section",
-    "href": "lectures/week_5/week_5.html#section",
-    "title": "DATA 505: Statistics Using R",
-    "section": "",
-    "text": "Create a separate variable for state names; create a categorical (ordinal) variable based on Urban Population. More on this syntax later.\n\nUSArrests &lt;- USArrests |&gt; \n  mutate(State = row.names(USArrests)) |&gt;\n  mutate(UrbanPop_tile = ntile(UrbanPop, 3)) |&gt;\n  mutate(UrbanPop_Cat = factor(UrbanPop_tile, \n                               levels=c(1,2,3),\n                               labels=c('Low',\"Medium\",\"High\"),\n                               ordered=T))"
-  },
-  {
-    "objectID": "lectures/week_5/week_5.html#histogram",
-    "href": "lectures/week_5/week_5.html#histogram",
-    "title": "DATA 505: Statistics Using R",
-    "section": "Histogram",
-    "text": "Histogram\n\n\n\nHistogram is a uni-variate graph. To describe a distribution, keep in mind properties of location, spread, and shape.\nVisualization elements can be modified by adding arguments within the function\n\n\n\nhist(USArrests$Murder,\n      nclass=30,\n     main='Murder rate per 100000',\n    col='pink', \n     ylab=NA, \n     yaxt='n',\n    xlab=NA)"
-  },
-  {
-    "objectID": "lectures/week_5/week_5.html#boxplot",
-    "href": "lectures/week_5/week_5.html#boxplot",
-    "title": "DATA 505: Statistics Using R",
-    "section": "Boxplot",
-    "text": "Boxplot\n\nBoxplot is based on the 5-number summary: min, Q1, Q2 (median), Q3, max\n\n\nboxplot(USArrests$Murder)"
-  },
-  {
-    "objectID": "lectures/week_5/week_5.html#stem-and-leaf-plot",
-    "href": "lectures/week_5/week_5.html#stem-and-leaf-plot",
-    "title": "DATA 505: Statistics Using R",
-    "section": "Stem and leaf plot",
-    "text": "Stem and leaf plot\n\n\n\nDifferent software often produce stem-and-leaf plots that look differently\nIn R, can change scale and width arguments\nOnly sometimes useful\n\n\n\nstem(USArrests$Murder)\n\n\n  The decimal point is at the |\n\n   0 | 8\n   2 | 11226672348\n   4 | 0349379\n   6 | 003682349\n   8 | 158007\n  10 | 04134\n  12 | 127022\n  14 | 444\n  16 | 14"
-  },
-  {
-    "objectID": "lectures/week_5/week_5.html#side-by-side-boxplots",
-    "href": "lectures/week_5/week_5.html#side-by-side-boxplots",
-    "title": "DATA 505: Statistics Using R",
-    "section": "Side-by-side boxplots",
-    "text": "Side-by-side boxplots\n\nboxplot(USArrests$Assault ~ USArrests$UrbanPop_Cat,\n        col='pink',\n        border='darkblue',\n        pch=16,\n        xlab='Urban population',\n        ylab='Assault rate')"
-  },
-  {
-    "objectID": "lectures/week_5/week_5.html#scatterplot",
-    "href": "lectures/week_5/week_5.html#scatterplot",
-    "title": "DATA 505: Statistics Using R",
-    "section": "Scatterplot",
-    "text": "Scatterplot\n\nScatterplots are bi-variate; useful to detect relationship between two numeric (scale) variables\n\n\nplot(USArrests$UrbanPop,USArrests$Assault)"
-  },
-  {
-    "objectID": "lectures/week_5/week_5.html#example-1",
-    "href": "lectures/week_5/week_5.html#example-1",
-    "title": "DATA 505: Statistics Using R",
-    "section": "Example 1",
-    "text": "Example 1\n\nggplot2 is an alternative, more unified framework (Grammar of Graphics) for creating plots and graphics in R\n\n\nggplot(data=USArrests,\n       mapping=aes(x=UrbanPop,y=Assault)) + \n  geom_point()"
-  },
-  {
-    "objectID": "lectures/week_5/week_5.html#example-2",
-    "href": "lectures/week_5/week_5.html#example-2",
-    "title": "DATA 505: Statistics Using R",
-    "section": "Example 2",
-    "text": "Example 2\n\nggplot(data=USArrests,\n       mapping=aes(x=UrbanPop_Cat,y = Assault, fill=UrbanPop_Cat)) + \n  geom_boxplot()"
-  },
-  {
-    "objectID": "lectures/week_5/week_5.html#basic-ingredients-of-a-ggplot",
-    "href": "lectures/week_5/week_5.html#basic-ingredients-of-a-ggplot",
-    "title": "DATA 505: Statistics Using R",
-    "section": "Basic ingredients of a ggplot",
-    "text": "Basic ingredients of a ggplot\n\nData\n\nData frame containing all the raw observations\n\nAesthetic mapping\n\nAn aesthetic is a visual property of the plot, such as x-axis, y-axis, color, fill, size, etc.\nUse aes to specify which variable is mapped to which aesthetic\nExample: height -&gt; x-axis; weight -&gt; y-axis; gender -&gt; fill; name -&gt; text\n\nGeoms\n\nWhat types of layers should be added to the plots"
-  },
-  {
-    "objectID": "lectures/week_5/week_5.html#example-1-explained",
-    "href": "lectures/week_5/week_5.html#example-1-explained",
-    "title": "DATA 505: Statistics Using R",
-    "section": "Example 1 explained",
-    "text": "Example 1 explained\n\n\n\nUrbanPop maps to the x-axis\nAssault maps to the y-axis\ngeom_point draws scatterplot-type points for each observation\n\n\n\nggplot(data=USArrests,\n       mapping=aes(x=UrbanPop,y=Assault)) + \n  geom_point()"
-  },
-  {
-    "objectID": "lectures/week_5/week_5.html#example-2-explained",
-    "href": "lectures/week_5/week_5.html#example-2-explained",
-    "title": "DATA 505: Statistics Using R",
-    "section": "Example 2 explained",
-    "text": "Example 2 explained\n\n\n\nUrbanPop_Cat maps to the x-axis AND fill (this kind of redundant mapping should be avoided!)\nAssault maps to the y-axis\ngeom_boxplot draws boxplots\nTry: change geom_boxplot to geom_violin\n\n\n\nggplot(data=USArrests,\n       mapping=aes(\n        x=UrbanPop_Cat,\n        y = Assault,\n        fill=UrbanPop_Cat\n       )) + \n  geom_boxplot()"
-  },
-  {
-    "objectID": "lectures/week_5/week_5.html#geom_histogram",
-    "href": "lectures/week_5/week_5.html#geom_histogram",
-    "title": "DATA 505: Statistics Using R",
-    "section": "geom_histogram",
-    "text": "geom_histogram\n\nRecall: histogram is univariate; y-axis is always frequency, so we don’t need a y=_ mapping\n\n\nggplot(data = USArrests,  aes(x = Murder)) + \n  geom_histogram()"
-  },
-  {
-    "objectID": "lectures/week_5/week_5.html#section-1",
-    "href": "lectures/week_5/week_5.html#section-1",
-    "title": "DATA 505: Statistics Using R",
-    "section": "",
-    "text": "Can add arguments in geoms \n\n\nggplot(data = USArrests,  aes(x = Murder)) + \n  geom_histogram(binwidth=5,\n                 fill=\"orange\",\n                 color=\"blue\")\n\n\nNote the differences in the syntax convention:\n\nbase R col vs ggplot fill\nbase R border vs ggplot color\nesp. “color” (ggplot) vs “col” (base R)"
-  },
-  {
-    "objectID": "lectures/week_5/week_5.html#section-2",
-    "href": "lectures/week_5/week_5.html#section-2",
-    "title": "DATA 505: Statistics Using R",
-    "section": "",
-    "text": "Add another dimension (i.e., map another variable to another aesthetic)\n\n\nggplot(data = USArrests, aes(x = Murder, fill=UrbanPop_Cat)) + \n  geom_histogram(binwidth=5, color=\"blue\")"
-  },
-  {
-    "objectID": "lectures/week_5/week_5.html#geom_bar",
-    "href": "lectures/week_5/week_5.html#geom_bar",
-    "title": "DATA 505: Statistics Using R",
-    "section": "geom_bar",
-    "text": "geom_bar\n\nThe bar graph shows that each category has roughly the same number of states, as expected.\n\n\nggplot(data=USArrests, \n       mapping=aes(x=UrbanPop_Cat)) +\n  geom_bar()"
-  },
-  {
-    "objectID": "lectures/week_5/week_5.html#geom_text",
-    "href": "lectures/week_5/week_5.html#geom_text",
-    "title": "DATA 505: Statistics Using R",
-    "section": "geom_text",
-    "text": "geom_text\n\nggplot(data=USArrests,\n       aes(x=Murder,y=Assault,label=State)) + \n  geom_text()\n\n\n\nTry: change geom_text to geom_label\nTry: add geom_point"
-  },
-  {
-    "objectID": "lectures/week_5/week_5.html#customize-ggplot-with",
-    "href": "lectures/week_5/week_5.html#customize-ggplot-with",
-    "title": "DATA 505: Statistics Using R",
-    "section": "Customize ggplot with +",
-    "text": "Customize ggplot with +\nggplot offers a very convenient syntax (+) to add elements and layers\n\nggplot(data=USArrests, \n       mapping=aes(x=UrbanPop_Cat)) +\n  geom_bar() + \n  theme_bw() +\n  ggtitle('Bar graph') +\n  labs(x='Urban population percentage')"
-  },
-  {
-    "objectID": "lectures/week_5/week_5.html#example-change-gradient-color",
-    "href": "lectures/week_5/week_5.html#example-change-gradient-color",
-    "title": "DATA 505: Statistics Using R",
-    "section": "Example: change gradient color",
-    "text": "Example: change gradient color\n\nggplot(data=USArrests,\n       aes(x=Murder,y=Assault,color=UrbanPop)) + \n  geom_point()+\n  theme_bw() +\n  ggtitle('Violent Crime Rates') +\n  labs(x='Murder',y=\"Assault\",color='Urban Pop Percentage') +\n  scale_color_gradient(low=\"lightgreen\",high=\"black\")"
-  },
-  {
-    "objectID": "lectures/week_5/week_5.html#example-change-categorical-color",
-    "href": "lectures/week_5/week_5.html#example-change-categorical-color",
-    "title": "DATA 505: Statistics Using R",
-    "section": "Example: change categorical color",
-    "text": "Example: change categorical color\n\nggplot(data=USArrests, \n       aes(x=Murder,fill=UrbanPop_Cat)) +\n  geom_histogram() +\n  scale_fill_manual(values=c(\"Low\"='green',\"Medium\"='purple', \"High\"=\"darkgrey\")) +\n  theme_minimal()"
-  },
-  {
-    "objectID": "lectures/week_5/week_5.html#theres-more",
-    "href": "lectures/week_5/week_5.html#theres-more",
-    "title": "DATA 505: Statistics Using R",
-    "section": "There’s more!",
-    "text": "There’s more!\n\nThere are many other geoms and customization available!\nEach geom has its own set of aesthetics to which variables can be mapped.\nBring up the help page to check what aesthetics are needed.\nMany references can be found online - they all share the same, unified structure that you can now understand."
-  },
-  {
-    "objectID": "lectures/week_5/week_5.html#the-pipe-operator",
-    "href": "lectures/week_5/week_5.html#the-pipe-operator",
-    "title": "DATA 505: Statistics Using R",
-    "section": "The Pipe operator",
-    "text": "The Pipe operator\n\ntidyverse packages: https://www.tidyverse.org/packages/\nPowerful and popular for working with complicated dataset, typically formatted into a tidy format\nImportantly, the pipe operator offers a new way of calling a function\nThese three lines of code are equivalent\n\n\nsummary(USArrests) \nUSArrests |&gt; summary # magrittr / dplyr pipe\nUSArrests |&gt; summary # base R pipe (R &gt;= 4.0)\n\n\nFunctions in tidyverse are typically used with the pipe operator, but this is not required. For instance, these code are equivalent\n\n\nUSArrests |&gt; filter(UrbanPop &gt; 80) |&gt; select(Murder, UrbanPop) \nselect(filter(USArrests,UrbanPop &gt; 80), Murder, UrbanPop)"
-  },
-  {
-    "objectID": "lectures/week_5/week_5.html#useful-tidyverse-functions",
-    "href": "lectures/week_5/week_5.html#useful-tidyverse-functions",
-    "title": "DATA 505: Statistics Using R",
-    "section": "Useful tidyverse functions",
-    "text": "Useful tidyverse functions\n\n# filter: subset data according to some condition\nUSArrests |&gt; \n  filter(UrbanPop_Cat=='High', Murder &gt; 10)\n\n# slice: subset specific rows\n# select: subset specific columns\nUSArrests |&gt; \n  slice(1:5) |&gt;\n  select(Murder,Assault)\n\n# arrange: sort by a variable\nUSArrests |&gt; \n  arrange(desc(Murder)) |&gt;\n  slice(1:5)\n\n# summarise: calculate summary statistics\nUSArrests |&gt; \n  summarise(mean(Murder),median(Murder),count=length(Murder))\n\n\n# mutate: create new variables\nUSArrests |&gt; \n  mutate(Violent = Murder + Assault + Rape) |&gt;\n  arrange(desc(Violent)) |&gt;\n  select(Violent)\n\n# group_by: look at subset groups of data\nUSArrests |&gt; \n  group_by(UrbanPop_Cat) |&gt;\n  summarise(mean(Murder), median(Murder))"
-  },
-  {
-    "objectID": "lectures/week_5/week_5.html#integration-with-ggplot",
-    "href": "lectures/week_5/week_5.html#integration-with-ggplot",
-    "title": "DATA 505: Statistics Using R",
-    "section": "Integration with ggplot",
-    "text": "Integration with ggplot\n\nThe pipe operator works very well with ggplot syntax\n\n\nUSArrests |&gt; \n  mutate(Urban = ifelse(UrbanPop &gt; 80, \"Yes\", \"No\")) |&gt;\n  ggplot(aes(x=Murder, y=Assault, color=Urban)) +\n  geom_point() +\n  theme_bw()"
-  },
-  {
-    "objectID": "lectures/week_5/week_5.html#map",
-    "href": "lectures/week_5/week_5.html#map",
-    "title": "DATA 505: Statistics Using R",
-    "section": "Map",
-    "text": "Map\n\nThere are a few different maps included in the maps package\n\n\n# see ?map_data\nmymap &lt;- map_data(map=\"state\")\n\n\nWhat exactly is mymap? Try some basic visualizations…\n\n\nplot(mymap$long,mymap$lat)\n\nggplot(data=mymap,aes(x=long,y=lat,group=group)) +\n  geom_polygon() +\n  coord_fixed(1.4) +\n  theme_void()"
-  },
-  {
-    "objectID": "lectures/week_5/week_5.html#section-3",
-    "href": "lectures/week_5/week_5.html#section-3",
-    "title": "DATA 505: Statistics Using R",
-    "section": "",
-    "text": "plot(mymap$long,mymap$lat)"
-  },
-  {
-    "objectID": "lectures/week_5/week_5.html#section-4",
-    "href": "lectures/week_5/week_5.html#section-4",
-    "title": "DATA 505: Statistics Using R",
-    "section": "",
-    "text": "ggplot(data=mymap,aes(x=long,y=lat,group=group)) +\n  geom_polygon() +\n  coord_fixed(1.4) +\n  theme_void()"
-  },
-  {
-    "objectID": "lectures/week_5/week_5.html#combine-data",
-    "href": "lectures/week_5/week_5.html#combine-data",
-    "title": "DATA 505: Statistics Using R",
-    "section": "Combine data",
-    "text": "Combine data\n\nWe want to combine the following dataset\nThe “State” column in USArrests should match the “region” column in mymap; the state names should have consistent spelling and capitalization\n\n\nUSArrests |&gt; slice_head(n=3)\n\n        Murder Assault UrbanPop Rape   State UrbanPop_tile UrbanPop_Cat\nAlabama   13.2     236       58 21.2 Alabama             1          Low\nAlaska    10.0     263       48 44.5  Alaska             1          Low\nArizona    8.1     294       80 31.0 Arizona             3         High\n\nmymap |&gt; slice_head(n=3)\n\n       long      lat group order  region subregion\n1 -87.46201 30.38968     1     1 alabama      &lt;NA&gt;\n2 -87.48493 30.37249     1     2 alabama      &lt;NA&gt;\n3 -87.52503 30.37249     1     3 alabama      &lt;NA&gt;"
-  },
-  {
-    "objectID": "lectures/week_5/week_5.html#section-5",
-    "href": "lectures/week_5/week_5.html#section-5",
-    "title": "DATA 505: Statistics Using R",
-    "section": "",
-    "text": "# convert county name to lower case\nUSArrests$State=tolower(USArrests$State)\n\n# combine data with left_join\nmymap_comb = left_join(mymap, USArrests, \n                     by=c('region'='State'))\n\nmymap_comb |&gt; slice_head(n=3)\n\n       long      lat group order  region subregion Murder Assault UrbanPop Rape\n1 -87.46201 30.38968     1     1 alabama      &lt;NA&gt;   13.2     236       58 21.2\n2 -87.48493 30.37249     1     2 alabama      &lt;NA&gt;   13.2     236       58 21.2\n3 -87.52503 30.37249     1     3 alabama      &lt;NA&gt;   13.2     236       58 21.2\n  UrbanPop_tile UrbanPop_Cat\n1             1          Low\n2             1          Low\n3             1          Low"
-  },
-  {
-    "objectID": "lectures/week_5/week_5.html#visualization",
-    "href": "lectures/week_5/week_5.html#visualization",
-    "title": "DATA 505: Statistics Using R",
-    "section": "Visualization!",
-    "text": "Visualization!\n\nmymap_comb |&gt;\n  ggplot(aes(x=long,y=lat,group=group,\n             fill=Murder)) +\n  geom_polygon(color='darkblue') +\n  coord_fixed(1.4) +\n  theme_void() +\n  labs(fill='Murder rate') +\n  scale_fill_gradient(low=\"green\", high=\"red\")"
-  },
-  {
-    "objectID": "lectures/week_5/week_5.html#different-ways-to-join-data",
-    "href": "lectures/week_5/week_5.html#different-ways-to-join-data",
-    "title": "DATA 505: Statistics Using R",
-    "section": "Different ways to join data",
-    "text": "Different ways to join data\n\nRun ?left_join() to understand different ways to join data.\n\nDiscussion: what will the following code return? You can run the code to find out.\n\n\ndf.student\n\n  name exam project\n1    A   80       1\n2    B   91       2\n3    C   85       1\n4    D   78      NA\n\ndf.project\n\n  projectID    description\n1         1  visualization\n2         2 classification\n3         3    text mining\n\n\n\ninner_join(df.student, df.project, by=c('project' = 'projectID'))\nleft_join(df.student, df.project, by=c('project' = 'projectID'))\nleft_join(df.project, df.student, by=c('projectID' = 'project'))\nright_join(df.student, df.project, by=c('project' = 'projectID'))\nfull_join(df.student, df.project, by=c('project' = 'projectID'))"
-  },
-  {
-    "objectID": "lectures/week_2/lectures_2.html",
-    "href": "lectures/week_2/lectures_2.html",
-    "title": "Week 2: Objects, Types, Classes, and Collections",
-    "section": "",
-    "text": "Agenda\n\nIn-class Quiz on Homework 1 (5 minutes)\nLecture on basics of variables, objects, types, and classes, as well as collections of objects, like vectors, lists, and data frames. We will also meet some of our first functions along the way.\n\nToday I recommend downloading the following R script (which contains only the code chunks from the lecture) and following along in RStudio by running line-by-line: week_2.R\n\nHands-on Lab 2 will give you practice reading data into R from a text file to create a data.frame object, and then reinforce some of the concepts from today using the variables defined in this dataset.\n\nlab_2_blank.qmd\nlab_2.pdf\n\n\n\n\nSupportive reading outside class\n(Optional but recommended) the best supporting textbook material for this week is section 2 of this book:\n\nGrolemund, G. (2014). Hands-On Programming with R. O’Reilly Media. Retrieved from https://rstudio-education.github.io/hopr/.\n\n\n\nSlides\nLink to fullscreen"
-  },
-  {
-    "objectID": "syllabus/syllabus.html",
-    "href": "syllabus/syllabus.html",
-    "title": "Syllabus",
-    "section": "",
-    "text": "The syllabus is available on Moodle: Link."
-  },
-  {
-    "objectID": "schedule/schedule.html",
-    "href": "schedule/schedule.html",
-    "title": "Schedule",
-    "section": "",
-    "text": "Run the schedule.R script and display the most current plan for the schedule\nhere::i_am(\"schedule/schedule.qmd\")\nlibrary(here)\nlibrary(gt)\n\nsource(here(\"schedule/schedule.R\"))\n\ngt(schedule)\n\n\n\n\n\n\n\n\nDate\nContents\nNotes\n\n\n\n\nAug 26\nIntroduction & Getting started\nLab 1\n\n\nSep 2\nR Basics (objects, types, classes, and collections)\nHW-Quiz 1 / Lab 2\n\n\nSep 9\nDescriptive statistics & Summarizing data\nLab 3\n\n\nSep 16\nBasic statistical inference\nHW-Quiz 2 / Lab 4\n\n\nSep 23\nData manipulation & visualization\nHW-Quiz 3 / Lab 5\n\n\nSep 30\nExam 1\n\n\n\nOct 7\nNO CLASS (Fall Break)\n\n\n\nOct 14\nCase study 1\n\n\n\nOct 21\nRegression\nContinue case study 1\n\n\nOct 28\nWriting functions\nHW-Quiz 4 / Lab 6\n\n\nNov 4\nExam 2\n\n\n\nNov 11\nSampling distributions & CLT\nLab 7\n\n\nNov 18\nSimulation & Case study 2\nHW-Quiz 5\n\n\nNov 25\nBootstrap & Case study 2\nHW-Quiz 6\n\n\nDec 2\nShiny (UI-based apps)\nCase study 2 due / Lab 8\n\n\nDec 9\nFinal Exam\n7:30 to 10:30"
-  },
-  {
-    "objectID": "labs/week_3/week_3_lab.html",
-    "href": "labs/week_3/week_3_lab.html",
-    "title": "Lab 3: Descriptive Statistics and Summarizing Data",
-    "section": "",
-    "text": "Hands-on lab to explore a dataset concerning housing-related data for Boston census tracts. You will use descriptive statistics and simple visual displays to summarize the distributions of several variables across the census tracts.\n\nlab_3_blank.qmd\nlab_3.pdf\nlab_3_solution.pdf"
-  },
-  {
-    "objectID": "labs/week_4/week_4_lab.html",
-    "href": "labs/week_4/week_4_lab.html",
-    "title": "Lab 4: Basic Statistical Inference",
-    "section": "",
-    "text": "lab_4_blank.qmd\nlab_4.pdf"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Data 505: Statistics Using R",
-    "section": "",
-    "text": "Welcome to the DATA 505 website for Fall 2025 at Drew University. The course is “Statistics Using R”."
-  },
-  {
-    "objectID": "index.html#course-description",
-    "href": "index.html#course-description",
-    "title": "Data 505: Statistics Using R",
-    "section": "Course description",
-    "text": "Course description\nCovers how to use real-world data and draw intelligent conclusions on it using univariate and bivariate descriptive statistics such as centrality, spread, and correlation. Students have the opportunity to learn how to use the R language in the R-studio environment to obtain representative samples from large datasets and use the information in such samples to draw inferences on the larger datasets they were taken from. Course topics include graphical and tabular presentation of data, descriptive summary statistics, manipulation of data, regression, probability distributions, t-tests, and one-way analysis of variance."
-  },
-  {
-    "objectID": "exams/exam_1.html",
-    "href": "exams/exam_1.html",
-    "title": "Exam 1 (Sep 30): review and practice materials",
-    "section": "",
-    "text": "As described in the syllabus, the exam will have two parts: the first being pen-and-paper, and the second being open-computer.\n\nPart 1:\n\nClosed computer and closed notes\nHandwritten answers\n\nPart 2:\n\nOpen computer. Any online resource that is “not alive” may be used (i.e. you may freely use online resources, but you may not communicate with any other person).\nElectronic submission on Moodle: you will fill in a Quarto script with R code and written answers\n\n\nOnce you turn in Part 1, you may open your computer and download the blank Quarto script for Part 2. You may not return to Part 1 after turning it in and beginning the open-computer portion."
-  },
-  {
-    "objectID": "exams/exam_1.html#part-1",
-    "href": "exams/exam_1.html#part-1",
-    "title": "Exam 1 (Sep 30): review and practice materials",
-    "section": "Part 1",
-    "text": "Part 1\nFor Part 1 (on paper, closed computer), I have created a practice exam to give you a sense of the format and topics: part_1_practice.pdf.\nThe solution is here: part_1_practice_solution.pdf."
-  },
-  {
-    "objectID": "exams/exam_1.html#part-2",
-    "href": "exams/exam_1.html#part-2",
-    "title": "Exam 1 (Sep 30): review and practice materials",
-    "section": "Part 2",
-    "text": "Part 2\nFor Part 2, the format will be very similar to the in-class Labs. Given the open format of this part of the exam, I will not provide a separate practice exam for Part 2.\nYou will be given a Quarto script which you can download, and which you will edit to fill in blank code chunks and free-text responses (again, just like the lab).\nThe questions will involve exploration of a single real dataset. Coding tasks and questions about this dataset will be drawn from the list of topics above.\nI suggest reviewing or even re-doing the labs as a way of practicing for Part 2."
-  },
-  {
-    "objectID": "lectures/week_2/week_2.html#what-is-a-variable",
-    "href": "lectures/week_2/week_2.html#what-is-a-variable",
-    "title": "Week 2: Objects, Types, Classes, and Collections",
-    "section": "What is a variable?",
-    "text": "What is a variable?\n\nA variable is a named object that stores a value or other data in memory\n\n\nx &lt;- 4 \nname &lt;- \"Andrew\"\n\n\nThe code above shows two examples of assigning a value to a variable (4 to x, and \"Andrew\" to name)\nHaving made such an assignment, we have created an object which is stored in memory in the R session"
-  },
-  {
-    "objectID": "lectures/week_2/week_2.html#operations",
-    "href": "lectures/week_2/week_2.html#operations",
-    "title": "Week 2: Objects, Types, Classes, and Collections",
-    "section": "Operations",
-    "text": "Operations\n\nOnce an object has been defined in this way, it may be used, modified, or operated on in downstream parts of your script\n\n\nx ^ 2 \n\n[1] 16\n\ntoupper(name)\n\n[1] \"ANDREW\""
-  },
-  {
-    "objectID": "lectures/week_2/week_2.html#types-and-classes-1",
-    "href": "lectures/week_2/week_2.html#types-and-classes-1",
-    "title": "Week 2: Objects, Types, Classes, and Collections",
-    "section": "Types and Classes",
-    "text": "Types and Classes\n\n\n“Basic” or “Atomic” types include\n\ndouble (aka numeric; e.g., 3.14)\ninteger (e.g., 2L)\ncharacter (e.g., \"hello\")\nlogical (e.g., TRUE, FALSE)\n\nAnother special type\n\nlist (collection of objects allowing mixed types)\n\n\nKey classes\n\nfactor (categorical data, built on integer)\ndata.frame (tabular data, list of columns)\nmatrix (2D array, single type)\narray (generalization of matrix to more dimensions)\nMany many others: additional classes can be defined by packages\n\n\nDifference:\n\nBasic types are the fundamental building blocks for data storage in R.\nClasses (e.g. S3) add structure and behavior to objects, enabling custom methods and more complex data structures."
-  },
-  {
-    "objectID": "lectures/week_2/week_2.html#numerics-and-integers",
-    "href": "lectures/week_2/week_2.html#numerics-and-integers",
-    "title": "Week 2: Objects, Types, Classes, and Collections",
-    "section": "Numerics and integers",
-    "text": "Numerics and integers\n\nNumeric objects are stored as real numbers (mathematical sense) or floating point numbers (in computer memory)\n\nExample: x &lt;- 3.14\nQuestion: having assigned x this value, what does typeof(x) return? (this function tells us the basic type of an object)\n\nInteger objects are whole numbers\n\nExample: y &lt;- 5L (L suffix makes it an integer)\nQuestion: what is typeof(y)?"
-  },
-  {
-    "objectID": "lectures/week_2/week_2.html#arithmetic-operations",
-    "href": "lectures/week_2/week_2.html#arithmetic-operations",
-    "title": "Week 2: Objects, Types, Classes, and Collections",
-    "section": "Arithmetic operations",
-    "text": "Arithmetic operations\n\nArithmetic operations work on both types:\n\n\na &lt;- 7\nb &lt;- 2L\na + b\n\n[1] 9\n\na / b\n\n[1] 3.5\n\na * b\n\n[1] 14\n\na ^ b\n\n[1] 49"
-  },
-  {
-    "objectID": "lectures/week_2/week_2.html#characters",
-    "href": "lectures/week_2/week_2.html#characters",
-    "title": "Week 2: Objects, Types, Classes, and Collections",
-    "section": "Characters",
-    "text": "Characters\n\nCharacter objects store text (strings).\n\nExample: name &lt;- \"Alice\"\n\nYou can combine strings with paste() or paste0():\n\n\nfirst &lt;- \"Data\"\nsecond &lt;- \"Science\"\npaste(first, second)   # \"Data Science\"\n\n[1] \"Data Science\"\n\n\n\nFunctions like nchar() (number of characters), toupper() (uppercase), and tolower() (lowercase) operate on character objects"
-  },
-  {
-    "objectID": "lectures/week_2/week_2.html#logicals",
-    "href": "lectures/week_2/week_2.html#logicals",
-    "title": "Week 2: Objects, Types, Classes, and Collections",
-    "section": "Logicals",
-    "text": "Logicals\n\nLogical objects represent TRUE or FALSE values.\n\nExample: flag &lt;- TRUE\n\nRelational operators like below return logical objects\n\n\nx &lt;- 5\nx &gt; 3      # TRUE\n\n[1] TRUE\n\nx == 5     # TRUE\n\n[1] TRUE\n\nx != 2     # TRUE\n\n[1] TRUE"
-  },
-  {
-    "objectID": "lectures/week_2/week_2.html#factors",
-    "href": "lectures/week_2/week_2.html#factors",
-    "title": "Week 2: Objects, Types, Classes, and Collections",
-    "section": "Factors",
-    "text": "Factors\n\nFactors are used for categorical data (groups/levels).\n\nExample:\nQuestion: what is class(species)?\nQuestion: what is typeof(species)? (And why?)\n\nFactors have levels (the possible values which the variable can take)\n\n\nlevels(species)   \n\n[1] \"Cat\"    \"Dog\"    \"Rabbit\"\n\n\n\nUseful for statistical analysis of categorical data (nominal or ordinal variables)"
-  },
-  {
-    "objectID": "lectures/week_2/week_2.html#vectors",
-    "href": "lectures/week_2/week_2.html#vectors",
-    "title": "Week 2: Objects, Types, Classes, and Collections",
-    "section": "Vectors",
-    "text": "Vectors\n\nA vector is the most basic data structure in R: a sequence of elements of the same type.\n\nExample: scores &lt;- c(88, 92, 79, 85)\nAll elements must be of the same atomic type (numeric, character, logical, etc.), though R will try type coercion first\n\nYou can create vectors with c(), seq(), or rep()\n\n\nletters_vec &lt;- c(\"A\", \"B\", \"C\")\nseq_vec &lt;- seq(1, 5)\n\n\nVectors support element-wise operations:\n\n\nscores + 5   # adds 5 to each score\n\n[1] 93 97 84 90"
-  },
-  {
-    "objectID": "lectures/week_2/week_2.html#matrices-i",
-    "href": "lectures/week_2/week_2.html#matrices-i",
-    "title": "Week 2: Objects, Types, Classes, and Collections",
-    "section": "Matrices I",
-    "text": "Matrices I\n\nA matrix is a two-dimensional array of elements of the same basic type.\n\nExample:\n\n\n\nmat &lt;- matrix(1:6, nrow = 2, ncol = 3)\nmat\n\n     [,1] [,2] [,3]\n[1,]    1    3    5\n[2,]    2    4    6"
-  },
-  {
-    "objectID": "lectures/week_2/week_2.html#matrices-ii",
-    "href": "lectures/week_2/week_2.html#matrices-ii",
-    "title": "Week 2: Objects, Types, Classes, and Collections",
-    "section": "Matrices II",
-    "text": "Matrices II\n\nAccess elements by row and column:\n\n\nmat[1, 2]   # element in row 1, column 2\n\n[1] 3\n\n\n\nUseful for mathematical and statistical computations."
-  },
-  {
-    "objectID": "lectures/week_2/week_2.html#arrays",
-    "href": "lectures/week_2/week_2.html#arrays",
-    "title": "Week 2: Objects, Types, Classes, and Collections",
-    "section": "Arrays",
-    "text": "Arrays\n\nAn array generalizes matrices to more than two dimensions.\n\nExample: arr &lt;- array(1:8, dim = c(2, 2, 2))\nAll elements must be of the same atomic type.\n\nArrays are useful for representing multi-dimensional data (e.g., images, time series)."
-  },
-  {
-    "objectID": "lectures/week_2/week_2.html#lists-i",
-    "href": "lectures/week_2/week_2.html#lists-i",
-    "title": "Week 2: Objects, Types, Classes, and Collections",
-    "section": "Lists I",
-    "text": "Lists I\n\nA list is a collection of objects that can be of different types and structures.\n\nExample:\n\n\n\nmy_list &lt;- list(student = \"Alice\", age = 30, scores = c(88, 92, 79))\nmy_list\n\n$student\n[1] \"Alice\"\n\n$age\n[1] 30\n\n$scores\n[1] 88 92 79"
-  },
-  {
-    "objectID": "lectures/week_2/week_2.html#lists-ii",
-    "href": "lectures/week_2/week_2.html#lists-ii",
-    "title": "Week 2: Objects, Types, Classes, and Collections",
-    "section": "Lists II",
-    "text": "Lists II\n\nLists can contain vectors, matrices, other lists, or any R object.\nAccess elements by name or position:\n\n\nmy_list$name\n\nNULL\n\nmy_list[[2]]\n\n[1] 30\n\nmy_list[[\"scores\"]]\n\n[1] 88 92 79"
-  },
-  {
-    "objectID": "lectures/week_2/week_2.html#data-frames-i",
-    "href": "lectures/week_2/week_2.html#data-frames-i",
-    "title": "Week 2: Objects, Types, Classes, and Collections",
-    "section": "Data frames I",
-    "text": "Data frames I\n\nA data frame is a table where each column is a vector (often of different types).\n\nColumns can be numeric, character, logical, or factor.\nExample:\n\n\n\ndf &lt;- data.frame(\n  name = c(\"Alice\", \"Bob\"),\n  age = c(30, 25),\n  likes_ice_cream = c(TRUE, FALSE)\n)\ndf\n\n   name age likes_ice_cream\n1 Alice  30            TRUE\n2   Bob  25           FALSE"
-  },
-  {
-    "objectID": "lectures/week_2/week_2.html#data-frames-ii",
-    "href": "lectures/week_2/week_2.html#data-frames-ii",
-    "title": "Week 2: Objects, Types, Classes, and Collections",
-    "section": "Data frames II",
-    "text": "Data frames II\n\nData frames are the primary structure for storing and analyzing tabular data in R.\nA data frame is a list in disguise (additional constraint that length of each list element must match: rectangluar data)\n\nQuestion what do class(df) and typeof(df) return for df as defined on the last slide?\n\nAccess to columns of data frames follows the same syntax as access to elements of lists:\n\n\ndf$name\n\n[1] \"Alice\" \"Bob\"  \n\ndf[[\"age\"]]\n\n[1] 30 25"
-  },
-  {
-    "objectID": "lectures/week_2/week_2.html#typeof-for-basic-type",
-    "href": "lectures/week_2/week_2.html#typeof-for-basic-type",
-    "title": "Week 2: Objects, Types, Classes, and Collections",
-    "section": "typeof() for basic type",
-    "text": "typeof() for basic type\n\nThe typeof() function tells you how R stores an object internally.\n\nExample:\n\n\n\nx &lt;- 3.14\ntypeof(x)   # \"double\"\n\n[1] \"double\"\n\nspecies &lt;- factor(c(\"Dog\", \"Cat\"))\ntypeof(species)   # \"integer\"\n\n[1] \"integer\"\n\n\n\nUseful for understanding the underlying representation of your data."
-  },
-  {
-    "objectID": "lectures/week_2/week_2.html#class-for-higher-level-class",
-    "href": "lectures/week_2/week_2.html#class-for-higher-level-class",
-    "title": "Week 2: Objects, Types, Classes, and Collections",
-    "section": "class() for higher level class",
-    "text": "class() for higher level class\n\nThe class() function tells you the object’s class, which determines how R treats it in generic functions.\n\nExample:\n\n\n\nx &lt;- 3.14\nclass(x)   # \"numeric\"\n\n[1] \"numeric\"\n\nspecies &lt;- factor(c(\"Dog\", \"Cat\"))\nclass(species)   # \"factor\"\n\n[1] \"factor\"\n\ndf &lt;- data.frame(name = c(\"Alice\", \"Bob\"))\nclass(df)   # \"data.frame\"\n\n[1] \"data.frame\"\n\ntypeof(df)   # \"list\"\n\n[1] \"list\"\n\n\n\nMany objects have both a basic type and a class attribute."
-  },
-  {
-    "objectID": "lectures/week_2/week_2.html#str-to-inspect-objects",
-    "href": "lectures/week_2/week_2.html#str-to-inspect-objects",
-    "title": "Week 2: Objects, Types, Classes, and Collections",
-    "section": "str() to inspect objects",
-    "text": "str() to inspect objects\n\nThe str() function gives a compact summary of an object’s structure.\n\nExample:\n\n\n\nstr(df)\n\n'data.frame':   2 obs. of  1 variable:\n $ name: chr  \"Alice\" \"Bob\"\n\nstr(species)\n\n Factor w/ 2 levels \"Cat\",\"Dog\": 2 1\n\nstr(x)\n\n num 3.14\n\n\n\nShows type, class, length, and a preview of the contents.\nVery useful for quickly understanding unfamiliar objects."
-  },
-  {
-    "objectID": "lectures/week_2/week_2.html#implicit-coercion",
-    "href": "lectures/week_2/week_2.html#implicit-coercion",
-    "title": "Week 2: Objects, Types, Classes, and Collections",
-    "section": "Implicit coercion",
-    "text": "Implicit coercion\n\nR will automatically convert (coerce) types in certain situations, especially when combining different types in a vector.\n\nExample:\n\n\n\nc(1, \"a\", TRUE)   # All elements become character: \"1\" \"a\" \"TRUE\"\n\n[1] \"1\"    \"a\"    \"TRUE\"\n\nc(TRUE, 2)        # All elements become numeric: 1 2\n\n[1] 1 2\n\n\n\nThe rule: R chooses the “least restrictive” type that can represent all elements (character &gt; numeric &gt; logical).\nBe aware: implicit coercion can lead to unexpected results if you mix types!"
-  },
-  {
-    "objectID": "lectures/week_2/week_2.html#explicit-coercion",
-    "href": "lectures/week_2/week_2.html#explicit-coercion",
-    "title": "Week 2: Objects, Types, Classes, and Collections",
-    "section": "Explicit coercion",
-    "text": "Explicit coercion\n\nYou can manually convert (coerce) an object to another type using functions like:\n\nas.numeric()\nas.character()\nas.logical()\nas.factor()\n\nExample:\n\n\nx &lt;- \"123\"\nas.numeric(x)   # 123\n\n[1] 123\n\ny &lt;- c(\"TRUE\", \"FALSE\", \"TRUE\")\nas.logical(y)   # TRUE FALSE TRUE\n\n[1]  TRUE FALSE  TRUE\n\n\n\nIf coercion fails, R will return NA and may give a warning"
-  },
-  {
-    "objectID": "lectures/week_2/week_2.html#creating-vectors",
-    "href": "lectures/week_2/week_2.html#creating-vectors",
-    "title": "Week 2: Objects, Types, Classes, and Collections",
-    "section": "Creating vectors",
-    "text": "Creating vectors\n\nUse c() to combine values into a vector:\n\n\nnums &lt;- c(1, 2, 3, 4)\nchars &lt;- c(\"A\", \"B\", \"C\")\n\n\nUse seq() to generate sequences:\n\n\nseq(1, 10, by = 2)   # 1 3 5 7 9\n\n[1] 1 3 5 7 9\n\n\n\nUse rep() to repeat values:\n\n\nrep(5, times = 3)    # 5 5 5\n\n[1] 5 5 5"
-  },
-  {
-    "objectID": "lectures/week_2/week_2.html#subsetting",
-    "href": "lectures/week_2/week_2.html#subsetting",
-    "title": "Week 2: Objects, Types, Classes, and Collections",
-    "section": "Subsetting",
-    "text": "Subsetting\n\nAccess elements of a vector by position (indexing starts at 1):\n\n\nnums &lt;- c(10, 20, 30, 40)\nnums[2]      # 20\n\n[1] 20\n\nnums[1:3]    # 10 20 30\n\n[1] 10 20 30\n\n\n\nUse logical vectors for subsetting:\n\n\nnums[nums &gt; 15]   # 20 30 40\n\n[1] 20 30 40\n\n\n\nNegative indices remove elements:\n\n\nnums[-1]   # 20 30 40\n\n[1] 20 30 40"
-  },
-  {
-    "objectID": "lectures/week_2/week_2.html#vectorized-operations",
-    "href": "lectures/week_2/week_2.html#vectorized-operations",
-    "title": "Week 2: Objects, Types, Classes, and Collections",
-    "section": "Vectorized operations",
-    "text": "Vectorized operations\n\nMost operations in R are vectorized: they apply to each element automatically.\n\n\nx &lt;- c(1, 2, 3)\ny &lt;- c(10, 20, 30)\nx + y      # 11 22 33\n\n[1] 11 22 33\n\nx * 2      # 2 4 6\n\n[1] 2 4 6\n\n\n\nFunctions also operate element-wise:\n\n\nsqrt(x)    # 1 1.414214 1.732051\n\n[1] 1.000000 1.414214 1.732051"
-  },
-  {
-    "objectID": "lectures/week_2/week_2.html#missing-values-1",
-    "href": "lectures/week_2/week_2.html#missing-values-1",
-    "title": "Week 2: Objects, Types, Classes, and Collections",
-    "section": "Missing values",
-    "text": "Missing values\n\nIn R, missing data is represented by NA.\nNA can appear in any type of object: numeric, character, logical, etc.\n\nExample:\n\n\n\nscores &lt;- c(88, NA, 79, 85)\nnames &lt;- c(\"Alice\", NA, \"Bob\")\n\n\nYou can check for missing values with is.na():\n\n\nscores\n\n[1] 88 NA 79 85\n\nis.na(scores)   # TRUE for missing values\n\n[1] FALSE  TRUE FALSE FALSE\n\n\n\nBe aware: calculations with NA usually return NA unless you explicitly remove or handle (to be discussed next week)"
-  },
-  {
-    "objectID": "lectures/week_2/week_2.html#lab-2-1",
-    "href": "lectures/week_2/week_2.html#lab-2-1",
-    "title": "Week 2: Objects, Types, Classes, and Collections",
-    "section": "Lab 2",
-    "text": "Lab 2\nlab_2_blank.qmd lab_2.pdf"
-  },
-  {
-    "objectID": "lectures/week_5/lectures_5.html",
-    "href": "lectures/week_5/lectures_5.html",
-    "title": "Week 5: Data manipulation & visualization",
-    "section": "",
-    "text": "Agenda\n\nNo homework / no quiz today. Next Tuesday you will have your first exam.\nLecture on data manipulation with tidyverse functions, and data visualization (mostly using base R and ggplot)\nWe will not cover interactive plots. Ways to create interactive plots are very flexible and there is no unified approach. For examples, see:\n\nhttp://www.htmlwidgets.org/showcase_leaflet.html\nhttps://plot.ly/r/\n\nHands-on lab explore a dataset based on a large scale survey project, called The Changing Childhood Project, conducted by unicef. You will create visualizations that will be printed and posted on the wall next to my office.\n\n\n\nSupportive reading outside class\n(Optional but recommended):\n\nH. Wickham (2014): Tidy Data Link\n\nHadley Wickham is the author of ggplot and tidyverse. He is currently the chief scientist at Posit.\n\n\nSlides\nLink to fullscreen"
   },
   {
     "objectID": "lectures/week_4/week_4.html#what-is-inference-about",
@@ -1211,66 +1442,234 @@
     "text": "Assessing the strength of evidence\n\nFisher used Fisher’s exact test (which we will not cover in the class - still you should be able to interpret the resulting p-value)\n\n\nfisher.test(outcome, alternative = \"greater\")\n\n\n    Fisher's Exact Test for Count Data\n\ndata:  outcome\np-value = 0.2429\nalternative hypothesis: true odds ratio is greater than 1\n95 percent confidence interval:\n 0.3135693       Inf\nsample estimates:\nodds ratio \n  6.408309 \n\n\n\nThe p-value is large (larger than \\(\\alpha = 0.05\\)). We do not reject \\(H_0\\). There is insufficient evidence to conclude the lady can distinguish tea types better than random guessing."
   },
   {
-    "objectID": "lectures/week_3/lectures_3.html",
-    "href": "lectures/week_3/lectures_3.html",
-    "title": "Week 3: Descriptive Statistics and Summarizing Data",
+    "objectID": "lectures/week_5/week_5.html#prep-work",
+    "href": "lectures/week_5/week_5.html#prep-work",
+    "title": "DATA 505: Statistics Using R",
+    "section": "Prep work",
+    "text": "Prep work\nThe following packages are required for today’s lecture. Please install first if needed.\n\nlibrary(tidyverse) # for data manipulation, ggplots is part of this\nlibrary(maps)\nlibrary(plotly) # for interactive plots\n\nTo start, we’ll use a very simple dataset in Base R.\n\n?USArrests\nstr(USArrests)"
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#section",
+    "href": "lectures/week_5/week_5.html#section",
+    "title": "DATA 505: Statistics Using R",
     "section": "",
-    "text": "Agenda\n\nNo homework / no quiz today. Next quiz will take place next Tuesday.\nLecture on descriptive statistics and summarizing data. We will refresh our memory about measures of center, spread, and describing both continuous (scale) and categorical (nominal/ordinal) distributions.\n\nLike last week, you may download an R script (which contains only the code chunks from the lecture) and follow along in RStudio by running line-by-line: week_3.R\n\nHands-on lab to explore a dataset concerning housing-related data for Boston census tracts. You will use descriptive statistics and simple visual displays to summarize the distributions of several variables across the census tracts.\n\nlab_3_blank.qmd\nlab_3.pdf\n\n\n\n\nSupportive reading outside class\n(Optional but recommended) the best supporting textbook material for this week is Chapter 5 of this book:\n\nNavarro, D. J. (2019). Learning statistics with R: A tutorial for psychology students and other beginners (Version 0.6.1). University of Adelaide. Retrieved from https://learningstatisticswithr.com. Link to pdf\n\n\n\nSlides\nLink to fullscreen"
+    "text": "Create a separate variable for state names; create a categorical (ordinal) variable based on Urban Population. More on this syntax later.\n\nUSArrests &lt;- USArrests |&gt; \n  mutate(State = row.names(USArrests)) |&gt;\n  mutate(UrbanPop_tile = ntile(UrbanPop, 3)) |&gt;\n  mutate(UrbanPop_Cat = factor(UrbanPop_tile, \n                               levels=c(1,2,3),\n                               labels=c('Low',\"Medium\",\"High\"),\n                               ordered=T))"
   },
   {
-    "objectID": "lectures/week_1/lectures_1.html",
-    "href": "lectures/week_1/lectures_1.html",
-    "title": "Week 1: Introduction and getting started with R",
+    "objectID": "lectures/week_5/week_5.html#histogram",
+    "href": "lectures/week_5/week_5.html#histogram",
+    "title": "DATA 505: Statistics Using R",
+    "section": "Histogram",
+    "text": "Histogram\n\n\n\nHistogram is a uni-variate graph. To describe a distribution, keep in mind properties of location, spread, and shape.\nVisualization elements can be modified by adding arguments within the function\n\n\n\nhist(USArrests$Murder,\n      nclass=30,\n     main='Murder rate per 100000',\n    col='pink', \n     ylab=NA, \n     yaxt='n',\n    xlab=NA)"
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#boxplot",
+    "href": "lectures/week_5/week_5.html#boxplot",
+    "title": "DATA 505: Statistics Using R",
+    "section": "Boxplot",
+    "text": "Boxplot\n\nBoxplot is based on the 5-number summary: min, Q1, Q2 (median), Q3, max\n\n\nboxplot(USArrests$Murder)"
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#stem-and-leaf-plot",
+    "href": "lectures/week_5/week_5.html#stem-and-leaf-plot",
+    "title": "DATA 505: Statistics Using R",
+    "section": "Stem and leaf plot",
+    "text": "Stem and leaf plot\n\n\n\nDifferent software often produce stem-and-leaf plots that look differently\nIn R, can change scale and width arguments\nOnly sometimes useful\n\n\n\nstem(USArrests$Murder)\n\n\n  The decimal point is at the |\n\n   0 | 8\n   2 | 11226672348\n   4 | 0349379\n   6 | 003682349\n   8 | 158007\n  10 | 04134\n  12 | 127022\n  14 | 444\n  16 | 14"
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#side-by-side-boxplots",
+    "href": "lectures/week_5/week_5.html#side-by-side-boxplots",
+    "title": "DATA 505: Statistics Using R",
+    "section": "Side-by-side boxplots",
+    "text": "Side-by-side boxplots\n\nboxplot(USArrests$Assault ~ USArrests$UrbanPop_Cat,\n        col='pink',\n        border='darkblue',\n        pch=16,\n        xlab='Urban population',\n        ylab='Assault rate')"
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#scatterplot",
+    "href": "lectures/week_5/week_5.html#scatterplot",
+    "title": "DATA 505: Statistics Using R",
+    "section": "Scatterplot",
+    "text": "Scatterplot\n\nScatterplots are bi-variate; useful to detect relationship between two numeric (scale) variables\n\n\nplot(USArrests$UrbanPop,USArrests$Assault)"
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#example-1",
+    "href": "lectures/week_5/week_5.html#example-1",
+    "title": "DATA 505: Statistics Using R",
+    "section": "Example 1",
+    "text": "Example 1\n\nggplot2 is an alternative, more unified framework (Grammar of Graphics) for creating plots and graphics in R\n\n\nggplot(data=USArrests,\n       mapping=aes(x=UrbanPop,y=Assault)) + \n  geom_point()"
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#example-2",
+    "href": "lectures/week_5/week_5.html#example-2",
+    "title": "DATA 505: Statistics Using R",
+    "section": "Example 2",
+    "text": "Example 2\n\nggplot(data=USArrests,\n       mapping=aes(x=UrbanPop_Cat,y = Assault, fill=UrbanPop_Cat)) + \n  geom_boxplot()"
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#basic-ingredients-of-a-ggplot",
+    "href": "lectures/week_5/week_5.html#basic-ingredients-of-a-ggplot",
+    "title": "DATA 505: Statistics Using R",
+    "section": "Basic ingredients of a ggplot",
+    "text": "Basic ingredients of a ggplot\n\nData\n\nData frame containing all the raw observations\n\nAesthetic mapping\n\nAn aesthetic is a visual property of the plot, such as x-axis, y-axis, color, fill, size, etc.\nUse aes to specify which variable is mapped to which aesthetic\nExample: height -&gt; x-axis; weight -&gt; y-axis; gender -&gt; fill; name -&gt; text\n\nGeoms\n\nWhat types of layers should be added to the plots"
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#example-1-explained",
+    "href": "lectures/week_5/week_5.html#example-1-explained",
+    "title": "DATA 505: Statistics Using R",
+    "section": "Example 1 explained",
+    "text": "Example 1 explained\n\n\n\nUrbanPop maps to the x-axis\nAssault maps to the y-axis\ngeom_point draws scatterplot-type points for each observation\n\n\n\nggplot(data=USArrests,\n       mapping=aes(x=UrbanPop,y=Assault)) + \n  geom_point()"
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#example-2-explained",
+    "href": "lectures/week_5/week_5.html#example-2-explained",
+    "title": "DATA 505: Statistics Using R",
+    "section": "Example 2 explained",
+    "text": "Example 2 explained\n\n\n\nUrbanPop_Cat maps to the x-axis AND fill (this kind of redundant mapping should be avoided!)\nAssault maps to the y-axis\ngeom_boxplot draws boxplots\nTry: change geom_boxplot to geom_violin\n\n\n\nggplot(data=USArrests,\n       mapping=aes(\n        x=UrbanPop_Cat,\n        y = Assault,\n        fill=UrbanPop_Cat\n       )) + \n  geom_boxplot()"
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#geom_histogram",
+    "href": "lectures/week_5/week_5.html#geom_histogram",
+    "title": "DATA 505: Statistics Using R",
+    "section": "geom_histogram",
+    "text": "geom_histogram\n\nRecall: histogram is univariate; y-axis is always frequency, so we don’t need a y=_ mapping\n\n\nggplot(data = USArrests,  aes(x = Murder)) + \n  geom_histogram()"
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#section-1",
+    "href": "lectures/week_5/week_5.html#section-1",
+    "title": "DATA 505: Statistics Using R",
     "section": "",
-    "text": "Welcome and introductions\nAbout the course; about R\nInstalling R, RStudio, and Quarto\nLab 1 (complete and submit on Moodle by end of class)\n\nSubmission requires two minor edits to this script: lab_1_blank.qmd"
+    "text": "Can add arguments in geoms \n\n\nggplot(data = USArrests,  aes(x = Murder)) + \n  geom_histogram(binwidth=5,\n                 fill=\"orange\",\n                 color=\"blue\")\n\n\nNote the differences in the syntax convention:\n\nbase R col vs ggplot fill\nbase R border vs ggplot color\nesp. “color” (ggplot) vs “col” (base R)"
   },
   {
-    "objectID": "lectures/week_1/lectures_1.html#software-to-install",
-    "href": "lectures/week_1/lectures_1.html#software-to-install",
-    "title": "Week 1: Introduction and getting started with R",
-    "section": "Software to install",
-    "text": "Software to install\n\nR (free and open source)\nRStudio IDE (free commercial software)\nQuarto (free commercial software): “literate programming”"
-  },
-  {
-    "objectID": "lectures/week_1/lectures_1.html#step-by-step",
-    "href": "lectures/week_1/lectures_1.html#step-by-step",
-    "title": "Week 1: Introduction and getting started with R",
-    "section": "Step-by-step",
-    "text": "Step-by-step\n\nGo to https://cran.rstudio.com and download the latest version of R\nGo to RStudio Desktop download page and download RStudio Desktop\nGo to Quarto Getting Started and download Quarto"
-  },
-  {
-    "objectID": "lectures/week_1/lectures_1.html#one-more-thing",
-    "href": "lectures/week_1/lectures_1.html#one-more-thing",
-    "title": "Week 1: Introduction and getting started with R",
-    "section": "One more thing",
-    "text": "One more thing\n\nFor labs, we will use Quarto to render code and outputs into pdf documents.\nThis has one more prerequisite\n\nIn RStudio, in the bottom-left pane, switch from the “Console” to the “Terminal” tab.\nType in and run this command: quarto install tinytex"
-  },
-  {
-    "objectID": "lectures/week_1/installing_software.html",
-    "href": "lectures/week_1/installing_software.html",
-    "title": "Data 505: R for Statistics",
+    "objectID": "lectures/week_5/week_5.html#section-2",
+    "href": "lectures/week_5/week_5.html#section-2",
+    "title": "DATA 505: Statistics Using R",
     "section": "",
-    "text": "R (free and open source)\nRStudio IDE (free commercial software)\nQuarto (free commercial software): “literate programming”"
+    "text": "Add another dimension (i.e., map another variable to another aesthetic)\n\n\nggplot(data = USArrests, aes(x = Murder, fill=UrbanPop_Cat)) + \n  geom_histogram(binwidth=5, color=\"blue\")"
   },
   {
-    "objectID": "lectures/week_1/installing_software.html#software-to-install",
-    "href": "lectures/week_1/installing_software.html#software-to-install",
-    "title": "Data 505: R for Statistics",
+    "objectID": "lectures/week_5/week_5.html#geom_bar",
+    "href": "lectures/week_5/week_5.html#geom_bar",
+    "title": "DATA 505: Statistics Using R",
+    "section": "geom_bar",
+    "text": "geom_bar\n\nThe bar graph shows that each category has roughly the same number of states, as expected.\n\n\nggplot(data=USArrests, \n       mapping=aes(x=UrbanPop_Cat)) +\n  geom_bar()"
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#geom_text",
+    "href": "lectures/week_5/week_5.html#geom_text",
+    "title": "DATA 505: Statistics Using R",
+    "section": "geom_text",
+    "text": "geom_text\n\nggplot(data=USArrests,\n       aes(x=Murder,y=Assault,label=State)) + \n  geom_text()\n\n\n\nTry: change geom_text to geom_label\nTry: add geom_point"
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#customize-ggplot-with",
+    "href": "lectures/week_5/week_5.html#customize-ggplot-with",
+    "title": "DATA 505: Statistics Using R",
+    "section": "Customize ggplot with +",
+    "text": "Customize ggplot with +\nggplot offers a very convenient syntax (+) to add elements and layers\n\nggplot(data=USArrests, \n       mapping=aes(x=UrbanPop_Cat)) +\n  geom_bar() + \n  theme_bw() +\n  ggtitle('Bar graph') +\n  labs(x='Urban population percentage')"
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#example-change-gradient-color",
+    "href": "lectures/week_5/week_5.html#example-change-gradient-color",
+    "title": "DATA 505: Statistics Using R",
+    "section": "Example: change gradient color",
+    "text": "Example: change gradient color\n\nggplot(data=USArrests,\n       aes(x=Murder,y=Assault,color=UrbanPop)) + \n  geom_point()+\n  theme_bw() +\n  ggtitle('Violent Crime Rates') +\n  labs(x='Murder',y=\"Assault\",color='Urban Pop Percentage') +\n  scale_color_gradient(low=\"lightgreen\",high=\"black\")"
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#example-change-categorical-color",
+    "href": "lectures/week_5/week_5.html#example-change-categorical-color",
+    "title": "DATA 505: Statistics Using R",
+    "section": "Example: change categorical color",
+    "text": "Example: change categorical color\n\nggplot(data=USArrests, \n       aes(x=Murder,fill=UrbanPop_Cat)) +\n  geom_histogram() +\n  scale_fill_manual(values=c(\"Low\"='green',\"Medium\"='purple', \"High\"=\"darkgrey\")) +\n  theme_minimal()"
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#theres-more",
+    "href": "lectures/week_5/week_5.html#theres-more",
+    "title": "DATA 505: Statistics Using R",
+    "section": "There’s more!",
+    "text": "There’s more!\n\nThere are many other geoms and customization available!\nEach geom has its own set of aesthetics to which variables can be mapped.\nBring up the help page to check what aesthetics are needed.\nMany references can be found online - they all share the same, unified structure that you can now understand."
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#the-pipe-operator",
+    "href": "lectures/week_5/week_5.html#the-pipe-operator",
+    "title": "DATA 505: Statistics Using R",
+    "section": "The Pipe operator",
+    "text": "The Pipe operator\n\ntidyverse packages: https://www.tidyverse.org/packages/\nPowerful and popular for working with complicated dataset, typically formatted into a tidy format\nImportantly, the pipe operator offers a new way of calling a function\nThese three lines of code are equivalent\n\n\nsummary(USArrests) \nUSArrests |&gt; summary # magrittr / dplyr pipe\nUSArrests |&gt; summary # base R pipe (R &gt;= 4.0)\n\n\nFunctions in tidyverse are typically used with the pipe operator, but this is not required. For instance, these code are equivalent\n\n\nUSArrests |&gt; filter(UrbanPop &gt; 80) |&gt; select(Murder, UrbanPop) \nselect(filter(USArrests,UrbanPop &gt; 80), Murder, UrbanPop)"
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#useful-tidyverse-functions",
+    "href": "lectures/week_5/week_5.html#useful-tidyverse-functions",
+    "title": "DATA 505: Statistics Using R",
+    "section": "Useful tidyverse functions",
+    "text": "Useful tidyverse functions\n\n# filter: subset data according to some condition\nUSArrests |&gt; \n  filter(UrbanPop_Cat=='High', Murder &gt; 10)\n\n# slice: subset specific rows\n# select: subset specific columns\nUSArrests |&gt; \n  slice(1:5) |&gt;\n  select(Murder,Assault)\n\n# arrange: sort by a variable\nUSArrests |&gt; \n  arrange(desc(Murder)) |&gt;\n  slice(1:5)\n\n# summarise: calculate summary statistics\nUSArrests |&gt; \n  summarise(mean(Murder),median(Murder),count=length(Murder))\n\n\n# mutate: create new variables\nUSArrests |&gt; \n  mutate(Violent = Murder + Assault + Rape) |&gt;\n  arrange(desc(Violent)) |&gt;\n  select(Violent)\n\n# group_by: look at subset groups of data\nUSArrests |&gt; \n  group_by(UrbanPop_Cat) |&gt;\n  summarise(mean(Murder), median(Murder))"
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#integration-with-ggplot",
+    "href": "lectures/week_5/week_5.html#integration-with-ggplot",
+    "title": "DATA 505: Statistics Using R",
+    "section": "Integration with ggplot",
+    "text": "Integration with ggplot\n\nThe pipe operator works very well with ggplot syntax\n\n\nUSArrests |&gt; \n  mutate(Urban = ifelse(UrbanPop &gt; 80, \"Yes\", \"No\")) |&gt;\n  ggplot(aes(x=Murder, y=Assault, color=Urban)) +\n  geom_point() +\n  theme_bw()"
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#map",
+    "href": "lectures/week_5/week_5.html#map",
+    "title": "DATA 505: Statistics Using R",
+    "section": "Map",
+    "text": "Map\n\nThere are a few different maps included in the maps package\n\n\n# see ?map_data\nmymap &lt;- map_data(map=\"state\")\n\n\nWhat exactly is mymap? Try some basic visualizations…\n\n\nplot(mymap$long,mymap$lat)\n\nggplot(data=mymap,aes(x=long,y=lat,group=group)) +\n  geom_polygon() +\n  coord_fixed(1.4) +\n  theme_void()"
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#section-3",
+    "href": "lectures/week_5/week_5.html#section-3",
+    "title": "DATA 505: Statistics Using R",
     "section": "",
-    "text": "R (free and open source)\nRStudio IDE (free commercial software)\nQuarto (free commercial software): “literate programming”"
+    "text": "plot(mymap$long,mymap$lat)"
   },
   {
-    "objectID": "lectures/week_1/installing_software.html#step-by-step",
-    "href": "lectures/week_1/installing_software.html#step-by-step",
-    "title": "Data 505: R for Statistics",
-    "section": "Step-by-step",
-    "text": "Step-by-step\n\nGo to https://cran.rstudio.com and download the latest version of R\nGo to RStudio Desktop download page and download RStudio Desktop\nGo to Quarto Getting Started and download Quarto"
+    "objectID": "lectures/week_5/week_5.html#section-4",
+    "href": "lectures/week_5/week_5.html#section-4",
+    "title": "DATA 505: Statistics Using R",
+    "section": "",
+    "text": "ggplot(data=mymap,aes(x=long,y=lat,group=group)) +\n  geom_polygon() +\n  coord_fixed(1.4) +\n  theme_void()"
   },
   {
-    "objectID": "lectures/week_1/installing_software.html#one-more-thing",
-    "href": "lectures/week_1/installing_software.html#one-more-thing",
-    "title": "Data 505: R for Statistics",
-    "section": "One more thing",
-    "text": "One more thing\n\nFor labs, we will use Quarto to render code and outputs into pdf documents.\nThis has one more prerequisite\n\nIn RStudio, in the bottom-left pane, switch from the “Console” to the “Terminal” tab.\nType in and run this command: quarto install tinytex"
+    "objectID": "lectures/week_5/week_5.html#combine-data",
+    "href": "lectures/week_5/week_5.html#combine-data",
+    "title": "DATA 505: Statistics Using R",
+    "section": "Combine data",
+    "text": "Combine data\n\nWe want to combine the following dataset\nThe “State” column in USArrests should match the “region” column in mymap; the state names should have consistent spelling and capitalization\n\n\nUSArrests |&gt; slice_head(n=3)\n\n        Murder Assault UrbanPop Rape   State UrbanPop_tile UrbanPop_Cat\nAlabama   13.2     236       58 21.2 Alabama             1          Low\nAlaska    10.0     263       48 44.5  Alaska             1          Low\nArizona    8.1     294       80 31.0 Arizona             3         High\n\nmymap |&gt; slice_head(n=3)\n\n       long      lat group order  region subregion\n1 -87.46201 30.38968     1     1 alabama      &lt;NA&gt;\n2 -87.48493 30.37249     1     2 alabama      &lt;NA&gt;\n3 -87.52503 30.37249     1     3 alabama      &lt;NA&gt;"
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#section-5",
+    "href": "lectures/week_5/week_5.html#section-5",
+    "title": "DATA 505: Statistics Using R",
+    "section": "",
+    "text": "# convert county name to lower case\nUSArrests$State=tolower(USArrests$State)\n\n# combine data with left_join\nmymap_comb = left_join(mymap, USArrests, \n                     by=c('region'='State'))\n\nmymap_comb |&gt; slice_head(n=3)\n\n       long      lat group order  region subregion Murder Assault UrbanPop Rape\n1 -87.46201 30.38968     1     1 alabama      &lt;NA&gt;   13.2     236       58 21.2\n2 -87.48493 30.37249     1     2 alabama      &lt;NA&gt;   13.2     236       58 21.2\n3 -87.52503 30.37249     1     3 alabama      &lt;NA&gt;   13.2     236       58 21.2\n  UrbanPop_tile UrbanPop_Cat\n1             1          Low\n2             1          Low\n3             1          Low"
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#visualization",
+    "href": "lectures/week_5/week_5.html#visualization",
+    "title": "DATA 505: Statistics Using R",
+    "section": "Visualization!",
+    "text": "Visualization!\n\nmymap_comb |&gt;\n  ggplot(aes(x=long,y=lat,group=group,\n             fill=Murder)) +\n  geom_polygon(color='darkblue') +\n  coord_fixed(1.4) +\n  theme_void() +\n  labs(fill='Murder rate') +\n  scale_fill_gradient(low=\"green\", high=\"red\")"
+  },
+  {
+    "objectID": "lectures/week_5/week_5.html#different-ways-to-join-data",
+    "href": "lectures/week_5/week_5.html#different-ways-to-join-data",
+    "title": "DATA 505: Statistics Using R",
+    "section": "Different ways to join data",
+    "text": "Different ways to join data\n\nRun ?left_join() to understand different ways to join data.\n\nDiscussion: what will the following code return? You can run the code to find out.\n\n\ndf.student\n\n  name exam project\n1    A   80       1\n2    B   91       2\n3    C   85       1\n4    D   78      NA\n\ndf.project\n\n  projectID    description\n1         1  visualization\n2         2 classification\n3         3    text mining\n\n\n\ninner_join(df.student, df.project, by=c('project' = 'projectID'))\nleft_join(df.student, df.project, by=c('project' = 'projectID'))\nleft_join(df.project, df.student, by=c('projectID' = 'project'))\nright_join(df.student, df.project, by=c('project' = 'projectID'))\nfull_join(df.student, df.project, by=c('project' = 'projectID'))"
+  },
+  {
+    "objectID": "lectures/week_9/lectures_9.html",
+    "href": "lectures/week_9/lectures_9.html",
+    "title": "Week 9: Regression",
+    "section": "",
+    "text": "Agenda\n\nLecture on regression\nReturn exam 1 at break\nBox-office revenue case study continued:\n\nRegression and prediction challenge (Part 4)\n\n\n\n\nSupportive reading outside class\n(Optional but recommended):\n\nThulin, M. (2024). Modern Statistics with R. Second edition. Chapman & Hall/CRC Press. ISBN 9781032512440. Section 8.1: Linear Models. Link\n\n\n\nSlides\nLink to fullscreen"
+  },
+  {
+    "objectID": "schedule/schedule.html",
+    "href": "schedule/schedule.html",
+    "title": "Schedule",
+    "section": "",
+    "text": "Run the schedule.R script and display the most current plan for the schedule\nhere::i_am(\"schedule/schedule.qmd\")\nlibrary(here)\nlibrary(gt)\n\nsource(here(\"schedule/schedule.R\"))\n\ngt(schedule)\n\n\n\n\n\n\n\n\nDate\nContents\nNotes\n\n\n\n\nAug 26\nIntroduction & Getting started\nLab 1\n\n\nSep 2\nR Basics (objects, types, classes, and collections)\nHW-Quiz 1 / Lab 2\n\n\nSep 9\nDescriptive statistics & Summarizing data\nLab 3\n\n\nSep 16\nBasic statistical inference\nHW-Quiz 2 / Lab 4\n\n\nSep 23\nData manipulation & visualization\nHW-Quiz 3 / Lab 5\n\n\nSep 30\nExam 1\n\n\n\nOct 7\nNO CLASS (Fall Break)\n\n\n\nOct 14\nCase study 1\n\n\n\nOct 21\nRegression\nContinue case study 1\n\n\nOct 28\nWriting functions\nHW-Quiz 4 / Lab 6\n\n\nNov 4\nExam 2\n\n\n\nNov 11\nSampling distributions & CLT\nLab 7\n\n\nNov 18\nSimulation & Case study 2\nHW-Quiz 5\n\n\nNov 25\nBootstrap & Case study 2\nHW-Quiz 6\n\n\nDec 2\nShiny (UI-based apps)\nCase study 2 due / Lab 8\n\n\nDec 9\nFinal Exam\n7:30 to 10:30"
   }
 ]

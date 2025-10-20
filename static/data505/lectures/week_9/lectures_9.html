@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Exam 1 (Sep 30): review and practice materials – Data 505: R for Statistics</title>
+<title>Week 9: Regression – Data 505: R for Statistics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,24 +23,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-5b4ad623e5705c0698d39aec6f10cf02.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-5b4ad623e5705c0698d39aec6f10cf02.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -70,7 +70,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -80,9 +80,9 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
     </a>
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Data 505: R for Statistics</span>
     </a>
   </div>
@@ -93,15 +93,15 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../syllabus/syllabus.html"> 
+    <a class="nav-link" href="../../syllabus/syllabus.html"> 
 <span class="menu-text">Syllabus</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../schedule/schedule.html"> 
+    <a class="nav-link" href="../../schedule/schedule.html"> 
 <span class="menu-text">Schedule</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -110,33 +110,33 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-lectures">    
         <li>
-    <a class="dropdown-item" href="../lectures/week_1/lectures_1.html">
+    <a class="dropdown-item" href="../../lectures/week_1/lectures_1.html">
  <span class="dropdown-text">Week 1 (Aug 26)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../lectures/week_2/lectures_2.html">
+    <a class="dropdown-item" href="../../lectures/week_2/lectures_2.html">
  <span class="dropdown-text">Week 2 (Sep 2)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../lectures/week_3/lectures_3.html">
+    <a class="dropdown-item" href="../../lectures/week_3/lectures_3.html">
  <span class="dropdown-text">Week 3 (Sep 9)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../lectures/week_4/lectures_4.html">
+    <a class="dropdown-item" href="../../lectures/week_4/lectures_4.html">
  <span class="dropdown-text">Week 4 (Sep 16)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../lectures/week_5/lectures_5.html">
+    <a class="dropdown-item" href="../../lectures/week_5/lectures_5.html">
  <span class="dropdown-text">Week 5 (Sep 23)</span></a>
   </li>  
         <li class="dropdown-header">Week 6 (Sep 30) - exam 1</li>
         <li class="dropdown-header">Week 7 (Oct 7) - fall break</li>
         <li>
-    <a class="dropdown-item" href="../lectures/week_8/lectures_8.html">
+    <a class="dropdown-item" href="../../lectures/week_8/lectures_8.html">
  <span class="dropdown-text">Week 8 (Oct 14)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../lectures/week_9/lectures_9.html">
+    <a class="dropdown-item" href="../../lectures/week_9/lectures_9.html">
  <span class="dropdown-text">Week 9 (Oct 21)</span></a>
   </li>  
     </ul>
@@ -147,19 +147,19 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-labs">    
         <li>
-    <a class="dropdown-item" href="../labs/week_1/lab_1.pdf">
+    <a class="dropdown-item" href="../../labs/week_1/lab_1.pdf">
  <span class="dropdown-text">Lab 1 (Week 1 / Aug 26)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../labs/week_2/lab_2.pdf">
+    <a class="dropdown-item" href="../../labs/week_2/lab_2.pdf">
  <span class="dropdown-text">Lab 2 (Week 2 / Sep 2)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../labs/week_3/week_3_lab.html">
+    <a class="dropdown-item" href="../../labs/week_3/week_3_lab.html">
  <span class="dropdown-text">Lab 3 (Week 3 / Sep 9)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../labs/week_4/week_4_lab.html">
+    <a class="dropdown-item" href="../../labs/week_4/week_4_lab.html">
  <span class="dropdown-text">Lab 4 (Week 4 / Sep 16)</span></a>
   </li>  
     </ul>
@@ -170,11 +170,11 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-homework">    
         <li>
-    <a class="dropdown-item" href="../homework/homework_1.pdf">
+    <a class="dropdown-item" href="../../homework/homework_1.pdf">
  <span class="dropdown-text">Homework 1 (Quiz on Sep 2)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../homework/homework_2.pdf">
+    <a class="dropdown-item" href="../../homework/homework_2.pdf">
  <span class="dropdown-text">Homework 2 (Quiz on Sep 16)</span></a>
   </li>  
     </ul>
@@ -185,7 +185,7 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-exams">    
         <li>
-    <a class="dropdown-item" href="../exams/exam_1.html">
+    <a class="dropdown-item" href="../../exams/exam_1.html">
  <span class="dropdown-text">Exam 1 (Sep 30) review and practice</span></a>
   </li>  
     </ul>
@@ -196,7 +196,7 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-case-studies">    
         <li>
-    <a class="dropdown-item" href="../case_studies/tmdb/tmdb.html">
+    <a class="dropdown-item" href="../../case_studies/tmdb/tmdb.html">
  <span class="dropdown-text">Box Office Analysis (Oct 14-21)</span></a>
   </li>  
     </ul>
@@ -240,13 +240,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#format" id="toc-format" class="nav-link active" data-scroll-target="#format">Format</a></li>
-  <li><a href="#topics" id="toc-topics" class="nav-link" data-scroll-target="#topics">Topics</a></li>
-  <li><a href="#practice-materials" id="toc-practice-materials" class="nav-link" data-scroll-target="#practice-materials">Practice materials</a>
-  <ul class="collapse">
-  <li><a href="#part-1" id="toc-part-1" class="nav-link" data-scroll-target="#part-1">Part 1</a></li>
-  <li><a href="#part-2" id="toc-part-2" class="nav-link" data-scroll-target="#part-2">Part 2</a></li>
-  </ul></li>
+  <li><a href="#agenda" id="toc-agenda" class="nav-link active" data-scroll-target="#agenda">Agenda</a></li>
+  <li><a href="#supportive-reading-outside-class" id="toc-supportive-reading-outside-class" class="nav-link" data-scroll-target="#supportive-reading-outside-class">Supportive reading outside class</a></li>
+  <li><a href="#slides" id="toc-slides" class="nav-link" data-scroll-target="#slides">Slides</a></li>
   </ul>
 </nav>
     </div>
@@ -255,7 +251,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Exam 1 (Sep 30): review and practice materials</h1>
+<h1 class="title">Week 9: Regression</h1>
 </div>
 
 
@@ -272,85 +268,31 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="format" class="level1">
-<h1>Format</h1>
-<p>As described in the <a href="../syllabus/syllabus.html">syllabus</a>, the exam will have two parts: the first being pen-and-paper, and the second being open-computer.</p>
+<section id="agenda" class="level1">
+<h1>Agenda</h1>
 <ul>
-<li>Part 1:
+<li>Lecture on regression</li>
+<li>Return exam 1 at break</li>
+<li><a href="../../case_studies/tmdb/tmdb.html">Box-office revenue case study</a> continued:
 <ul>
-<li>Closed computer and closed notes</li>
-<li>Handwritten answers</li>
-</ul></li>
-<li>Part 2:
-<ul>
-<li>Open computer. Any online resource that is “not alive” may be used (i.e.&nbsp;you may freely use online resources, but you may not communicate with any other person).</li>
-<li>Electronic submission on Moodle: you will fill in a Quarto script with R code and written answers</li>
-</ul></li>
-</ul>
-<p>Once you turn in Part 1, you may open your computer and download the blank Quarto script for Part 2. You may not return to Part 1 after turning it in and beginning the open-computer portion.</p>
-</section>
-<section id="topics" class="level1">
-<h1>Topics</h1>
-<p>Based on material from Weeks 1-5 and Labs 1-5, the exam will cover:</p>
-<ul>
-<li><strong>R Programming Fundamentals</strong>
-<ul>
-<li>Variable assignment and basic operations</li>
-<li>Data types and classes (<code>typeof()</code>, <code>class()</code>, <code>str()</code>)</li>
-<li>Type coercion (implicit and explicit)</li>
-<li>Vectors: creation, subsetting, and operations</li>
-<li>Data frames: structure, column extraction, subsetting</li>
-<li>Factors for categorical data</li>
-<li>Missing values (<code>NA</code>)</li>
-</ul></li>
-<li><strong>Descriptive Statistics</strong>
-<ul>
-<li>Measures of center: mean, median</li>
-<li>Measures of spread: standard deviation, variance, IQR, range</li>
-<li>Outlier-resistant vs.&nbsp;outlier-sensitive statistics</li>
-<li>Frequency tables and proportions for categorical data</li>
-<li>Data visualization: histograms, boxplots</li>
-</ul></li>
-<li><strong>Statistical Inference Concepts</strong>
-<ul>
-<li>Populations, samples, parameters, and statistics</li>
-<li>Hypothesis testing framework</li>
-<li>P-values and their interpretation</li>
-<li>Confidence intervals and their interpretation</li>
-<li>Statistical significance (α = 0.05)</li>
-</ul></li>
-<li><strong>Hypothesis Tests and Confidence Intervals in R</strong>
-<ul>
-<li>One-sample t-test for means: <code>t.test(x, mu = .)</code></li>
-<li>Two-sample t-test for comparing means: <code>t.test(y ~ group)</code></li>
-<li>One-sample proportion test: <code>prop.test(x, n, p = .)</code></li>
-<li>Two-sample proportion test: <code>prop.test()</code></li>
-<li>Chi-squared test of independence: <code>chisq.test()</code></li>
-<li>Constructing and interpreting confidence intervals</li>
-</ul></li>
-<li><strong>Data Visualization</strong>
-<ul>
-<li>Creating plots with ggplot2: <code>ggplot()</code>, <code>aes()</code>, <code>geom_histogram()</code>, etc.</li>
-<li>Basic plot customization (titles, axis labels)</li>
+<li>Regression and prediction challenge (Part 4)</li>
 </ul></li>
 </ul>
 </section>
-<section id="practice-materials" class="level1">
-<h1>Practice materials</h1>
-<section id="part-1" class="level2">
-<h2 class="anchored" data-anchor-id="part-1">Part 1</h2>
-<p>For Part 1 (on paper, closed computer), I have created a practice exam to give you a sense of the format and topics: <a href="../exams/exam_1/part_1_practice.pdf">part_1_practice.pdf</a>.</p>
-<p>The solution is here: <a href="../exams/exam_1/part_1_practice_solution.pdf">part_1_practice_solution.pdf</a>.</p>
+<section id="supportive-reading-outside-class" class="level1">
+<h1>Supportive reading outside class</h1>
+<p>(Optional but recommended):</p>
+<ul>
+<li>Thulin, M. (2024). Modern Statistics with R. Second edition. Chapman &amp; Hall/CRC Press. ISBN 9781032512440. Section 8.1: Linear Models. <a href="https://www.modernstatisticswithr.com/regression.html#linearmodels">Link</a></li>
+</ul>
 </section>
-<section id="part-2" class="level2">
-<h2 class="anchored" data-anchor-id="part-2">Part 2</h2>
-<p>For Part 2, the format will be very similar to the in-class Labs. Given the open format of this part of the exam, I will not provide a separate practice exam for Part 2.</p>
-<p>You will be given a Quarto script which you can download, and which you will edit to fill in blank code chunks and free-text responses (again, just like the lab).</p>
-<p>The questions will involve exploration of a single real dataset. Coding tasks and questions about this dataset will be drawn from the list of topics above.</p>
-<p>I suggest reviewing or even re-doing the labs as a way of practicing for Part 2.</p>
+<section id="slides" class="level1">
+<h1>Slides</h1>
+<p><a href="week_9.html">Link to fullscreen</a></p>
+<iframe src="week_9.html" width="100%" height="600px" style="border:none;">
+</iframe>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

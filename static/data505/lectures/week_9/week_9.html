@@ -1,0 +1,1865 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.25">
+
+  <title>Data 505: R for Statistics – Week 9: Regression</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-534cd8e3a96973385dffff3f4709048d.css">
+  <link rel="stylesheet" href="../../styles.css">
+  <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Week 9: Regression</h1>
+
+<div class="quarto-title-authors">
+</div>
+
+</section>
+<section id="what-is-regression-about" class="slide level2">
+<h2>What is regression about?</h2>
+<ul>
+<li>Modeling the relationship between variables</li>
+<li><strong>Response variable</strong> (dependent variable, outcome): what we want to predict or explain</li>
+<li><strong>Predictor variable(s)</strong> (independent variable(s), explanatory variable(s)): what we use to predict or explain</li>
+<li>Potential goals:
+<ul>
+<li><strong>Prediction</strong>: estimate the response for new observations</li>
+<li><strong>Inference</strong>: understand whether and how predictors affect the response</li>
+</ul></li>
+</ul>
+</section>
+<section>
+<section id="the-regression-framework" class="title-slide slide level1 center">
+<h1>The regression framework</h1>
+
+</section>
+<section id="simple-linear-regression" class="slide level2">
+<h2>Simple linear regression</h2>
+<ul>
+<li>Models the relationship between:
+<ul>
+<li>One <strong>numeric</strong> response variable (<span class="math inline">\(Y\)</span>)</li>
+<li>One <strong>numeric</strong> predictor variable (<span class="math inline">\(X\)</span>)</li>
+</ul></li>
+<li>The model equation: <span class="math display">\[Y = \beta_0 + \beta_1 X + \varepsilon \]</span></li>
+</ul>
+</section>
+<section id="components-of-the-model" class="slide level2">
+<h2>Components of the model</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Symbol</th>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(Y\)</span></td>
+<td>Response</td>
+<td>The variable we want to predict</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(X\)</span></td>
+<td>Predictor</td>
+<td>The variable we use to predict</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\beta_0\)</span></td>
+<td>Intercept</td>
+<td>Expected value of <span class="math inline">\(Y\)</span> when <span class="math inline">\(X = 0\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\beta_1\)</span></td>
+<td>Slope</td>
+<td>Change in <span class="math inline">\(Y\)</span> for one-unit increase in <span class="math inline">\(X\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\varepsilon\)</span></td>
+<td>Error term</td>
+<td>Random variation not explained by <span class="math inline">\(X\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="interpreting-the-slope" class="slide level2">
+<h2>Interpreting the slope</h2>
+<ul>
+<li><span class="math inline">\(\beta_1\)</span> represents the <strong>rate of change</strong></li>
+<li>For every one-unit increase in <span class="math inline">\(X\)</span>, we expect <span class="math inline">\(Y\)</span> to change by <span class="math inline">\(\beta_1\)</span> units</li>
+<li>Examples:
+<ul>
+<li>If <span class="math inline">\(X\)</span> = years of education and <span class="math inline">\(Y\)</span> = salary, then <span class="math inline">\(\beta_1\)</span> = expected change in salary per additional year of education</li>
+<li>If <span class="math inline">\(X\)</span> = temperature and <span class="math inline">\(Y\)</span> = ice cream sales, then <span class="math inline">\(\beta_1\)</span> = expected change in sales per degree increase</li>
+</ul></li>
+</ul>
+</section>
+<section id="the-least-squares-principle" class="slide level2">
+<h2>The least squares principle</h2>
+<ul>
+<li>We don’t know the true values of <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span></li>
+<li>We estimate them from data using <strong>least squares</strong>:
+<ul>
+<li>Choose <span class="math inline">\(\hat{\beta}_0\)</span> and <span class="math inline">\(\hat{\beta}_1\)</span> to minimize the sum of squared residuals</li>
+<li><strong>Residual</strong> = observed value - predicted value = <span class="math inline">\(y_i - (\hat{\beta}_0 + \hat{\beta}_1 x_i)\)</span></li>
+</ul></li>
+<li>The fitted (predicted) values: <span class="math inline">\(\hat{y}_i = \hat{\beta}_0 + \hat{\beta}_1 x_i\)</span></li>
+</ul>
+</section>
+<section id="visual-representation" class="slide level2">
+<h2>Visual representation</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Illustrating the regression line and residuals</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb1-2"><a></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">20</span>, <span class="at">mean =</span> <span class="dv">10</span>, <span class="at">sd =</span> <span class="dv">2</span>)</span>
+<span id="cb1-3"><a></a>y <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">+</span> <span class="fl">1.5</span> <span class="sc">*</span> x <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">20</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">2</span>)</span>
+<span id="cb1-4"><a></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)</span>
+<span id="cb1-5"><a></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> df)</span>
+<span id="cb1-6"><a></a></span>
+<span id="cb1-7"><a></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb1-8"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
+<span id="cb1-9"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb1-10"><a></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">xend =</span> x, <span class="at">yend =</span> <span class="fu">fitted</span>(fit)), </span>
+<span id="cb1-11"><a></a>               <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb1-12"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Linear regression: fitted line and residuals"</span>,</span>
+<span id="cb1-13"><a></a>       <span class="at">x =</span> <span class="st">"Predictor (X)"</span>, <span class="at">y =</span> <span class="st">"Response (Y)"</span>) <span class="sc">+</span></span>
+<span id="cb1-14"><a></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+
+</div>
+<img data-src="week_9_files/figure-revealjs/unnamed-chunk-2-1.png" width="576" class="r-stretch"></section></section>
+<section>
+<section id="fitting-regression-models-in-r" class="title-slide slide level1 center">
+<h1>Fitting regression models in R</h1>
+
+</section>
+<section id="the-lm-function" class="slide level2">
+<h2>The <code>lm()</code> function</h2>
+<ul>
+<li><strong>lm</strong> stands for “linear model”</li>
+<li>Basic syntax:</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(response <span class="sc">~</span> predictor, <span class="at">data =</span> dataset)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li>Formula notation: <code>response ~ predictor</code>
+<ul>
+<li><code>~</code> means “is modeled as a function of”</li>
+<li>Left side: response variable</li>
+<li>Right side: predictor variable(s)</li>
+</ul></li>
+</ul>
+</section>
+<section id="example-cars-dataset" class="slide level2 smaller">
+<h2>Example: Cars dataset</h2>
+<ul>
+<li>Built-in dataset on cars from the 1920s</li>
+<li>Variables:
+<ul>
+<li><code>speed</code>: speed of car (mph)</li>
+<li><code>dist</code>: stopping distance (ft)</li>
+</ul></li>
+</ul>
+<div class="cell">
+<details class="code-fold">
+<summary>View the cars dataset</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">data</span>(cars)</span>
+<span id="cb3-2"><a></a><span class="fu">head</span>(cars)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>  speed dist
+1     4    2
+2     4   10
+3     7    4
+4     7   22
+5     8   16
+6     9   10</code></pre>
+</div>
+<details class="code-fold">
+<summary>View the cars dataset</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">str</span>(cars)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   50 obs. of  2 variables:
+ $ speed: num  4 4 7 7 8 9 10 10 10 11 ...
+ $ dist : num  2 10 4 22 16 10 18 26 34 17 ...</code></pre>
+</div>
+</div>
+</section>
+<section id="visualizing-the-relationship" class="slide level2">
+<h2>Visualizing the relationship</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Scatterplot of speed vs.&nbsp;stopping distance</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">ggplot</span>(cars, <span class="fu">aes</span>(<span class="at">x =</span> speed, <span class="at">y =</span> dist)) <span class="sc">+</span></span>
+<span id="cb7-2"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
+<span id="cb7-3"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Car speed vs. stopping distance"</span>,</span>
+<span id="cb7-4"><a></a>       <span class="at">x =</span> <span class="st">"Speed (mph)"</span>, <span class="at">y =</span> <span class="st">"Stopping distance (ft)"</span>) <span class="sc">+</span></span>
+<span id="cb7-5"><a></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+
+</div>
+<img data-src="week_9_files/figure-revealjs/unnamed-chunk-5-1.png" width="576" class="r-stretch"></section>
+<section id="research-question" class="slide level2">
+<h2>Research question</h2>
+<ul>
+<li>How does stopping distance depend on speed?</li>
+<li>We will model stopping distance as a function of speed: <span class="math display">\[\text{dist} = \beta_0 + \beta_1 \times \text{speed} + \epsilon\]</span></li>
+</ul>
+</section>
+<section id="fitting-the-model" class="slide level2">
+<h2>Fitting the model</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>cars_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(dist <span class="sc">~</span> speed, <span class="at">data =</span> cars)</span>
+<span id="cb8-2"><a></a><span class="fu">summary</span>(cars_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = dist ~ speed, data = cars)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-29.069  -9.525  -2.272   9.215  43.201 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -17.5791     6.7584  -2.601   0.0123 *  
+speed         3.9324     0.4155   9.464 1.49e-12 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 15.38 on 48 degrees of freedom
+Multiple R-squared:  0.6511,    Adjusted R-squared:  0.6438 
+F-statistic: 89.57 on 1 and 48 DF,  p-value: 1.49e-12</code></pre>
+</div>
+</div>
+</section>
+<section id="breaking-down-the-output" class="slide level2 smaller">
+<h2>Breaking down the output</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">summary</span>(cars_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = dist ~ speed, data = cars)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-29.069  -9.525  -2.272   9.215  43.201 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -17.5791     6.7584  -2.601   0.0123 *  
+speed         3.9324     0.4155   9.464 1.49e-12 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 15.38 on 48 degrees of freedom
+Multiple R-squared:  0.6511,    Adjusted R-squared:  0.6438 
+F-statistic: 89.57 on 1 and 48 DF,  p-value: 1.49e-12</code></pre>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<p>Key components:</p>
+<ul>
+<li><strong>Coefficients table</strong>: estimates of <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>, with standard errors, t-statistics, and p-values</li>
+<li><strong>Residual standard error</strong>: estimate of <span class="math inline">\(\sigma\)</span> (standard deviation of errors)</li>
+<li><strong>R-squared</strong>: proportion of variance explained by the model (0 to 1)</li>
+<li><strong>F-statistic</strong>: overall test of whether the model is useful</li>
+</ul>
+</div></div>
+</section>
+<section id="interpreting-the-coefficients" class="slide level2">
+<h2>Interpreting the coefficients</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">coef</span>(cars_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(Intercept)       speed 
+ -17.579095    3.932409 </code></pre>
+</div>
+</div>
+<ul>
+<li><strong>Intercept</strong> (<span class="math inline">\(\hat{\beta}_0 = -17.58\)</span>): estimated stopping distance when speed = 0 mph
+<ul>
+<li>May not be meaningful if predictor values near 0 are not observed</li>
+</ul></li>
+<li><strong>Slope</strong> (<span class="math inline">\(\hat{\beta}_1 = 3.93\)</span>): for each 1 mph increase in speed, stopping distance increases by about 3.93 feet on average</li>
+</ul>
+</section>
+<section id="hypothesis-test-for-the-slope" class="slide level2">
+<h2>Hypothesis test for the slope</h2>
+<ul>
+<li>Testing whether there is a linear relationship:
+<ul>
+<li><span class="math inline">\(H_0: \beta_1 = 0\)</span> (mean of stopping distance does not depend on speed)</li>
+<li><span class="math inline">\(H_A: \beta_1 \neq 0\)</span> (mean of stopping distance does depend on speed)</li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">summary</span>(cars_model)<span class="sc">$</span>coefficients</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>              Estimate Std. Error   t value     Pr(&gt;|t|)
+(Intercept) -17.579095  6.7584402 -2.601058 1.231882e-02
+speed         3.932409  0.4155128  9.463990 1.489836e-12</code></pre>
+</div>
+</div>
+<ul>
+<li>The p-value for <code>speed</code> is very small (&lt; 0.001)</li>
+<li>We reject <span class="math inline">\(H_0\)</span>: strong evidence of a linear relationship</li>
+</ul>
+</section>
+<section id="confidence-intervals-for-coefficients" class="slide level2">
+<h2>Confidence intervals for coefficients</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="fu">confint</span>(cars_model, <span class="at">level =</span> <span class="fl">0.95</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                 2.5 %    97.5 %
+(Intercept) -31.167850 -3.990340
+speed         3.096964  4.767853</code></pre>
+</div>
+</div>
+<ul>
+<li>We are 95% confident that the true slope is between 3.1 and 4.77</li>
+<li>For each 1 mph increase in speed, the stopping distance increases by approximately 3.1 to 4.77 feet</li>
+</ul>
+</section>
+<section id="adding-the-regression-line-to-the-plot" class="slide level2">
+<h2>Adding the regression line to the plot</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Scatterplot with fitted regression line</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="fu">ggplot</span>(cars, <span class="fu">aes</span>(<span class="at">x =</span> speed, <span class="at">y =</span> dist)) <span class="sc">+</span></span>
+<span id="cb18-2"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
+<span id="cb18-3"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb18-4"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Car speed vs. stopping distance"</span>,</span>
+<span id="cb18-5"><a></a>       <span class="at">subtitle =</span> <span class="st">"With fitted regression line and 95% confidence band"</span>,</span>
+<span id="cb18-6"><a></a>       <span class="at">x =</span> <span class="st">"Speed (mph)"</span>, <span class="at">y =</span> <span class="st">"Stopping distance (ft)"</span>) <span class="sc">+</span></span>
+<span id="cb18-7"><a></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+
+</div>
+<img data-src="week_9_files/figure-revealjs/unnamed-chunk-11-1.png" width="576" class="r-stretch"></section>
+<section id="making-predictions" class="slide level2">
+<h2>Making predictions</h2>
+<ul>
+<li>Once we have a fitted model, we can predict the response for new predictor values</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a><span class="co"># Predict stopping distance for a car going 22 mph</span></span>
+<span id="cb19-2"><a></a>new_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">speed =</span> <span class="dv">22</span>)</span>
+<span id="cb19-3"><a></a><span class="fu">predict</span>(cars_model, <span class="at">newdata =</span> new_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      1 
+68.9339 </code></pre>
+</div>
+</div>
+<ul>
+<li>Expected stopping distance for a car traveling at 22 mph is about 68.9 feet</li>
+</ul>
+</section>
+<section id="confidence-interval-for-the-mean-response" class="slide level2">
+<h2>Confidence interval for the mean response</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a><span class="co"># Get prediction with confidence interval</span></span>
+<span id="cb21-2"><a></a><span class="fu">predict</span>(cars_model, <span class="at">newdata =</span> new_data, <span class="at">interval =</span> <span class="st">"confidence"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      fit     lwr      upr
+1 68.9339 61.8963 75.97149</code></pre>
+</div>
+</div>
+<ul>
+<li>This is a <strong>confidence interval for the mean response</strong> at speed = 22 mph</li>
+<li>We are 95% confident that the average stopping distance for cars at 22 mph is between 61.9 and 76 feet</li>
+</ul>
+</section>
+<section id="prediction-intervals-for-a-new-observation" class="slide level2">
+<h2>Prediction intervals for a new observation</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a><span class="co"># Get prediction interval for individual observation</span></span>
+<span id="cb23-2"><a></a><span class="fu">predict</span>(cars_model, <span class="at">newdata =</span> new_data, <span class="at">interval =</span> <span class="st">"prediction"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      fit      lwr      upr
+1 68.9339 37.22044 100.6474</code></pre>
+</div>
+</div>
+<ul>
+<li>This is a <strong>prediction interval for a single new observation</strong></li>
+<li>We are 95% confident that a single car traveling at 22 mph will have a stopping distance between 37.2 and 100.6 feet</li>
+<li>Prediction intervals are wider than confidence intervals. How much wider?</li>
+</ul>
+</section></section>
+<section>
+<section id="model-diagnostics" class="title-slide slide level1 center">
+<h1>Model diagnostics</h1>
+
+</section>
+<section id="checking-model-assumptions" class="slide level2">
+<h2>Checking model assumptions</h2>
+<p>Linear regression assumes:</p>
+<ol type="1">
+<li><strong>Linearity</strong>: relationship between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> is linear</li>
+<li><strong>Independence</strong>: observations are independent</li>
+<li><strong>Normality</strong>: residuals are normally distributed</li>
+<li><strong>Equal variance</strong> (homoscedasticity): variance of residuals is constant across predictor values</li>
+</ol>
+<p>We can check these using diagnostic plots</p>
+</section>
+<section id="residual-plots" class="slide level2">
+<h2>Residual plots</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Standard diagnostic plots for regression</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb25-2"><a></a><span class="fu">plot</span>(cars_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+
+</div>
+<img data-src="week_9_files/figure-revealjs/unnamed-chunk-15-1.png" width="768" class="r-stretch"></section>
+<section id="interpreting-diagnostic-plots" class="slide level2 smaller">
+<h2>Interpreting diagnostic plots</h2>
+<ol type="1">
+<li><strong>Residuals vs Fitted</strong>:
+<ul>
+<li>Check for linearity and equal variance</li>
+<li>Should see random scatter around horizontal line at 0</li>
+</ul></li>
+<li><strong>Normal Q-Q</strong>:
+<ul>
+<li>Check normality of residuals</li>
+<li>Points should fall close to diagonal line</li>
+</ul></li>
+<li><strong>Scale-Location</strong>:
+<ul>
+<li>Check equal variance assumption</li>
+<li>Should see horizontal line with random scatter</li>
+</ul></li>
+<li><strong>Residuals vs Leverage</strong>:
+<ul>
+<li>Identify influential observations</li>
+<li>Points far from the pack may have undue influence</li>
+</ul></li>
+</ol>
+</section>
+<section id="impact-of-violated-assumptions" class="slide level2">
+<h2>Impact of violated assumptions</h2>
+<p>When assumptions are violated, several problems can occur:</p>
+<ol type="1">
+<li><strong>Biased coefficient estimates</strong> (wrong slope/intercept)</li>
+<li><strong>Invalid inference</strong> (p-values and confidence intervals are wrong)</li>
+<li><strong>Poor predictions</strong> (unreliable forecasts)</li>
+<li><strong>Inefficient estimates</strong> (larger standard errors than necessary)</li>
+</ol>
+<p>Let’s see examples of each violation…</p>
+</section>
+<section id="violation-1-non-linearity" class="slide level2 smaller">
+<h2>Violation 1: Non-linearity 👻</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<details class="code-fold">
+<summary>Simulate non-linear association</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb26-2"><a></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">10</span>, <span class="dv">10</span>, <span class="at">length.out =</span> <span class="dv">50</span>)</span>
+<span id="cb26-3"><a></a>y <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">+</span> <span class="fl">0.1</span> <span class="sc">*</span> x<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">50</span>, <span class="at">sd =</span> <span class="dv">3</span>)</span>
+<span id="cb26-4"><a></a>df_nonlinear <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(x, y)</span>
+<span id="cb26-5"><a></a></span>
+<span id="cb26-6"><a></a><span class="fu">ggplot</span>(df_nonlinear, <span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
+<span id="cb26-7"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb26-8"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb26-9"><a></a>              <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb26-10"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Linear fit to curved data"</span>,</span>
+<span id="cb26-11"><a></a>       <span class="at">subtitle =</span> <span class="st">"Red line misses the pattern"</span>) <span class="sc">+</span></span>
+<span id="cb26-12"><a></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="week_9_files/figure-revealjs/unnamed-chunk-16-1.png" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<p><strong>Consequences:</strong></p>
+<ul>
+<li>Linear model fails to capture the true relationship</li>
+<li>Systematic bias in predictions</li>
+<li>Residuals show clear pattern</li>
+</ul>
+<p><strong>Solutions:</strong></p>
+<ul>
+<li>Depending on the type of non-linearity, some steps that may help:
+<ul>
+<li>Transform variables (log, square root)</li>
+<li>Add polynomial terms (<code>x + I(x^2)</code>)</li>
+<li>Use non-linear models</li>
+</ul></li>
+</ul>
+</div></div>
+</section>
+<section id="non-linearity-diagnostic-plot" class="slide level2">
+<h2>Non-linearity: Diagnostic plot 🎃</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a>model_nonlinear <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> df_nonlinear)</span>
+<span id="cb27-2"><a></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb27-3"><a></a><span class="fu">plot</span>(model_nonlinear, <span class="at">which =</span> <span class="dv">1</span>)  <span class="co"># Residuals vs. Fitted</span></span>
+<span id="cb27-4"><a></a><span class="fu">plot</span>(model_nonlinear, <span class="at">which =</span> <span class="dv">2</span>)  <span class="co"># Q-Q plot</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+
+</div>
+<img data-src="week_9_files/figure-revealjs/unnamed-chunk-17-1.png" width="672" class="r-stretch"><p>Notice the curved pattern in residuals vs.&nbsp;fitted - this indicates non-linearity!</p>
+</section>
+<section id="violation-2-non-constant-variance-heteroskedasticity" class="slide level2 smaller">
+<h2>Violation 2: Non-constant variance (heteroskedasticity) 🕷️</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<details class="code-fold">
+<summary>Simulate non-constant variance</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a><span class="fu">set.seed</span>(<span class="dv">456</span>)</span>
+<span id="cb28-2"><a></a>x <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">10</span>)</span>
+<span id="cb28-3"><a></a>y <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">+</span> <span class="dv">3</span> <span class="sc">*</span> x <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">sd =</span> x)  <span class="co"># SD increases with x</span></span>
+<span id="cb28-4"><a></a>df_hetero <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(x, y)</span>
+<span id="cb28-5"><a></a></span>
+<span id="cb28-6"><a></a><span class="fu">ggplot</span>(df_hetero, <span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
+<span id="cb28-7"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb28-8"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb28-9"><a></a>              <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb28-10"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Heteroskedasticity"</span>,</span>
+<span id="cb28-11"><a></a>       <span class="at">subtitle =</span> <span class="st">"Variance increases with x"</span>) <span class="sc">+</span></span>
+<span id="cb28-12"><a></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="week_9_files/figure-revealjs/unnamed-chunk-18-1.png" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<p><strong>Consequences:</strong></p>
+<ul>
+<li>Coefficient estimates are still unbiased</li>
+<li>Standard errors are <strong>wrong</strong></li>
+<li>Confidence intervals and p-values are <strong>unreliable</strong></li>
+<li>Some predictions more uncertain than others</li>
+</ul>
+<p><strong>Solutions:</strong></p>
+<ul>
+<li>Weighted least squares</li>
+<li>Transform response variable</li>
+<li>Use robust standard errors</li>
+</ul>
+</div></div>
+</section>
+<section id="heteroscedasticity-diagnostic-plot" class="slide level2">
+<h2>Heteroscedasticity: Diagnostic plot 🕸️</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a>model_hetero <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> df_hetero)</span>
+<span id="cb29-2"><a></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb29-3"><a></a><span class="fu">plot</span>(model_hetero, <span class="at">which =</span> <span class="dv">1</span>)  <span class="co"># Residuals vs. Fitted</span></span>
+<span id="cb29-4"><a></a><span class="fu">plot</span>(model_hetero, <span class="at">which =</span> <span class="dv">3</span>)  <span class="co"># Scale-Location</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+
+</div>
+<img data-src="week_9_files/figure-revealjs/unnamed-chunk-19-1.png" width="672" class="r-stretch"><p>The “fan shape” in the residual plot reveals non-constant variance.</p>
+</section>
+<section id="violation-3-non-normal-residuals" class="slide level2 smaller">
+<h2>Violation 3: Non-normal residuals 🧟</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<details class="code-fold">
+<summary>Simulate non-normal errors</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a><span class="fu">set.seed</span>(<span class="dv">789</span>)</span>
+<span id="cb30-2"><a></a>x <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">10</span>)</span>
+<span id="cb30-3"><a></a><span class="co"># Add some extreme outliers</span></span>
+<span id="cb30-4"><a></a>y <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">+</span> <span class="dv">3</span> <span class="sc">*</span> x <span class="sc">+</span> <span class="fu">c</span>(<span class="fu">rt</span>(<span class="dv">95</span>, <span class="at">df =</span> <span class="dv">2</span>) <span class="sc">*</span> <span class="dv">2</span>, </span>
+<span id="cb30-5"><a></a>                    <span class="fu">rnorm</span>(<span class="dv">5</span>, <span class="at">mean =</span> <span class="dv">20</span>, <span class="at">sd =</span> <span class="dv">1</span>))</span>
+<span id="cb30-6"><a></a>df_nonnormal <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(x, y)</span>
+<span id="cb30-7"><a></a></span>
+<span id="cb30-8"><a></a><span class="fu">ggplot</span>(df_nonnormal, <span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
+<span id="cb30-9"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb30-10"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb30-11"><a></a>              <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb30-12"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Heavy-tailed residuals"</span>,</span>
+<span id="cb30-13"><a></a>       <span class="at">subtitle =</span> <span class="st">"With outliers"</span>) <span class="sc">+</span></span>
+<span id="cb30-14"><a></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="week_9_files/figure-revealjs/unnamed-chunk-20-1.png" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<p><strong>Consequences:</strong></p>
+<ul>
+<li>Coefficients still unbiased (least-squares principal still applies and does not require normality)</li>
+<li>(Unless the sample size is very large) <strong>Hypothesis tests and confidence intervals may lose validity (CIs too narrow or too wide, HTs not maintaining specified significance level)</strong></li>
+</ul>
+<p><strong>Solutions:</strong></p>
+<ul>
+<li>Transform response variable (e.g.&nbsp;Box-Cox transformations)</li>
+<li>Interpret confidence intervals / hypothesis tests with skepticism</li>
+</ul>
+</div></div>
+</section>
+<section id="non-normality-diagnostic-plot" class="slide level2">
+<h2>Non-normality: Diagnostic plot 💀</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a>model_nonnormal <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> df_nonnormal)</span>
+<span id="cb31-2"><a></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb31-3"><a></a><span class="fu">plot</span>(model_nonnormal, <span class="at">which =</span> <span class="dv">2</span>)  <span class="co"># Q-Q plot</span></span>
+<span id="cb31-4"><a></a><span class="fu">plot</span>(model_nonnormal, <span class="at">which =</span> <span class="dv">5</span>)  <span class="co"># Residuals vs Leverage</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+
+</div>
+<img data-src="week_9_files/figure-revealjs/unnamed-chunk-21-1.png" width="672" class="r-stretch"><p>Departures from the diagonal line in Q-Q plot indicate non-normality. Point 99 is influential!</p>
+</section>
+<section id="violation-4-non-independence" class="slide level2 smaller">
+<h2>Violation 4: Non-independence 🦇</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<details class="code-fold">
+<summary>Simulate correlated errors</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a><span class="fu">set.seed</span>(<span class="dv">101</span>)</span>
+<span id="cb32-2"><a></a>n <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb32-3"><a></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span>n</span>
+<span id="cb32-4"><a></a>errors <span class="ot">&lt;-</span> <span class="fu">arima.sim</span>(<span class="at">n =</span> n, </span>
+<span id="cb32-5"><a></a>                    <span class="fu">list</span>(<span class="at">ar =</span> <span class="fl">0.7</span>), <span class="at">sd =</span> <span class="dv">2</span>)</span>
+<span id="cb32-6"><a></a>y <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">+</span> <span class="fl">0.5</span> <span class="sc">*</span> x <span class="sc">+</span> errors</span>
+<span id="cb32-7"><a></a>df_autocor <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(x, y)</span>
+<span id="cb32-8"><a></a></span>
+<span id="cb32-9"><a></a><span class="fu">ggplot</span>(df_autocor, <span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
+<span id="cb32-10"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb32-11"><a></a>  <span class="fu">geom_line</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb32-12"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb32-13"><a></a>              <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb32-14"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Autocorrelated errors"</span>,</span>
+<span id="cb32-15"><a></a>       <span class="at">subtitle =</span> <span class="st">"Time series data"</span>) <span class="sc">+</span></span>
+<span id="cb32-16"><a></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="week_9_files/figure-revealjs/unnamed-chunk-22-1.png" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<p><strong>Consequences:</strong></p>
+<ul>
+<li>Common in time series or clustered data</li>
+<li>Standard errors are <strong>severely underestimated</strong></li>
+<li>P-values too small (false positives)</li>
+<li>Confidence intervals too narrow</li>
+</ul>
+<p><strong>Solutions:</strong></p>
+<ul>
+<li>Time series models (model the correlation in the error terms)</li>
+</ul>
+</div></div>
+</section>
+<section id="key-takeaway" class="slide level2 smaller">
+<h2>Key takeaway</h2>
+<ul>
+<li class="fragment">Always check diagnostic plots <strong>before</strong> interpreting results</li>
+<li class="fragment">Violated assumptions don’t always invalidate the analysis:
+<ul>
+<li class="fragment">Some violations are worse than others</li>
+<li class="fragment">Large samples can mitigate some problems</li>
+<li class="fragment">Transformations can often help</li>
+</ul></li>
+<li class="fragment">When in doubt:
+<ul>
+<li class="fragment">Use robust methods</li>
+<li class="fragment">Report diagnostics</li>
+<li class="fragment">Be transparent about limitations</li>
+</ul></li>
+<li class="fragment"><strong>No model is perfect</strong> - focus on whether violations are severe enough to affect your conclusions</li>
+</ul>
+</section></section>
+<section>
+<section id="multiple-regression" class="title-slide slide level1 center">
+<h1>Multiple regression</h1>
+
+</section>
+<section id="extending-to-multiple-predictors" class="slide level2">
+<h2>Extending to multiple predictors</h2>
+<ul>
+<li><p><strong>Multiple regression</strong> includes more than one predictor <span class="math display">\[Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \cdots + \beta_p X_p + \epsilon\]</span></p></li>
+<li><p>Each coefficient <span class="math inline">\(\beta_j\)</span> represents the effect of <span class="math inline">\(X_j\)</span> on <span class="math inline">\(Y\)</span>, <strong>holding other predictors constant</strong></p></li>
+<li><p>R syntax:</p></li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(response <span class="sc">~</span> predictor1 <span class="sc">+</span> predictor2 <span class="sc">+</span> predictor3,</span>
+<span id="cb33-2"><a></a>            <span class="at">data =</span> dataset)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="example-mtcars-dataset" class="slide level2 smaller">
+<h2>Example: mtcars dataset</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>View the mtcars dataset</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a></a><span class="fu">data</span>(mtcars)</span>
+<span id="cb34-2"><a></a><span class="fu">head</span>(mtcars)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>                   mpg cyl disp  hp drat    wt  qsec vs am gear carb
+Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre>
+</div>
+</div>
+<ul>
+<li><code>mpg</code>: miles per gallon</li>
+<li><code>wt</code>: weight (1000 lbs)</li>
+<li><code>hp</code>: horsepower</li>
+<li><code>cyl</code>: number of cylinders</li>
+</ul>
+</section>
+<section id="research-question-1" class="slide level2">
+<h2>Research question</h2>
+<ul>
+<li>How do weight and horsepower jointly affect fuel efficiency (mpg)? <span class="math display">\[\text{mpg} = \beta_0 + \beta_1 \times \text{wt} + \beta_2 \times \text{hp} + \epsilon\]</span></li>
+</ul>
+</section>
+<section id="fitting-the-multiple-regression-model" class="slide level2">
+<h2>Fitting the multiple regression model</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a>mtcars_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> wt <span class="sc">+</span> hp, <span class="at">data =</span> mtcars)</span>
+<span id="cb36-2"><a></a><span class="fu">summary</span>(mtcars_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = mpg ~ wt + hp, data = mtcars)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-3.941 -1.600 -0.182  1.050  5.854 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 37.22727    1.59879  23.285  &lt; 2e-16 ***
+wt          -3.87783    0.63273  -6.129 1.12e-06 ***
+hp          -0.03177    0.00903  -3.519  0.00145 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 2.593 on 29 degrees of freedom
+Multiple R-squared:  0.8268,    Adjusted R-squared:  0.8148 
+F-statistic: 69.21 on 2 and 29 DF,  p-value: 9.109e-12</code></pre>
+</div>
+</div>
+</section>
+<section id="interpreting-multiple-regression-coefficients" class="slide level2 smaller">
+<h2>Interpreting multiple regression coefficients</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a></a><span class="fu">coef</span>(mtcars_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(Intercept)          wt          hp 
+37.22727012 -3.87783074 -0.03177295 </code></pre>
+</div>
+</div>
+<ul>
+<li><strong>Intercept</strong> (<span class="math inline">\(\hat{\beta}_0 = 37.23\)</span>): expected mpg when weight and horsepower are both 0 (not meaningful)</li>
+<li><strong>wt</strong> (<span class="math inline">\(\hat{\beta}_1 = -3.88\)</span>): for each 1000 lb increase in weight, mpg decreases by about 3.88, <strong>holding horsepower constant</strong></li>
+<li><strong>hp</strong> (<span class="math inline">\(\hat{\beta}_2 = -0.03\)</span>): for each 1 hp increase, mpg decreases by about 0.03, <strong>holding weight constant</strong></li>
+</ul>
+</section>
+<section id="comparing-models" class="slide level2">
+<h2>Comparing models</h2>
+<ul>
+<li>We can compare models with different numbers of predictors</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a></a><span class="co"># Simple model: mpg vs weight only</span></span>
+<span id="cb40-2"><a></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> wt, <span class="at">data =</span> mtcars)</span>
+<span id="cb40-3"><a></a></span>
+<span id="cb40-4"><a></a><span class="co"># Multiple model: mpg vs weight and horsepower</span></span>
+<span id="cb40-5"><a></a>model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> wt <span class="sc">+</span> hp, <span class="at">data =</span> mtcars)</span>
+<span id="cb40-6"><a></a></span>
+<span id="cb40-7"><a></a><span class="co"># Compare R-squared</span></span>
+<span id="cb40-8"><a></a><span class="fu">summary</span>(model1)<span class="sc">$</span>r.squared</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.7528328</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a></a><span class="fu">summary</span>(model2)<span class="sc">$</span>r.squared</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.8267855</code></pre>
+</div>
+</div>
+<ul>
+<li>Model 2 explains more variance (higher R-squared)</li>
+</ul>
+</section>
+<section id="anova-for-model-comparison" class="slide level2">
+<h2>ANOVA for model comparison</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a></a><span class="fu">anova</span>(model1, model2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Analysis of Variance Table
+
+Model 1: mpg ~ wt
+Model 2: mpg ~ wt + hp
+  Res.Df    RSS Df Sum of Sq      F   Pr(&gt;F)   
+1     30 278.32                                
+2     29 195.05  1    83.274 12.381 0.001451 **
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<ul>
+<li>The ANOVA F-test compares the two models</li>
+<li>Small p-value indicates that adding <code>hp</code> significantly improves the model</li>
+<li>The more complex model (model2) is preferred</li>
+</ul>
+</section></section>
+<section>
+<section id="categorical-predictors" class="title-slide slide level1 center">
+<h1>Categorical predictors</h1>
+
+</section>
+<section id="including-categorical-variables" class="slide level2 smaller">
+<h2>Including categorical variables</h2>
+<ul>
+<li>Categorical predictors are automatically converted to <strong>dummy variables</strong></li>
+<li>Example: modeling mpg as a function of number of cylinders
+<ul>
+<li><code>cyl</code> can be 4, 6, or 8</li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a></a>mtcars<span class="sc">$</span>cyl <span class="ot">&lt;-</span> <span class="fu">factor</span>(mtcars<span class="sc">$</span>cyl)</span>
+<span id="cb46-2"><a></a>cyl_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> cyl, <span class="at">data =</span> mtcars)</span>
+<span id="cb46-3"><a></a><span class="fu">summary</span>(cyl_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = mpg ~ cyl, data = mtcars)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-5.2636 -1.8357  0.0286  1.3893  7.2364 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  26.6636     0.9718  27.437  &lt; 2e-16 ***
+cyl6         -6.9208     1.5583  -4.441 0.000119 ***
+cyl8        -11.5636     1.2986  -8.905 8.57e-10 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 3.223 on 29 degrees of freedom
+Multiple R-squared:  0.7325,    Adjusted R-squared:  0.714 
+F-statistic:  39.7 on 2 and 29 DF,  p-value: 4.979e-09</code></pre>
+</div>
+</div>
+</section>
+<section id="interpreting-categorical-coefficients" class="slide level2 smaller">
+<h2>Interpreting categorical coefficients</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a></a><span class="fu">coef</span>(cyl_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(Intercept)        cyl6        cyl8 
+  26.663636   -6.920779  -11.563636 </code></pre>
+</div>
+</div>
+<ul>
+<li>R creates dummy variables with the first level as the <strong>reference category</strong>
+<ul>
+<li>Here, 4 cylinders is the reference</li>
+</ul></li>
+<li><strong>Intercept</strong> (<span class="math inline">\(\hat{\beta}_0 = 26.66\)</span>): mean mpg for 4-cylinder cars</li>
+<li><strong>cyl6</strong> (<span class="math inline">\(\hat{\beta}_1 = -6.92\)</span>): 6-cylinder cars have about 6.92 lower mpg than 4-cylinder cars, on average</li>
+<li><strong>cyl8</strong> (<span class="math inline">\(\hat{\beta}_2 = -11.56\)</span>): 8-cylinder cars have about 11.56 lower mpg than 4-cylinder cars, on average</li>
+</ul>
+</section>
+<section id="visualizing-categorical-regression" class="slide level2">
+<h2>Visualizing categorical regression</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Boxplot with group means</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> cyl, <span class="at">y =</span> mpg, <span class="at">fill =</span> cyl)) <span class="sc">+</span></span>
+<span id="cb50-2"><a></a>  <span class="fu">geom_boxplot</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb50-3"><a></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">"point"</span>, <span class="at">shape =</span> <span class="dv">18</span>, <span class="at">size =</span> <span class="dv">4</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb50-4"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"MPG by number of cylinders"</span>,</span>
+<span id="cb50-5"><a></a>       <span class="at">subtitle =</span> <span class="st">"Red diamonds show group means (regression estimates)"</span>,</span>
+<span id="cb50-6"><a></a>       <span class="at">x =</span> <span class="st">"Number of cylinders"</span>, <span class="at">y =</span> <span class="st">"Miles per gallon"</span>) <span class="sc">+</span></span>
+<span id="cb50-7"><a></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb50-8"><a></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+
+</div>
+<img data-src="week_9_files/figure-revealjs/unnamed-chunk-31-1.png" width="576" class="r-stretch"></section></section>
+<section>
+<section id="key-r-functions-for-regression" class="title-slide slide level1 center">
+<h1>Key R functions for regression</h1>
+
+</section>
+<section id="summary-table" class="slide level2 smaller">
+<h2>Summary table</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Purpose</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>lm()</code></td>
+<td>Fit linear model</td>
+<td><code>lm(y ~ x, data = df)</code></td>
+</tr>
+<tr class="even">
+<td><code>summary()</code></td>
+<td>Model summary statistics</td>
+<td><code>summary(model)</code></td>
+</tr>
+<tr class="odd">
+<td><code>coef()</code></td>
+<td>Extract coefficients</td>
+<td><code>coef(model)</code></td>
+</tr>
+<tr class="even">
+<td><code>confint()</code></td>
+<td>Confidence intervals</td>
+<td><code>confint(model)</code></td>
+</tr>
+<tr class="odd">
+<td><code>predict()</code></td>
+<td>Make predictions</td>
+<td><code>predict(model, newdata)</code></td>
+</tr>
+<tr class="even">
+<td><code>plot()</code></td>
+<td>Diagnostic plots</td>
+<td><code>plot(model)</code></td>
+</tr>
+<tr class="odd">
+<td><code>anova()</code></td>
+<td>Compare models</td>
+<td><code>anova(model1, model2)</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="formula-syntax-in-r" class="slide level2 smaller">
+<h2>Formula syntax in R</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Formula</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>y ~ x</code></td>
+<td>Simple regression: y on x</td>
+</tr>
+<tr class="even">
+<td><code>y ~ x1 + x2</code></td>
+<td>Multiple regression: y on x1 and x2</td>
+</tr>
+<tr class="odd">
+<td><code>y ~ x1 + x2 + x1:x2</code></td>
+<td>Include interaction between x1 and x2</td>
+</tr>
+<tr class="even">
+<td><code>y ~ x1 * x2</code></td>
+<td>Equivalent to <code>y ~ x1 + x2 + x1:x2</code></td>
+</tr>
+<tr class="odd">
+<td><code>y ~ .</code></td>
+<td>Use all other variables as predictors</td>
+</tr>
+<tr class="even">
+<td><code>y ~ x - 1</code></td>
+<td>Regression without intercept</td>
+</tr>
+</tbody>
+</table>
+</section></section>
+<section>
+<section id="important-considerations" class="title-slide slide level1 center">
+<h1>Important considerations</h1>
+
+</section>
+<section id="correlation-vs.-causation" class="slide level2">
+<h2>Correlation vs.&nbsp;causation</h2>
+<ul>
+<li>Regression reveals <strong>associations</strong>, not necessarily <strong>causation</strong></li>
+<li>Just because <span class="math inline">\(X\)</span> predicts <span class="math inline">\(Y\)</span> doesn’t mean <span class="math inline">\(X\)</span> causes <span class="math inline">\(Y\)</span></li>
+<li>Possible explanations for correlation:
+<ol type="1">
+<li><span class="math inline">\(X\)</span> causes <span class="math inline">\(Y\)</span></li>
+<li><span class="math inline">\(Y\)</span> causes <span class="math inline">\(X\)</span></li>
+<li>A third variable causes both <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> (confounding)</li>
+<li>The association is due to chance</li>
+</ol></li>
+<li><strong>Randomized experiments</strong> (like the clinical trials in Week 4) provide stronger evidence for causation</li>
+</ul>
+</section>
+<section id="extrapolation" class="slide level2">
+<h2>Extrapolation</h2>
+<ul>
+<li><strong>Extrapolation</strong>: making predictions outside the range of observed data</li>
+<li>The linear relationship may not hold beyond the observed range</li>
+<li>Example: predicting stopping distance for a car going 100 mph using our cars model
+<ul>
+<li>The data only include speeds from 4 to 25 mph</li>
+<li>Extrapolating to 100 mph is risky</li>
+</ul></li>
+</ul>
+</section>
+<section id="limitations-of-r-squared" class="slide level2">
+<h2>Limitations of R-squared</h2>
+<ul>
+<li><strong>R-squared</strong> measures the proportion of variance explained</li>
+<li>Higher R-squared doesn’t always mean a better model:
+<ul>
+<li>Adding more predictors always increases R-squared</li>
+<li>A model with lower R-squared might generalize better</li>
+<li>R-squared doesn’t tell us if the model assumptions are met</li>
+</ul></li>
+<li>Use <strong>adjusted R-squared</strong> when comparing models with different numbers of predictors
+<ul>
+<li>Penalizes for adding unnecessary predictors</li>
+</ul></li>
+</ul>
+</section></section>
+<section>
+<section id="example-full-analysis" class="title-slide slide level1 center">
+<h1>Example: Full analysis</h1>
+
+</section>
+<section id="palmer-penguins-dataset" class="slide level2 smaller">
+<h2>Palmer Penguins dataset</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Load and display the penguins dataset</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(palmerpenguins)) <span class="fu">install.packages</span>(<span class="st">"palmerpenguins"</span>)</span>
+<span id="cb51-2"><a></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb51-3"><a></a><span class="fu">data</span>(penguins)</span>
+<span id="cb51-4"><a></a><span class="fu">str</span>(penguins)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>tibble [344 × 8] (S3: tbl_df/tbl/data.frame)
+ $ species          : Factor w/ 3 levels "Adelie","Chinstrap",..: 1 1 1 1 1 1 1 1 1 1 ...
+ $ island           : Factor w/ 3 levels "Biscoe","Dream",..: 3 3 3 3 3 3 3 3 3 3 ...
+ $ bill_length_mm   : num [1:344] 39.1 39.5 40.3 NA 36.7 39.3 38.9 39.2 34.1 42 ...
+ $ bill_depth_mm    : num [1:344] 18.7 17.4 18 NA 19.3 20.6 17.8 19.6 18.1 20.2 ...
+ $ flipper_length_mm: int [1:344] 181 186 195 NA 193 190 181 195 193 190 ...
+ $ body_mass_g      : int [1:344] 3750 3800 3250 NA 3450 3650 3625 4675 3475 4250 ...
+ $ sex              : Factor w/ 2 levels "female","male": 2 1 1 NA 1 2 1 2 NA NA ...
+ $ year             : int [1:344] 2007 2007 2007 2007 2007 2007 2007 2007 2007 2007 ...</code></pre>
+</div>
+</div>
+</section>
+<section id="research-question-2" class="slide level2">
+<h2>Research question</h2>
+<ul>
+<li>How does body mass depend on flipper length and species?</li>
+<li>Let’s build a multiple regression model</li>
+</ul>
+</section>
+<section id="exploratory-visualization" class="slide level2">
+<h2>Exploratory visualization</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Scatterplot colored by species</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g, <span class="at">color =</span> species)) <span class="sc">+</span></span>
+<span id="cb53-2"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb53-3"><a></a><span class="co">#   geom_smooth(method = "lm", se = FALSE) +</span></span>
+<span id="cb53-4"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Body mass vs. flipper length by species"</span>,</span>
+<span id="cb53-5"><a></a>       <span class="at">x =</span> <span class="st">"Flipper length (mm)"</span>, <span class="at">y =</span> <span class="st">"Body mass (g)"</span>) <span class="sc">+</span></span>
+<span id="cb53-6"><a></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+
+</div>
+<img data-src="week_9_files/figure-revealjs/unnamed-chunk-33-1.png" width="672" class="r-stretch"></section>
+<section id="fitting-the-model-1" class="slide level2 smaller">
+<h2>Fitting the model</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a></a><span class="co"># Remove missing values</span></span>
+<span id="cb54-2"><a></a>penguins_clean <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(penguins[, <span class="fu">c</span>(<span class="st">"body_mass_g"</span>, <span class="st">"flipper_length_mm"</span>, <span class="st">"species"</span>)])</span>
+<span id="cb54-3"><a></a></span>
+<span id="cb54-4"><a></a><span class="co"># Fit model</span></span>
+<span id="cb54-5"><a></a>penguin_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(body_mass_g <span class="sc">~</span> flipper_length_mm <span class="sc">+</span> species, <span class="at">data =</span> penguins_clean)</span>
+<span id="cb54-6"><a></a><span class="fu">summary</span>(penguin_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = body_mass_g ~ flipper_length_mm + species, data = penguins_clean)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-927.70 -254.82  -23.92  241.16 1191.68 
+
+Coefficients:
+                   Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)       -4031.477    584.151  -6.901 2.55e-11 ***
+flipper_length_mm    40.705      3.071  13.255  &lt; 2e-16 ***
+speciesChinstrap   -206.510     57.731  -3.577 0.000398 ***
+speciesGentoo       266.810     95.264   2.801 0.005392 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 375.5 on 338 degrees of freedom
+Multiple R-squared:  0.7826,    Adjusted R-squared:  0.7807 
+F-statistic: 405.7 on 3 and 338 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+</section>
+<section id="interpreting-the-results" class="slide level2 smaller">
+<h2>Interpreting the results</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a></a><span class="fu">coef</span>(penguin_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      (Intercept) flipper_length_mm  speciesChinstrap     speciesGentoo 
+       -4031.4769           40.7054         -206.5101          266.8096 </code></pre>
+</div>
+</div>
+<ul>
+<li><strong>Intercept</strong>: Expected body mass for Adelie penguin with 0 mm flipper length (not meaningful)</li>
+<li><strong>flipper_length_mm</strong>: For each 1 mm increase in flipper length, body mass increases by about 40.7 g, holding species constant</li>
+<li><strong>speciesChinstrap</strong>: Chinstrap penguins are about 206.5 g lighter than Adelie, holding flipper length constant</li>
+<li><strong>speciesGentoo</strong>: Gentoo penguins are about 266.8 g heavier than Adelie, holding flipper length constant</li>
+</ul>
+</section>
+<section id="model-diagnostics-1" class="slide level2">
+<h2>Model diagnostics</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Diagnostic plots</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb58-2"><a></a><span class="fu">plot</span>(penguin_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+
+</div>
+<img data-src="week_9_files/figure-revealjs/unnamed-chunk-36-1.png" width="768" class="r-stretch"></section>
+<section id="making-predictions-1" class="slide level2">
+<h2>Making predictions</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a></a><span class="co"># Predict body mass for a Gentoo penguin with 210 mm flippers</span></span>
+<span id="cb59-2"><a></a>new_penguin <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb59-3"><a></a>  <span class="at">flipper_length_mm =</span> <span class="dv">210</span>,</span>
+<span id="cb59-4"><a></a>  <span class="at">species =</span> <span class="st">"Gentoo"</span></span>
+<span id="cb59-5"><a></a>)</span>
+<span id="cb59-6"><a></a></span>
+<span id="cb59-7"><a></a><span class="fu">predict</span>(penguin_model, <span class="at">newdata =</span> new_penguin, <span class="at">interval =</span> <span class="st">"prediction"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       fit     lwr      upr
+1 4783.467 4040.52 5526.413</code></pre>
+</div>
+</div>
+<ul>
+<li>We predict a Gentoo penguin with 210 mm flippers will have a body mass around 4783 g</li>
+<li>The 95% prediction interval is (4041, 5526) g</li>
+</ul>
+</section></section>
+<section>
+<section id="the-two-cultures" class="title-slide slide level1 center">
+<h1>The two cultures</h1>
+
+</section>
+<section id="two-approaches-to-statistical-modeling" class="slide level2 smaller">
+<h2>Two approaches to statistical modeling</h2>
+<p><strong>Leo Breiman (2001)</strong> identified two cultures in statistical modeling:</p>
+<div class="columns">
+<div class="column" style="width:48%;">
+<p><strong>Culture 1: Data Modeling</strong></p>
+<ul>
+<li>Focus on <strong>inference</strong></li>
+<li>Assume a stochastic model (e.g., linear regression)</li>
+<li>Estimate parameters and test hypotheses</li>
+<li>Interpretability is key</li>
+<li>Assumptions matter greatly</li>
+<li><strong>This lecture has focused here</strong></li>
+</ul>
+</div><div class="column" style="width:48%;">
+<p><strong>Culture 2: Algorithmic Modeling</strong></p>
+<ul>
+<li>Focus on <strong>prediction</strong></li>
+<li>Treat the data mechanism as unknown</li>
+<li>Prioritize predictive accuracy</li>
+<li>“Black box” models acceptable</li>
+<li>Less concern about distributional assumptions</li>
+<li><strong>The box-office prediction case study has some of this flavor</strong></li>
+</ul>
+</div></div>
+</section>
+<section id="implications-for-your-work" class="slide level2">
+<h2>Implications for your work</h2>
+<ul>
+<li>In <strong>prediction tasks</strong>:
+<ul>
+<li>Diagnostic plots are less critical if the model predicts well on new data</li>
+<li>Large sample sizes can overcome some assumption violations</li>
+<li>Cross-validation and test set performance matter more than p-values</li>
+<li>The “true” model may be unknowable and that’s okay</li>
+</ul></li>
+<li>In <strong>inference tasks</strong> (like much of today):
+<ul>
+<li>Understanding relationships is the goal</li>
+<li>Assumptions must be checked carefully</li>
+<li>Coefficient interpretation requires proper model specification</li>
+<li>Causal claims require even stronger assumptions</li>
+</ul></li>
+</ul>
+</section></section>
+<section>
+<section id="summary" class="title-slide slide level1 center">
+<h1>Summary</h1>
+
+</section>
+<section id="key-takeaways" class="slide level2 smaller">
+<h2>Key takeaways</h2>
+<ol type="1">
+<li><strong>Regression</strong> models relationships between variables</li>
+<li><strong>Simple linear regression</strong>: one predictor, estimates slope and intercept</li>
+<li><strong>Multiple regression</strong>: multiple predictors, each coefficient represents effect holding others constant</li>
+<li><strong>R function</strong>: <code>lm(response ~ predictors, data = dataset)</code></li>
+<li>Use <code>summary()</code>, <code>coef()</code>, <code>confint()</code>, and <code>predict()</code> to interpret results</li>
+<li>Check <strong>model assumptions</strong> using diagnostic plots</li>
+<li><strong>Categorical predictors</strong> are handled automatically via dummy variables</li>
+<li>Remember: <strong>correlation ≠ causation</strong></li>
+</ol>
+</section>
+<section id="next-steps" class="slide level2">
+<h2>Next steps</h2>
+<ul>
+<li>Continue with Case Study 1</li>
+<li>Practice fitting and interpreting regression models</li>
+<li>Think about:
+<ul>
+<li>What makes a good predictor?</li>
+<li>How do we choose which variables to include?</li>
+<li>What should we do if assumptions are violated?</li>
+</ul></li>
+</ul>
+
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>

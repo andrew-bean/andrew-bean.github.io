@@ -69,6 +69,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -134,6 +163,10 @@ ul.task-list li input[type="checkbox"] {
         <li>
     <a class="dropdown-item" href="../../lectures/week_8/lectures_8.html">
  <span class="dropdown-text">Week 8 (Oct 14)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../lectures/week_9/lectures_9.html">
+ <span class="dropdown-text">Week 9 (Oct 21)</span></a>
   </li>  
     </ul>
   </li>
@@ -261,10 +294,15 @@ ul.task-list li input[type="checkbox"] {
   </ul></li>
   <li><a href="#part-4-regression-and-prediction-challenge-in-class-21-oct" id="toc-part-4-regression-and-prediction-challenge-in-class-21-oct" class="nav-link" data-scroll-target="#part-4-regression-and-prediction-challenge-in-class-21-oct">Part 4: Regression and prediction challenge (In class: 21-Oct)</a>
   <ul class="collapse">
-  <li><a href="#requirements-1" id="toc-requirements-1" class="nav-link" data-scroll-target="#requirements-1">Requirements</a></li>
-  <li><a href="#submission-3" id="toc-submission-3" class="nav-link" data-scroll-target="#submission-3">Submission</a></li>
+  <li><a href="#objectives-1" id="toc-objectives-1" class="nav-link" data-scroll-target="#objectives-1">Objectives</a></li>
+  <li><a href="#the-challenge" id="toc-the-challenge" class="nav-link" data-scroll-target="#the-challenge">The Challenge</a></li>
+  <li><a href="#what-youll-receive" id="toc-what-youll-receive" class="nav-link" data-scroll-target="#what-youll-receive">What you’ll receive</a></li>
+  <li><a href="#evaluation" id="toc-evaluation" class="nav-link" data-scroll-target="#evaluation">Evaluation</a></li>
+  <li><a href="#submission-requirements" id="toc-submission-requirements" class="nav-link" data-scroll-target="#submission-requirements">Submission requirements</a></li>
+  <li><a href="#grading-20-points-total" id="toc-grading-20-points-total" class="nav-link" data-scroll-target="#grading-20-points-total">Grading (20 points total)</a></li>
+  <li><a href="#tips-for-success" id="toc-tips-for-success" class="nav-link" data-scroll-target="#tips-for-success">Tips for success</a></li>
+  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources</a></li>
   </ul></li>
-  <li><a href="#part-4-regression-and-prediction-challenge-in-class-21-oct-1" id="toc-part-4-regression-and-prediction-challenge-in-class-21-oct-1" class="nav-link" data-scroll-target="#part-4-regression-and-prediction-challenge-in-class-21-oct-1">Part 4: Regression and prediction challenge (In class: 21-Oct)</a></li>
   </ul>
 </nav>
     </div>
@@ -434,30 +472,88 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="part-4-regression-and-prediction-challenge-in-class-21-oct" class="level2">
 <h2 class="anchored" data-anchor-id="part-4-regression-and-prediction-challenge-in-class-21-oct">Part 4: Regression and prediction challenge (In class: 21-Oct)</h2>
+<p>This part will be completed in class on Tuesday October 21.</p>
+<section id="objectives-1" class="level3">
+<h3 class="anchored" data-anchor-id="objectives-1">Objectives</h3>
+<p>In this final part, you will:</p>
 <ul>
-<li>Revenue vs.&nbsp;user ratings</li>
-<li>Revenue by production country</li>
-<li>Revenue vs.&nbsp;cast/director popularity</li>
-</ul>
-<section id="requirements-1" class="level3">
-<h3 class="anchored" data-anchor-id="requirements-1">Requirements</h3>
-<ul>
-<li>Your audience consists of studio executives who understand basic statistics but are not data scientists</li>
-<li>Visualizations should be clear, well-labeled, and interpretable</li>
-<li>Each visualization should be accompanied by written interpretation</li>
-<li>Use R code chunks within the Quarto document to generate all plots and summaries</li>
-<li>Set <code>echo: false</code> in the YAML header so code does not appear in the final PDF</li>
+<li>Build multiple linear regression models to predict <code>log_revenue</code></li>
+<li>Experiment with different predictor variables and model specifications</li>
+<li>Submit predictions for a held-out test set</li>
+<li>Compete with your classmates to achieve the lowest prediction error (RMSE)</li>
 </ul>
 </section>
-<section id="submission-3" class="level3">
-<h3 class="anchored" data-anchor-id="submission-3">Submission</h3>
-<p>Render your Quarto document to PDF and submit both the <code>.qmd</code> source file and the <code>.pdf</code> output on Moodle under Case Study 1 Box Office Analysis (Part 3).</p>
+<section id="the-challenge" class="level3">
+<h3 class="anchored" data-anchor-id="the-challenge">The Challenge</h3>
+<p>You will work in pairs to:</p>
+<ol type="1">
+<li><strong>Explore the training data</strong>: Understand relationships between predictors and revenue</li>
+<li><strong>Build regression models</strong>: Start with simple models and iterate to improve performance</li>
+<li><strong>Evaluate your models</strong>: Calculate training RMSE to gauge performance</li>
+<li><strong>Make predictions</strong>: Apply your best model to a held-out test set</li>
+<li><strong>Submit for scoring</strong>: Submit predictions in CSV format for evaluation</li>
+<li><strong>Climb the leaderboard</strong>: You may submit multiple times to improve your score</li>
+</ol>
 </section>
+<section id="what-youll-receive" class="level3">
+<h3 class="anchored" data-anchor-id="what-youll-receive">What you’ll receive</h3>
+<ul>
+<li>Training data: The cleaned dataset from Part 1 (<code>movies_clean.rds</code>)</li>
+<li>Test data: A similar dataset with the same predictors, but:
+<ul>
+<li>Different movies than the training set</li>
+<li>No <code>log_revenue</code>, <code>revenue</code>, <code>title</code>, or <code>overview</code> columns (to prevent looking up actual values)</li>
+<li>You must predict <code>log_revenue</code> for these movies</li>
+</ul></li>
+</ul>
 </section>
-<section id="part-4-regression-and-prediction-challenge-in-class-21-oct-1" class="level2">
-<h2 class="anchored" data-anchor-id="part-4-regression-and-prediction-challenge-in-class-21-oct-1">Part 4: Regression and prediction challenge (In class: 21-Oct)</h2>
+<section id="evaluation" class="level3">
+<h3 class="anchored" data-anchor-id="evaluation">Evaluation</h3>
+<p>Your predictions will be scored using <strong>RMSE (Root Mean Squared Error)</strong>:</p>
+<p><span class="math display">\[\text{RMSE} = \sqrt{\frac{1}{n}\sum_{i=1}^{n}(y_i - \hat{y}_i)^2}\]</span></p>
+<p>where <span class="math inline">\(y_i\)</span> is the actual log revenue and <span class="math inline">\(\hat{y}_i\)</span> is your predicted log revenue.</p>
+<p><strong>Lower RMSE is better!</strong></p>
+</section>
+<section id="submission-requirements" class="level3">
+<h3 class="anchored" data-anchor-id="submission-requirements">Submission requirements</h3>
+<p><strong>During class:</strong> - Submit predictions as a CSV file with two columns: <code>id</code> and <code>predicted_log_revenue</code> - Name your file: <code>predictions_LASTNAME1_LASTNAME2.csv</code> - You may submit multiple times to improve your score - Results will be posted to a class leaderboard</p>
+<p><strong>At end of class:</strong> - Submit your final R script (<code>04_prediction.R</code>) on Moodle under Case Study 1 Box Office Analysis (Part 4)</p>
+</section>
+<section id="grading-20-points-total" class="level3">
+<h3 class="anchored" data-anchor-id="grading-20-points-total">Grading (20 points total)</h3>
+<ul>
+<li><strong>Completeness of code</strong> (20 points): Did you build models and generate predictions?</li>
+<li><strong>Prediction accuracy</strong> (up to 5 bonus points): Bonus points for top 3 pairs:
+<ul>
+<li>1st place: 5 bonus points</li>
+<li>2nd place: 3 bonus points<br>
+</li>
+<li>3rd place: 1 bonus point</li>
+</ul></li>
+</ul>
+</section>
+<section id="tips-for-success" class="level3">
+<h3 class="anchored" data-anchor-id="tips-for-success">Tips for success</h3>
+<ul>
+<li><strong>Start simple</strong>: Begin with basic models using a few predictors</li>
+<li><strong>Feature engineering</strong>: Try creating new variables (e.g., <code>release_year</code>, interaction terms, transformations)</li>
+<li><strong>Balance complexity</strong>: More complex models may overfit and perform worse on test data</li>
+<li><strong>Iterate quickly</strong>: Don’t spend too long perfecting one model - try multiple approaches</li>
+<li><strong>Have fun!</strong> This is a friendly competition to reinforce regression concepts</li>
+</ul>
+</section>
+<section id="resources" class="level3">
+<h3 class="anchored" data-anchor-id="resources">Resources</h3>
+<ol type="1">
+<li>Download: <a href="tmdb_project_v2.zip">tmdb_project_v2.zip</a></li>
+<li>Unzip to a convenient location on your computer</li>
+<li>Navigate to the folder and open <code>tmdb.Rproj</code> to open the project in RStudio</li>
+</ol>
+<p>Once you have the project open, you will work with the script <code>04_prediction.R</code>, which includes: - Starter code for loading data and building baseline models - Helper functions for calculating RMSE - Examples of feature engineering - Instructions for creating the submission file - Tips for improving model performance</p>
+<p>Good luck! 🎬📊🏆</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
