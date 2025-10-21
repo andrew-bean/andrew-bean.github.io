@@ -504,6 +504,27 @@
     "text": "Course description\nCovers how to use real-world data and draw intelligent conclusions on it using univariate and bivariate descriptive statistics such as centrality, spread, and correlation. Students have the opportunity to learn how to use the R language in the R-studio environment to obtain representative samples from large datasets and use the information in such samples to draw inferences on the larger datasets they were taken from. Course topics include graphical and tabular presentation of data, descriptive summary statistics, manipulation of data, regression, probability distributions, t-tests, and one-way analysis of variance."
   },
   {
+    "objectID": "exams/exam_1.html",
+    "href": "exams/exam_1.html",
+    "title": "Exam 1 (Sep 30): review and practice materials",
+    "section": "",
+    "text": "Part 1: part_1_solution.pdf\nPart 2: part_2_solution.pdf"
+  },
+  {
+    "objectID": "exams/exam_1.html#part-1",
+    "href": "exams/exam_1.html#part-1",
+    "title": "Exam 1 (Sep 30): review and practice materials",
+    "section": "Part 1",
+    "text": "Part 1\nFor Part 1 (on paper, closed computer), I have created a practice exam to give you a sense of the format and topics: part_1_practice.pdf.\nThe solution is here: part_1_practice_solution.pdf."
+  },
+  {
+    "objectID": "exams/exam_1.html#part-2",
+    "href": "exams/exam_1.html#part-2",
+    "title": "Exam 1 (Sep 30): review and practice materials",
+    "section": "Part 2",
+    "text": "Part 2\nFor Part 2, the format will be very similar to the in-class Labs. Given the open format of this part of the exam, I will not provide a separate practice exam for Part 2.\nYou will be given a Quarto script which you can download, and which you will edit to fill in blank code chunks and free-text responses (again, just like the lab).\nThe questions will involve exploration of a single real dataset. Coding tasks and questions about this dataset will be drawn from the list of topics above.\nI suggest reviewing or even re-doing the labs as a way of practicing for Part 2."
+  },
+  {
     "objectID": "case_studies/tmdb/tmdb.html",
     "href": "case_studies/tmdb/tmdb.html",
     "title": "Case study 1",
@@ -551,27 +572,6 @@
     "title": "Case study 1",
     "section": "Part 4: Regression and prediction challenge (In class: 21-Oct)",
     "text": "Part 4: Regression and prediction challenge (In class: 21-Oct)\nThis part will be completed in class on Tuesday October 21.\n\nObjectives\nIn this final part, you will:\n\nBuild multiple linear regression models to predict log_revenue\nExperiment with different predictor variables and model specifications\nSubmit predictions for a held-out test set\nCompete with your classmates to achieve the lowest prediction error (RMSE)\n\n\n\nThe Challenge\nYou will work in pairs to:\n\nExplore the training data: Understand relationships between predictors and revenue\nBuild regression models: Start with simple models and iterate to improve performance\nEvaluate your models: Calculate training RMSE to gauge performance\nMake predictions: Apply your best model to a held-out test set\nSubmit for scoring: Submit predictions in CSV format for evaluation\nClimb the leaderboard: You may submit multiple times to improve your score\n\n\n\nGetting started\n\nDownload: tmdb_project_v2.zip\nUnzip to a convenient location on your computer\nNavigate to the folder and open tmdb.Rproj to open the project in RStudio\n\nOnce you have the project open, you will work with the script 04_prediction.R, which includes: - Starter code for loading data and building baseline models - Helper functions for calculating predictive accuracy using RMSE (defined below) - Examples of feature engineering - Instructions for creating the submission file - Tips for improving model performance\n\n\nEvaluation\nYour predictions will be scored using RMSE (Root Mean Squared Error):\n\\[\\text{RMSE} = \\sqrt{\\frac{1}{n}\\sum_{i=1}^{n}(y_i - \\hat{y}_i)^2}\\]\nwhere \\(y_i\\) is the actual log revenue and \\(\\hat{y}_i\\) is your predicted log revenue.\nLower RMSE is better!\n\n\nSubmission requirements\nDuring class: - Submit predictions as a CSV file with two columns: id and predicted_log_revenue - Name your file: predictions_TEAMNAME_i.csv (with “TEAMNAME” being replaced by your team name, and i indexing your team’s multiple submissions) - You may submit multiple times (increasing the index i each time) to improve your score - Results will be posted to a class leaderboard\nAt end of class: - Submit your final R script (04_prediction.R) on Moodle under Case Study 1 Box Office Analysis (Part 4)\n\n\nGrading (20 points total)\n\nCompleteness of code (20 points): Did you build models and generate predictions?\nPrediction accuracy (up to 5 bonus points): Bonus points for top 3 pairs:\n\n1st place: 5 bonus points\n2nd place: 3 bonus points\n\n3rd place: 1 bonus point\n\n\n\n\nTips for success\n\nStart simple: Begin with basic models using a few predictors\nFeature engineering: Try creating new variables (e.g., release_year, interaction terms, transformations)\nBalance complexity: More complex models may overfit and perform worse on test data\nIterate quickly: Don’t spend too long perfecting one model - try multiple approaches\nHave fun! This is a friendly competition to reinforce regression concepts\n\nGood luck! 🎬📊🏆"
-  },
-  {
-    "objectID": "exams/exam_1.html",
-    "href": "exams/exam_1.html",
-    "title": "Exam 1 (Sep 30): review and practice materials",
-    "section": "",
-    "text": "As described in the syllabus, the exam will have two parts: the first being pen-and-paper, and the second being open-computer.\n\nPart 1:\n\nClosed computer and closed notes\nHandwritten answers\n\nPart 2:\n\nOpen computer. Any online resource that is “not alive” may be used (i.e. you may freely use online resources, but you may not communicate with any other person).\nElectronic submission on Moodle: you will fill in a Quarto script with R code and written answers\n\n\nOnce you turn in Part 1, you may open your computer and download the blank Quarto script for Part 2. You may not return to Part 1 after turning it in and beginning the open-computer portion."
-  },
-  {
-    "objectID": "exams/exam_1.html#part-1",
-    "href": "exams/exam_1.html#part-1",
-    "title": "Exam 1 (Sep 30): review and practice materials",
-    "section": "Part 1",
-    "text": "Part 1\nFor Part 1 (on paper, closed computer), I have created a practice exam to give you a sense of the format and topics: part_1_practice.pdf.\nThe solution is here: part_1_practice_solution.pdf."
-  },
-  {
-    "objectID": "exams/exam_1.html#part-2",
-    "href": "exams/exam_1.html#part-2",
-    "title": "Exam 1 (Sep 30): review and practice materials",
-    "section": "Part 2",
-    "text": "Part 2\nFor Part 2, the format will be very similar to the in-class Labs. Given the open format of this part of the exam, I will not provide a separate practice exam for Part 2.\nYou will be given a Quarto script which you can download, and which you will edit to fill in blank code chunks and free-text responses (again, just like the lab).\nThe questions will involve exploration of a single real dataset. Coding tasks and questions about this dataset will be drawn from the list of topics above.\nI suggest reviewing or even re-doing the labs as a way of practicing for Part 2."
   },
   {
     "objectID": "lectures/week_1/installing_software.html",
