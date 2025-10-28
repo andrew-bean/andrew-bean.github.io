@@ -938,13 +938,6 @@
     "text": "Key takeaways\n\nRegression models relationships between variables\nSimple linear regression: one predictor, estimates slope and intercept\nMultiple regression: multiple predictors, each coefficient represents effect holding others constant\nR function: lm(response ~ predictors, data = dataset)\nUse summary(), coef(), confint(), and predict() to interpret results\nCheck model assumptions using diagnostic plots\nCategorical predictors are handled automatically via dummy variables\nRemember: correlation ≠ causation"
   },
   {
-    "objectID": "lectures/week_10/week_10.html#next-steps",
-    "href": "lectures/week_10/week_10.html#next-steps",
-    "title": "Week 10: Regression (continued)",
-    "section": "Next steps",
-    "text": "Next steps\n\nContinue with Case Study 1\nPractice fitting and interpreting regression models\nThink about:\n\nWhat makes a good predictor?\nHow do we choose which variables to include?\nWhat should we do if assumptions are violated?"
-  },
-  {
     "objectID": "lectures/week_2/week_2.html#what-is-a-variable",
     "href": "lectures/week_2/week_2.html#what-is-a-variable",
     "title": "Week 2: Objects, Types, Classes, and Collections",
