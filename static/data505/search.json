@@ -448,6 +448,13 @@
     "text": "Agenda\n\nIn-class Quiz on Homework 1 (5 minutes)\nLecture on basics of variables, objects, types, and classes, as well as collections of objects, like vectors, lists, and data frames. We will also meet some of our first functions along the way.\n\nToday I recommend downloading the following R script (which contains only the code chunks from the lecture) and following along in RStudio by running line-by-line: week_2.R\n\nHands-on Lab 2 will give you practice reading data into R from a text file to create a data.frame object, and then reinforce some of the concepts from today using the variables defined in this dataset.\n\nlab_2_blank.qmd\nlab_2.pdf\n\n\n\n\nSupportive reading outside class\n(Optional but recommended) the best supporting textbook material for this week is section 2 of this book:\n\nGrolemund, G. (2014). Hands-On Programming with R. O’Reilly Media. Retrieved from https://rstudio-education.github.io/hopr/.\n\n\n\nSlides\nLink to fullscreen"
   },
   {
+    "objectID": "lectures/week_10/lectures_10.html",
+    "href": "lectures/week_10/lectures_10.html",
+    "title": "Week 10: Regression continued",
+    "section": "",
+    "text": "Agenda\n\nShorter class today\nWe will finish the lecture on regression\nCode from lectures: week_10.R, week_9.R\n\n\n\nHomework\n\nHomework 3 is available\nComplete it by next week (quiz at beginning of class)\n\n\n\nSupportive reading outside class\n(Optional but recommended):\n\nThulin, M. (2024). Modern Statistics with R. Second edition. Chapman & Hall/CRC Press. ISBN 9781032512440. Section 8.1: Linear Models. Link\n\n\n\nSlides\nLink to fullscreen"
+  },
+  {
     "objectID": "lectures/week_1/lectures_1.html",
     "href": "lectures/week_1/lectures_1.html",
     "title": "Week 1: Introduction and getting started with R",
@@ -747,6 +754,195 @@
     "title": "Week 1: Introduction",
     "section": "Lab 1",
     "text": "Lab 1\n\nFor Lab 1 you’ll start from this pdf: lab_1.pdf"
+  },
+  {
+    "objectID": "lectures/week_10/week_10.html#recall-what-is-regression-about",
+    "href": "lectures/week_10/week_10.html#recall-what-is-regression-about",
+    "title": "Week 10: Regression (continued)",
+    "section": "Recall: What is regression about?",
+    "text": "Recall: What is regression about?\n\nModeling the relationship between variables\nResponse variable (dependent variable, outcome): what we want to predict or explain\nPredictor variable(s) (independent variable(s), explanatory variable(s)): what we use to predict or explain\nPotential goals:\n\nPrediction: estimate the response for new observations\nInference: understand whether and how predictors affect the response"
+  },
+  {
+    "objectID": "lectures/week_10/week_10.html#extending-to-multiple-predictors",
+    "href": "lectures/week_10/week_10.html#extending-to-multiple-predictors",
+    "title": "Week 10: Regression (continued)",
+    "section": "Extending to multiple predictors",
+    "text": "Extending to multiple predictors\n\nMultiple regression includes more than one predictor \\[Y = \\beta_0 + \\beta_1 X_1 + \\beta_2 X_2 + \\cdots + \\beta_p X_p + \\epsilon\\]\nEach coefficient \\(\\beta_j\\) represents the effect of \\(X_j\\) on \\(Y\\), holding other predictors constant\nR syntax:\n\n\nmodel &lt;- lm(response ~ predictor1 + predictor2 + predictor3,\n            data = dataset)"
+  },
+  {
+    "objectID": "lectures/week_10/week_10.html#example-mtcars-dataset",
+    "href": "lectures/week_10/week_10.html#example-mtcars-dataset",
+    "title": "Week 10: Regression (continued)",
+    "section": "Example: mtcars dataset",
+    "text": "Example: mtcars dataset\n\n\nView the mtcars dataset\ndata(mtcars)\nhead(mtcars)\n\n\n                   mpg cyl disp  hp drat    wt  qsec vs am gear carb\nMazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4\nMazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4\nDatsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1\nHornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1\nHornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2\nValiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1\n\n\n\nmpg: miles per gallon\nwt: weight (1000 lbs)\nhp: horsepower\ncyl: number of cylinders"
+  },
+  {
+    "objectID": "lectures/week_10/week_10.html#research-question",
+    "href": "lectures/week_10/week_10.html#research-question",
+    "title": "Week 10: Regression (continued)",
+    "section": "Research question",
+    "text": "Research question\n\nHow do weight and horsepower jointly affect fuel efficiency (mpg)? \\[\\text{mpg} = \\beta_0 + \\beta_1 \\times \\text{wt} + \\beta_2 \\times \\text{hp} + \\epsilon\\]"
+  },
+  {
+    "objectID": "lectures/week_10/week_10.html#fitting-the-multiple-regression-model",
+    "href": "lectures/week_10/week_10.html#fitting-the-multiple-regression-model",
+    "title": "Week 10: Regression (continued)",
+    "section": "Fitting the multiple regression model",
+    "text": "Fitting the multiple regression model\n\nmtcars_model &lt;- lm(mpg ~ wt + hp, data = mtcars)\nsummary(mtcars_model)\n\n\nCall:\nlm(formula = mpg ~ wt + hp, data = mtcars)\n\nResiduals:\n   Min     1Q Median     3Q    Max \n-3.941 -1.600 -0.182  1.050  5.854 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 37.22727    1.59879  23.285  &lt; 2e-16 ***\nwt          -3.87783    0.63273  -6.129 1.12e-06 ***\nhp          -0.03177    0.00903  -3.519  0.00145 ** \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 2.593 on 29 degrees of freedom\nMultiple R-squared:  0.8268,    Adjusted R-squared:  0.8148 \nF-statistic: 69.21 on 2 and 29 DF,  p-value: 9.109e-12"
+  },
+  {
+    "objectID": "lectures/week_10/week_10.html#interpreting-multiple-regression-coefficients",
+    "href": "lectures/week_10/week_10.html#interpreting-multiple-regression-coefficients",
+    "title": "Week 10: Regression (continued)",
+    "section": "Interpreting multiple regression coefficients",
+    "text": "Interpreting multiple regression coefficients\n\ncoef(mtcars_model)\n\n(Intercept)          wt          hp \n37.22727012 -3.87783074 -0.03177295 \n\n\n\nIntercept (\\(\\hat{\\beta}_0 = 37.23\\)): expected mpg when weight and horsepower are both 0 (not meaningful)\nwt (\\(\\hat{\\beta}_1 = -3.88\\)): for each 1000 lb increase in weight, mpg decreases by about 3.88, holding horsepower constant\nhp (\\(\\hat{\\beta}_2 = -0.03\\)): for each 1 hp increase, mpg decreases by about 0.03, holding weight constant"
+  },
+  {
+    "objectID": "lectures/week_10/week_10.html#comparing-models",
+    "href": "lectures/week_10/week_10.html#comparing-models",
+    "title": "Week 10: Regression (continued)",
+    "section": "Comparing models",
+    "text": "Comparing models\n\nWe can compare models with different numbers of predictors\n\n\n# Simple model: mpg vs weight only\nmodel1 &lt;- lm(mpg ~ wt, data = mtcars)\n\n# Multiple model: mpg vs weight and horsepower\nmodel2 &lt;- lm(mpg ~ wt + hp, data = mtcars)\n\n# Compare R-squared\nsummary(model1)$r.squared\n\n[1] 0.7528328\n\nsummary(model2)$r.squared\n\n[1] 0.8267855\n\n\n\nModel 2 explains more variance (higher R-squared)"
+  },
+  {
+    "objectID": "lectures/week_10/week_10.html#anova-for-model-comparison",
+    "href": "lectures/week_10/week_10.html#anova-for-model-comparison",
+    "title": "Week 10: Regression (continued)",
+    "section": "ANOVA for model comparison",
+    "text": "ANOVA for model comparison\n\nanova(model1, model2)\n\nAnalysis of Variance Table\n\nModel 1: mpg ~ wt\nModel 2: mpg ~ wt + hp\n  Res.Df    RSS Df Sum of Sq      F   Pr(&gt;F)   \n1     30 278.32                                \n2     29 195.05  1    83.274 12.381 0.001451 **\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\n\nThe ANOVA F-test compares the two models\nSmall p-value indicates that adding hp significantly improves the model\nThe more complex model (model2) is preferred"
+  },
+  {
+    "objectID": "lectures/week_10/week_10.html#including-categorical-variables",
+    "href": "lectures/week_10/week_10.html#including-categorical-variables",
+    "title": "Week 10: Regression (continued)",
+    "section": "Including categorical variables",
+    "text": "Including categorical variables\n\nCategorical predictors are automatically converted to dummy variables\nExample: modeling mpg as a function of number of cylinders\n\ncyl can be 4, 6, or 8\n\n\n\nmtcars$cyl &lt;- factor(mtcars$cyl)\ncyl_model &lt;- lm(mpg ~ cyl, data = mtcars)\nsummary(cyl_model)\n\n\nCall:\nlm(formula = mpg ~ cyl, data = mtcars)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-5.2636 -1.8357  0.0286  1.3893  7.2364 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)  26.6636     0.9718  27.437  &lt; 2e-16 ***\ncyl6         -6.9208     1.5583  -4.441 0.000119 ***\ncyl8        -11.5636     1.2986  -8.905 8.57e-10 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 3.223 on 29 degrees of freedom\nMultiple R-squared:  0.7325,    Adjusted R-squared:  0.714 \nF-statistic:  39.7 on 2 and 29 DF,  p-value: 4.979e-09"
+  },
+  {
+    "objectID": "lectures/week_10/week_10.html#interpreting-categorical-coefficients",
+    "href": "lectures/week_10/week_10.html#interpreting-categorical-coefficients",
+    "title": "Week 10: Regression (continued)",
+    "section": "Interpreting categorical coefficients",
+    "text": "Interpreting categorical coefficients\n\ncoef(cyl_model)\n\n(Intercept)        cyl6        cyl8 \n  26.663636   -6.920779  -11.563636 \n\n\n\nR creates dummy variables with the first level as the reference category\n\nHere, 4 cylinders is the reference\n\nIntercept (\\(\\hat{\\beta}_0 = 26.66\\)): mean mpg for 4-cylinder cars\ncyl6 (\\(\\hat{\\beta}_1 = -6.92\\)): 6-cylinder cars have about 6.92 lower mpg than 4-cylinder cars, on average\ncyl8 (\\(\\hat{\\beta}_2 = -11.56\\)): 8-cylinder cars have about 11.56 lower mpg than 4-cylinder cars, on average"
+  },
+  {
+    "objectID": "lectures/week_10/week_10.html#visualizing-categorical-regression",
+    "href": "lectures/week_10/week_10.html#visualizing-categorical-regression",
+    "title": "Week 10: Regression (continued)",
+    "section": "Visualizing categorical regression",
+    "text": "Visualizing categorical regression\n\n\nBoxplot with group means\nggplot(mtcars, aes(x = cyl, y = mpg, fill = cyl)) +\n  geom_boxplot(alpha = 0.5) +\n  stat_summary(fun = mean, geom = \"point\", shape = 18, size = 4, color = \"red\") +\n  labs(title = \"MPG by number of cylinders\",\n       subtitle = \"Red diamonds show group means (regression estimates)\",\n       x = \"Number of cylinders\", y = \"Miles per gallon\") +\n  theme_minimal() +\n  theme(legend.position = \"none\")"
+  },
+  {
+    "objectID": "lectures/week_10/week_10.html#summary-table",
+    "href": "lectures/week_10/week_10.html#summary-table",
+    "title": "Week 10: Regression (continued)",
+    "section": "Summary table",
+    "text": "Summary table\n\n\n\nFunction\nPurpose\nExample\n\n\n\n\nlm()\nFit linear model\nlm(y ~ x, data = df)\n\n\nsummary()\nModel summary statistics\nsummary(model)\n\n\ncoef()\nExtract coefficients\ncoef(model)\n\n\nconfint()\nConfidence intervals\nconfint(model)\n\n\npredict()\nMake predictions\npredict(model, newdata)\n\n\nplot()\nDiagnostic plots\nplot(model)\n\n\nanova()\nCompare models\nanova(model1, model2)"
+  },
+  {
+    "objectID": "lectures/week_10/week_10.html#formula-syntax-in-r",
+    "href": "lectures/week_10/week_10.html#formula-syntax-in-r",
+    "title": "Week 10: Regression (continued)",
+    "section": "Formula syntax in R",
+    "text": "Formula syntax in R\n\n\n\nFormula\nMeaning\n\n\n\n\ny ~ x\nSimple regression: y on x\n\n\ny ~ x1 + x2\nMultiple regression: y on x1 and x2\n\n\ny ~ x1 + x2 + x1:x2\nInclude interaction between x1 and x2\n\n\ny ~ x1 * x2\nEquivalent to y ~ x1 + x2 + x1:x2\n\n\ny ~ .\nUse all other variables as predictors\n\n\ny ~ x - 1\nRegression without intercept"
+  },
+  {
+    "objectID": "lectures/week_10/week_10.html#correlation-vs.-causation",
+    "href": "lectures/week_10/week_10.html#correlation-vs.-causation",
+    "title": "Week 10: Regression (continued)",
+    "section": "Correlation vs. causation",
+    "text": "Correlation vs. causation\n\nRegression reveals associations, not necessarily causation\nJust because \\(X\\) predicts \\(Y\\) doesn’t mean \\(X\\) causes \\(Y\\)\nPossible explanations for correlation:\n\n\\(X\\) causes \\(Y\\)\n\\(Y\\) causes \\(X\\)\nA third variable causes both \\(X\\) and \\(Y\\) (confounding)\nThe association is due to chance\n\nRandomized experiments (like the clinical trials in Week 4) provide stronger evidence for causation"
+  },
+  {
+    "objectID": "lectures/week_10/week_10.html#extrapolation",
+    "href": "lectures/week_10/week_10.html#extrapolation",
+    "title": "Week 10: Regression (continued)",
+    "section": "Extrapolation",
+    "text": "Extrapolation\n\nExtrapolation: making predictions outside the range of observed data\nThe linear relationship may not hold beyond the observed range\nExample: predicting stopping distance for a car going 100 mph using our cars model\n\nThe data only include speeds from 4 to 25 mph\nExtrapolating to 100 mph is risky"
+  },
+  {
+    "objectID": "lectures/week_10/week_10.html#limitations-of-r-squared",
+    "href": "lectures/week_10/week_10.html#limitations-of-r-squared",
+    "title": "Week 10: Regression (continued)",
+    "section": "Limitations of R-squared",
+    "text": "Limitations of R-squared\n\nR-squared measures the proportion of variance explained\nHigher R-squared doesn’t always mean a better model:\n\nAdding more predictors always increases R-squared\nA model with lower R-squared might generalize better\nR-squared doesn’t tell us if the model assumptions are met\n\nUse adjusted R-squared when comparing models with different numbers of predictors\n\nPenalizes for adding unnecessary predictors"
+  },
+  {
+    "objectID": "lectures/week_10/week_10.html#palmer-penguins-dataset",
+    "href": "lectures/week_10/week_10.html#palmer-penguins-dataset",
+    "title": "Week 10: Regression (continued)",
+    "section": "Palmer Penguins dataset",
+    "text": "Palmer Penguins dataset\n\n\nLoad and display the penguins dataset\nif(!require(palmerpenguins)) install.packages(\"palmerpenguins\")\nlibrary(palmerpenguins)\ndata(penguins)\nstr(penguins)\n\n\ntibble [344 × 8] (S3: tbl_df/tbl/data.frame)\n $ species          : Factor w/ 3 levels \"Adelie\",\"Chinstrap\",..: 1 1 1 1 1 1 1 1 1 1 ...\n $ island           : Factor w/ 3 levels \"Biscoe\",\"Dream\",..: 3 3 3 3 3 3 3 3 3 3 ...\n $ bill_length_mm   : num [1:344] 39.1 39.5 40.3 NA 36.7 39.3 38.9 39.2 34.1 42 ...\n $ bill_depth_mm    : num [1:344] 18.7 17.4 18 NA 19.3 20.6 17.8 19.6 18.1 20.2 ...\n $ flipper_length_mm: int [1:344] 181 186 195 NA 193 190 181 195 193 190 ...\n $ body_mass_g      : int [1:344] 3750 3800 3250 NA 3450 3650 3625 4675 3475 4250 ...\n $ sex              : Factor w/ 2 levels \"female\",\"male\": 2 1 1 NA 1 2 1 2 NA NA ...\n $ year             : int [1:344] 2007 2007 2007 2007 2007 2007 2007 2007 2007 2007 ..."
+  },
+  {
+    "objectID": "lectures/week_10/week_10.html#research-question-1",
+    "href": "lectures/week_10/week_10.html#research-question-1",
+    "title": "Week 10: Regression (continued)",
+    "section": "Research question",
+    "text": "Research question\n\nHow does body mass depend on flipper length and species?\nLet’s build a multiple regression model"
+  },
+  {
+    "objectID": "lectures/week_10/week_10.html#exploratory-visualization",
+    "href": "lectures/week_10/week_10.html#exploratory-visualization",
+    "title": "Week 10: Regression (continued)",
+    "section": "Exploratory visualization",
+    "text": "Exploratory visualization\n\n\nScatterplot colored by species\nggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +\n  geom_point(size = 2, alpha = 0.6) +\n#   geom_smooth(method = \"lm\", se = FALSE) +\n  labs(title = \"Body mass vs. flipper length by species\",\n       x = \"Flipper length (mm)\", y = \"Body mass (g)\") +\n  theme_minimal()"
+  },
+  {
+    "objectID": "lectures/week_10/week_10.html#fitting-the-model",
+    "href": "lectures/week_10/week_10.html#fitting-the-model",
+    "title": "Week 10: Regression (continued)",
+    "section": "Fitting the model",
+    "text": "Fitting the model\n\n# Remove missing values\npenguins_clean &lt;- na.omit(penguins[, c(\"body_mass_g\", \"flipper_length_mm\", \"species\")])\n\n# Fit model\npenguin_model &lt;- lm(body_mass_g ~ flipper_length_mm + species, data = penguins_clean)\nsummary(penguin_model)\n\n\nCall:\nlm(formula = body_mass_g ~ flipper_length_mm + species, data = penguins_clean)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-927.70 -254.82  -23.92  241.16 1191.68 \n\nCoefficients:\n                   Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)       -4031.477    584.151  -6.901 2.55e-11 ***\nflipper_length_mm    40.705      3.071  13.255  &lt; 2e-16 ***\nspeciesChinstrap   -206.510     57.731  -3.577 0.000398 ***\nspeciesGentoo       266.810     95.264   2.801 0.005392 ** \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 375.5 on 338 degrees of freedom\nMultiple R-squared:  0.7826,    Adjusted R-squared:  0.7807 \nF-statistic: 405.7 on 3 and 338 DF,  p-value: &lt; 2.2e-16"
+  },
+  {
+    "objectID": "lectures/week_10/week_10.html#interpreting-the-results",
+    "href": "lectures/week_10/week_10.html#interpreting-the-results",
+    "title": "Week 10: Regression (continued)",
+    "section": "Interpreting the results",
+    "text": "Interpreting the results\n\ncoef(penguin_model)\n\n      (Intercept) flipper_length_mm  speciesChinstrap     speciesGentoo \n       -4031.4769           40.7054         -206.5101          266.8096 \n\n\n\nIntercept: Expected body mass for Adelie penguin with 0 mm flipper length (not meaningful)\nflipper_length_mm: For each 1 mm increase in flipper length, body mass increases by about 40.7 g, holding species constant\nspeciesChinstrap: Chinstrap penguins are about 206.5 g lighter than Adelie, holding flipper length constant\nspeciesGentoo: Gentoo penguins are about 266.8 g heavier than Adelie, holding flipper length constant"
+  },
+  {
+    "objectID": "lectures/week_10/week_10.html#model-diagnostics",
+    "href": "lectures/week_10/week_10.html#model-diagnostics",
+    "title": "Week 10: Regression (continued)",
+    "section": "Model diagnostics",
+    "text": "Model diagnostics\n\n\nDiagnostic plots\npar(mfrow = c(2, 2))\nplot(penguin_model)"
+  },
+  {
+    "objectID": "lectures/week_10/week_10.html#making-predictions",
+    "href": "lectures/week_10/week_10.html#making-predictions",
+    "title": "Week 10: Regression (continued)",
+    "section": "Making predictions",
+    "text": "Making predictions\n\n# Predict body mass for a Gentoo penguin with 210 mm flippers\nnew_penguin &lt;- data.frame(\n  flipper_length_mm = 210,\n  species = \"Gentoo\"\n)\n\npredict(penguin_model, newdata = new_penguin, interval = \"prediction\")\n\n       fit     lwr      upr\n1 4783.467 4040.52 5526.413\n\n\n\nWe predict a Gentoo penguin with 210 mm flippers will have a body mass around 4783 g\nThe 95% prediction interval is (4041, 5526) g"
+  },
+  {
+    "objectID": "lectures/week_10/week_10.html#two-approaches-to-statistical-modeling",
+    "href": "lectures/week_10/week_10.html#two-approaches-to-statistical-modeling",
+    "title": "Week 10: Regression (continued)",
+    "section": "Two approaches to statistical modeling",
+    "text": "Two approaches to statistical modeling\nLeo Breiman (2001) identified two cultures in statistical modeling:\n\n\nCulture 1: Data Modeling\n\nFocus on inference\nAssume a stochastic model (e.g., linear regression)\nEstimate parameters and test hypotheses\nInterpretability is key\nAssumptions matter greatly\nThis lecture has focused here\n\n\nCulture 2: Algorithmic Modeling\n\nFocus on prediction\nTreat the data mechanism as unknown\nPrioritize predictive accuracy\n“Black box” models acceptable\nLess concern about distributional assumptions\nThe box-office prediction case study has some of this flavor"
+  },
+  {
+    "objectID": "lectures/week_10/week_10.html#implications-for-your-work",
+    "href": "lectures/week_10/week_10.html#implications-for-your-work",
+    "title": "Week 10: Regression (continued)",
+    "section": "Implications for your work",
+    "text": "Implications for your work\n\nIn prediction tasks:\n\nDiagnostic plots are less critical if the model predicts well on new data\nLarge sample sizes can overcome some assumption violations\nCross-validation and test set performance matter more than p-values\nThe “true” model may be unknowable and that’s okay\n\nIn inference tasks (like much of today):\n\nUnderstanding relationships is the goal\nAssumptions must be checked carefully\nCoefficient interpretation requires proper model specification\nCausal claims require even stronger assumptions"
+  },
+  {
+    "objectID": "lectures/week_10/week_10.html#key-takeaways",
+    "href": "lectures/week_10/week_10.html#key-takeaways",
+    "title": "Week 10: Regression (continued)",
+    "section": "Key takeaways",
+    "text": "Key takeaways\n\nRegression models relationships between variables\nSimple linear regression: one predictor, estimates slope and intercept\nMultiple regression: multiple predictors, each coefficient represents effect holding others constant\nR function: lm(response ~ predictors, data = dataset)\nUse summary(), coef(), confint(), and predict() to interpret results\nCheck model assumptions using diagnostic plots\nCategorical predictors are handled automatically via dummy variables\nRemember: correlation ≠ causation"
+  },
+  {
+    "objectID": "lectures/week_10/week_10.html#next-steps",
+    "href": "lectures/week_10/week_10.html#next-steps",
+    "title": "Week 10: Regression (continued)",
+    "section": "Next steps",
+    "text": "Next steps\n\nContinue with Case Study 1\nPractice fitting and interpreting regression models\nThink about:\n\nWhat makes a good predictor?\nHow do we choose which variables to include?\nWhat should we do if assumptions are violated?"
   },
   {
     "objectID": "lectures/week_2/week_2.html#what-is-a-variable",
@@ -1670,6 +1866,6 @@
     "href": "schedule/schedule.html",
     "title": "Schedule",
     "section": "",
-    "text": "Run the schedule.R script and display the most current plan for the schedule\nhere::i_am(\"schedule/schedule.qmd\")\nlibrary(here)\nlibrary(gt)\n\nsource(here(\"schedule/schedule.R\"))\n\ngt(schedule)\n\n\n\n\n\n\n\n\nDate\nContents\nNotes\n\n\n\n\nAug 26\nIntroduction & Getting started\nLab 1\n\n\nSep 2\nR Basics (objects, types, classes, and collections)\nHW-Quiz 1 / Lab 2\n\n\nSep 9\nDescriptive statistics & Summarizing data\nLab 3\n\n\nSep 16\nBasic statistical inference\nHW-Quiz 2 / Lab 4\n\n\nSep 23\nData manipulation & visualization\nLab 5\n\n\nSep 30\nExam 1\n\n\n\nOct 7\nNO CLASS (Fall Break)\n\n\n\nOct 14\nCase study: movie / box-office data\n\n\n\nOct 21\nRegression\nPrediction challenge\n\n\nOct 28\nWriting functions\nLab 6\n\n\nNov 4\nSampling distributions & CLT\nHW-Quiz 3 / Lab 7\n\n\nNov 11\nExam 2\n\n\n\nNov 18\nSimulation & Case study 2\n\n\n\nNov 25\nBootstrap & Case study 2\nHW-Quiz 4\n\n\nDec 2\nShiny (UI-based apps)\nCase study 2 due / Lab 8\n\n\nDec 9\nFinal Exam\n7:30 to 10:30"
+    "text": "Run the schedule.R script and display the most current plan for the schedule\nhere::i_am(\"schedule/schedule.qmd\")\nlibrary(here)\nlibrary(gt)\n\nsource(here(\"schedule/schedule.R\"))\n\ngt(schedule)\n\n\n\n\n\n\n\n\nDate\nContents\nNotes\n\n\n\n\nAug 26\nIntroduction & Getting started\nLab 1\n\n\nSep 2\nR Basics (objects, types, classes, and collections)\nHW-Quiz 1 / Lab 2\n\n\nSep 9\nDescriptive statistics & Summarizing data\nLab 3\n\n\nSep 16\nBasic statistical inference\nHW-Quiz 2 / Lab 4\n\n\nSep 23\nData manipulation & visualization\nLab 5\n\n\nSep 30\nExam 1\n\n\n\nOct 7\nNO CLASS (Fall Break)\n\n\n\nOct 14\nCase study: movie / box-office data\n\n\n\nOct 21\nRegression\nPrediction challenge\n\n\nOct 28\nRegression (continued)\n\n\n\nNov 4\nWriting functions\nHW-Quiz 3 / Lab 7\n\n\nNov 11\nExam 2\n\n\n\nNov 18\nSimulation, sampling distributions CLT\nCase study 2\n\n\nNov 25\nBootstrap and friends\nHW-Quiz 4\n\n\nDec 2\nShiny (UI-based apps)\nCase study 2 due / Lab 8\n\n\nDec 9\nFinal Exam\n7:30 to 10:30"
   }
 ]
