@@ -90,6 +90,32 @@ sd(standardize(test_data), na.rm = TRUE)
 
 ## -----------------------------------------------------------------------------
 #| echo: true
+
+# Function that passes arguments to mean()
+calculate_mean <- function(x, ...) {
+  mean(x, ...)
+}
+
+# Now we can pass na.rm, trim, etc. to mean()
+data_with_na <- c(1, 2, 3, NA, 5)
+calculate_mean(data_with_na, na.rm = TRUE)
+calculate_mean(data_with_na, na.rm = TRUE, trim = 0.1)
+
+
+## -----------------------------------------------------------------------------
+#| echo: true
+
+# Create a custom plotting function that passes extra args to plot()
+my_scatter <- function(x, y, ...) {
+  plot(x, y, pch = 19, col = "blue", ...)
+}
+
+my_scatter(1:10, (1:10) ^ 2,
+           main = "My Plot", xlab = "X values")  # With labels
+
+
+## -----------------------------------------------------------------------------
+#| echo: true
 #| eval: false
 
 # df$x1 <- (df$x1 - mean(df$x1)) / sd(df$x1)
@@ -108,15 +134,6 @@ sd(standardize(test_data), na.rm = TRUE)
 # df$x1 <- standardize(df$x1)
 # df$x2 <- standardize(df$x2)
 # df$x3 <- standardize(df$x3)
-
-
-## -----------------------------------------------------------------------------
-#| echo: true
-#| eval: false
-
-# # Apply standardize to multiple columns at once
-# df <- df |>
-#   mutate(across(c(x1, x2, x3), standardize))
 
 
 ## -----------------------------------------------------------------------------
@@ -170,11 +187,22 @@ sd(standardize(test_data), na.rm = TRUE)
 #     geom_point() +
 #     geom_smooth(method = "lm", color = "red")
 # }
-# 
-# # Execute pipeline
+
+
+## -----------------------------------------------------------------------------
+#| echo: true
+#| eval: false
+
+# # Load
 # data <- load_raw_data("raw_data.csv")
+# 
+# # Clean
 # data_clean <- clean_data(data)
+# 
+# # Analyze
 # model <- fit_model(data_clean)
+# 
+# # Visualize
 # plot_results(data_clean, model)
 
 
@@ -223,42 +251,6 @@ coefficient_of_variation <- function(x, na.rm = TRUE) {
 
 ## -----------------------------------------------------------------------------
 #| echo: true
-#| eval: false
-
-# # Example targets pipeline
-# library(targets)
-# 
-# list(
-#   tar_target(raw_data, load_raw_data("data/raw/survey.csv")),
-#   tar_target(clean_data, clean_survey_data(raw_data)),
-#   tar_target(model, fit_regression_model(clean_data)),
-#   tar_target(plot, plot_results(clean_data, model))
-# )
-
-
-## -----------------------------------------------------------------------------
-#| echo: true
-
-# Example function
-calculate_range <- function(x, na.rm = TRUE) {
-  max(x, na.rm = na.rm) - min(x, na.rm = na.rm)
-}
-
-# Test with normal data
-calculate_range(1:10)  # Should be 9
-
-# Test with NA values
-calculate_range(c(1, 5, NA))  # Should be 4
-
-# Test with single value
-calculate_range(5)  # Should be 0
-
-# Test with empty vector - will give warning
-# calculate_range(numeric(0))
-
-
-## -----------------------------------------------------------------------------
-#| echo: true
 
 #' Calculate standardized effect size (Cohen's d)
 #'
@@ -293,23 +285,6 @@ cohens_d <- function(group1, group2, na.rm = TRUE) {
 # process_data <- function(data) {
 #   data |> filter(!is.na(x))
 # }
-
-
-## -----------------------------------------------------------------------------
-#| echo: true
-
-# BAD: will fail with NAs
-mean_without_handling <- function(x) {
-  sum(x) / length(x)
-}
-
-# GOOD: handles NAs
-mean_with_handling <- function(x, na.rm = TRUE) {
-  if (na.rm) {
-    x <- x[!is.na(x)]
-  }
-  sum(x) / length(x)
-}
 
 
 ## -----------------------------------------------------------------------------

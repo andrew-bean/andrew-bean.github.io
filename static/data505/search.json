@@ -1012,7 +1012,7 @@
     "href": "lectures/week_11/week_11.html#anatomy-of-a-function",
     "title": "Week 11: Writing Functions & Organizing R Code",
     "section": "Anatomy of a function",
-    "text": "Anatomy of a function\n\nfunction_name &lt;- function(arg1, arg2, ...) {\n  # Function body: code that does something\n  result &lt;- arg1 + arg2\n  \n  # Return value (implicit or explicit)\n  return(result)\n}\n\n\nName: how you’ll call the function\nArguments: inputs to the function\nBody: the code that runs\nReturn value: what the function outputs"
+    "text": "Anatomy of a function\n\n\n\nName: how you’ll call the function\nArguments: inputs to the function\nBody: the code that runs\nReturn value: what the function outputs\n\n\n\nfunction_name &lt;- function(arg1, arg2, ...) {\n  # Function body: code that does something\n  result &lt;- arg1 + arg2\n  \n  # Return value (implicit or explicit)\n  return(result)\n}"
   },
   {
     "objectID": "lectures/week_11/week_11.html#simple-example",
@@ -1026,14 +1026,14 @@
     "href": "lectures/week_11/week_11.html#return-values",
     "title": "Week 11: Writing Functions & Organizing R Code",
     "section": "Return values",
-    "text": "Return values\n\nFunctions return the last expression evaluated (implicit return)\nOr use return() for explicit return (clearer for complex functions)\n\n\n# Implicit return\nadd_implicit &lt;- function(a, b) {\n  a + b\n}\n\n# Explicit return\nadd_explicit &lt;- function(a, b) {\n  result &lt;- a + b\n  return(result)\n}\n\nadd_implicit(3, 5)\n\n[1] 8\n\nadd_explicit(3, 5)\n\n[1] 8"
+    "text": "Return values\n\n\n\nFunctions return the last expression evaluated (implicit return)\nOr use return() for explicit return (clearer for complex functions)\n\n\n\n# Implicit return\nadd_implicit &lt;- function(a, b) {\n  a + b\n}\n\n# Explicit return\nadd_explicit &lt;- function(a, b) {\n  result &lt;- a + b\n  return(result)\n}\n\nadd_implicit(3, 5)\n\n[1] 8\n\nadd_explicit(3, 5)\n\n[1] 8"
   },
   {
     "objectID": "lectures/week_11/week_11.html#default-arguments",
     "href": "lectures/week_11/week_11.html#default-arguments",
     "title": "Week 11: Writing Functions & Organizing R Code",
     "section": "Default arguments",
-    "text": "Default arguments\n\nProvide default values for arguments\nMakes functions more flexible\n\n\n# Function with default argument\ngreet &lt;- function(name, greeting = \"Hello\") {\n  paste(greeting, name)\n}\n\ngreet(\"Alice\")\n\n[1] \"Hello Alice\"\n\ngreet(\"Bob\", greeting = \"Hi\")\n\n[1] \"Hi Bob\""
+    "text": "Default arguments\n\n\n\nProvide default values for arguments\nMakes functions more flexible\n\n\n\n# Function with default argument\ngreet &lt;- function(name, greeting = \"Hello\") {\n  paste(greeting, name)\n}\n\ngreet(\"Alice\")\n\n[1] \"Hello Alice\"\n\ngreet(\"Bob\", greeting = \"Hi\")\n\n[1] \"Hi Bob\""
   },
   {
     "objectID": "lectures/week_11/week_11.html#example-standardizing-variables",
@@ -1068,21 +1068,21 @@
     "href": "lectures/week_11/week_11.html#traditional-script-approach",
     "title": "Week 11: Writing Functions & Organizing R Code",
     "section": "Traditional “script” approach",
-    "text": "Traditional “script” approach\n\n# Load data\ndata &lt;- read.csv(\"raw_data.csv\")\n\n# Clean data\ndata$x &lt;- ifelse(data$x &lt; 0, NA, data$x)\ndata$y &lt;- log(data$y + 1)\ndata &lt;- data[complete.cases(data), ]\n\n# Analyze\nmodel &lt;- lm(y ~ x, data = data)\nsummary(model)\n\n# Visualize\nplot(data$x, data$y)\nabline(model, col = \"red\")\n\nProblems:\n\nHard to reuse parts\nDifficult to test individual steps\nNot clear what each section does\nVariables clutter global environment"
+    "text": "Traditional “script” approach\n\n\nWeaknesses:\nEspecially if the script is longer or more complex than this: - Harder to reuse parts - Difficult to test individual steps - Not always clear what each section does - Variables clutter global environment\n\n\n# Load data\ndata &lt;- read.csv(\"raw_data.csv\")\n\n# Clean data\ndata$x &lt;- ifelse(data$x &lt; 0, NA, data$x)\ndata$y &lt;- log(data$y + 1)\ndata &lt;- data[complete.cases(data), ]\n\n# Analyze\nmodel &lt;- lm(y ~ x, data = data)\nsummary(model)\n\n# Visualize\nplot(data$x, data$y)\nabline(model, col = \"red\")"
   },
   {
     "objectID": "lectures/week_11/week_11.html#function-oriented-approach",
     "href": "lectures/week_11/week_11.html#function-oriented-approach",
     "title": "Week 11: Writing Functions & Organizing R Code",
     "section": "Function-oriented approach",
-    "text": "Function-oriented approach\n\n# Step 1: Load data\nload_raw_data &lt;- function(filepath) {\n  read.csv(filepath)\n}\n\n# Step 2: Clean data\nclean_data &lt;- function(data) {\n  data |&gt;\n    mutate(\n      x = ifelse(x &lt; 0, NA, x),\n      y = log(y + 1)\n    ) |&gt;\n    filter(complete.cases(data))\n}\n\n# Step 3: Fit model\nfit_model &lt;- function(data) {\n  lm(y ~ x, data = data)\n}\n\n# Step 4: Create plot\nplot_results &lt;- function(data, model) {\n  ggplot(data, aes(x = x, y = y)) +\n    geom_point() +\n    geom_smooth(method = \"lm\", color = \"red\")\n}\n\n# Execute pipeline\ndata &lt;- load_raw_data(\"raw_data.csv\")\ndata_clean &lt;- clean_data(data)\nmodel &lt;- fit_model(data_clean)\nplot_results(data_clean, model)"
+    "text": "Function-oriented approach\n\n\nDefine functions:\n\n# Step 1: Load data\nload_raw_data &lt;- function(filepath) {\n  read.csv(filepath)\n}\n\n# Step 2: Clean data\nclean_data &lt;- function(data) {\n  data |&gt;\n    mutate(\n      x = ifelse(x &lt; 0, NA, x),\n      y = log(y + 1)\n    ) |&gt;\n    filter(complete.cases(data))\n}\n\n# Step 3: Fit model\nfit_model &lt;- function(data) {\n  lm(y ~ x, data = data)\n}\n\n# Step 4: Create plot\nplot_results &lt;- function(data, model) {\n  ggplot(data, aes(x = x, y = y)) +\n    geom_point() +\n    geom_smooth(method = \"lm\", color = \"red\")\n}\n\n\nExecute pipeline:\n\n# Load\ndata &lt;- load_raw_data(\"raw_data.csv\")\n\n# Clean\ndata_clean &lt;- clean_data(data)\n\n# Analyze\nmodel &lt;- fit_model(data_clean)\n\n# Visualize\nplot_results(data_clean, model)\n\nBenefits:\n\nClear, readable pipeline\nEasy to test each step\nFunctions can be reused\nChanges isolated to one place"
   },
   {
     "objectID": "lectures/week_11/week_11.html#principles-of-good-functions",
     "href": "lectures/week_11/week_11.html#principles-of-good-functions",
     "title": "Week 11: Writing Functions & Organizing R Code",
     "section": "Principles of good functions",
-    "text": "Principles of good functions\n\nDo one thing well: each function has a single, clear purpose\nUse descriptive names: calculate_mean_age() not f1()\nKeep them short: if a function is too long, break it into smaller functions\nMinimize side effects: don’t modify global variables\nDocument your functions: explain what they do, what arguments they take, what they return\n\n\n# Good: clear name, single purpose, documented\n#' Calculate the coefficient of variation\n#' \n#' @param x A numeric vector\n#' @param na.rm Logical; should missing values be removed?\n#' @return The coefficient of variation (sd/mean)\ncoefficient_of_variation &lt;- function(x, na.rm = TRUE) {\n  sd(x, na.rm = na.rm) / mean(x, na.rm = na.rm)\n}"
+    "text": "Principles of good functions\n\n\n\nDo one thing well: each function has a single, clear purpose\nUse descriptive names: calculate_mean_age() not f1()\nKeep them short: if a function is too long, break it into smaller functions\nMinimize side effects: don’t modify global variables\nDocument your functions: explain what they do, what arguments they take, what they return\n\n\n\n# Good: clear name, single purpose, documented\n#' Calculate the coefficient of variation\n#' \n#' @param x A numeric vector\n#' @param na.rm Logical; should missing values be removed?\n#' @return The coefficient of variation (sd/mean)\ncoefficient_of_variation &lt;- function(x, na.rm = TRUE) {\n  sd(x, na.rm = na.rm) / mean(x, na.rm = na.rm)\n}"
   },
   {
     "objectID": "lectures/week_11/week_11.html#file-structure-for-data-analysis",
@@ -1117,14 +1117,14 @@
     "href": "lectures/week_11/week_11.html#documentation-with-roxygen2-comments",
     "title": "Week 11: Writing Functions & Organizing R Code",
     "section": "Documentation with roxygen2 comments",
-    "text": "Documentation with roxygen2 comments\n\n#' Calculate standardized effect size (Cohen's d)\n#'\n#' @param group1 Numeric vector for group 1\n#' @param group2 Numeric vector for group 2\n#' @param na.rm Logical; should missing values be removed? Default TRUE\n#'\n#' @return Numeric value representing Cohen's d effect size\n#' @export\n#'\n#' @examples\n#' group_a &lt;- c(10, 12, 14, 16, 18)\n#' group_b &lt;- c(15, 17, 19, 21, 23)\n#' cohens_d(group_a, group_b)\ncohens_d &lt;- function(group1, group2, na.rm = TRUE) {\n  mean_diff &lt;- mean(group1, na.rm = na.rm) - mean(group2, na.rm = na.rm)\n  pooled_sd &lt;- sqrt((var(group1, na.rm = na.rm) + var(group2, na.rm = na.rm)) / 2)\n  return(mean_diff / pooled_sd)\n}"
+    "text": "Documentation with roxygen2 comments\n\n\nWhat is roxygen2?\n\nR package for documenting functions\nSpecial comments starting with #'\nCan generate help files automatically\nStandard format used in R packages\n\nKey tags:\n\n@param: describe arguments\n@return: describe output\n@examples: show usage\n\nLearn more: roxygen2.r-lib.org\n\n\n#' Calculate standardized effect size (Cohen's d)\n#'\n#' @param group1 Numeric vector for group 1\n#' @param group2 Numeric vector for group 2\n#' @param na.rm Logical; should missing values be removed? Default TRUE\n#'\n#' @return Numeric value representing Cohen's d effect size\n#' @export\n#'\n#' @examples\n#' group_a &lt;- c(10, 12, 14, 16, 18)\n#' group_b &lt;- c(15, 17, 19, 21, 23)\n#' cohens_d(group_a, group_b)\ncohens_d &lt;- function(group1, group2, na.rm = TRUE) {\n  mean_diff &lt;- mean(group1, na.rm = na.rm) - mean(group2, na.rm = na.rm)\n  pooled_sd &lt;- sqrt((var(group1, na.rm = na.rm) + var(group2, na.rm = na.rm)) / 2)\n  return(mean_diff / pooled_sd)\n}"
   },
   {
     "objectID": "lectures/week_11/week_11.html#common-pitfalls-to-avoid",
     "href": "lectures/week_11/week_11.html#common-pitfalls-to-avoid",
     "title": "Week 11: Writing Functions & Organizing R Code",
     "section": "Common pitfalls to avoid",
-    "text": "Common pitfalls to avoid\n\nModifying global variables inside functions\n\n\n# BAD: modifies global variable\nprocess_data &lt;- function() {\n  data &lt;&lt;- data |&gt; filter(!is.na(x))  # Don't do this!\n}\n\n# GOOD: returns a value\nprocess_data &lt;- function(data) {\n  data |&gt; filter(!is.na(x))\n}\n\n\nNot handling NA values\n\n\n# BAD: will fail with NAs\nmean_without_handling &lt;- function(x) {\n  sum(x) / length(x)\n}\n\n# GOOD: handles NAs\nmean_with_handling &lt;- function(x, na.rm = TRUE) {\n  if (na.rm) {\n    x &lt;- x[!is.na(x)]\n  }\n  sum(x) / length(x)\n}"
+    "text": "Common pitfalls to avoid\n\nModifying global variables inside functions\n\n\n# BAD: modifies global variable\nprocess_data &lt;- function() {\n  data &lt;&lt;- data |&gt; filter(!is.na(x))  # Don't do this!\n}\n\n# GOOD: returns a value\nprocess_data &lt;- function(data) {\n  data |&gt; filter(!is.na(x))\n}"
   },
   {
     "objectID": "lectures/week_11/week_11.html#more-pitfalls",
@@ -1138,7 +1138,7 @@
     "href": "lectures/week_11/week_11.html#key-takeaways",
     "title": "Week 11: Writing Functions & Organizing R Code",
     "section": "Key takeaways",
-    "text": "Key takeaways\n\nWrite functions to avoid repetition and improve code quality\nFunction-oriented programming organizes analyses into modular, testable steps\nGood functions:\n\nDo one thing well\nHave clear names\nInclude default arguments where appropriate\nHandle errors gracefully\nAre documented\n\nOrganize projects with clear folder structure and pipeline scripts\nTest your functions with different inputs, including edge cases\nConsider workflow tools like targets for complex projects"
+    "text": "Key takeaways\n\nWrite functions to avoid repetition and improve code quality\nFunction-oriented programming organizes analyses into modular, testable steps\nGood functions:\n\nDo one thing well\nHave clear names\nInclude default arguments where appropriate\nHandle errors gracefully\nAre documented\n\nOrganize projects with clear folder structure and pipeline scripts"
   },
   {
     "objectID": "lectures/week_11/week_11.html#resources",
@@ -1159,7 +1159,7 @@
     "href": "lectures/week_11/week_11.html#todays-lab-function-oriented-workflow",
     "title": "Week 11: Writing Functions & Organizing R Code",
     "section": "Today’s lab: Function-oriented workflow",
-    "text": "Today’s lab: Function-oriented workflow\n\nLab 5 provides hands-on practice with:\n\nWriting custom functions for data analysis\nComparing traditional scripting vs. function-oriented approaches\nTesting and reusing functions\nError handling\n\nWe’ll work through this together in class\nYou’ll analyze the Palmer Penguins dataset using both approaches"
+    "text": "Today’s lab: Function-oriented workflow\n\nLab 5 provides hands-on practice with:\n\nRefactoring a data analysis script into a well-organized function-oriented project"
   },
   {
     "objectID": "lectures/week_2/week_2.html#what-is-a-variable",
@@ -2084,5 +2084,26 @@
     "title": "Schedule",
     "section": "",
     "text": "Run the schedule.R script and display the most current plan for the schedule\nhere::i_am(\"schedule/schedule.qmd\")\nlibrary(here)\nlibrary(gt)\n\nsource(here(\"schedule/schedule.R\"))\n\ngt(schedule)\n\n\n\n\n\n\n\n\nDate\nContents\nNotes\n\n\n\n\nAug 26\nIntroduction & Getting started\nLab 1\n\n\nSep 2\nR Basics (objects, types, classes, and collections)\nHW-Quiz 1 / Lab 2\n\n\nSep 9\nDescriptive statistics & Summarizing data\nLab 3\n\n\nSep 16\nBasic statistical inference\nHW-Quiz 2 / Lab 4\n\n\nSep 23\nData manipulation & visualization\nLab 5\n\n\nSep 30\nExam 1\n\n\n\nOct 7\nNO CLASS (Fall Break)\n\n\n\nOct 14\nCase study: movie / box-office data\n\n\n\nOct 21\nRegression\nPrediction challenge\n\n\nOct 28\nRegression (continued)\n\n\n\nNov 4\nWriting functions\nHW-Quiz 3 / Lab 7\n\n\nNov 11\nExam 2\n\n\n\nNov 18\nSimulation, sampling distributions CLT\nCase study 2\n\n\nNov 25\nBootstrap and friends\nHW-Quiz 4\n\n\nDec 2\nShiny (UI-based apps)\nCase study 2 due / Lab 8\n\n\nDec 9\nFinal Exam\n7:30 to 10:30"
+  },
+  {
+    "objectID": "lectures/week_11/week_11.html#the-ellipsis-...-argument",
+    "href": "lectures/week_11/week_11.html#the-ellipsis-...-argument",
+    "title": "Week 11: Writing Functions & Organizing R Code",
+    "section": "The ellipsis (...) argument",
+    "text": "The ellipsis (...) argument\n\n\n\nThe ... allows passing additional arguments to functions called within\nUseful when you want to pass arguments through to another function\n\n\n\n# Function that passes arguments to mean()\ncalculate_mean &lt;- function(x, ...) {\n  mean(x, ...)\n}\n\n# Now we can pass na.rm, trim, etc. to mean()\ndata_with_na &lt;- c(1, 2, 3, NA, 5)\ncalculate_mean(data_with_na, na.rm = TRUE)\n\n[1] 2.75\n\ncalculate_mean(data_with_na, na.rm = TRUE, trim = 0.1)\n\n[1] 2.75"
+  },
+  {
+    "objectID": "lectures/week_11/week_11.html#example-wrapper-function-with-...",
+    "href": "lectures/week_11/week_11.html#example-wrapper-function-with-...",
+    "title": "Week 11: Writing Functions & Organizing R Code",
+    "section": "Example: Wrapper function with ...",
+    "text": "Example: Wrapper function with ...\n\n# Create a custom plotting function that passes extra args to plot()\nmy_scatter &lt;- function(x, y, ...) {\n  plot(x, y, pch = 19, col = \"blue\", ...)\n}\n\nmy_scatter(1:10, (1:10) ^ 2,\n           main = \"My Plot\", xlab = \"X values\")  # With labels"
+  },
+  {
+    "objectID": "lectures/week_11/week_11.html#live-anonymous-quiz",
+    "href": "lectures/week_11/week_11.html#live-anonymous-quiz",
+    "title": "Week 11: Writing Functions & Organizing R Code",
+    "section": "Live (anonymous) quiz",
+    "text": "Live (anonymous) quiz\nMenti link\n\nhttps://www.menti.com/al2wbq74vb5f\n\nQR code"
   }
 ]
