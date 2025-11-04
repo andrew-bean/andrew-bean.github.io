@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Week 1: Introduction and getting started with R – Data 505: R for Statistics</title>
+<title>Exam 2 (Nov 11): review and practice materials – Data 505: R for Statistics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,24 +23,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-5b4ad623e5705c0698d39aec6f10cf02.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-5b4ad623e5705c0698d39aec6f10cf02.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -69,8 +69,37 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="../../styles.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -80,9 +109,9 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
     </a>
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Data 505: R for Statistics</span>
     </a>
   </div>
@@ -93,15 +122,15 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../syllabus/syllabus.html"> 
+    <a class="nav-link" href="../syllabus/syllabus.html"> 
 <span class="menu-text">Syllabus</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../schedule/schedule.html"> 
+    <a class="nav-link" href="../schedule/schedule.html"> 
 <span class="menu-text">Schedule</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -110,41 +139,41 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-lectures">    
         <li>
-    <a class="dropdown-item" href="../../lectures/week_1/lectures_1.html">
+    <a class="dropdown-item" href="../lectures/week_1/lectures_1.html">
  <span class="dropdown-text">Week 1 (Aug 26)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../lectures/week_2/lectures_2.html">
+    <a class="dropdown-item" href="../lectures/week_2/lectures_2.html">
  <span class="dropdown-text">Week 2 (Sep 2)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../lectures/week_3/lectures_3.html">
+    <a class="dropdown-item" href="../lectures/week_3/lectures_3.html">
  <span class="dropdown-text">Week 3 (Sep 9)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../lectures/week_4/lectures_4.html">
+    <a class="dropdown-item" href="../lectures/week_4/lectures_4.html">
  <span class="dropdown-text">Week 4 (Sep 16)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../lectures/week_5/lectures_5.html">
+    <a class="dropdown-item" href="../lectures/week_5/lectures_5.html">
  <span class="dropdown-text">Week 5 (Sep 23)</span></a>
   </li>  
         <li class="dropdown-header">Week 6 (Sep 30) - exam 1</li>
         <li class="dropdown-header">Week 7 (Oct 7) - fall break</li>
         <li>
-    <a class="dropdown-item" href="../../lectures/week_8/lectures_8.html">
+    <a class="dropdown-item" href="../lectures/week_8/lectures_8.html">
  <span class="dropdown-text">Week 8 (Oct 14)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../lectures/week_9/lectures_9.html">
+    <a class="dropdown-item" href="../lectures/week_9/lectures_9.html">
  <span class="dropdown-text">Week 9 (Oct 21)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../lectures/week_10/lectures_10.html">
+    <a class="dropdown-item" href="../lectures/week_10/lectures_10.html">
  <span class="dropdown-text">Week 10 (Oct 28)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../lectures/week_11/lectures_11.html">
+    <a class="dropdown-item" href="../lectures/week_11/lectures_11.html">
  <span class="dropdown-text">Week 11 (Nov 4)</span></a>
   </li>  
     </ul>
@@ -155,23 +184,23 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-labs">    
         <li>
-    <a class="dropdown-item" href="../../labs/week_1/lab_1.pdf">
+    <a class="dropdown-item" href="../labs/week_1/lab_1.pdf">
  <span class="dropdown-text">Lab 1 (Week 1 / Aug 26)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../labs/week_2/lab_2.pdf">
+    <a class="dropdown-item" href="../labs/week_2/lab_2.pdf">
  <span class="dropdown-text">Lab 2 (Week 2 / Sep 2)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../labs/week_3/week_3_lab.html">
+    <a class="dropdown-item" href="../labs/week_3/week_3_lab.html">
  <span class="dropdown-text">Lab 3 (Week 3 / Sep 9)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../labs/week_4/week_4_lab.html">
+    <a class="dropdown-item" href="../labs/week_4/week_4_lab.html">
  <span class="dropdown-text">Lab 4 (Week 4 / Sep 16)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../labs/week_11/week_11_lab.html">
+    <a class="dropdown-item" href="../labs/week_11/week_11_lab.html">
  <span class="dropdown-text">Lab 5 (Week 11 / Nov 4)</span></a>
   </li>  
     </ul>
@@ -182,15 +211,15 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-homework">    
         <li>
-    <a class="dropdown-item" href="../../homework/homework_1.pdf">
+    <a class="dropdown-item" href="../homework/homework_1.pdf">
  <span class="dropdown-text">Homework 1 (Quiz on Sep 2)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../homework/homework_2.pdf">
+    <a class="dropdown-item" href="../homework/homework_2.pdf">
  <span class="dropdown-text">Homework 2 (Quiz on Sep 16)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../homework/homework_3.pdf">
+    <a class="dropdown-item" href="../homework/homework_3.pdf">
  <span class="dropdown-text">Homework 3 (Quiz on Nov 4)</span></a>
   </li>  
     </ul>
@@ -201,11 +230,11 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-exams">    
         <li>
-    <a class="dropdown-item" href="../../exams/exam_1.html">
+    <a class="dropdown-item" href="../exams/exam_1.html">
  <span class="dropdown-text">Exam 1 (Sep 30) review and practice</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../exams/exam_2.html">
+    <a class="dropdown-item" href="../exams/exam_2.html">
  <span class="dropdown-text">Exam 2 (Nov 11) review and practice</span></a>
   </li>  
     </ul>
@@ -216,7 +245,7 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-case-studies">    
         <li>
-    <a class="dropdown-item" href="../../case_studies/tmdb/tmdb.html">
+    <a class="dropdown-item" href="../case_studies/tmdb/tmdb.html">
  <span class="dropdown-text">Box Office Analysis (Oct 14-21)</span></a>
   </li>  
     </ul>
@@ -260,15 +289,14 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#agenda" id="toc-agenda" class="nav-link active" data-scroll-target="#agenda">Agenda</a></li>
-  <li><a href="#slides" id="toc-slides" class="nav-link" data-scroll-target="#slides">Slides</a></li>
-  <li><a href="#installing-required-software" id="toc-installing-required-software" class="nav-link" data-scroll-target="#installing-required-software">Installing required software</a>
+  <li><a href="#format" id="toc-format" class="nav-link active" data-scroll-target="#format">Format</a></li>
+  <li><a href="#topics" id="toc-topics" class="nav-link" data-scroll-target="#topics">Topics</a></li>
+  <li><a href="#review-materials" id="toc-review-materials" class="nav-link" data-scroll-target="#review-materials">Review materials</a>
   <ul class="collapse">
-  <li><a href="#software-to-install" id="toc-software-to-install" class="nav-link" data-scroll-target="#software-to-install">Software to install</a></li>
-  <li><a href="#step-by-step" id="toc-step-by-step" class="nav-link" data-scroll-target="#step-by-step">Step-by-step</a></li>
-  <li><a href="#one-more-thing" id="toc-one-more-thing" class="nav-link" data-scroll-target="#one-more-thing">One more thing</a></li>
+  <li><a href="#practice-exam-for-part-1" id="toc-practice-exam-for-part-1" class="nav-link" data-scroll-target="#practice-exam-for-part-1">Practice exam for Part 1</a></li>
+  <li><a href="#key-lectures" id="toc-key-lectures" class="nav-link" data-scroll-target="#key-lectures">Key lectures</a></li>
+  <li><a href="#key-assignments" id="toc-key-assignments" class="nav-link" data-scroll-target="#key-assignments">Key assignments</a></li>
   </ul></li>
-  <li><a href="#additional-resources" id="toc-additional-resources" class="nav-link" data-scroll-target="#additional-resources">Additional resources</a></li>
   </ul>
 </nav>
     </div>
@@ -277,7 +305,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Week 1: Introduction and getting started with R</h1>
+<h1 class="title">Exam 2 (Nov 11): review and practice materials</h1>
 </div>
 
 
@@ -294,64 +322,92 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="agenda" class="level1">
-<h1>Agenda</h1>
+<section id="format" class="level1">
+<h1>Format</h1>
+<p>Similar format to Exam 1. Two parts: the first being pen-and-paper, and the second being open-computer.</p>
 <ul>
-<li>Welcome and introductions</li>
-<li>About the course; about R</li>
-<li>Installing R, RStudio, and Quarto</li>
-<li><a href="../../labs/week_1/lab_1.pdf">Lab 1</a> (complete and submit on Moodle by end of class)
+<li>Part 1:
 <ul>
-<li>Submission requires two minor edits to this script: <a href="https://andrew-bean.github.io/data505/labs/week_1/lab_1_blank.qmd">lab_1_blank.qmd</a></li>
+<li>Closed computer and closed notes</li>
+<li>Handwritten answers</li>
+</ul></li>
+<li>Part 2:
+<ul>
+<li>Open computer. Any online resource that is “not alive” may be used (i.e.&nbsp;you may freely use online resources, but you may not communicate with any other person).</li>
+<li>Electronic submission on Moodle: you will fill in a Quarto script with R code and written answers</li>
+</ul></li>
+</ul>
+<p>Once you turn in Part 1, you may open your computer and download the blank Quarto script for Part 2. You may not return to Part 1 after turning it in and beginning the open-computer portion.</p>
+</section>
+<section id="topics" class="level1">
+<h1>Topics</h1>
+<p>Based on material from Weeks 8-11, the TMDB case study, and Homework 3, the exam will cover:</p>
+<ul>
+<li><strong>Linear Regression Fundamentals</strong>
+<ul>
+<li>Simple linear regression: fitting, interpreting, predicting</li>
+<li>The <code>lm()</code> function and formula syntax</li>
+<li>Regression equation: <span class="math inline">\(Y = \beta_0 + \beta_1 X + \varepsilon\)</span></li>
+<li>Interpreting coefficients (intercept and slope)</li>
+<li>Understanding residuals</li>
+</ul></li>
+<li><strong>Regression Inference</strong>
+<ul>
+<li>Hypothesis tests for regression coefficients</li>
+<li>P-values and statistical significance</li>
+<li>Confidence intervals for coefficients: <code>confint()</code></li>
+<li>R-squared and adjusted R-squared</li>
+</ul></li>
+<li><strong>Making Predictions</strong>
+<ul>
+<li>Using <code>predict()</code> with new data</li>
+<li>Confidence intervals for mean response (<code>interval = "confidence"</code>)</li>
+<li>Prediction intervals for individual observations (<code>interval = "prediction"</code>)</li>
+<li>Difference between confidence and prediction intervals</li>
+<li>Dangers of extrapolation</li>
+</ul></li>
+<li><strong>Multiple Linear Regression</strong>
+<ul>
+<li>Including multiple predictors: <code>lm(y ~ x1 + x2 + x3)</code></li>
+<li>Interpreting coefficients when holding other variables constant</li>
+<li>Comparing models with different predictors</li>
+<li>Using <code>anova()</code> for model comparison (F-tests)</li>
+<li>Understanding when adding predictors improves fit</li>
+</ul></li>
+<li><strong>Functions and Function-Oriented Programming</strong>
+<ul>
+<li>Writing functions in R: syntax and structure</li>
+<li>Function arguments and default values</li>
+<li>Return values (implicit and explicit)</li>
 </ul></li>
 </ul>
 </section>
-<section id="slides" class="level1">
-<h1>Slides</h1>
-<p><a href="week_1.html">Link to fullscreen</a></p>
-<iframe src="week_1.html" width="100%" height="600px" style="border:none;">
-</iframe>
+<section id="review-materials" class="level1">
+<h1>Review materials</h1>
+<section id="practice-exam-for-part-1" class="level2">
+<h2 class="anchored" data-anchor-id="practice-exam-for-part-1">Practice exam for Part 1</h2>
+<p>For Part 1 (on paper, closed computer), I have created a practice exam to give you a sense of the format and topics: <a href="../exams/exam_2/part_1_practice.pdf">part_1_practice.pdf</a>.</p>
+<p>The solution is here: <a href="../exams/exam_2/part_1_practice_solution.pdf">part_1_practice_solution.pdf</a>.</p>
 </section>
-<section id="installing-required-software" class="level1">
-<h1>Installing required software</h1>
-<section id="software-to-install" class="level2">
-<h2 class="anchored" data-anchor-id="software-to-install">Software to install</h2>
+<section id="key-lectures" class="level2">
+<h2 class="anchored" data-anchor-id="key-lectures">Key lectures</h2>
 <ul>
-<li>R (free and open source)</li>
-<li>RStudio IDE (free commercial software)</li>
-<li>Quarto (free commercial software): “literate programming”</li>
+<li><a href="../../lectures/week_9/week_9.html">Week 9: Regression</a></li>
+<li><a href="../../lectures/week_10/week_10.html">Week 10: Regression (continued)</a></li>
+<li><a href="../../lectures/week_11/week_11.html">Week 11: Writing Functions &amp; Organizing R Code</a></li>
 </ul>
 </section>
-<section id="step-by-step" class="level2">
-<h2 class="anchored" data-anchor-id="step-by-step">Step-by-step</h2>
-<ol type="1">
-<li>Go to <a href="https://cran.rstudio.com/">https://cran.rstudio.com</a> and download the latest version of R</li>
-<li>Go to <a href="https://posit.co/download/rstudio-desktop/">RStudio Desktop download page</a> and download RStudio Desktop</li>
-<li>Go to <a href="https://quarto.org/docs/get-started/">Quarto Getting Started</a> and download Quarto</li>
-</ol>
-</section>
-<section id="one-more-thing" class="level2">
-<h2 class="anchored" data-anchor-id="one-more-thing">One more thing</h2>
+<section id="key-assignments" class="level2">
+<h2 class="anchored" data-anchor-id="key-assignments">Key assignments</h2>
 <ul>
-<li>For labs, we will use Quarto to render code and outputs into pdf documents.</li>
-<li>This has one more <a href="https://quarto.org/docs/output-formats/pdf-basics.html#prerequisites">prerequisite</a>
-<ol type="1">
-<li>In RStudio, in the bottom-left pane, switch from the “Console” to the “Terminal” tab.</li>
-<li>Type in and run this command: <code>quarto install tinytex</code></li>
-</ol></li>
-</ul>
-</section>
-</section>
-<section id="additional-resources" class="level1">
-<h1>Additional resources</h1>
-<ul>
-<li>Visual timeline of R:
-<ul>
-<li>Brock, T., Gillespie, C., &amp; Jumping Rivers Team. (2024). A timeline of R’s first 30 years. Jumping Rivers. Retrieved from <a href="https://www.jumpingrivers.com/misc/timeline/">https://www.jumpingrivers.com/misc/timeline/</a></li>
-</ul></li>
+<li><a href="../../homework/homework_3.pdf">Homework 3</a> - Comprehensive regression practice</li>
+<li><a href="../../homework/quiz_3.pdf">Quiz 3</a> - In-class quiz covering Homework 3</li>
+<li><a href="../../labs/week_11/week_11_lab.html">Lab 5</a> - Function-oriented programming</li>
+<li><a href="../../case_studies/tmdb/tmdb.html">TMDB Case Study</a> - Real data analysis with inference and prediction</li>
 </ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

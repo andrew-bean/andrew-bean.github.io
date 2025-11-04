@@ -504,6 +504,34 @@
     "text": "Hands-on lab to explore a dataset concerning housing-related data for Boston census tracts. You will use descriptive statistics and simple visual displays to summarize the distributions of several variables across the census tracts.\n\nlab_3_blank.qmd\nlab_3.pdf\nlab_3_solution.pdf"
   },
   {
+    "objectID": "exams/exam_2.html",
+    "href": "exams/exam_2.html",
+    "title": "Exam 2 (Nov 11): review and practice materials",
+    "section": "",
+    "text": "Similar format to Exam 1. Two parts: the first being pen-and-paper, and the second being open-computer.\n\nPart 1:\n\nClosed computer and closed notes\nHandwritten answers\n\nPart 2:\n\nOpen computer. Any online resource that is “not alive” may be used (i.e. you may freely use online resources, but you may not communicate with any other person).\nElectronic submission on Moodle: you will fill in a Quarto script with R code and written answers\n\n\nOnce you turn in Part 1, you may open your computer and download the blank Quarto script for Part 2. You may not return to Part 1 after turning it in and beginning the open-computer portion."
+  },
+  {
+    "objectID": "exams/exam_2.html#practice-exam-for-part-1",
+    "href": "exams/exam_2.html#practice-exam-for-part-1",
+    "title": "Exam 2 (Nov 11): review and practice materials",
+    "section": "Practice exam for Part 1",
+    "text": "Practice exam for Part 1\nFor Part 1 (on paper, closed computer), I have created a practice exam to give you a sense of the format and topics: part_1_practice.pdf.\nThe solution is here: part_1_practice_solution.pdf."
+  },
+  {
+    "objectID": "exams/exam_2.html#key-lectures",
+    "href": "exams/exam_2.html#key-lectures",
+    "title": "Exam 2 (Nov 11): review and practice materials",
+    "section": "Key lectures",
+    "text": "Key lectures\n\nWeek 9: Regression\nWeek 10: Regression (continued)\nWeek 11: Writing Functions & Organizing R Code"
+  },
+  {
+    "objectID": "exams/exam_2.html#key-assignments",
+    "href": "exams/exam_2.html#key-assignments",
+    "title": "Exam 2 (Nov 11): review and practice materials",
+    "section": "Key assignments",
+    "text": "Key assignments\n\nHomework 3 - Comprehensive regression practice\nQuiz 3 - In-class quiz covering Homework 3\nLab 5 - Function-oriented programming\nTMDB Case Study - Real data analysis with inference and prediction"
+  },
+  {
     "objectID": "case_studies/tmdb/tmdb.html",
     "href": "case_studies/tmdb/tmdb.html",
     "title": "Case study 1",
