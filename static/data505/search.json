@@ -620,14 +620,21 @@
     "href": "labs/week_11/week_11_lab.html",
     "title": "DATA 505: Lab 5",
     "section": "",
-    "text": "Your task: Refactor life_expectancy_script.R (an imperative script) into a well-organized function-oriented project with six functions.\nWhat you’ll submit: A .zip file of your life_expectancy/ directory with working functions and pipeline."
+    "text": "life_expectancy_solution.zip"
+  },
+  {
+    "objectID": "labs/week_11/week_11_lab.html#solution",
+    "href": "labs/week_11/week_11_lab.html#solution",
+    "title": "DATA 505: Lab 5",
+    "section": "",
+    "text": "life_expectancy_solution.zip"
   },
   {
     "objectID": "labs/week_11/week_11_lab.html#overview",
     "href": "labs/week_11/week_11_lab.html#overview",
     "title": "DATA 505: Lab 5",
-    "section": "",
-    "text": "Your task: Refactor life_expectancy_script.R (an imperative script) into a well-organized function-oriented project with six functions.\nWhat you’ll submit: A .zip file of your life_expectancy/ directory with working functions and pipeline."
+    "section": "Overview",
+    "text": "Overview\nYour task: Refactor life_expectancy_script.R (an imperative script) into a well-organized function-oriented project with six functions.\nWhat you’ll submit: A .zip file of your life_expectancy/ directory with working functions and pipeline."
   },
   {
     "objectID": "labs/week_11/week_11_lab.html#initial-script",
@@ -1043,18 +1050,25 @@
     "text": "Example: Standardizing variables\n\n# Z-score standardization\nstandardize &lt;- function(x, na.rm = TRUE) {\n  mean_x &lt;- mean(x, na.rm = na.rm)\n  sd_x &lt;- sd(x, na.rm = na.rm)\n  z &lt;- (x - mean_x) / sd_x\n  return(z)\n}\n\n# Test it\ntest_data &lt;- c(10, 20, 30, 40, 50, NA)\nstandardize(test_data)\n\n[1] -1.2649111 -0.6324555  0.0000000  0.6324555  1.2649111         NA\n\n# The standardized values have mean 0 and sd 1\nmean(standardize(test_data), na.rm = TRUE)\n\n[1] 8.881784e-17\n\nsd(standardize(test_data), na.rm = TRUE)\n\n[1] 1"
   },
   {
+    "objectID": "lectures/week_11/week_11.html#the-ellipsis-...-argument",
+    "href": "lectures/week_11/week_11.html#the-ellipsis-...-argument",
+    "title": "Week 11: Writing Functions & Organizing R Code",
+    "section": "The ellipsis (...) argument",
+    "text": "The ellipsis (...) argument\n\n\n\nThe ... allows passing additional arguments to functions called within\nUseful when you want to pass arguments through to another function\n\n\n\n# Function that passes arguments to mean()\ncalculate_mean &lt;- function(x, ...) {\n  mean(x, ...)\n}\n\n# Now we can pass na.rm, trim, etc. to mean()\ndata_with_na &lt;- c(1, 2, 3, NA, 5)\ncalculate_mean(data_with_na, na.rm = TRUE)\n\n[1] 2.75\n\ncalculate_mean(data_with_na, na.rm = TRUE, trim = 0.1)\n\n[1] 2.75"
+  },
+  {
+    "objectID": "lectures/week_11/week_11.html#example-wrapper-function-with-...",
+    "href": "lectures/week_11/week_11.html#example-wrapper-function-with-...",
+    "title": "Week 11: Writing Functions & Organizing R Code",
+    "section": "Example: Wrapper function with ...",
+    "text": "Example: Wrapper function with ...\n\n# Create a custom plotting function that passes extra args to plot()\nmy_scatter &lt;- function(x, y, ...) {\n  plot(x, y, pch = 19, col = \"blue\", ...)\n}\n\nmy_scatter(1:10, (1:10) ^ 2,\n           main = \"My Plot\", xlab = \"X values\")  # With labels"
+  },
+  {
     "objectID": "lectures/week_11/week_11.html#the-three-times-rule",
     "href": "lectures/week_11/week_11.html#the-three-times-rule",
     "title": "Week 11: Writing Functions & Organizing R Code",
     "section": "The “three times” rule",
     "text": "The “three times” rule\n\nIf you copy-paste code three times, write a function\nEven twice might be worth it!\n\n\n\nBefore: repetitive code\n\ndf$x1 &lt;- (df$x1 - mean(df$x1)) / sd(df$x1)\ndf$x2 &lt;- (df$x2 - mean(df$x2)) / sd(df$x2)\ndf$x3 &lt;- (df$x3 - mean(df$x3)) / sd(df$x3)\n\n\nAfter: with a function\n\nstandardize &lt;- function(x) {\n  (x - mean(x)) / sd(x)\n}\n\ndf$x1 &lt;- standardize(df$x1)\ndf$x2 &lt;- standardize(df$x2)\ndf$x3 &lt;- standardize(df$x3)"
-  },
-  {
-    "objectID": "lectures/week_11/week_11.html#or-better-yet-use-functional-programming",
-    "href": "lectures/week_11/week_11.html#or-better-yet-use-functional-programming",
-    "title": "Week 11: Writing Functions & Organizing R Code",
-    "section": "Or better yet, use functional programming",
-    "text": "Or better yet, use functional programming\n\n# Apply standardize to multiple columns at once\ndf &lt;- df |&gt;\n  mutate(across(c(x1, x2, x3), standardize))\n\n\nWe’ll see more of this pattern shortly"
   },
   {
     "objectID": "lectures/week_11/week_11.html#what-is-function-oriented-programming",
@@ -1099,20 +1113,6 @@
     "text": "Example: main.R\n\n# Main analysis pipeline\nsource(\"R/01_load.R\")\nsource(\"R/02_clean.R\")\nsource(\"R/03_analyze.R\")\nsource(\"R/04_visualize.R\")\n\n# Load data\nraw_data &lt;- load_raw_data(\"data/raw/survey_data.csv\")\n\n# Clean data\nclean_data &lt;- clean_survey_data(raw_data)\n\n# Analyze\nsummary_stats &lt;- calculate_summary_statistics(clean_data)\nmodel_results &lt;- fit_regression_model(clean_data)\n\n# Visualize\nplot_distribution(clean_data, \"age\")\nplot_regression_results(clean_data, model_results)\n\n# Save results\nsave_results(summary_stats, \"output/tables/summary_stats.csv\")\nsave_plot(last_plot(), \"output/figures/regression_plot.png\")"
   },
   {
-    "objectID": "lectures/week_11/week_11.html#workflow-management",
-    "href": "lectures/week_11/week_11.html#workflow-management",
-    "title": "Week 11: Writing Functions & Organizing R Code",
-    "section": "Workflow management",
-    "text": "Workflow management\nFor complex projects, consider workflow tools:\n\ntargets package: makes your pipeline reproducible and efficient\n\nOnly re-runs parts that changed\nTracks dependencies automatically\nSee: https://books.ropensci.org/targets/\n\n\n\n# Example targets pipeline\nlibrary(targets)\n\nlist(\n  tar_target(raw_data, load_raw_data(\"data/raw/survey.csv\")),\n  tar_target(clean_data, clean_survey_data(raw_data)),\n  tar_target(model, fit_regression_model(clean_data)),\n  tar_target(plot, plot_results(clean_data, model))\n)"
-  },
-  {
-    "objectID": "lectures/week_11/week_11.html#testing-your-functions",
-    "href": "lectures/week_11/week_11.html#testing-your-functions",
-    "title": "Week 11: Writing Functions & Organizing R Code",
-    "section": "Testing your functions",
-    "text": "Testing your functions\n\nAlways test functions with different inputs\nConsider edge cases: empty vectors, NA values, wrong types\n\n\n# Example function\ncalculate_range &lt;- function(x, na.rm = TRUE) {\n  max(x, na.rm = na.rm) - min(x, na.rm = na.rm)\n}\n\n# Test with normal data\ncalculate_range(1:10)  # Should be 9\n\n[1] 9\n\n# Test with NA values\ncalculate_range(c(1, 5, NA))  # Should be 4\n\n[1] 4\n\n# Test with single value\ncalculate_range(5)  # Should be 0\n\n[1] 0\n\n# Test with empty vector - will give warning\n# calculate_range(numeric(0))"
-  },
-  {
     "objectID": "lectures/week_11/week_11.html#documentation-with-roxygen2-comments",
     "href": "lectures/week_11/week_11.html#documentation-with-roxygen2-comments",
     "title": "Week 11: Writing Functions & Organizing R Code",
@@ -1141,18 +1141,11 @@
     "text": "Key takeaways\n\nWrite functions to avoid repetition and improve code quality\nFunction-oriented programming organizes analyses into modular, testable steps\nGood functions:\n\nDo one thing well\nHave clear names\nInclude default arguments where appropriate\nHandle errors gracefully\nAre documented\n\nOrganize projects with clear folder structure and pipeline scripts"
   },
   {
-    "objectID": "lectures/week_11/week_11.html#resources",
-    "href": "lectures/week_11/week_11.html#resources",
+    "objectID": "lectures/week_11/week_11.html#live-anonymous-quiz",
+    "href": "lectures/week_11/week_11.html#live-anonymous-quiz",
     "title": "Week 11: Writing Functions & Organizing R Code",
-    "section": "Resources",
-    "text": "Resources\n\nHands-On Programming with R by Garrett Grolemund\n\nhttps://rstudio-education.github.io/hopr/basics.html#write-functions\n\nThe targets R Package User Manual\n\nhttps://books.ropensci.org/targets/\n\nR for Data Science (2nd ed.) by Wickham, Çetinkaya-Rundel, and Grolemund\n\nChapter on Functions: https://r4ds.hadley.nz/functions\n\nAdvanced R by Hadley Wickham\n\nhttps://adv-r.hadley.nz/functions.html"
-  },
-  {
-    "objectID": "lectures/week_11/week_11.html#next-week",
-    "href": "lectures/week_11/week_11.html#next-week",
-    "title": "Week 11: Writing Functions & Organizing R Code",
-    "section": "Next week",
-    "text": "Next week\n\nExam 2\nReview all material from weeks 8-11\nFocus on practical coding skills"
+    "section": "Live (anonymous) quiz",
+    "text": "Live (anonymous) quiz\nMenti link\n\nhttps://www.menti.com/al2wbq74vb5f\n\nQR code"
   },
   {
     "objectID": "lectures/week_11/week_11.html#todays-lab-function-oriented-workflow",
@@ -2084,26 +2077,5 @@
     "title": "Schedule",
     "section": "",
     "text": "Run the schedule.R script and display the most current plan for the schedule\nhere::i_am(\"schedule/schedule.qmd\")\nlibrary(here)\nlibrary(gt)\n\nsource(here(\"schedule/schedule.R\"))\n\ngt(schedule)\n\n\n\n\n\n\n\n\nDate\nContents\nNotes\n\n\n\n\nAug 26\nIntroduction & Getting started\nLab 1\n\n\nSep 2\nR Basics (objects, types, classes, and collections)\nHW-Quiz 1 / Lab 2\n\n\nSep 9\nDescriptive statistics & Summarizing data\nLab 3\n\n\nSep 16\nBasic statistical inference\nHW-Quiz 2 / Lab 4\n\n\nSep 23\nData manipulation & visualization\nLab 5\n\n\nSep 30\nExam 1\n\n\n\nOct 7\nNO CLASS (Fall Break)\n\n\n\nOct 14\nCase study: movie / box-office data\n\n\n\nOct 21\nRegression\nPrediction challenge\n\n\nOct 28\nRegression (continued)\n\n\n\nNov 4\nWriting functions\nHW-Quiz 3 / Lab 7\n\n\nNov 11\nExam 2\n\n\n\nNov 18\nSimulation, sampling distributions CLT\nCase study 2\n\n\nNov 25\nBootstrap and friends\nHW-Quiz 4\n\n\nDec 2\nShiny (UI-based apps)\nCase study 2 due / Lab 8\n\n\nDec 9\nFinal Exam\n7:30 to 10:30"
-  },
-  {
-    "objectID": "lectures/week_11/week_11.html#the-ellipsis-...-argument",
-    "href": "lectures/week_11/week_11.html#the-ellipsis-...-argument",
-    "title": "Week 11: Writing Functions & Organizing R Code",
-    "section": "The ellipsis (...) argument",
-    "text": "The ellipsis (...) argument\n\n\n\nThe ... allows passing additional arguments to functions called within\nUseful when you want to pass arguments through to another function\n\n\n\n# Function that passes arguments to mean()\ncalculate_mean &lt;- function(x, ...) {\n  mean(x, ...)\n}\n\n# Now we can pass na.rm, trim, etc. to mean()\ndata_with_na &lt;- c(1, 2, 3, NA, 5)\ncalculate_mean(data_with_na, na.rm = TRUE)\n\n[1] 2.75\n\ncalculate_mean(data_with_na, na.rm = TRUE, trim = 0.1)\n\n[1] 2.75"
-  },
-  {
-    "objectID": "lectures/week_11/week_11.html#example-wrapper-function-with-...",
-    "href": "lectures/week_11/week_11.html#example-wrapper-function-with-...",
-    "title": "Week 11: Writing Functions & Organizing R Code",
-    "section": "Example: Wrapper function with ...",
-    "text": "Example: Wrapper function with ...\n\n# Create a custom plotting function that passes extra args to plot()\nmy_scatter &lt;- function(x, y, ...) {\n  plot(x, y, pch = 19, col = \"blue\", ...)\n}\n\nmy_scatter(1:10, (1:10) ^ 2,\n           main = \"My Plot\", xlab = \"X values\")  # With labels"
-  },
-  {
-    "objectID": "lectures/week_11/week_11.html#live-anonymous-quiz",
-    "href": "lectures/week_11/week_11.html#live-anonymous-quiz",
-    "title": "Week 11: Writing Functions & Organizing R Code",
-    "section": "Live (anonymous) quiz",
-    "text": "Live (anonymous) quiz\nMenti link\n\nhttps://www.menti.com/al2wbq74vb5f\n\nQR code"
   }
 ]
