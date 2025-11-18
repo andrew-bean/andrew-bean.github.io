@@ -448,6 +448,41 @@
     "text": "Agenda\n\nIn-class Quiz on Homework 1 (5 minutes)\nLecture on basics of variables, objects, types, and classes, as well as collections of objects, like vectors, lists, and data frames. We will also meet some of our first functions along the way.\n\nToday I recommend downloading the following R script (which contains only the code chunks from the lecture) and following along in RStudio by running line-by-line: week_2.R\n\nHands-on Lab 2 will give you practice reading data into R from a text file to create a data.frame object, and then reinforce some of the concepts from today using the variables defined in this dataset.\n\nlab_2_blank.qmd\nlab_2.pdf\n\n\n\n\nSupportive reading outside class\n(Optional but recommended) the best supporting textbook material for this week is section 2 of this book:\n\nGrolemund, G. (2014). Hands-On Programming with R. O’Reilly Media. Retrieved from https://rstudio-education.github.io/hopr/.\n\n\n\nSlides\nLink to fullscreen"
   },
   {
+    "objectID": "lectures/week_13/lectures_13.html",
+    "href": "lectures/week_13/lectures_13.html",
+    "title": "Week 13: Logistic Regression & AI-assisted Workflows",
+    "section": "",
+    "text": "Class cancelled next week (Thanksgiving)\nLogistic regression: modeling binary outcomes\nAI-assisted workflows with R\nCode from lecture: week_13.R\nUngraded “Lab”: Positron and Github Copilot\nIntroduce Case Study 2 (predictors of student performance)"
+  },
+  {
+    "objectID": "lectures/week_13/lectures_13.html#software-to-install",
+    "href": "lectures/week_13/lectures_13.html#software-to-install",
+    "title": "Week 13: Logistic Regression & AI-assisted Workflows",
+    "section": "Software to install",
+    "text": "Software to install\n\nPositron"
+  },
+  {
+    "objectID": "lectures/week_13/lectures_13.html#accounts-to-create",
+    "href": "lectures/week_13/lectures_13.html#accounts-to-create",
+    "title": "Week 13: Logistic Regression & AI-assisted Workflows",
+    "section": "Accounts to create",
+    "text": "Accounts to create\n\nGithub (use your drew.edu email)"
+  },
+  {
+    "objectID": "lectures/week_13/lectures_13.html#activation-and-authentication",
+    "href": "lectures/week_13/lectures_13.html#activation-and-authentication",
+    "title": "Week 13: Logistic Regression & AI-assisted Workflows",
+    "section": "Activation and authentication",
+    "text": "Activation and authentication\n\nEnable Positron assistant\nAuthenticate with your Github credentials"
+  },
+  {
+    "objectID": "lectures/week_13/lectures_13.html#step-by-step",
+    "href": "lectures/week_13/lectures_13.html#step-by-step",
+    "title": "Week 13: Logistic Regression & AI-assisted Workflows",
+    "section": "Step-by-step",
+    "text": "Step-by-step\n\nInstall Positron\n\nFollow instructions here at Positron\n\n\n\nGithub account\n\nCreate a Github account with your drew.edu email, and apply for Github Education\n\n\n\nActivate Positron Assistant\n\nOpen Positron\nClick on the little robot guy on the left side\nClick “Enable Positron Assistant”, and enable it\n\n\n\nAuthenticate with Github\n\nIn the robot-guy menu, click “Add a Chat Provider”\nIn the Configure Language Providers menu, click on Github Copilot and sign in with OAuth\nYou will need to paste a code copied from Positron into your web browser for Github\nOnce done, return to Positron\nClick Ctrl+Shift+P (Command palette, Cmd+Shift+P on Mac) to search for and run “Developer: Reload Window”"
+  },
+  {
     "objectID": "lectures/week_11/lectures_11.html",
     "href": "lectures/week_11/lectures_11.html",
     "title": "Week 11: Writing Functions & Organizing R Code",
@@ -504,32 +539,25 @@
     "text": "Hands-on lab to explore a dataset concerning housing-related data for Boston census tracts. You will use descriptive statistics and simple visual displays to summarize the distributions of several variables across the census tracts.\n\nlab_3_blank.qmd\nlab_3.pdf\nlab_3_solution.pdf"
   },
   {
-    "objectID": "exams/exam_2.html",
-    "href": "exams/exam_2.html",
-    "title": "Exam 2 (Nov 11): review and practice materials",
+    "objectID": "exams/exam_1.html",
+    "href": "exams/exam_1.html",
+    "title": "Exam 1 (Sep 30): review and practice materials",
     "section": "",
-    "text": "Similar format to Exam 1. Two parts: the first being pen-and-paper, and the second being open-computer.\n\nPart 1:\n\nClosed computer and closed notes\nHandwritten answers\n\nPart 2:\n\nOpen computer. Any online resource that is “not alive” may be used (i.e. you may freely use online resources, but you may not communicate with any other person).\nElectronic submission on Moodle: you will fill in a Quarto script with R code and written answers\n\n\nOnce you turn in Part 1, you may open your computer and download the blank Quarto script for Part 2. You may not return to Part 1 after turning it in and beginning the open-computer portion."
+    "text": "Part 1: part_1_solution.pdf\nPart 2: part_2_solution.pdf"
   },
   {
-    "objectID": "exams/exam_2.html#practice-exam-for-part-1",
-    "href": "exams/exam_2.html#practice-exam-for-part-1",
-    "title": "Exam 2 (Nov 11): review and practice materials",
-    "section": "Practice exam for Part 1",
-    "text": "Practice exam for Part 1\nFor Part 1 (on paper, closed computer), I have created a practice exam to give you a sense of the format and topics: part_1_practice.pdf.\nThe solution is here: part_1_practice_solution.pdf."
+    "objectID": "exams/exam_1.html#part-1",
+    "href": "exams/exam_1.html#part-1",
+    "title": "Exam 1 (Sep 30): review and practice materials",
+    "section": "Part 1",
+    "text": "Part 1\nFor Part 1 (on paper, closed computer), I have created a practice exam to give you a sense of the format and topics: part_1_practice.pdf.\nThe solution is here: part_1_practice_solution.pdf."
   },
   {
-    "objectID": "exams/exam_2.html#key-lectures",
-    "href": "exams/exam_2.html#key-lectures",
-    "title": "Exam 2 (Nov 11): review and practice materials",
-    "section": "Key lectures",
-    "text": "Key lectures\n\nWeek 9: Regression\nWeek 10: Regression (continued)\nWeek 11: Writing Functions & Organizing R Code"
-  },
-  {
-    "objectID": "exams/exam_2.html#key-assignments",
-    "href": "exams/exam_2.html#key-assignments",
-    "title": "Exam 2 (Nov 11): review and practice materials",
-    "section": "Key assignments",
-    "text": "Key assignments\n\nHomework 3 - Comprehensive regression practice\nQuiz 3 - In-class quiz covering Homework 3\nLab 5 - Function-oriented programming\nTMDB Case Study - Real data analysis with inference and prediction"
+    "objectID": "exams/exam_1.html#part-2",
+    "href": "exams/exam_1.html#part-2",
+    "title": "Exam 1 (Sep 30): review and practice materials",
+    "section": "Part 2",
+    "text": "Part 2\nFor Part 2, the format will be very similar to the in-class Labs. Given the open format of this part of the exam, I will not provide a separate practice exam for Part 2.\nYou will be given a Quarto script which you can download, and which you will edit to fill in blank code chunks and free-text responses (again, just like the lab).\nThe questions will involve exploration of a single real dataset. Coding tasks and questions about this dataset will be drawn from the list of topics above.\nI suggest reviewing or even re-doing the labs as a way of practicing for Part 2."
   },
   {
     "objectID": "case_studies/tmdb/tmdb.html",
@@ -581,25 +609,32 @@
     "text": "Part 4: Regression and prediction challenge (In class: 21-Oct)\nThis part will be completed in class on Tuesday October 21.\n\nObjectives\nIn this final part, you will:\n\nBuild multiple linear regression models to predict log_revenue\nExperiment with different predictor variables and model specifications\nSubmit predictions for a held-out test set\nCompete with your classmates to achieve the lowest prediction error (RMSE)\n\n\n\nThe Challenge\nYou will work in pairs to:\n\nExplore the training data: Understand relationships between predictors and revenue\nBuild regression models: Start with simple models and iterate to improve performance\nEvaluate your models: Calculate training RMSE to gauge performance\nMake predictions: Apply your best model to a held-out test set\nSubmit for scoring: Submit predictions in CSV format for evaluation\nClimb the leaderboard: You may submit multiple times to improve your score\n\n\n\nGetting started\n\nDownload: tmdb_project_v2.zip\nUnzip to a convenient location on your computer\nNavigate to the folder and open tmdb.Rproj to open the project in RStudio\n\nOnce you have the project open, you will work with the script 04_prediction.R, which includes: - Starter code for loading data and building baseline models - Helper functions for calculating predictive accuracy using RMSE (defined below) - Examples of feature engineering - Instructions for creating the submission file - Tips for improving model performance\n\n\nEvaluation\nYour predictions will be scored using RMSE (Root Mean Squared Error):\n\\[\\text{RMSE} = \\sqrt{\\frac{1}{n}\\sum_{i=1}^{n}(y_i - \\hat{y}_i)^2}\\]\nwhere \\(y_i\\) is the actual log revenue and \\(\\hat{y}_i\\) is your predicted log revenue.\nLower RMSE is better!\n\n\nSubmission requirements\nDuring class: - Submit predictions as a CSV file with two columns: id and predicted_log_revenue - Name your file: predictions_TEAMNAME_i.csv (with “TEAMNAME” being replaced by your team name, and i indexing your team’s multiple submissions) - You may submit multiple times (increasing the index i each time) to improve your score - Results will be posted to a class leaderboard\nAt end of class: - Submit your final R script (04_prediction.R) on Moodle under Case Study 1 Box Office Analysis (Part 4)\n\n\nGrading (20 points total)\n\nCompleteness of code (20 points): Did you build models and generate predictions?\nPrediction accuracy (up to 5 bonus points): Bonus points for top 3 pairs:\n\n1st place: 5 bonus points\n2nd place: 3 bonus points\n\n3rd place: 1 bonus point\n\n\n\n\nTips for success\n\nStart simple: Begin with basic models using a few predictors\nFeature engineering: Try creating new variables (e.g., release_year, interaction terms, transformations)\nBalance complexity: More complex models may overfit and perform worse on test data\nIterate quickly: Don’t spend too long perfecting one model - try multiple approaches\nHave fun! This is a friendly competition to reinforce regression concepts\n\nGood luck! 🎬📊🏆"
   },
   {
-    "objectID": "exams/exam_1.html",
-    "href": "exams/exam_1.html",
-    "title": "Exam 1 (Sep 30): review and practice materials",
+    "objectID": "exams/exam_2.html",
+    "href": "exams/exam_2.html",
+    "title": "Exam 2 (Nov 11): review and practice materials",
     "section": "",
-    "text": "Part 1: part_1_solution.pdf\nPart 2: part_2_solution.pdf"
+    "text": "Similar format to Exam 1. Two parts: the first being pen-and-paper, and the second being open-computer.\n\nPart 1:\n\nClosed computer and closed notes\nHandwritten answers\n\nPart 2:\n\nOpen computer. Any online resource that is “not alive” may be used (i.e. you may freely use online resources, but you may not communicate with any other person).\nElectronic submission on Moodle: you will fill in a Quarto script with R code and written answers\n\n\nOnce you turn in Part 1, you may open your computer and download the blank Quarto script for Part 2. You may not return to Part 1 after turning it in and beginning the open-computer portion."
   },
   {
-    "objectID": "exams/exam_1.html#part-1",
-    "href": "exams/exam_1.html#part-1",
-    "title": "Exam 1 (Sep 30): review and practice materials",
-    "section": "Part 1",
-    "text": "Part 1\nFor Part 1 (on paper, closed computer), I have created a practice exam to give you a sense of the format and topics: part_1_practice.pdf.\nThe solution is here: part_1_practice_solution.pdf."
+    "objectID": "exams/exam_2.html#practice-exam-for-part-1",
+    "href": "exams/exam_2.html#practice-exam-for-part-1",
+    "title": "Exam 2 (Nov 11): review and practice materials",
+    "section": "Practice exam for Part 1",
+    "text": "Practice exam for Part 1\nFor Part 1 (on paper, closed computer), I have created a practice exam to give you a sense of the format and topics: part_1_practice.pdf.\nThe solution is here: part_1_practice_solution.pdf."
   },
   {
-    "objectID": "exams/exam_1.html#part-2",
-    "href": "exams/exam_1.html#part-2",
-    "title": "Exam 1 (Sep 30): review and practice materials",
-    "section": "Part 2",
-    "text": "Part 2\nFor Part 2, the format will be very similar to the in-class Labs. Given the open format of this part of the exam, I will not provide a separate practice exam for Part 2.\nYou will be given a Quarto script which you can download, and which you will edit to fill in blank code chunks and free-text responses (again, just like the lab).\nThe questions will involve exploration of a single real dataset. Coding tasks and questions about this dataset will be drawn from the list of topics above.\nI suggest reviewing or even re-doing the labs as a way of practicing for Part 2."
+    "objectID": "exams/exam_2.html#key-lectures",
+    "href": "exams/exam_2.html#key-lectures",
+    "title": "Exam 2 (Nov 11): review and practice materials",
+    "section": "Key lectures",
+    "text": "Key lectures\n\nWeek 9: Regression\nWeek 10: Regression (continued)\nWeek 11: Writing Functions & Organizing R Code"
+  },
+  {
+    "objectID": "exams/exam_2.html#key-assignments",
+    "href": "exams/exam_2.html#key-assignments",
+    "title": "Exam 2 (Nov 11): review and practice materials",
+    "section": "Key assignments",
+    "text": "Key assignments\n\nHomework 3 - Comprehensive regression practice\nQuiz 3 - In-class quiz covering Homework 3\nLab 5 - Function-oriented programming\nTMDB Case Study - Real data analysis with inference and prediction"
   },
   {
     "objectID": "index.html",
@@ -1153,6 +1188,97 @@
     "title": "Week 11: Writing Functions & Organizing R Code",
     "section": "Today’s lab: Function-oriented workflow",
     "text": "Today’s lab: Function-oriented workflow\n\nLab 5 provides hands-on practice with:\n\nRefactoring a data analysis script into a well-organized function-oriented project"
+  },
+  {
+    "objectID": "lectures/week_13/week_13.html#overview",
+    "href": "lectures/week_13/week_13.html#overview",
+    "title": "Week 13: Logistic Regression & AI-assisted Workflows",
+    "section": "Overview",
+    "text": "Overview\n\nRecall from Week 9: in linear regression, we modeled a continuous response \\(Y\\) as \\[Y = \\beta_0 + \\beta_1 X + \\epsilon, \\] where \\(\\epsilon\\) was a normally distributed error term. Estimation and inference used least squares and normal-error assumptions."
+  },
+  {
+    "objectID": "lectures/week_13/week_13.html#new-question",
+    "href": "lectures/week_13/week_13.html#new-question",
+    "title": "Week 13: Logistic Regression & AI-assisted Workflows",
+    "section": "New question",
+    "text": "New question\nWhat if the response \\(Y\\) is binary (0/1)?\n\nThe “mean” of \\(Y\\) is now a probability that \\(Y = 1\\)\nResiduals cannot possibly be normal in this situation\nPredictions for the mean could fall outside \\((0, 1)\\)\n\nBetter model: logistic regression…"
+  },
+  {
+    "objectID": "lectures/week_13/week_13.html#motivating-example-dosetoxicity-modeling",
+    "href": "lectures/week_13/week_13.html#motivating-example-dosetoxicity-modeling",
+    "title": "Week 13: Logistic Regression & AI-assisted Workflows",
+    "section": "Motivating example: Dose–toxicity modeling",
+    "text": "Motivating example: Dose–toxicity modeling\n\n\nWe consider an early-phase Oncology clinical trial where cohorts of patients receive increasing drug doses. The binary outcome \\(Y\\) indicates whether a dose-limiting toxicity (DLT) occurred (1 = yes, 0 = no).\n\n\n\nConstruct dose-toxicity dataset (dlt_data) and display empirical rates.\ndlt_data &lt;- tibble::tibble(\n  dose = c(1, 2.5, 5, 10, 20, 25),\n  num_patients = c(3, 4, 5, 4, 6, 2),\n  num_toxicities = c(0, 1, 0, 1, 1, 2)\n) |&gt;\n  dplyr::mutate(empirical_rate = num_toxicities / num_patients)\n\ndlt_data |&gt;\n  gt() |&gt;\n  tab_header(title = \"Drug A Dose–Toxicity Data (DLTs)\") |&gt;\n  cols_label(\n    dose = \"Dose A (mg)\",\n    num_patients = \"Patients\",\n    num_toxicities = \"DLTs\",\n    empirical_rate = \"Proportion of DLTs\"\n  ) |&gt;\n  fmt_percent(columns = empirical_rate, decimals = 1) |&gt;\n  fmt_number(columns = c(num_patients, num_toxicities), decimals = 0) |&gt;\n  tab_style(\n    style = cell_fill(color = \"#f2f7ff\"),\n    locations = cells_column_labels()\n  ) |&gt;\n  opt_table_font(font = \"Arial\")\n\n\n\n\n\n\n\n\nDrug A Dose–Toxicity Data (DLTs)\n\n\nDose A (mg)\nPatients\nDLTs\nProportion of DLTs\n\n\n\n\n1.0\n3\n0\n0.0%\n\n\n2.5\n4\n1\n25.0%\n\n\n5.0\n5\n0\n0.0%\n\n\n10.0\n4\n1\n25.0%\n\n\n20.0\n6\n1\n16.7%\n\n\n25.0\n2\n2\n100.0%"
+  },
+  {
+    "objectID": "lectures/week_13/week_13.html#fitting-logistic-regression-in-r",
+    "href": "lectures/week_13/week_13.html#fitting-logistic-regression-in-r",
+    "title": "Week 13: Logistic Regression & AI-assisted Workflows",
+    "section": "Fitting logistic regression in R",
+    "text": "Fitting logistic regression in R\n\nfit_dose &lt;- glm(cbind(num_toxicities, num_patients - num_toxicities) ~ I(log(dose)),\n                data = dlt_data,\n                family = binomial())\nsummary(fit_dose)\n\n\nCall:\nglm(formula = cbind(num_toxicities, num_patients - num_toxicities) ~ \n    I(log(dose)), family = binomial(), data = dlt_data)\n\nCoefficients:\n             Estimate Std. Error z value Pr(&gt;|z|)  \n(Intercept)   -3.3528     1.6537  -2.027   0.0426 *\nI(log(dose))   0.9309     0.6495   1.433   0.1518  \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n(Dispersion parameter for binomial family taken to be 1)\n\n    Null deviance: 10.159  on 5  degrees of freedom\nResidual deviance:  7.476  on 4  degrees of freedom\nAIC: 16.751\n\nNumber of Fisher Scoring iterations: 5"
+  },
+  {
+    "objectID": "lectures/week_13/week_13.html#making-predictions",
+    "href": "lectures/week_13/week_13.html#making-predictions",
+    "title": "Week 13: Logistic Regression & AI-assisted Workflows",
+    "section": "Making predictions",
+    "text": "Making predictions\n\n# Predict the probability of a DLT for dose = 25\npredict(fit_dose, newdata = data.frame(dose = c(1, 2.5, 5, 10, 20, 25)), type = \"response\")\n\n         1          2          3          4          5          6 \n0.03380373 0.07586928 0.13533291 0.22981219 0.36259074 0.41182696"
+  },
+  {
+    "objectID": "lectures/week_13/week_13.html#plotting-the-predictions",
+    "href": "lectures/week_13/week_13.html#plotting-the-predictions",
+    "title": "Week 13: Logistic Regression & AI-assisted Workflows",
+    "section": "Plotting the predictions",
+    "text": "Plotting the predictions\n\n\n\n\nPlot on probability scale\n# Probability scale\ndose_grid &lt;- tibble::tibble(dose = seq(min(dlt_data$dose), max(dlt_data$dose), length.out = 100)) |&gt;\n  dplyr::mutate(p_hat = predict(fit_dose, newdata = dplyr::cur_data(), type = \"response\"))\n\nggplot(dlt_data, aes(x = dose, y = empirical_rate)) +\n  geom_point(size = 3, color = \"#1f77b4\") +\n  geom_line(data = dose_grid, aes(y = p_hat), color = \"#d62728\", linewidth = 1) +\n  scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +\n  scale_x_log10() + \n  labs(title = \"Probability scale\",\n       x = \"Dose A (mg)\",\n       y = \"Probability of DLT\") +\n  theme_minimal()\n\n\n\n\n\n\n\n\n\n\n\n\nPlot on linear predictor scale\n# Linear predictor (log-odds) scale\ndose_grid_lp &lt;- tibble::tibble(dose = seq(min(dlt_data$dose), max(dlt_data$dose), length.out = 100))\npred_lp &lt;- predict(fit_dose, newdata = dose_grid_lp, type = \"link\", se.fit = TRUE)\ndose_grid_lp$eta_hat &lt;- as.numeric(pred_lp$fit)\n\nggplot(dose_grid_lp, aes(x = dose, y = eta_hat)) +\n  geom_line(color = \"#d62728\", linewidth = 1) +\n  scale_x_log10() + \n  labs(title = \"Linear predictor scale\",\n       x = \"Dose A (mg)\",\n       y = \"Log-odds of DLT\") +\n  theme_minimal()"
+  },
+  {
+    "objectID": "lectures/week_13/week_13.html#generalized-linear-models-glms",
+    "href": "lectures/week_13/week_13.html#generalized-linear-models-glms",
+    "title": "Week 13: Logistic Regression & AI-assisted Workflows",
+    "section": "Generalized linear models (GLMs)",
+    "text": "Generalized linear models (GLMs)\n\nA unified framework that includes linear, logistic, and Poisson regression (among others).\n\n\n\n\n\n\n\n\n\n\nModel\nTypical data\nR syntax\nLink function\n\n\n\n\nLinear regression\nContinuous outcomes (approximately normal residuals)\nlm(y ~ x, data = df)glm(y ~ x, data = df, family = gaussian())\nidentity\n\n\nLogistic regression\nBinary 0/1 outcomes or successes/trials\nglm(y ~ x, family = binomial(), data = df)glm(cbind(successes, trials - successes) ~ x, family = binomial(), data = df)\nlogit\n\n\nPoisson regression\nCount data\nglm(y ~ x, family = poisson(), data = df)\nlog"
+  },
+  {
+    "objectID": "lectures/week_13/week_13.html#where-do-humanshumans-need-ai",
+    "href": "lectures/week_13/week_13.html#where-do-humanshumans-need-ai",
+    "title": "Week 13: Logistic Regression & AI-assisted Workflows",
+    "section": "Where do humans1 need AI?",
+    "text": "Where do humans1 need AI?\n\nLearning with AI\nCode generation\nDocumentation and testing of code\n\nSpecifically, R programmers / statisticians / data scientists"
+  },
+  {
+    "objectID": "lectures/week_13/week_13.html#where-does-ai-need-humans",
+    "href": "lectures/week_13/week_13.html#where-does-ai-need-humans",
+    "title": "Week 13: Logistic Regression & AI-assisted Workflows",
+    "section": "Where does AI need humans?",
+    "text": "Where does AI need humans?\n\nTrust\nIntegration\nTaste\n\n\n\nRobert Capps. “A.I. Might Take Your Job. Here Are 22 New Ones It Could Give You.” New York Times Magazine, June 2025"
+  },
+  {
+    "objectID": "lectures/week_13/week_13.html#trust",
+    "href": "lectures/week_13/week_13.html#trust",
+    "title": "Week 13: Logistic Regression & AI-assisted Workflows",
+    "section": "Trust",
+    "text": "Trust\n\nHow do your stakeholders know a statistical result is trustworthy?\nWho is accountable for correctness? Must be a human\nMust be able to identify issues in e.g. statistical ideas and/or generated code"
+  },
+  {
+    "objectID": "lectures/week_13/week_13.html#integration",
+    "href": "lectures/week_13/week_13.html#integration",
+    "title": "Week 13: Logistic Regression & AI-assisted Workflows",
+    "section": "Integration",
+    "text": "Integration\n\nEffective/impactful use of AI requires a new class of experts, e.g.\n\nTechnical experts: technology underlying LLMs is itself statistical (models trained on massive data, predicting the next word)\nFacilitators: people who understand what tools are available and can connect them to solve practical problems"
+  },
+  {
+    "objectID": "lectures/week_13/week_13.html#taste",
+    "href": "lectures/week_13/week_13.html#taste",
+    "title": "Week 13: Logistic Regression & AI-assisted Workflows",
+    "section": "Taste",
+    "text": "Taste\n\nKnowing what to ask (prompt engineering)\nDiscriminating between good/useful output, and poor/unsuitable output\nKnowing when AI should not be used"
+  },
+  {
+    "objectID": "lectures/week_13/week_13.html#what-does-it-mean-for-me-and-you",
+    "href": "lectures/week_13/week_13.html#what-does-it-mean-for-me-and-you",
+    "title": "Week 13: Logistic Regression & AI-assisted Workflows",
+    "section": "What does it mean for me and you?",
+    "text": "What does it mean for me and you?\n\nNeed knowledge and experience to develop taste, e.g.\n\nStatistical knowledge\nR programming experience\n\nNeed to learn how and when to effectively work with AI"
   },
   {
     "objectID": "lectures/week_2/week_2.html#what-is-a-variable",

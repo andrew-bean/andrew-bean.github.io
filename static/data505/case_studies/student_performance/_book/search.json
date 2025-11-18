@@ -1,0 +1,182 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "DATA505 Case Study",
+    "section": "",
+    "text": "1 About\nWhat can we learn from data about key factors that influence student performance?\nIn this project, you will explore this question using a dataset (described in Chapter 2) about student achievement in secondary education of two Portuguese schools, and its relation to various social, demographic, and educational factors.\nWe will extend our use of Quarto to do literate programming in R. You will write R functions to execute the steps of the data analysis, and will also write narrative text (in Quarto) to explain the analysis and your findings in plain English.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>About</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#objectives",
+    "href": "index.html#objectives",
+    "title": "DATA505 Case Study",
+    "section": "1.1 Objectives",
+    "text": "1.1 Objectives\n\nProduce a “filled-in” version of this website, following the overall structure in the table of contents at left. That is, you will:\n\nPerform exploratory data analysis, creating visual and descriptive summaries of the data\nDevelop a regression model to predict student performance in relation to other characteristics of the students and their environments, describing your model selection process\nDraw conclusions in the context of this problem",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>About</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#checklist",
+    "href": "index.html#checklist",
+    "title": "DATA505 Case Study",
+    "section": "1.2 Checklist",
+    "text": "1.2 Checklist\n\nRead the dataset description in Chapter 2 (completed for you)\nTo get a sense of what you will be asked to do, read the instructions in Chapter 3 as an example. For each section, you will be writing R functions to perform data-analysis tasks, and then filling in a Quarto document to explain your work and findings. This will entail parallel editing of both R scripts (to define the functions) and Quarto files (to explain your work in plain language), filling in a data-analysis project directory.\nDownload the zip file student_performance.zip, which contains a template of the project directory. Specifically it has all the code used to produce this site.\nFind and unzip it on your computer, then open the project in RStudio or Positron\nEdit _quarto.yml to add your name\nRead and follow the instructions in each section to complete the analysis and the website",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>About</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#project-organization",
+    "href": "index.html#project-organization",
+    "title": "DATA505 Case Study",
+    "section": "1.3 Project organization",
+    "text": "1.3 Project organization\nThe project directory is organized as follows:\nstudent_performance/\n├── _brand.yml                  # Drew branding (colors, logo, fonts)\n├── _quarto.yml                 # Quarto book configuration\n├── index.qmd                   # This file - project introduction and overview\n├── student_performance.Rproj   # RStudio project file\n│\n├── quarto/                     # Quarto documents for the analysis narrative\n│   ├── 01_data.qmd            # Data description and loading\n│   ├── 02_exploration.qmd     # Exploratory data analysis\n│   ├── 03_modelling.qmd       # Model development and selection\n│   └── 04_conclusions.qmd     # Final conclusions and interpretation\n│\n├── R/                          # R scripts with analysis functions\n│   ├── 01_data.R              # Functions for data loading and preparation\n│   ├── 02_exploration.R       # Functions for exploratory analysis\n│   └── 03_modelling.R         # Functions for model fitting and evaluation\n│\n├── data/                       # Data files\n│   ├── raw/                   # Original, unmodified data\n│   │   └── student-mat.csv    # Student performance dataset\n│   └── derived/               # Processed/cleaned data (you will create these)\n│\n└── extras/                     # Additional resources\n    └── drew_logo.png          # Drew logo for branding",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>About</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#optional-rendering-and-publishing-online",
+    "href": "index.html#optional-rendering-and-publishing-online",
+    "title": "DATA505 Case Study",
+    "section": "1.4 Optional: rendering and publishing online",
+    "text": "1.4 Optional: rendering and publishing online\nSee documentation on Posit Publisher\n\n1.4.1 In Positron\n\nType Ctrl+Shift+P, then search for and run “Posit Publisher: New Credential” and choose Posit Connect Cloud\n\nYou should be taken through some steps automatically:\n\nYou will need to create an additional account at Posit Connect Cloud\nYou will also need to authenticate Positron to this service\n\n\nType Ctrl+Shift+P, then search for and run “Posit Publisher: New Deployment” and choose index.qmd. You will have an option between deploying with source code or deploying the rendered document only. Either is acceptable, but choosing the rendered document may be simpler.\n\nA window should open at the left to “Deploy Your Project”. Click that button.\n\n\nThis should “deploy” your website to a Posit Connect server. The link could e.g. be shared with me for grading.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>About</span>"
+    ]
+  },
+  {
+    "objectID": "quarto/01_data.html",
+    "href": "quarto/01_data.html",
+    "title": "2  The Data",
+    "section": "",
+    "text": "2.1 Citation and source\nThis project uses the Student Performance dataset from two Portuguese secondary schools, hosted by the UCI Machine Learning Repository. It contains records for 649 students with 33 attributes spanning demographics, family background, study habits, school support, lifestyle factors, absences, and three period grades. Two subject-specific files are provided: Mathematics (student-mat.csv) and Portuguese (student-por.csv). We will analyze only the Mathematics dataset.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>The Data</span>"
+    ]
+  },
+  {
+    "objectID": "quarto/01_data.html#citation-and-source",
+    "href": "quarto/01_data.html#citation-and-source",
+    "title": "2  The Data",
+    "section": "",
+    "text": "Original paper: Paulo Cortez and Alice M. G. Silva (2008), “Using data mining to predict secondary school student performance,” Proceedings of the 5th Annual Future Business Technology Conference. Link: https://www.semanticscholar.org/paper/61d468d5254730bbecf822c6b60d7d6595d9889c\nRepository citation: Cortez, P. (2008). Student Performance [Dataset]. UCI Machine Learning Repository. https://doi.org/10.24432/C5TG7T\nDataset page: https://archive.ics.uci.edu/dataset/320/student+performance\nLicense: Creative Commons Attribution 4.0 (CC BY 4.0)",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>The Data</span>"
+    ]
+  },
+  {
+    "objectID": "quarto/01_data.html#raw-data-files",
+    "href": "quarto/01_data.html#raw-data-files",
+    "title": "2  The Data",
+    "section": "2.2 Raw data files",
+    "text": "2.2 Raw data files\n\ndata/raw/student-mat.csv — Mathematics subject records",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>The Data</span>"
+    ]
+  },
+  {
+    "objectID": "quarto/01_data.html#build-derived-dataset",
+    "href": "quarto/01_data.html#build-derived-dataset",
+    "title": "2  The Data",
+    "section": "2.3 Build derived dataset",
+    "text": "2.3 Build derived dataset\nThe read_student_mat() and coerce_types() functions are defined in R/01_data.R. They are written for this project, and customized to this dataset. They read the raw CSV file, and perform type coercion on the columns.\n\nraw_data &lt;- read_student_mat(here(\"data\", \"raw\", \"student-mat.csv\"))\nanalysis_data &lt;- coerce_types(raw_data)\nsaveRDS(analysis_data, here(\"data\", \"derived\", \"student_performance.rda\"))\nstr(analysis_data)\n\ntibble [395 × 33] (S3: tbl_df/tbl/data.frame)\n $ school    : Factor w/ 2 levels \"Gabriel Pereira\",..: 1 1 1 1 1 1 1 1 1 1 ...\n $ sex       : Factor w/ 2 levels \"Female\",\"Male\": 1 1 1 1 1 2 2 1 2 2 ...\n $ age       : int [1:395] 18 17 15 15 16 16 16 17 15 15 ...\n $ address   : Factor w/ 2 levels \"Urban\",\"Rural\": 1 1 1 1 1 1 1 1 1 1 ...\n $ famsize   : Factor w/ 2 levels \"≤3\",\" &gt;3\": 2 2 1 2 2 1 1 2 1 2 ...\n $ Pstatus   : Factor w/ 2 levels \"together\",\"apart\": 2 1 1 1 1 1 1 2 2 1 ...\n $ Medu      : Ord.factor w/ 5 levels \"none\"&lt;\"primary(4th)\"&lt;..: 5 2 2 5 4 5 3 5 4 4 ...\n $ Fedu      : Ord.factor w/ 5 levels \"none\"&lt;\"primary(4th)\"&lt;..: 5 2 2 3 4 4 3 5 3 5 ...\n $ Mjob      : Factor w/ 5 levels \"at_home\",\"health\",..: 1 1 1 2 3 4 3 3 4 3 ...\n $ Fjob      : Factor w/ 5 levels \"at_home\",\"health\",..: 5 3 3 4 3 3 3 5 3 3 ...\n $ reason    : Factor w/ 4 levels \"course\",\"home\",..: 1 1 3 2 2 4 2 2 2 2 ...\n $ guardian  : Factor w/ 3 levels \"father\",\"mother\",..: 2 1 2 2 1 2 2 2 2 2 ...\n $ traveltime: Ord.factor w/ 4 levels \"&lt;15m\"&lt;\"15-30m\"&lt;..: 2 1 1 1 1 1 1 2 1 1 ...\n $ studytime : Ord.factor w/ 4 levels \"&lt;2h\"&lt;\"2-5h\"&lt;\"5-10h\"&lt;..: 2 2 2 3 2 2 2 2 2 2 ...\n $ failures  : int [1:395] 0 0 3 0 0 0 0 0 0 0 ...\n $ schoolsup : Factor w/ 2 levels \"no\",\"yes\": 2 1 2 1 1 1 1 2 1 1 ...\n $ famsup    : Factor w/ 2 levels \"no\",\"yes\": 1 2 1 2 2 2 1 2 2 2 ...\n $ paid      : Factor w/ 2 levels \"no\",\"yes\": 1 1 2 2 2 2 1 1 2 2 ...\n $ activities: Factor w/ 2 levels \"no\",\"yes\": 1 1 1 2 1 2 1 1 1 2 ...\n $ nursery   : Factor w/ 2 levels \"no\",\"yes\": 2 1 2 2 2 2 2 2 2 2 ...\n $ higher    : Factor w/ 2 levels \"no\",\"yes\": 2 2 2 2 2 2 2 2 2 2 ...\n $ internet  : Factor w/ 2 levels \"no\",\"yes\": 1 2 2 2 1 2 2 1 2 2 ...\n $ romantic  : Factor w/ 2 levels \"no\",\"yes\": 1 1 1 2 1 1 1 1 1 1 ...\n $ famrel    : Ord.factor w/ 5 levels \"very bad\"&lt;\"bad\"&lt;..: 4 5 4 3 4 5 4 4 4 5 ...\n $ freetime  : Ord.factor w/ 5 levels \"very low\"&lt;\"low\"&lt;..: 3 3 3 2 3 4 4 1 2 5 ...\n $ goout     : Ord.factor w/ 5 levels \"very low\"&lt;\"low\"&lt;..: 4 3 2 2 2 2 4 4 2 1 ...\n $ Dalc      : Ord.factor w/ 5 levels \"very low\"&lt;\"low\"&lt;..: 1 1 2 1 1 1 1 1 1 1 ...\n $ Walc      : Ord.factor w/ 5 levels \"very low\"&lt;\"low\"&lt;..: 1 1 3 1 2 2 1 1 1 1 ...\n $ health    : Ord.factor w/ 5 levels \"very bad\"&lt;\"bad\"&lt;..: 3 3 3 5 5 5 3 1 1 5 ...\n $ absences  : int [1:395] 6 4 10 2 4 10 0 6 0 0 ...\n $ G1        : int [1:395] 5 5 7 15 6 15 12 6 16 14 ...\n $ G2        : int [1:395] 6 5 8 14 10 15 12 5 18 15 ...\n $ G3        : int [1:395] 6 6 10 15 10 15 11 6 19 15 ...\n\n\nThe the derived “clean data” object is saved to data/derived/student_performance.rda for use in later sections.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>The Data</span>"
+    ]
+  },
+  {
+    "objectID": "quarto/01_data.html#variables",
+    "href": "quarto/01_data.html#variables",
+    "title": "2  The Data",
+    "section": "2.4 Variables",
+    "text": "2.4 Variables\nAs described at the links above:\n\nschool: Student’s school (GP = Gabriel Pereira, MS = Mousinho da Silveira)\nsex: Sex (F, M)\nage: Age (15–22)\naddress: Home address type (U = urban, R = rural)\nfamsize: Family size (LE3 ≤ 3, GT3 &gt; 3)\nPstatus: Parents’ cohabitation status (T = together, A = apart)\nMedu: Mother’s education (0 none; 1 primary (4th); 2 5th–9th; 3 secondary; 4 higher)\nFedu: Father’s education (same scale as Medu)\nMjob: Mother’s job (teacher, health, services, at_home, other)\nFjob: Father’s job (same categories as Mjob)\nreason: Reason for choosing the school (home, reputation, course, other)\nguardian: Student’s guardian (mother, father, other)\ntraveltime: Home→school travel time (1 &lt;15m; 2 15–30m; 3 30–60m; 4 &gt;1h)\nstudytime: Weekly study time (1 &lt;2h; 2 2–5h; 3 5–10h; 4 &gt;10h)\nfailures: Past class failures (n if 1≤n&lt;3, else 4)\nschoolsup: Extra educational support (yes/no)\nfamsup: Family educational support (yes/no)\npaid: Extra paid classes within subject (yes/no)\nactivities: Extracurricular activities (yes/no)\nnursery: Attended nursery school (yes/no)\nhigher: Intends to pursue higher education (yes/no)\ninternet: Internet access at home (yes/no)\nromantic: In a romantic relationship (yes/no)\nfamrel: Quality of family relationships (1 very bad – 5 excellent)\nfreetime: Free time after school (1 very low – 5 very high)\ngoout: Going out with friends (1 very low – 5 very high)\nDalc: Workday alcohol consumption (1 very low – 5 very high)\nWalc: Weekend alcohol consumption (1 very low – 5 very high)\nhealth: Current health status (1 very bad – 5 very good)\nabsences: Number of school absences (0–93)\nG1: First-period grade (0–20)\nG2: Second-period grade (0–20)\nG3: Final grade (target, 0–20)",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>The Data</span>"
+    ]
+  },
+  {
+    "objectID": "quarto/02_explore.html",
+    "href": "quarto/02_explore.html",
+    "title": "3  Exploratory and Descriptive Analyses",
+    "section": "",
+    "text": "3.1 Examples: calling your functions\nThe first two summaries are fully implemented for you in R/02_explore.R as examples.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Exploratory and Descriptive Analyses</span>"
+    ]
+  },
+  {
+    "objectID": "quarto/02_explore.html#examples-calling-your-functions",
+    "href": "quarto/02_explore.html#examples-calling-your-functions",
+    "title": "3  Exploratory and Descriptive Analyses",
+    "section": "",
+    "text": "3.1.1 Grade summaries\n\ngrade_summary &lt;- summarize_grades(analysis_data)\nif(!is.null(grade_summary)){\n  gt(grade_summary) |&gt;\n    fmt_number(c(mean, sd), decimals = 2)\n}\n\n\n\n\n\n\n\ngrade\nn\nmean\nsd\nmin\nq1\nmedian\nq3\nmax\n\n\n\n\nG1\n395\n10.91\n3.32\n3\n8\n11\n13\n19\n\n\nG2\n395\n10.71\n3.76\n0\n9\n11\n13\n19\n\n\nG3\n395\n10.42\n4.58\n0\n8\n11\n14\n20\n\n\n\n\n\n\n\n\n\n3.1.2 Study time vs. final grade\n\nplot_studytime_vs_grade(analysis_data)",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Exploratory and Descriptive Analyses</span>"
+    ]
+  },
+  {
+    "objectID": "quarto/02_explore.html#your-turn-implement-and-use-these",
+    "href": "quarto/02_explore.html#your-turn-implement-and-use-these",
+    "title": "3  Exploratory and Descriptive Analyses",
+    "section": "3.2 Your turn: implement and use these",
+    "text": "3.2 Your turn: implement and use these\nFill in the bodies of the next two functions in R/02_explore.R, then call them below.\n\n3.2.1 Final grade by school\n\n# EXPECTED: a tibble with mean/sd/n by school\nby_school_summary &lt;- summarize_by_school(analysis_data)\nif(!is.null(by_school_summary)){\n  gt(by_school_summary)\n}\n\n\n\n3.2.2 Correlation plot for selected numeric variables\n\n# EXPECTED: a heatmap (geom_tile) of correlations among chosen numeric columns\ncorrelation_plot(analysis_data)",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Exploratory and Descriptive Analyses</span>"
+    ]
+  },
+  {
+    "objectID": "quarto/02_explore.html#open-ended-exploration",
+    "href": "quarto/02_explore.html#open-ended-exploration",
+    "title": "3  Exploratory and Descriptive Analyses",
+    "section": "3.3 Open-ended exploration",
+    "text": "3.3 Open-ended exploration\nExtend your analysis with 1–3 additional functions and calls to provide descriptive, exploratory summaries of the data. Possibilities:\n\nCompare grade distributions by failures.\nVisualize absences vs. G3 (scatter with smoothing).\nTabulate Dalc/Walc vs. G3 quartiles.\nExplore Medu/Fedu vs. G3.\n\nBriefly interpret each result in a few sentences: What do you learn? How does it inform modeling choices in Chapter 4?",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Exploratory and Descriptive Analyses</span>"
+    ]
+  },
+  {
+    "objectID": "quarto/03_model.html",
+    "href": "quarto/03_model.html",
+    "title": "4  Modelling and Inference",
+    "section": "",
+    "text": "4.1 Fit a basic regression model\nbasic_mod &lt;- fit_basic_model(analysis_data)\nsummary(basic_mod)\n\n\nCall:\nlm(formula = G3 ~ absences, data = d)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-10.3033  -2.3033   0.5007   3.4811   9.6183 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 10.30327    0.28347  36.347   &lt;2e-16 ***\nabsences     0.01961    0.02886   0.679    0.497    \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 4.585 on 393 degrees of freedom\nMultiple R-squared:  0.001173,  Adjusted R-squared:  -0.001369 \nF-statistic: 0.4615 on 1 and 393 DF,  p-value: 0.4973\n\nconfint(basic_mod)\n\n                 2.5 %      97.5 %\n(Intercept)  9.7459577 10.86057555\nabsences    -0.0371337  0.07634406\nBriefly interpret the coefficients for G2 and absences in the context of final grade G3.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Modelling and Inference</span>"
+    ]
+  },
+  {
+    "objectID": "quarto/03_model.html#diagnostics-minimal",
+    "href": "quarto/03_model.html#diagnostics-minimal",
+    "title": "4  Modelling and Inference",
+    "section": "4.2 Diagnostics (minimal)",
+    "text": "4.2 Diagnostics (minimal)\n\nop &lt;- par(mfrow = c(1,2))\nplot(basic_mod, which = 1)  # Residuals vs Fitted\nplot(basic_mod, which = 2)  # Normal Q-Q\n\n\n\n\n\n\n\npar(op)\n\nComment on the diagnostic plots: do you see curvature, non-constant variance, or strong deviations from normality? If so, suggest a simple remedy or note the limitation.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Modelling and Inference</span>"
+    ]
+  },
+  {
+    "objectID": "quarto/03_model.html#stepwise-variable-selection-student-todo",
+    "href": "quarto/03_model.html#stepwise-variable-selection-student-todo",
+    "title": "4  Modelling and Inference",
+    "section": "4.3 Stepwise variable selection (student TODO)",
+    "text": "4.3 Stepwise variable selection (student TODO)\nImplement run_stepwise() in R/03_model.R using MASS::stepAIC, then try both forward and backward directions. Compare the selected model to the basic model and justify your choice.\n\n# After you implement run_stepwise(), uncomment and run:\n# step_forward  &lt;- run_stepwise(analysis_data, direction = \"forward\")\n# step_backward &lt;- run_stepwise(analysis_data, direction = \"backward\")\n# summary(step_forward)\n# summary(step_backward)\n# AIC(step_forward); AIC(step_backward)",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Modelling and Inference</span>"
+    ]
+  },
+  {
+    "objectID": "quarto/03_model.html#inference-for-your-final-model",
+    "href": "quarto/03_model.html#inference-for-your-final-model",
+    "title": "4  Modelling and Inference",
+    "section": "4.4 Inference for your final model",
+    "text": "4.4 Inference for your final model\nChoose your final model (basic or one of the stepwise results) and comment on key coefficients with p-values and 95% CIs. State any caveats about interpretation.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Modelling and Inference</span>"
+    ]
+  }
+]

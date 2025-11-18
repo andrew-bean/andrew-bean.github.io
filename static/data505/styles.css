@@ -7,3 +7,12 @@
 .small-dt-table .paginate_button {
   font-size: 0.8em !important;
 }
+
+/* Smaller slide content utility */
+.reveal .smaller { font-size: 0.8em; }
+.reveal .smaller pre code { font-size: 0.75em; line-height: 1.1; }
+.reveal .smaller .code-fold-summary, .reveal .smaller details > summary { font-size: 0.75em; }
+.reveal .smaller table { font-size: 0.75em; }
+
+/* Optional tightening for gt tables within smaller context */
+.reveal .smaller .gt_table { font-size: 0.72em; }
