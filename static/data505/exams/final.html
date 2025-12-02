@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Exam 1 (Sep 30): review and practice materials – Data 505: R for Statistics</title>
+<title>Final Exam (Dec 9): review and practice materials – Data 505: R for Statistics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -69,6 +69,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -276,14 +305,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#solutions" id="toc-solutions" class="nav-link active" data-scroll-target="#solutions">Solutions</a></li>
-  <li><a href="#format" id="toc-format" class="nav-link" data-scroll-target="#format">Format</a></li>
+  <li><a href="#format" id="toc-format" class="nav-link active" data-scroll-target="#format">Format</a></li>
   <li><a href="#topics" id="toc-topics" class="nav-link" data-scroll-target="#topics">Topics</a></li>
-  <li><a href="#practice-materials" id="toc-practice-materials" class="nav-link" data-scroll-target="#practice-materials">Practice materials</a>
-  <ul class="collapse">
-  <li><a href="#part-1" id="toc-part-1" class="nav-link" data-scroll-target="#part-1">Part 1</a></li>
-  <li><a href="#part-2" id="toc-part-2" class="nav-link" data-scroll-target="#part-2">Part 2</a></li>
-  </ul></li>
+  <li><a href="#review-materials" id="toc-review-materials" class="nav-link" data-scroll-target="#review-materials">Review materials</a></li>
   </ul>
 </nav>
     </div>
@@ -292,7 +316,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Exam 1 (Sep 30): review and practice materials</h1>
+<h1 class="title">Final Exam (Dec 9): review and practice materials</h1>
 </div>
 
 
@@ -309,16 +333,9 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="solutions" class="level1">
-<h1>Solutions</h1>
-<ul>
-<li>Part 1: <a href="exam_1/part_1_solution.pdf">part_1_solution.pdf</a></li>
-<li>Part 2: <a href="exam_1/part_2_solution.pdf">part_2_solution.pdf</a></li>
-</ul>
-</section>
 <section id="format" class="level1">
 <h1>Format</h1>
-<p>As described in the <a href="../syllabus/syllabus.html">syllabus</a>, the exam will have two parts: the first being pen-and-paper, and the second being open-computer.</p>
+<p>Similar format to Exams 1 and 2. Two parts: the first being pen-and-paper, and the second being open-computer.</p>
 <ul>
 <li>Part 1:
 <ul>
@@ -335,7 +352,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="topics" class="level1">
 <h1>Topics</h1>
-<p>Based on material from Weeks 1-5 and Labs 1-5, the exam will cover:</p>
+<p>Based on all material covered so far in the class.</p>
 <ul>
 <li><strong>R Programming Fundamentals</strong>
 <ul>
@@ -377,24 +394,42 @@ ul.task-list li input[type="checkbox"] {
 <li>Creating plots with ggplot2: <code>ggplot()</code>, <code>aes()</code>, <code>geom_histogram()</code>, etc.</li>
 <li>Basic plot customization (titles, axis labels)</li>
 </ul></li>
+<li><strong>Linear Regression</strong>
+<ul>
+<li>Simple linear regression: fitting, interpreting, predicting</li>
+<li>The <code>lm()</code> function and formula syntax</li>
+<li>Regression equation: <span class="math inline">\(Y = \beta_0 + \beta_1 X + \varepsilon\)</span></li>
+<li>Interpreting coefficients (intercept and slope)</li>
+<li>Understanding residuals</li>
+<li>Regression diagnostics</li>
+<li>Hypothesis tests and confidence intervals for model coefficients</li>
+<li>F-tests for comparing nested models (<code>anova()</code>)</li>
+<li>R-squared and adjusted R-squared</li>
+<li>Making predictions</li>
+<li>Confidence intervals and prediction intervals for model predictions</li>
+<li>Multiple linear regression</li>
+</ul></li>
+<li><strong>Functions and Function-Oriented Programming</strong>
+<ul>
+<li>Writing functions in R: syntax and structure</li>
+<li>Function arguments and default values</li>
+<li>Return values (implicit and explicit)</li>
+</ul></li>
+<li><strong>Logistic regression for binary outcomes</strong>
+<ul>
+<li>Basic syntax with <code>glm()</code></li>
+<li>Inference for coefficients (hypothesis tests)</li>
+<li>Making predictions</li>
+</ul></li>
 </ul>
 </section>
-<section id="practice-materials" class="level1">
-<h1>Practice materials</h1>
-<section id="part-1" class="level2">
-<h2 class="anchored" data-anchor-id="part-1">Part 1</h2>
-<p>For Part 1 (on paper, closed computer), I have created a practice exam to give you a sense of the format and topics: <a href="../exams/exam_1/part_1_practice.pdf">part_1_practice.pdf</a>.</p>
-<p>The solution is here: <a href="../exams/exam_1/part_1_practice_solution.pdf">part_1_practice_solution.pdf</a>.</p>
-</section>
-<section id="part-2" class="level2">
-<h2 class="anchored" data-anchor-id="part-2">Part 2</h2>
-<p>For Part 2, the format will be very similar to the in-class Labs. Given the open format of this part of the exam, I will not provide a separate practice exam for Part 2.</p>
-<p>You will be given a Quarto script which you can download, and which you will edit to fill in blank code chunks and free-text responses (again, just like the lab).</p>
-<p>The questions will involve exploration of a single real dataset. Coding tasks and questions about this dataset will be drawn from the list of topics above.</p>
-<p>I suggest reviewing or even re-doing the labs as a way of practicing for Part 2.</p>
+<section id="review-materials" class="level1">
+<h1>Review materials</h1>
+<p>For Part 1 (on paper, closed computer), I have created a practice exam to give you a sense of the format and topics: <a href="../exams/final/part_1_practice.pdf">part_1_practice.pdf</a>.</p>
+<p>The solution is here: <a href="final/part_1_practice_solution.qmd">part_1_practice_solution.pdf</a>.</p>
+<p>Additional practice questions for live competition on Menti: <a href="https://www.menti.com/alai8bgstmaq">link</a>. Downloadable version <a href="final/extra_practice.md">extra_practice.md</a></p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
