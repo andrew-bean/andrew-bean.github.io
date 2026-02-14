@@ -2,10 +2,6 @@
 title = "About me"
 
   [[entries.entries]]
-  title = "CV"
-  url = "bean_cv.pdf"
-
-  [[entries.entries]]
   title = "LinkedIn"
   url = "https://www.linkedin.com/in/bean-andrew-t"
 
