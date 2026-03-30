@@ -28,6 +28,19 @@ title = "Some things I work on"
 title = "Recent talks and courses"
 
   [[entries.entries]]
+  title = "(Apr 2026) Talk at Duke Industry Statistical Symposium"
+  
+    [[entries.entries.entries]]
+    title = 'Title: "Quantifying Risk for Accelerated Drug Development"'
+    
+    [[entries.entries.entries]]
+    title = '10-Apr-2026'
+
+    [[entries.entries.entries]]
+    title = 'Slides'
+    url = "talks/2026-05-accelerates-pos-diss/futlity_pos_diss.html"
+
+  [[entries.entries]]
   title = "(Fall 2025) Statistics Using R course"
   
     [[entries.entries.entries]]
