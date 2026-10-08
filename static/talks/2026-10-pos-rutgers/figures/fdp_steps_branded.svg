@@ -1,0 +1,216 @@
+<svg width="990" height="420" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrowOrange" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L6,3 z" fill="#ff4e00"/>
+    </marker>
+    <linearGradient id="incGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0"    stop-color="#f5f5f5"/>
+            <stop offset="0.26" stop-color="#a5bff5"/>
+            <stop offset="0.52" stop-color="#d38cc9"/>
+            <stop offset="0.78" stop-color="#ff7a3a"/>
+            <stop offset="1"    stop-color="#ff4e00"/>
+    </linearGradient>
+  </defs>
+
+
+
+  <!-- Background -->
+      <rect width="990" height="420" fill="#fcfcfc"/>
+
+  <!-- ============================================================ -->
+  <!-- COLUMN HEADERS                                               -->
+  <!-- ============================================================ -->
+    <text x="197" y="32"
+        font-family="'Volta Modern Display','Segoe UI',Arial,sans-serif"
+        font-weight="600" font-size="19.5" fill="#161616" text-anchor="middle">Information added</text>
+    <text x="475" y="32"
+        font-family="'Volta Modern Display','Segoe UI',Arial,sans-serif"
+        font-weight="600" font-size="19.5" fill="#161616" text-anchor="middle">How</text>
+    <text x="743.5" y="32"
+        font-family="'Volta Modern Display','Segoe UI',Arial,sans-serif"
+        font-weight="600" font-size="19.5" fill="#161616" text-anchor="middle">PoS at FDP</text>
+
+    <!-- Step number circles -->
+    <circle cx="29" cy="89.2" r="18.2" fill="#161616"/>
+    <text x="29" y="89.2"
+      font-family="'Volta Modern Display','Segoe UI',Arial,sans-serif"
+      font-weight="600" font-size="21.97" fill="#fcfcfc"
+      text-anchor="middle" dominant-baseline="middle">1</text>
+    <circle cx="29" cy="175.2" r="18.2" fill="#161616"/>
+    <text x="29" y="175.2"
+      font-family="'Volta Modern Display','Segoe UI',Arial,sans-serif"
+      font-weight="600" font-size="21.97" fill="#fcfcfc"
+      text-anchor="middle" dominant-baseline="middle">2</text>
+    <circle cx="29" cy="261.2" r="18.2" fill="#161616"/>
+    <text x="29" y="261.2"
+      font-family="'Volta Modern Display','Segoe UI',Arial,sans-serif"
+      font-weight="600" font-size="21.97" fill="#fcfcfc"
+      text-anchor="middle" dominant-baseline="middle">3</text>
+    <circle cx="29" cy="347.2" r="18.2" fill="#161616"/>
+    <text x="29" y="347.2"
+      font-family="'Volta Modern Display','Segoe UI',Arial,sans-serif"
+      font-weight="600" font-size="21.97" fill="#fcfcfc"
+      text-anchor="middle" dominant-baseline="middle">4</text>
+
+  <!-- ============================================================ -->
+    <!-- STEP 1 ROW  (y=62 – 116.4)                                  -->
+  <!-- ============================================================ -->
+  <!-- Col 1 -->
+                  <rect x="73" y="62" width="248" height="54.4" rx="3"
+        fill="#f5f5f5" stroke="#7A7A7A" stroke-width="1"/>
+  <text font-family="'Volta Modern Display','Segoe UI',Arial,sans-serif"
+                        font-weight="500" font-size="16.9" fill="#161616"
+                        dominant-baseline="middle" x="87" y="89.2">Program characteristics</text>
+
+  <!-- connector col1→col2 -->
+                  <line x1="321" y1="89.2" x2="342" y2="89.2"
+        stroke="#ff4e00" stroke-width="1.5" marker-end="url(#arrowOrange)"/>
+
+  <!-- Col 2 -->
+            <rect x="351" y="62" width="248" height="54.4" rx="3"
+                fill="#f5f5f5" stroke="#7A7A7A" stroke-width="1"/>
+  <text font-family="'Volta Modern Display','Segoe UI',Arial,sans-serif"
+        font-weight="500" font-size="16.9" fill="#161616">
+            <tspan x="365" y="84.2">Predictive model based</tspan>
+            <tspan x="365" y="104.2">on external industry data</tspan>
+  </text>
+
+  <!-- connector col2→col3 -->
+                  <line x1="599" y1="89.2" x2="620" y2="89.2"
+        stroke="#ff4e00" stroke-width="1.5" marker-end="url(#arrowOrange)"/>
+
+  <!-- Col 3: chevron arrow -->
+                        <polygon points="629,62 855,62 877,89.2 855,116.4 629,116.4"
+                    fill="#f5f5f5" stroke="#7A7A7A" stroke-width="1"/>
+  <text font-family="'Volta Modern Display','Segoe UI',Arial,sans-serif"
+                        font-weight="600" font-size="16.9" fill="#161616"
+        text-anchor="middle" dominant-baseline="middle"
+                  x="743.5" y="89.2">Step 1 PoS estimate</text>
+
+  <!-- ============================================================ -->
+    <!-- STEP 2 ROW  (y=148 – 202.4)                                 -->
+  <!-- ============================================================ -->
+  <!-- Col 1 -->
+                  <rect x="73" y="148" width="248" height="54.4" rx="3"
+        fill="#f5f5f5" stroke="#7A7A7A" stroke-width="1"/>
+  <text font-family="'Volta Modern Display','Segoe UI',Arial,sans-serif"
+                        font-weight="500" font-size="16.9" fill="#161616"
+                        dominant-baseline="middle" x="87" y="175.2">Pivotal / Phase 3 risks</text>
+
+  <!-- connector -->
+                  <line x1="321" y1="175.2" x2="342" y2="175.2"
+        stroke="#ff4e00" stroke-width="1.5" marker-end="url(#arrowOrange)"/>
+
+  <!-- Col 2 -->
+            <rect x="351" y="148" width="248" height="54.4" rx="3"
+                fill="#f5f5f5" stroke="#7A7A7A" stroke-width="1"/>
+  <text font-family="'Volta Modern Display','Segoe UI',Arial,sans-serif"
+        font-weight="500" font-size="16.9" fill="#161616">
+            <tspan x="365" y="170.2">Bayesian analysis: strength</tspan>
+            <tspan x="365" y="190.2">of evidence to meet TPP</tspan>
+  </text>
+
+  <!-- connector -->
+                  <line x1="599" y1="175.2" x2="620" y2="175.2"
+        stroke="#ff4e00" stroke-width="1.5" marker-end="url(#arrowOrange)"/>
+
+  <!-- Col 3 -->
+                        <polygon points="629,148 855,148 877,175.2 855,202.4 629,202.4"
+                    fill="#f5f5f5" stroke="#7A7A7A" stroke-width="1"/>
+  <text font-family="'Volta Modern Display','Segoe UI',Arial,sans-serif"
+                        font-weight="600" font-size="16.9" fill="#161616"
+        text-anchor="middle" dominant-baseline="middle"
+                  x="743.5" y="175.2">Step 2 PoS estimate</text>
+
+  <!-- ============================================================ -->
+    <!-- STEP 3 ROW  (y=234 – 288.4)                                 -->
+  <!-- ============================================================ -->
+  <!-- Col 1 -->
+                  <rect x="73" y="234" width="248" height="54.4" rx="3"
+        fill="#f5f5f5" stroke="#7A7A7A" stroke-width="1"/>
+  <text font-family="'Volta Modern Display','Segoe UI',Arial,sans-serif"
+                        font-weight="500" font-size="16.9" fill="#161616">
+        <tspan x="87" y="256.2">Beyond Pivotal /</tspan>
+          <tspan x="87" y="276.2">Phase 3 risks</tspan>
+  </text>
+
+  <!-- connector -->
+                  <line x1="321" y1="261.2" x2="342" y2="261.2"
+        stroke="#ff4e00" stroke-width="1.5" marker-end="url(#arrowOrange)"/>
+
+  <!-- Col 2 -->
+            <rect x="351" y="234" width="248" height="54.4" rx="3"
+                fill="#f5f5f5" stroke="#7A7A7A" stroke-width="1"/>
+  <text font-family="'Volta Modern Display','Segoe UI',Arial,sans-serif"
+        font-weight="500" font-size="16.9" fill="#161616">
+            <tspan x="365" y="256.2">Adjustment algorithm</tspan>
+            <tspan x="365" y="276.2">calibrated by experts</tspan>
+  </text>
+
+  <!-- connector -->
+                  <line x1="599" y1="261.2" x2="620" y2="261.2"
+        stroke="#ff4e00" stroke-width="1.5" marker-end="url(#arrowOrange)"/>
+
+  <!-- Col 3 -->
+                        <polygon points="629,234 855,234 877,261.2 855,288.4 629,288.4"
+                    fill="#f5f5f5" stroke="#7A7A7A" stroke-width="1"/>
+  <text font-family="'Volta Modern Display','Segoe UI',Arial,sans-serif"
+                        font-weight="600" font-size="16.9" fill="#161616"
+        text-anchor="middle" dominant-baseline="middle"
+                  x="743.5" y="261.2">Step 3 PoS estimate</text>
+
+  <!-- ============================================================ -->
+    <!-- STEP 4 ROW  (y=320 – 374.4)  — exceptions only             -->
+  <!-- ============================================================ -->
+  <!-- Col 1 -->
+                  <rect x="73" y="320" width="248" height="54.4" rx="3"
+        fill="#f5f5f5" stroke="#7A7A7A" stroke-width="1"/>
+  <text font-family="'Volta Modern Display','Segoe UI',Arial,sans-serif"
+                        font-weight="500" font-size="16.9" fill="#161616"
+                        dominant-baseline="middle" x="87" y="347.2">Unaccounted risks / data</text>
+
+  <!-- connector -->
+                  <line x1="321" y1="347.2" x2="342" y2="347.2"
+        stroke="#ff4e00" stroke-width="1.5" marker-end="url(#arrowOrange)"/>
+
+  <!-- Col 2 -->
+            <rect x="351" y="320" width="248" height="54.4" rx="3"
+                fill="#f5f5f5" stroke="#7A7A7A" stroke-width="1"/>
+  <text font-family="'Volta Modern Display','Segoe UI',Arial,sans-serif"
+        font-weight="500" font-size="16.9" fill="#161616">
+            <tspan x="365" y="342.2">Subjective adjustment</tspan>
+            <tspan x="365" y="362.2">(exceptions only)</tspan>
+  </text>
+
+  <!-- connector -->
+                  <line x1="599" y1="347.2" x2="620" y2="347.2"
+        stroke="#ff4e00" stroke-width="1.5" marker-end="url(#arrowOrange)"/>
+
+  <!-- Col 3 -->
+                        <polygon points="629,320 855,320 877,347.2 855,374.4 629,374.4"
+                    fill="#f5f5f5" stroke="#7A7A7A" stroke-width="1"/>
+  <text font-family="'Volta Modern Display','Segoe UI',Arial,sans-serif"
+                        font-weight="600" font-size="16.9" fill="#161616"
+        text-anchor="middle" dominant-baseline="middle"
+                  x="743.5" y="347.2">Final PoS estimate</text>
+
+  <!-- ============================================================ -->
+  <!-- INCREMENTAL PoS ADJUSTMENT ARROW (right side, vertical)     -->
+    <!-- Body spans y=62–374.4; triangle arrowhead points down       -->
+  <!-- ============================================================ -->
+  <!-- Gradient body -->
+    <rect x="907" y="62" width="52" height="312.4" fill="url(#incGrad)"/>
+  <!-- Downward-pointing triangle arrowhead -->
+    <polygon points="907,374 959,374 933,400" fill="#ff4e00"/>
+
+  <!-- Label: rotate(90) = reads top-to-bottom, bottom of letters on left -->
+    <!-- Arrow body centre: x=933, y=(62+374.4)/2=218.2 -->
+  <text font-family="'Volta Modern Display','Segoe UI',Arial,sans-serif"
+                        font-weight="600" font-size="16.9" fill="#161616"
+        text-anchor="middle" dominant-baseline="middle"
+                        transform="rotate(90, 933, 218.2)">
+            <tspan x="933" y="207.7">Incremental</tspan>
+            <tspan x="933" dy="21">PoS adjustment</tspan>
+  </text>
+
+</svg>

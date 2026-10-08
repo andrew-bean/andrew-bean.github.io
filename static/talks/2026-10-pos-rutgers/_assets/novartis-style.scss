@@ -1,0 +1,145 @@
+/*-- scss:defaults --*/
+
+/* Left-align the title slide */
+$presentation-title-slide-text-align: left;
+
+// headings
+$presentation-heading-font: "Volta Modern Display", "Helvetica Neue", "Helvetica", Arial, sans-serif !default;
+
+$presentation-heading-color: #161616 !default;
+
+/* see https://brandlab.novartis.com/document/92#/-/color */
+
+/* Novartis warm black   #161616 */
+/* Novartis soft white   #FCFCFC */
+/* Novartis space orange #FF4E00 */
+/* Grey 1                #DADADA */
+/* Grey 2                #F5F5F5 */
+/* Science Lab Blue      #A5BFF5 */
+/* Human Body Pink       #EDA8D1 */
+
+$link-color: #FF4E00 !default;
+
+$light-bg-link-color: #A5BFF5 !default;
+
+/* default font sizes */
+/* $font-size-root: 17px !default; */
+/* $presentation-font-size-root: 40px !default; */
+
+$font-family-sans-serif: "Volta Modern Text", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+/* while the Novartis brand guidance suggests Volta Modern Display, the Novartis PowerPoint template is based on Arial */
+/* note: Volta and Arial are both near-clones of Helvetica (Arial has notably worse terminals; volta has rounded dots). Powerpoint template uses Arial only because it is available on all machines. With revealjs, the html has a font hierarchy so we can aim to use Volta then revert to Helvetica before falling back to Arial. */
+
+
+/*-- scss:rules --*/
+
+.title {
+  font-size: 4rem !important;
+  color: #161616 !important;
+  font-family: "Volta Modern Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  max-width: 80%;
+  align-items: top;
+}
+
+.subtitle {
+  font-size: 2rem !important;
+  color: #161616 !important;
+  font-family: "Volta Modern Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: normal;
+}
+
+.quarto-title-author-name {
+  font-size: 2rem;
+  color: #FF4E00 !important;
+  font-family: "Volta Modern Text", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  font-weight: bold;
+}
+
+.date {
+  font-size: 2rem;
+  color: #161616 !important;
+  font-family: "Volta Modern Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.v-center-container {
+  display: flex !important; 
+  justify-content: center;
+  align-items: center;
+  height: 90%;
+}
+
+.shaded {
+    color: #DADADA;
+}
+
+.border {
+  border: 1px solid #DADADA;
+}
+
+.border-thick {
+  border-width: 3px;
+}
+
+.reveal .slide-menu-button {
+    position: fixed !important;
+    bottom: 14px !important;
+    right: 10px !important;
+    left : auto !important;
+}
+
+/* makes the 3 bars for the menu */
+.reveal .slide-menu-button .fa-bars::before {
+ background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(255, 78, 0)" class="bi bi-list" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/></svg>') !important;
+}
+
+.reveal .progress {
+    background: transparent;
+    color: #FF4E00;
+}
+
+.reveal {
+  --logo-bar-height: min(calc(100vw * 293.0 / 4400.0), 100vh);
+}
+
+// Slide numbers to the bottom-right
+.slide-number, .reveal.has-logo .slide-number {
+  bottom: 14px !important;
+  right: 50px !important;
+  top: unset !important;
+}
+
+// no slide number on the title slide
+.reveal .slide-number > a[href*='title-slide'] {
+  display: none;
+}
+
+// places logo on lower left and ensures that it has least priority
+// such that the background color of white on the title page will make
+// the logo invisible
+.reveal .slide-logo {
+  left: 5%;
+  right: auto !important;
+  bottom: calc(var(--logo-bar-height) / 2) !important;
+  height: 3.674541% !important;
+  width: auto !important;
+  max-height: none !important;
+  max-width: 13.876587% !important;
+  transform: translateY(50%) !important;
+  margin: 0 !important;
+  // z-index: -999 !important;
+}
+
+.reveal:has(#title-slide.present) {
+  --title-slide-rendered-width: min(100vw, calc(100vh * 1.777777778));
+  --title-slide-rendered-height: min(calc(100vw * 0.5625), 100vh);
+  --title-slide-logo-height: calc(var(--title-slide-rendered-height) * 0.03674541);
+}
+
+.reveal:has(#title-slide.present) .slide-logo {
+  height: var(--title-slide-logo-height) !important;
+  max-width: calc(var(--title-slide-rendered-width) * 0.13876587) !important;
+}
+
+.reveal .slide-background {
+  background-color: transparent;
+}
