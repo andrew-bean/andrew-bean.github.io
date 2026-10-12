@@ -28,6 +28,19 @@ title = "Some things I work on"
 title = "Recent talks and courses"
 
   [[entries.entries]]
+  title = "(Oct 2026) Rutgers Biostatistics and Epidemiology Seminar"
+  
+    [[entries.entries.entries]]
+    title = 'Title: "How sure are we? Evidence-based Probability of Success (PoS) in late-stage drug development: experience from an applied statistician in industry"'
+    
+    [[entries.entries.entries]]
+    title = '12-Oct-2026'
+
+    [[entries.entries.entries]]
+    title = 'Slides'
+    url = "talks/2026-10-pos-rutgers/2026-10-pos-rutgers.html"
+
+  [[entries.entries]]
   title = "(Apr 2026) Talk at Duke Industry Statistical Symposium"
   
     [[entries.entries.entries]]
