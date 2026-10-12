@@ -6,8 +6,8 @@
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.10.18">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.19">
 
   <meta name="author" content="Andrew Bean">
   <meta name="dcterms.date" content="2026-10-12">
@@ -185,6 +185,21 @@ Andrew Bean
 <section id="disclaimer" class="slide level2">
 <h2>Disclaimer</h2>
 <p>The opinions expressed in this presentation and on the following slides are solely of the presenter, and not necessarily those of Novartis.</p>
+<aside class="notes">
+<ul>
+<li>Read briefly and move on: these are my views, and the work is a team effort (acknowledgements at the end).</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section>
 <section id="why-this-talk" class="title-slide slide level1 center">
@@ -197,8 +212,7 @@ Andrew Bean
 <div class="card-grid three">
   <div class="p-card">
     <h4>1 · Define the target</h4>
-    <p>What exactly are we predicting? <b>"Success" has to be an estimand</b>,
-    defined clearly and consistently across programs.</p>
+    <p>What exactly are we predicting? "Success" has to be <b>defined clearly and consistently</b> across programs.</p>
   </div>
   <div class="p-card blue">
     <h4>2 · Choose the relevant evidence</h4>
@@ -211,9 +225,28 @@ Andrew Bean
     not a black box.</p>
   </div>
 </div>
-<div class="caption">
-<p>Much of the day-to-day work of an industry statistician sits here, rather than in the details of the modelling.</p>
-</div>
+<aside class="notes">
+<ul>
+<li>Set expectations: the methods are published (Hampson et al.&nbsp;2022). This talk is about what took most of the effort in practice.</li>
+<li>Walk the three cards, one sentence each:
+<ul>
+<li><strong>Target:</strong> “success” has to be pinned down like an estimand.</li>
+<li><strong>Evidence:</strong> benchmarks, Phase 2 data and expert judgement, and deciding which is relevant for this program.</li>
+<li><strong>Communication:</strong> decision-makers must be able to trust, probe and compare the number.</li>
+</ul></li>
+<li>Transition: first, why anyone invests this much effort in a single number.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="pharmaceutical-rd-investment-is-high-risk" class="slide level2 smaller">
 <h2>Pharmaceutical R&amp;D investment is high risk</h2>
@@ -226,6 +259,24 @@ Andrew Bean
 <li><strong>Highly variable</strong> across disease areas <span class="citation" data-cites="wong2021clinical">(<a href="#/references" role="doc-biblioref" onclick="">Wong et al. 2021</a>)</span></li>
 <li><strong>Declining</strong> <span class="citation" data-cites="chancellor2024why">(<a href="#/references" role="doc-biblioref" onclick="">Chancellor 2024</a>)</span></li>
 </ul>
+<aside class="notes">
+<ul>
+<li>Cumulative likelihood of approval from Phase 1 is below 10% overall (Wong et al.&nbsp;2018). The same paper puts oncology near 3.4%.</li>
+<li>It varies widely by disease area (BIO/Informa 2021 report) and has been falling (Citeline analysis of 2014-2023 data).</li>
+<li>These come from Biomedtracker, the same source behind our benchmark models (later slide).</li>
+<li>Message: the base rate is low and moving, so any honest PoS has to start from it.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="failure-is-costly" class="slide level2 smaller">
 <h2>Failure is costly</h2>
@@ -234,6 +285,23 @@ Andrew Bean
 <div class="caption">
 <p><span class="citation" data-cites="hofmann2026drug">Hofmann (<a href="#/references" role="doc-biblioref" onclick="">2026</a>)</span></p>
 </div>
+<aside class="notes">
+<ul>
+<li>Recent headline (Investors’ Chronicle, 15 Sep 2026): a difficult summer of readouts, “the pitfalls of relying on predictions”. Optionally name a recent readout from the article.</li>
+<li>Late-stage trials are the largest block of development spend and the largest sunk cost when they fail.</li>
+<li>Predictions drive these investment decisions, so how they are made matters.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="when-are-investment-decisions-made" class="slide level2 smaller">
 <h2>When are investment decisions made?</h2>
@@ -292,6 +360,24 @@ Andrew Bean
 <div class="caption">
 <p>Our most rigorous statistical thinking is applied before Phase 3: when data is richest, and when the required investment is largest.</p>
 </div>
+<aside class="notes">
+<ul>
+<li>Let the animation play: Phase 1, Phase 2, Phase 3, registration/submission, with tollgate reviews in between.</li>
+<li>At each tollgate governance decides whether to commit further resources, and PoS is one input.</li>
+<li>The biggest commitment is the one before the pivotal program: Phase 2b data are the richest so far and the spend still ahead is the largest. That is where we bring out the “big statistical machinery”.</li>
+<li>Earlier tollgates lean mainly on benchmarks plus structured team adjustments. One sentence only.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section></section>
 <section>
 <section id="defining-the-target" class="title-slide slide level1 center">
@@ -312,11 +398,31 @@ Andrew Bean
 </div>
 <div class="takeaways">
 <ul>
-<li>The TPP is the pre-specified set of efficacy, safety, and other attributes a drug must show to be worth developing: <strong>the estimand for PoS</strong></li>
+<li>The TPP includes key efficacy outcomes a drug must show to be worth marketing: <strong>the estimand for PoS</strong></li>
 <li>One definition, applied the same way across programs, so numbers are <strong>comparable</strong></li>
 <li>Our mindset: seek truth from <strong>hard evidence and scientific rigor</strong>, using <em>all</em> available data</li>
 </ul>
 </div>
+<aside class="notes">
+<ul>
+<li>PoS = P(regulatory approval <strong>and</strong> meets the TPP).</li>
+<li>The TPP includes key efficacy outcomes a drug must show to be worth marketing. It plays the role of the estimand: there is nothing to predict until it is fixed.</li>
+<li>Why TPP and not approval alone: a drug can be approved and still fail commercially or on access.</li>
+<li>One definition applied the same way across programs makes numbers comparable for portfolio decisions (see backup: who is PoS for).</li>
+<li>Public “transition rates” or “likelihood of approval” are not PoS: they cannot see the TPP.</li>
+<li>Mindset: seek truth from hard evidence rather than perceived progress.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section></section>
 <section>
 <section id="a-framework-for-late-stage-programs" class="title-slide slide level1 center">
@@ -329,16 +435,83 @@ Andrew Bean
 <img data-src="figures/fdp_steps_branded.svg" style="width:72.0%" class="r-stretch"><div class="caption">
 <p>Developed in 2019 for pivotal-stage PoS <span class="citation" data-cites="hampson2022">(<a href="#/references" role="doc-biblioref" onclick="">Hampson et al. 2022</a>)</span> and since applied across the portfolio. Program-specific evidence is used wherever it exists: a generic benchmark alone would discard it.</p>
 </div>
+<aside class="notes">
+<ul>
+<li>Walk the diagram left to right:
+<ol type="1">
+<li>Benchmark-calibrated prior.</li>
+<li>Bayesian synthesis with pre-pivotal data, then simulation of the Phase 3 program.</li>
+<li>Post-pivotal risks: structured scoring of regulatory, safety, quality, technical and TPP risks that the model does not cover.</li>
+<li>Manual adjustment, allowed only with a written rationale.</li>
+</ol></li>
+<li>Steps 1-2 carry most of the quantitative weight. I focus on them today. Steps 3-4 are in the backup slides.</li>
+<li>Developed in 2019, published as Hampson et al.&nbsp;(2022), applied across the portfolio since.</li>
+<li>Design principle: use program-specific evidence wherever it exists. A generic benchmark alone would discard it.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="ai-driven-prediction-is-gaining-momentum" class="slide level2 smaller">
+<h2>AI-driven prediction is gaining momentum</h2>
+<p><img data-src="figures/reuters.png" class="fig-readable"></p>
+<div class="caption">
+<p>Advocacy for black-box, AI-driven prediction is increasingly loud <span class="citation" data-cites="reuters2026virtual">(<a href="#/references" role="doc-biblioref" onclick="">Beasley 2026</a>)</span>.</p>
+</div>
+<aside class="notes">
+<ul>
+<li>Headline from Reuters (7 Oct 2026): AI companies run virtual drug trials, aiming to improve the success of human studies.</li>
+<li>This is the same problem we are working on, approached from a different direction.</li>
+<li>Not dismissing it: simulating before spending is attractive. The question is what the decision-maker can inspect.</li>
+<li>Transition: a concrete example of such a pipeline, then why we favour a white box.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="why-not-pure-aiml" class="slide level2 smaller">
 <h2>Why not pure AI/ML?</h2>
 <p><img data-src="figures/xuanwu.png" class="fig-readable"></p>
 <div class="caption">
-<p>Advocacy for black-box, AI-driven prediction is increasingly loud. Example of an LLM-driven pipeline <span class="citation" data-cites="zhang2026xuanwu">(<a href="#/references" role="doc-biblioref" onclick="">Zhang et al. 2026</a>)</span>.</p>
+<p>Example of an LLM-driven pipeline <span class="citation" data-cites="zhang2026xuanwu">(<a href="#/references" role="doc-biblioref" onclick="">Zhang et al. 2026</a>)</span>.</p>
 </div>
 <div class="big-idea">
 <p>Our stakeholders value a <strong>“white box”</strong> approach: transparent, traceable, and open to challenge by the people who must act on it.</p>
 </div>
+<aside class="notes">
+<ul>
+<li>Not anti-ML, and our benchmark models are themselves predictive models (logistic regression). This question comes up in every audience.</li>
+<li>Example: Xuanwu-TrialMind, an LLM given the protocol and an evidence pack, reports 93% accuracy on 150 temporally held-out Phase 3 trials (Zhang et al.&nbsp;2026).</li>
+<li>Our setting is high-stakes and accountable. People must be able to ask “why 5%?” and change an assumption to see what happens.</li>
+<li>White box: every number traces to a benchmark, a dataset or a documented judgement that can be challenged.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="the-core-idea-bayesian-synthesis" class="slide level2 smaller">
 <h2>The core idea: Bayesian synthesis</h2>
@@ -347,7 +520,7 @@ Andrew Bean
   <div class="b-cell b-prior"><b>Prior</b><span class="b-sub">benchmark-calibrated, before program data</span></div>
   <div class="b-op">×</div>
   <div class="b-cell b-lik"><b>Likelihood</b><span class="b-sub">pre-pivotal (usually Phase 2b) data</span></div>
-  <div class="b-op">=</div>
+  <div class="b-op">∝</div>
   <div class="b-cell b-post"><b>Posterior</b><span class="b-sub">belief about the true program effect</span></div>
 </div>
 <div class="takeaways">
@@ -356,6 +529,24 @@ Andrew Bean
 <li>Next: where the prior comes from, then the update itself</li>
 </ul>
 </div>
+<aside class="notes">
+<ul>
+<li>For non-Bayesians: posterior is proportional to prior times likelihood. The prior is what we believed before this program’s data, the likelihood is what Phase 2b says, the posterior is the updated belief about the true effect.</li>
+<li>Why a prior matters: Phase 2b trials are small and noisy, and programs that advance are selected on promising results. A skeptical, benchmark-calibrated prior tempers over-reading. As Phase 2 data get larger or clearer, they dominate the prior.</li>
+<li>The model also allows between-study heterogeneity, so Phase 2 does not translate one-for-one into Phase 3.</li>
+<li>For most programs this step is the most influential in the assessment.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="where-does-the-prior-come-from" class="slide level2 smaller">
 <h2>Where does the prior come from?</h2>
@@ -387,6 +578,29 @@ Andrew Bean
 <div class="caption">
 <p>The program benchmark alone does not comprise the assessment. It sets what we believe <em>before</em> looking at the program’s own data.</p>
 </div>
+<aside class="notes">
+<ul>
+<li>Skeptical by default because base rates are low (earlier slide).</li>
+<li><strong>Data:</strong> curated Biomedtracker extract, more than 10,000 program transitions since 2007. Mainly US/EU/Japan, with approvals skewed to FDA.</li>
+<li><strong>Models:</strong> logistic regression per transition. The three relevant at this stage are Phase 2 to 3, Phase 3 to submission, and submission to approval. Predictors differ by stage. Validated with time-dependent cross-validation and refreshed at least annually.</li>
+<li><strong>Caveats:</strong>
+<ul>
+<li>No trial-level design information, and no reasons for failure. Transition rates mix efficacy, safety, operational and strategic causes. We convert all-cause failure to efficacy-specific failure before calibrating (roughly 85-99% of failures attributed to efficacy, depending on phase and area).</li>
+<li>Past programs are not this program: selection, secular trends, transportability.</li>
+</ul></li>
+<li>If asked: benchmark is an input, not the assessment.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="benchmark-calibrated-prior" class="slide level2 smaller applet-full">
 <h2>Benchmark-calibrated prior</h2>
@@ -400,6 +614,25 @@ Andrew Bean
 <div class="caption">
 <p>The prior is a Gaussian mixture: the weight on optimistic vs.&nbsp;pessimistic components is calibrated to match the benchmark success rates.</p>
 </div>
+<aside class="notes">
+<ul>
+<li>Open this slide before the talk so the applet is loaded. Use Full screen, Esc to exit.</li>
+<li>The prior is a two-component normal mixture: one component at the null effect, one at the TPP effect. The weight on the TPP component is how optimistic we are.</li>
+<li>Calibration: choose the weight so that, pushed through a standard trial sequence (Phase 2b then Phase 3, with stated one-sided alpha and power), the prior-predictive PoS equals the benchmark.</li>
+<li>Demo: lower the benchmark PoS and click Calibrate Prior to Benchmark; weight moves to the null component. Raise it and the weight moves to the TPP component.</li>
+<li>Message: an objective, reproducible baseline, not a replacement for program data.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="illustrating-the-bayesian-calculus" class="slide level2 smaller applet-full">
 <h2>Illustrating the Bayesian calculus</h2>
@@ -413,6 +646,24 @@ Andrew Bean
 <div class="caption">
 <p>When the Phase 3 endpoints match Phase 2, predicting Phase 3 is a straightforward Bayesian update.</p>
 </div>
+<aside class="notes">
+<ul>
+<li>Applet panels: Prior Distribution, Phase 2 Outcome, Phase 3 Study Design, Success Criteria. Charts show prior to likelihood to posterior, then the predictive distribution of the Phase 3 estimated effect.</li>
+<li>Demo: enter a Phase 2 result and note the posterior is pulled toward the null relative to the raw Phase 2 estimate. Then make Phase 2 larger or more precise and watch the data take over.</li>
+<li>Then show the predictive distribution for the Phase 3 estimate and the resulting success probability.</li>
+<li>This is the easy case: Phase 3 endpoint equals Phase 2 endpoint. Next: combining everything at program level. The worked example then shows what happens when the endpoints do not match.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="from-efficacy-to-program-level-pos" class="slide level2 smaller applet-full">
 <h2>From efficacy to program-level PoS</h2>
@@ -426,6 +677,25 @@ Andrew Bean
 <div class="caption">
 <p>We simulate the program many times from the efficacy model, combined with a consensus assessment of non-efficacy risks (regulatory, safety, quality, technical), and classify each replicate.</p>
 </div>
+<aside class="notes">
+<ul>
+<li>Click Initialize Visualization, then step forward through the workflow.</li>
+<li>Idea: draw a true effect from the posterior, simulate each Phase 3 study (studies, doses, endpoints), apply the success rule, apply the consensus non-efficacy risks (regulatory, safety, quality, technical), and classify each replicate.</li>
+<li>PoS is the proportion of replicates classified as success (TPP met and approved).</li>
+<li>Point out: this is not the power of one trial. It handles several studies, doses and endpoints, and the dependence among them.</li>
+<li>Project teams use the same machinery for sensitivity analysis on design levers (sample size, endpoints, number of trials).</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section></section>
 <section>
 <section id="when-evidence-is-indirect-a-worked-example" class="title-slide slide level1 center">
@@ -470,6 +740,26 @@ Andrew Bean
 <li>Both treatment effects were <strong>elicited</strong>, informed by indirect data, and we needed a <strong>joint prior</strong> for two correlated endpoints</li>
 </ul>
 </div>
+<aside class="notes">
+<ul>
+<li>Retrospective example: Phase 3 was ongoing and results unknown at the time. Do not reveal the outcome yet.</li>
+<li>Success rule: significance on both exacerbations and FEV1, in both trials, for at least one dose.</li>
+<li>Exacerbations (primary): no Phase 2 exacerbation data, only a surrogate (sputum eosinophil reduction) in one Phase 2 trial.</li>
+<li>FEV1: several Phase 2 studies, but shorter and in a milder population than Phase 3.</li>
+<li>Neither matches its Phase 3 role, so the evidence had to be bridged, not carried forward. We elicited expert judgement informed by the indirect data, and needed a joint prior because the endpoints are correlated.</li>
+<li>Transition: how do you elicit judgement without inviting bias?</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="structuring-the-elicitation" class="slide level2 smaller">
 <h2>Structuring the elicitation</h2>
@@ -488,6 +778,25 @@ Andrew Bean
 <div class="caption">
 <p>Workshop structure of the basic SHELF protocol.</p>
 </div>
+<aside class="notes">
+<ul>
+<li>Informal elicitation invites anchoring, overconfidence and dominant voices. SHELF is a structured, facilitator-led protocol.</li>
+<li>Step 1: each expert independently gives a plausible range, median and tertiles for the quantity of interest.</li>
+<li>Step 2: experts share rationale and interpretations of the evidence. Disagreement is aired, not averaged away.</li>
+<li>Step 3: the group judges what a rational impartial observer would believe after hearing everyone, and a distribution is fitted and fed back for checking. It is not an average of the individual views.</li>
+<li>Next two slides show what the outputs looked like.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="eliciting-the-marginal-exacerbations" class="slide level2 smaller">
 <h2>Eliciting the marginal: exacerbations</h2>
@@ -495,6 +804,24 @@ Andrew Bean
 <div class="caption">
 <p>Four experts give range, median, and tertiles independently; and a follow-up facilitated discussion produces a single <strong>group judgement</strong>.</p>
 </div>
+<aside class="notes">
+<ul>
+<li>Top panel: each bar is one expert’s judgement (lower plausible limit, lower third, median, upper third, upper plausible limit). Differences between experts are information, not noise.</li>
+<li>“Pool” is a simple pooling of individual judgements. “Group judgement” is what the group agreed after discussion.</li>
+<li>Bottom panel: the fitted group distribution, with tertile bands and the lowest/highest 10% tails.</li>
+<li>Note the x-axis: the judgement is conditional on a 65% reduction in sputum eosinophils. Conditioning on the surrogate is what lets the Phase 2 data flow into the exacerbation prediction.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="eliciting-the-dependence-between-endpoints" class="slide level2 smaller">
 <h2>Eliciting the dependence between endpoints</h2>
@@ -502,6 +829,24 @@ Andrew Bean
 <div class="caption">
 <p>Repeating the exacerbations elicitation at several assumed eosinophil effects (50-75%) traces out the <strong>conditional distributions</strong> needed to capture dependence between the two endpoints.</p>
 </div>
+<aside class="notes">
+<ul>
+<li>Both endpoints must succeed, so dependence matters. If independent, the joint probability would be the product. Positive dependence raises it.</li>
+<li>Each ridge is the elicited exacerbation distribution at an assumed eosinophil effect (50% to 75%). As the assumed surrogate effect grows, the distribution shifts toward larger reductions and widens.</li>
+<li>The eosinophil effect is where the real Phase 2 data live, so the data propagate to exacerbations through these conditionals.</li>
+<li>Details are in Holzhauer et al.&nbsp;(2022). Only go into the copula/concordance approach for FEV1 if asked.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="final-prediction-of-pivotal-efficacy" class="slide level2 smaller">
 <h2>Final prediction of pivotal efficacy</h2>
@@ -515,6 +860,24 @@ Andrew Bean
 <div class="caption">
 <p>Predictive distribution for each endpoint’s Phase 3 treatment effect, with <strong>P(effect beats target)</strong>.</p>
 </div>
+<aside class="notes">
+<ul>
+<li>Quantile dotplots: each dot is an equal-probability slice, so probability is read by counting dots beyond the target. Easier for non-statisticians than a density.</li>
+<li>Read the numbers: P(exacerbation effect beats target) = 34.4%. P(FEV1 effect beats target) = 21.7%.</li>
+<li>These are probabilities about the true effect, not about trial significance. The trial noise and the both-endpoints, both-trials rule come in through simulation.</li>
+<li>The joint prior feeds the same simulation machinery as the applet.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="what-did-the-pos-say" class="slide level2 smaller">
 <h2>What did the PoS say?</h2>
@@ -525,6 +888,26 @@ Andrew Bean
 <div role="img" aria-label="Program-level outcome grid; each square is an equally likely program outcome" style="display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); grid-template-rows: repeat(2, auto); grid-auto-flow: column; gap: 4px;"><div style="aspect-ratio: 1 / 1; border-radius: 2px; background-color: rgb(62, 165, 94);" title="Significance, approval &amp; market access"></div><div style="aspect-ratio: 1 / 1; border-radius: 2px; background-color: rgb(232, 178, 58);" title="Approval without market access"></div><div style="aspect-ratio: 1 / 1; border-radius: 2px; background-color: rgb(235, 166, 160);" title="Insufficient efficacy (no significance)"></div><div style="aspect-ratio: 1 / 1; border-radius: 2px; background-color: rgb(235, 166, 160);" title="Insufficient efficacy (no significance)"></div><div style="aspect-ratio: 1 / 1; border-radius: 2px; background-color: rgb(235, 166, 160);" title="Insufficient efficacy (no significance)"></div><div style="aspect-ratio: 1 / 1; border-radius: 2px; background-color: rgb(235, 166, 160);" title="Insufficient efficacy (no significance)"></div><div style="aspect-ratio: 1 / 1; border-radius: 2px; background-color: rgb(235, 166, 160);" title="Insufficient efficacy (no significance)"></div><div style="aspect-ratio: 1 / 1; border-radius: 2px; background-color: rgb(235, 166, 160);" title="Insufficient efficacy (no significance)"></div><div style="aspect-ratio: 1 / 1; border-radius: 2px; background-color: rgb(235, 166, 160);" title="Insufficient efficacy (no significance)"></div><div style="aspect-ratio: 1 / 1; border-radius: 2px; background-color: rgb(235, 166, 160);" title="Insufficient efficacy (no significance)"></div><div style="aspect-ratio: 1 / 1; border-radius: 2px; background-color: rgb(235, 166, 160);" title="Insufficient efficacy (no significance)"></div><div style="aspect-ratio: 1 / 1; border-radius: 2px; background-color: rgb(235, 166, 160);" title="Insufficient efficacy (no significance)"></div><div style="aspect-ratio: 1 / 1; border-radius: 2px; background-color: rgb(235, 166, 160);" title="Insufficient efficacy (no significance)"></div><div style="aspect-ratio: 1 / 1; border-radius: 2px; background-color: rgb(235, 166, 160);" title="Insufficient efficacy (no significance)"></div><div style="aspect-ratio: 1 / 1; border-radius: 2px; background-color: rgb(235, 166, 160);" title="Insufficient efficacy (no significance)"></div><div style="aspect-ratio: 1 / 1; border-radius: 2px; background-color: rgb(235, 166, 160);" title="Insufficient efficacy (no significance)"></div><div style="aspect-ratio: 1 / 1; border-radius: 2px; background-color: rgb(235, 166, 160);" title="Insufficient efficacy (no significance)"></div><div style="aspect-ratio: 1 / 1; border-radius: 2px; background-color: rgb(235, 166, 160);" title="Insufficient efficacy (no significance)"></div><div style="aspect-ratio: 1 / 1; border-radius: 2px; background-color: rgb(235, 166, 160);" title="Insufficient efficacy (no significance)"></div><div style="aspect-ratio: 1 / 1; border-radius: 2px; background-color: rgb(235, 166, 160);" title="Insufficient efficacy (no significance)"></div></div><ul style="list-style: none; margin: 16px 0px 0px; padding: 0px; display: flex; flex-direction: column; gap: 6px;"><li style="display: flex; align-items: center; gap: 8px; font-size: 12px;"><span style="display: inline-block; width: 12px; height: 12px; border-radius: 2px; flex: 0 0 auto; background-color: rgb(62, 165, 94);"></span><span style="flex: 1 1 auto; color: rgb(63, 63, 63);">Significance, approval &amp; market access</span><span style="font-variant-numeric: tabular-nums; color: rgb(107, 114, 128);">5%</span></li><li style="display: flex; align-items: center; gap: 8px; font-size: 12px;"><span style="display: inline-block; width: 12px; height: 12px; border-radius: 2px; flex: 0 0 auto; background-color: rgb(232, 178, 58);"></span><span style="flex: 1 1 auto; color: rgb(63, 63, 63);">Approval without market access</span><span style="font-variant-numeric: tabular-nums; color: rgb(107, 114, 128);">5%</span></li><li style="display: flex; align-items: center; gap: 8px; font-size: 12px;"><span style="display: inline-block; width: 12px; height: 12px; border-radius: 2px; flex: 0 0 auto; background-color: rgb(126, 22, 24);"></span><span style="flex: 1 1 auto; color: rgb(63, 63, 63);">Significance but safety showstopper</span><span style="font-variant-numeric: tabular-nums; color: rgb(107, 114, 128);">2%</span></li><li style="display: flex; align-items: center; gap: 8px; font-size: 12px;"><span style="display: inline-block; width: 12px; height: 12px; border-radius: 2px; flex: 0 0 auto; background-color: rgb(192, 57, 43);"></span><span style="flex: 1 1 auto; color: rgb(63, 63, 63);">Significance &amp; safe, but not approved</span><span style="font-variant-numeric: tabular-nums; color: rgb(107, 114, 128);">0%</span></li><li style="display: flex; align-items: center; gap: 8px; font-size: 12px;"><span style="display: inline-block; width: 12px; height: 12px; border-radius: 2px; flex: 0 0 auto; background-color: rgb(235, 166, 160);"></span><span style="flex: 1 1 auto; color: rgb(63, 63, 63);">Insufficient efficacy (no significance)</span><span style="font-variant-numeric: tabular-nums; color: rgb(107, 114, 128);">88%</span></li></ul>
 </div>
 
+<aside class="notes">
+<ul>
+<li>Pause and ask the audience what they would have guessed.</li>
+<li>Overall PoS about 5% (significance, approval and market access).</li>
+<li>88% of simulated programs fail on insufficient efficacy. 2% reach significance but have a safety showstopper. 0% are significant and safe but not approved.</li>
+<li>Another 5% are approved without market access, i.e.&nbsp;would not meet the TPP. This is why defining success via the TPP matters: about 10% approval, but only half of that is real success.</li>
+<li>The loss is almost all efficacy, so non-efficacy risks were not the story here.</li>
+<li>A 5% PoS is not “it will fail”. One program is one draw.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="what-happened" class="slide level2 smaller">
 <h2>What happened?</h2>
@@ -532,6 +915,23 @@ Andrew Bean
 <div class="caption">
 <p>Elicited prior (top) vs.&nbsp;realized Phase 3 results by dose and study (bottom), for exacerbations (left) and FEV1 (right) <span class="citation" data-cites="holzhauer2022">(<a href="#/references" role="doc-biblioref" onclick="">Holzhauer et al. 2022</a>)</span>.</p>
 </div>
+<aside class="notes">
+<ul>
+<li>Top row: the elicited prior from before the readout, with the TPP as a dashed line. Bottom row: realized Phase 3 estimates with intervals, by dose and study, plus pooled. Exacerbations on the left, FEV1 on the right.</li>
+<li>Results landed inside the bulk of the elicited distributions and well short of the TPP on both endpoints. Judgement before the readout was well aligned with outcome (Holzhauer et al.&nbsp;2022).</li>
+<li>Caveat: one program does not validate the approach. PoS can only be checked in aggregate. The value was a skeptical, documented assessment made before the data were in.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section></section>
 <section>
 <section id="reflections" class="title-slide slide level1 center">
@@ -548,6 +948,25 @@ Andrew Bean
 <li>Drug development is hard and pivotal failures are impactful. Rigor and objectivity are what make PoS predictions reliable.</li>
 </ul>
 </div>
+<aside class="notes">
+<ul>
+<li>Map back to the three problems from the opening, then add the last point.</li>
+<li>Framing is most of the work: the target and the relevant evidence matter more than the choice of model.</li>
+<li>Embrace uncertainty explicitly: priors, bridging assumptions and expert judgement go on the table, in documented form.</li>
+<li>Transparency is paramount when people must act on the number and defend it.</li>
+<li>Close: drug development is hard and pivotal failures are impactful. Rigor and objectivity are what make PoS reliable over time.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="limitations-and-open-questions" class="slide level2 smaller">
 <h2>Limitations and open questions</h2>
@@ -569,6 +988,28 @@ Andrew Bean
     </ul>
   </div>
 </div>
+<aside class="notes">
+<ul>
+<li>Be candid on limitations: benchmarks describe past programs, and falling success rates mean the past may not predict the future. Elicitation is structured but still judgement. A single program is a one-off event.</li>
+<li>Likely question: how do you know PoS is calibrated? Calibration can only be assessed in aggregate across programs. Answer with what has actually been evaluated.</li>
+<li>Open questions, invite ideas from the audience (good student projects):
+<ul>
+<li>Better calibrated benchmark priors, e.g.&nbsp;more granular program characteristics and other modelling strategies.</li>
+<li>Bridging models from surrogates to clinical endpoints, and across populations.</li>
+<li>Effective visual communication of uncertainty to decision-makers.</li>
+</ul></li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="acknowledgements" class="slide level2">
 <h2>Acknowledgements</h2>
@@ -592,10 +1033,29 @@ Andrew Bean
 <li>Lou Whitehead</li>
 </ul>
 </div></div>
+<aside class="notes">
+<ul>
+<li>Thank the quantitative PoS team and colleagues, and the organisers at Rutgers.</li>
+<li>Move to questions. Leave the references slide up, or jump to a backup slide depending on the question.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="references" class="slide level2 smaller scrollable">
 <h2>References</h2>
 <div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-reuters2026virtual" class="csl-entry" role="listitem">
+Beasley, Deena. 2026. <em><span>AI</span> Companies Run Virtual Drug Trials, Aim to Improve Success of Human Studies</em>. Reuters. <a href="https://www.reuters.com/legal/litigation/ai-companies-run-virtual-drug-trials-aim-improve-success-human-studies-2026-10-07/">https://www.reuters.com/legal/litigation/ai-companies-run-virtual-drug-trials-aim-improve-success-human-studies-2026-10-07/</a>.
+</div>
 <div id="ref-chancellor2024why" class="csl-entry" role="listitem">
 Chancellor, David. 2024. <em>Why Are Clinical Development Success Rates Falling?</em> Citeline. <a href="https://www.citeline.com/-/media/8f1a3eb60cde4827bb513ea6f78316e2">https://www.citeline.com/-/media/8f1a3eb60cde4827bb513ea6f78316e2</a>.
 </div>
@@ -668,6 +1128,23 @@ Zhang, Wanwan, Xiangbin Meng, Xiaole Jia, et al. 2026. <span>“Predicting Phase
 </tbody>
 </table>
 </div>
+<aside class="notes">
+<ul>
+<li>Use if asked who this is for.</li>
+<li>Four groups: portfolio/finance, governance, leadership, project teams. The common thread is a consistent, defensible, reproducible number.</li>
+<li>Project teams use sensitivity of PoS to design levers (sample size, endpoints, TPP, number of trials) and the value of more data.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="step-3-post-pivotal-risks" class="slide level2 smaller">
 <h2>Step 3 · Post-pivotal risks</h2>
@@ -725,6 +1202,26 @@ Zhang, Wanwan, Xiangbin Meng, Xiaole Jia, et al. 2026. <span>“Predicting Phase
 </tbody>
 </table>
 </div>
+<aside class="notes">
+<ul>
+<li>Question: given positive pivotal results on the key endpoints and no safety showstopper, what is the remaining probability of ultimate success?</li>
+<li>Five factors, each scored low/medium/high (A/B/C) by project-team consensus.</li>
+<li>The scores map to a probability through a logistic model fitted to an expert elicitation of risk profiles: intercept 2.68 (all-low is about 94%), additive penalties on the logit scale for medium and high.</li>
+<li>Largest high-risk penalties: unaccounted TPP risks (-2.11), then technical and unaccounted safety risks (about -1.98). An all-medium profile is about 24%.</li>
+<li>Final PoS = core pivotal PoS times this conditional probability.</li>
+<li>Benefit is transparency: teams can see which risks were invoked and how they translate into the number.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="step-4-manual-adjustment" class="slide level2 smaller">
 <h2>Step 4 · Manual adjustment</h2>
@@ -741,6 +1238,24 @@ Zhang, Wanwan, Xiangbin Meng, Xiaole Jia, et al. 2026. <span>“Predicting Phase
     <li>Re-litigating the TPP after the fact</li>
   </ul></div>
 </div>
+<aside class="notes">
+<ul>
+<li>Overrides are allowed only with a written, documented, agreed rationale.</li>
+<li>Legitimate: information the model cannot see (safety discharged elsewhere, regulatory precedent, known bridging issues).</li>
+<li>Not legitimate: “the number looks low”, undocumented optimism, re-litigating the TPP afterwards.</li>
+<li>Documentation makes overrides auditable, so we can learn whether they help.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="fevipiprant-what-direct-phase-2-data-existed" class="slide level2 smaller">
 <h2>Fevipiprant: what direct Phase 2 data existed?</h2>
@@ -749,6 +1264,24 @@ Zhang, Wanwan, Xiangbin Meng, Xiaole Jia, et al. 2026. <span>“Predicting Phase
 <div class="caption">
 <p>A standard Bayesian update for the surrogate: prior <strong>24%</strong> → posterior <strong>80%</strong> probability that the effect exceeds the target.</p>
 </div>
+<aside class="notes">
+<ul>
+<li>Direct Phase 2 data exist only for the surrogate, sputum eosinophils.</li>
+<li>A standard Bayesian update moves the probability that the effect exceeds the target from 24% (prior) to 80% (posterior).</li>
+<li>Example input (example/asthma.json): estimate -0.54 on the log scale (95% CI -0.84 to -0.24) against a target of -0.30.</li>
+<li>This surrogate evidence had to be bridged to exacerbations through the elicited conditional distributions. A strong surrogate result did not mean strong exacerbation prospects.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="fevipiprant-eliciting-the-fev1-marginal" class="slide level2 smaller">
 <h2>Fevipiprant: eliciting the FEV1 marginal</h2>
@@ -756,6 +1289,23 @@ Zhang, Wanwan, Xiangbin Meng, Xiaole Jia, et al. 2026. <span>“Predicting Phase
 <div class="caption">
 <p>Four experts give range, median, and tertiles independently; these are pooled into a single <strong>group judgement</strong> distribution.</p>
 </div>
+<aside class="notes">
+<ul>
+<li>Same procedure as for exacerbations: four experts, independent tertiles, then a group judgement.</li>
+<li>The group distribution is right-skewed: mass mostly between 0 and roughly 130 mL, with a long upper tail.</li>
+<li>The Phase 2 evidence was weaker (shorter trials, milder population), so judgement carries more weight here.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 
 
 </section></section>
